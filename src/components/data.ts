@@ -19,7 +19,7 @@ export const MENU = [
         icon: "🥞",
         items: [
             { id: "cr1", name: "Triple Chocolate Crepe", pricePerPerson: 8, desc: "Dark, milk and white Belgian chocolate layered crepe." },
-            { id: "cr2", name: "Melt n Dip Crepe", pricePerPerson: 9, desc: "Our flagship — chocolate poured tableside." },
+            { id: "cr2", name: "Melt n Dip Crepe", pricePerPerson: 9, desc: "Our flagship — chocolate poured." },
             { id: "cr3", name: "Lotus Crepe", pricePerPerson: 8, desc: "Biscoff spread with banana and cream." },
             { id: "cr4", name: "Brownies Crepe", pricePerPerson: 8, desc: "Brownie bites folded into a rich chocolate crepe." },
             { id: "cr5", name: "Red Velvet Fettuccine", pricePerPerson: 9, desc: "Red velvet crepe strips with cream cheese drizzle." },
@@ -33,7 +33,7 @@ export const MENU = [
         icon: "🧇",
         items: [
             { id: "wf1", name: "Chocolate Waffle", pricePerPerson: 7, desc: "Classic Belgian waffle with rich chocolate." },
-            { id: "wf2", name: "Melt n Dip Waffle", pricePerPerson: 8, desc: "Our signature waffle with tableside chocolate pour." },
+            { id: "wf2", name: "Melt n Dip Waffle", pricePerPerson: 8, desc: "Our signature waffle with chocolate pour." },
             { id: "wf3", name: "Brownies Waffle", pricePerPerson: 8, desc: "Brownie-style waffle with fudge drizzle." },
             { id: "wf4", name: "Lotus Waffle", pricePerPerson: 8, desc: "Biscoff spread with caramelised waffle." },
             { id: "wf5", name: "Knefe Waffle Cup", pricePerPerson: 9, desc: "Knefe-inspired waffle with cheese and syrup." },
@@ -72,7 +72,7 @@ export const PACKAGES = [
 
 export const EVENT_TYPES = [
     "Wedding / Nikah", "Birthday", "Corporate Event", "Graduation",
-    "Eid & Iftar", "Baby / Bridal Shower", "Community Event",
+    "Iftar and Eid", "Baby / Bridal Shower", "Community Event",
     "Mosque / Church Event", "Grand Opening", "Late-Night Dessert Bar", "Other",
 ];
 

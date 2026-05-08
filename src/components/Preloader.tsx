@@ -231,7 +231,7 @@ export default function Preloader({ setIsLoading }: PreloaderProps) {
             >
                 <p
                     className="font-sans font-light uppercase tracking-[4px] text-taupe"
-                    style={{ fontSize: "8px" }}
+                    style={{ fontSize: "15px" }}
                 >
                     Delight Enterprises
                 </p>
@@ -239,7 +239,7 @@ export default function Preloader({ setIsLoading }: PreloaderProps) {
                     <div className="h-px w-8" style={{ background: "var(--color-amber)" }} />
                     <p
                         className="font-sans font-light uppercase tracking-[3px]"
-                        style={{ fontSize: "7px", color: "var(--color-amber)" }}
+                        style={{ fontSize: "15px", color: "var(--color-amber)" }}
                     >
                         Melt &amp; Dip · Palos Park
                     </p>

@@ -52,7 +52,7 @@ export default function LiveStations() {
                     </h2>
 
                     <p className="ls-fade-up opacity-0 font-light text-cream/60 leading-[1.85] text-[15px] mb-10 max-w-[440px]">
-                        Elevate your event from a meal to a performance. Our chefs prepare fresh fettuccine crepes, hot Belgian waffles, and tableside chocolate pours live in front of your guests.
+                        Elevate your event from a meal to a performance. Our chefs prepare fresh fettuccine crepes, hot Belgian waffles, and chocolate pours live in front of your guests.
                     </p>
 
                     <div className="ls-fade-up opacity-0 flex flex-col gap-6 w-full">

@@ -423,7 +423,7 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
             className="font-serif italic"
             style={{ fontSize: "12px", letterSpacing: "0.02em", color: "rgba(255,255,255,0.5)" }}
           >
-            Tableside Belgian Chocolate Pour
+            Belgian Chocolate Pour
           </p>
           <p
             className="font-sans"

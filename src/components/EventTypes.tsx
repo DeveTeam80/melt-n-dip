@@ -13,7 +13,7 @@ const EVENTS = [
     id: "wedding",
     title: "Weddings & Nikah",
     subtitle:
-      "Elegant, flowing chocolate displays and premium tableside service for your special day.",
+      "Elegant chocolate display and seasonal fruits served in a cup.",
     img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1600&auto=format&fit=crop",
   },
   {
@@ -27,7 +27,7 @@ const EVENTS = [
     id: "social",
     title: "Social Gatherings",
     subtitle:
-      "Birthdays, baby showers, and holiday parties elevated with authentic gelato and sweets.",
+      "Birthdays, baby showers, and holiday parties elevated with authentic gelato and desserts.",
     img: "https://images.unsplash.com/photo-1530103862676-de8892bf309c?q=80&w=1600&auto=format&fit=crop",
   },
 ];

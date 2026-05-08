@@ -80,7 +80,7 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                         {[
                             { href: "tel:+17086088982", Icon: Phone, label: "Catering Enquiries", val: "(708) 608-8982" },
                             { href: "tel:+16308009292", Icon: MapPin, label: "Store Rental", val: "(630) 800-9292" },
-                            { href: "mailto:meltndippalos2@gmail.com", Icon: Mail, label: "Email", val: "meltndippalos2@gmail.com" },
+                            { href: "mailto:owners@delightenterprisesllc.com", Icon: Mail, label: "Email", val: "owners@delightenterprisesllc.com" },
                         ].map(({ href, Icon, label, val }) => (
                             <a key={label} href={href} onMouseMove={onMagMove} onMouseLeave={onMagLeave} className="flex items-center gap-5 hover-target group w-fit">
                                 <div className="flex items-center justify-center rounded-full shrink-0 w-11 h-11 bg-teal-faint border border-teal-pale transition-colors duration-400 group-hover:bg-teal group-hover:border-teal">

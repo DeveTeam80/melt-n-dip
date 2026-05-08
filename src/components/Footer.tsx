@@ -167,9 +167,9 @@ export default function Footer() {
 
                 {/* Contact Info */}
                 <div className="flex flex-col gap-4 pt-2 border-t border-cream/5">
-                  <a href="mailto:meltndippalos2@gmail.com" className="group flex items-center gap-3 font-light text-cream/60 hover:text-amber transition-colors hover-target text-[13px]">
+                  <a href="mailto:owners@delightenterprisesllc.com" className="group flex items-center gap-3 font-light text-cream/60 hover:text-amber transition-colors hover-target text-[13px]">
                     <Mail className="w-4 h-4 text-teal group-hover:text-amber transition-colors" strokeWidth={1.5} />
-                    meltndippalos2@gmail.com
+                    owners@delightenterprisesllc.com
                   </a>
                   <a href="tel:+17086088982" className="group flex items-center gap-3 font-light text-cream/60 hover:text-amber transition-colors hover-target">
                     <Phone className="w-4 h-4 text-teal group-hover:text-amber transition-colors" strokeWidth={1.5} />

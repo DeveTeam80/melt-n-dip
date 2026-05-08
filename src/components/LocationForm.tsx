@@ -136,11 +136,11 @@ export default function LocationForm() {
       content: (
         <div className="flex flex-col gap-1.5">
           <a
-            href="mailto:meltndippalos2@gmail.com"
+            href="mailto:owners@delightenterprisesllc.com"
             className="font-light transition-colors hover:text-teal-rich"
             style={{ fontSize: "14px", color: "var(--color-teal)" }}
           >
-            meltndippalos2@gmail.com
+            owners@delightenterprisesllc.com
           </a>
           {/* <a
             href="tel:+16308009292"

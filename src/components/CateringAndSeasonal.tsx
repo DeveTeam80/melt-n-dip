@@ -20,7 +20,7 @@ const CAT_CARDS = [
   {
     Icon: Heart,
     name: "Weddings",
-    desc: "Tableside chocolate pours, gelato bars, Dubai Chocolate towers. A dessert station as memorable as the ceremony.",
+    desc: "Belgian chocolate pours, gelato bars, Dubai Chocolate towers. A dessert station as memorable as the ceremony.",
   },
   {
     Icon: Cake,
@@ -63,7 +63,7 @@ const SEASONAL_CARDS = [
 const TAGS = [
   "Weddings",
   "Graduations",
-  "Eid & Iftar",
+  "Iftar and Eid",
   "Corporate Events",
   "Birthdays",
   "Book Clubs",
@@ -76,7 +76,7 @@ const EVENT_TYPES = [
   "Birthday",
   "Corporate Event",
   "Graduation",
-  "Eid & Iftar",
+  "Iftar and Eid",
   "Baby / Bridal Shower",
   "Community Event",
   "Other",
@@ -293,11 +293,21 @@ export default function CateringAndSeasonal() {
               <em className="italic text-umber font-serif text-[17px] font-bold">
                 Satisfy Your Spirit
               </em>
-              . We respond to all enquiries within 48 hours.
+              .
+              <span className="block mt-4 text-ink/80">
+                We also cater to{" "}
+              <em className="italic text-umber font-serif text-[17px] font-bold">
+                  Graduations, Iftar & Eid, Corporate Events, Book Clubs, and
+                  Drop-Off Trays.
+                </em>
+              </span>
+              <span className="block mt-4 text-[15px]">
+                We respond to all enquiries within 48 hours.
+              </span>
             </p>
 
             {/* Magnetic tags */}
-            <div className="cat-fade-up flex flex-wrap gap-2.5 mb-10">
+            {/* <div className="cat-fade-up flex flex-wrap gap-2.5 mb-10">
               {TAGS.map((tag) => (
                 <span
                   key={tag}
@@ -320,7 +330,7 @@ export default function CateringAndSeasonal() {
                   {tag}
                 </span>
               ))}
-            </div>
+            </div> */}
 
             {/* CTAs */}
             <div className="cat-fade-up flex items-center gap-6 flex-wrap">
@@ -641,13 +651,16 @@ export default function CateringAndSeasonal() {
             className="season-fade-up section-eyebrow"
             style={{ justifyContent: "center" }}
           >
-            <span style={{
-            fontSize: "12px",
-            letterSpacing: "3.5px",
-            textTransform: "uppercase",
-            color: "var(--color-teal)",
-          }}>
-            Seasonal &amp; Community</span>
+            <span
+              style={{
+                fontSize: "12px",
+                letterSpacing: "3.5px",
+                textTransform: "uppercase",
+                color: "var(--color-teal)",
+              }}
+            >
+              Seasonal &amp; Community
+            </span>
           </div>
           <h2
             className="font-serif font-light text-ink flex flex-col items-center gap-1 mb-6"
@@ -673,9 +686,8 @@ export default function CateringAndSeasonal() {
             className="season-fade-up font-normal text-taupe"
             style={{ fontSize: "15px", lineHeight: 1.85 }}
           >
-            We follow the rhythm of the community, from Ramadan iftars to
-            Easter specials and neighbourhood moments that bring people
-            together.
+            We follow the rhythm of the community, from Ramadan iftars to Easter
+            specials and neighbourhood moments that bring people together.
           </p>
         </div>
 
