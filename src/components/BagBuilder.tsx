@@ -73,7 +73,7 @@ export default function BagBuilder({
       <div className="builder-fade-up opacity-0 relative z-50 grid grid-cols-1 lg:grid-cols-[1.5fr_1fr_1fr] gap-8 lg:gap-12 mb-24 p-8 lg:p-12 rounded-[3px] bg-parchment border border-linen shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
         <div className="flex flex-col gap-2 border-b lg:border-b-0 lg:border-r border-linen pb-8 lg:pb-0 lg:pr-12">
           <label className="text-[12px] tracking-[3px] uppercase font-medium text-teal mb-2">Guest Count <span className="text-amber">*</span></label>
-          <input type="number" min="1" placeholder="75" value={guests} onChange={(e) => setGuests(e.target.value)} className="bg-transparent outline-none font-serif font-light text-ink w-full placeholder:text-taupe/90" style={{ fontSize: "clamp(48px, 6vw, 72px)", letterSpacing: "-0.02em", lineHeight: 1 }} />
+          <input type="number" min="1" placeholder="75" value={guests} onChange={(e) => setGuests(e.target.value)} className="bg-transparent outline-none font-serif font-light text-ink w-full placeholder:text-teal/80/90" style={{ fontSize: "clamp(48px, 6vw, 72px)", letterSpacing: "-0.02em", lineHeight: 1 }} />
         </div>
         <div className="flex flex-col justify-center gap-8 lg:pr-6">
           <div className="flex flex-col gap-2">
@@ -119,7 +119,7 @@ export default function BagBuilder({
       {/* --- DIVIDER --- */}
       <div className="relative py-20 flex justify-center items-center">
         <div className="absolute w-full h-[1px] bg-linen"></div>
-        <div className="relative z-10 bg-paper px-6 py-2 border border-linen rounded-full font-serif font-bold text-taupe text-lg shadow-sm">
+        <div className="relative z-10 bg-paper px-6 py-2 border border-linen rounded-full font-serif font-bold text-teal/80 text-lg shadow-sm">
           or build your own
         </div>
       </div>
@@ -151,7 +151,7 @@ export default function BagBuilder({
                   <h4 className="font-serif font-medium text-lg text-ink leading-tight">{item.name}</h4>
                   <span className="text-[12px] font-medium text-teal bg-teal-faint px-2 py-1 rounded">${item.pricePerPerson} / pp</span>
                 </div>
-                <p className="text-[13px] font-medium text-taupe leading-relaxed mb-8">{item.desc}</p>
+                <p className="text-[13px] font-medium text-teal/80 leading-relaxed mb-8">{item.desc}</p>
                 
                 <div className="flex items-center justify-between">
                    {isSelected ? (

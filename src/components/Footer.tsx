@@ -91,7 +91,7 @@ export default function Footer() {
               <span className="block mb-6 text-[9px] uppercase tracking-[3px] text-amber font-medium">
                 Melt &amp; Dip · Palos Park, IL
               </span>
-              <p className="font-light text-[14px] text-cream/60 leading-[1.85] max-w-[320px]">
+              <p className="font-light text-[14px]  text-paper leading-[1.85] max-w-[320px]">
                 A sanctuary of sweetness where families gather, friendships blossom,
                 and every bite brings joy. Serving the south suburbs with uncompromising craft.
               </p>
@@ -107,7 +107,7 @@ export default function Footer() {
                   <li key={link}>
                     <Link
                       href="#"
-                      className="group inline-flex items-center gap-2 text-[14px] font-light text-cream/60 hover:text-cream transition-colors duration-300 hover-target"
+                      className="group inline-flex items-center gap-2 text-[14px] font-light  text-paper hover:text-cream transition-colors duration-300 hover-target"
                     >
                       <span className="relative overflow-hidden pb-1">
                         {link}
@@ -130,7 +130,7 @@ export default function Footer() {
                   <li key={link}>
                     <Link
                       href="#"
-                      className="group inline-flex items-center gap-2 text-[14px] font-light text-cream/60 hover:text-cream transition-colors duration-300 hover-target"
+                      className="group inline-flex items-center gap-2 text-[14px] font-light  text-paper hover:text-cream transition-colors duration-300 hover-target"
                     >
                       <span className="relative overflow-hidden pb-1">
                         {link}
@@ -151,32 +151,32 @@ export default function Footer() {
               <div className="flex flex-col gap-6 text-[14px]">
                 {/* Location */}
                 <div className="flex gap-3">
-                  <MapPin className="w-4 h-4 text-teal shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <p className="font-light leading-[1.6] text-cream/60">
+                  <MapPin className="w-4 h-4 text-amber shrink-0 mt-0.5" strokeWidth={1.5} />
+                  <p className="font-light leading-[1.6]  text-paper">
                     13030 LaGrange Rd<br />Palos Park, IL 60464
                   </p>
                 </div>
 
                 {/* Hours */}
                 <div className="flex gap-3">
-                  <Clock className="w-4 h-4 text-teal shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <p className="font-light leading-[1.6] text-cream/60">
+                  <Clock className="w-4 h-4 text-amber shrink-0 mt-0.5" strokeWidth={1.5} />
+                  <p className="font-light leading-[1.6]  text-paper">
                     Sun – Thu: 12pm – 11pm<br />Fri – Sat: 12pm – Midnight
                   </p>
                 </div>
 
                 {/* Contact Info */}
                 <div className="flex flex-col gap-4 pt-2 border-t border-cream/5">
-                  <a href="mailto:owners@delightenterprisesllc.com" className="group flex items-center gap-3 font-light text-cream/60 hover:text-amber transition-colors hover-target text-[13px]">
-                    <Mail className="w-4 h-4 text-teal group-hover:text-amber transition-colors" strokeWidth={1.5} />
+                  <a href="mailto:owners@delightenterprisesllc.com" className="group flex items-center gap-3 font-light  text-paper hover:text-amber transition-colors hover-target text-[13px]">
+                    <Mail className="w-4 h-4 text-amber group-hover:text-amber transition-colors" strokeWidth={1.5} />
                     owners@delightenterprisesllc.com
                   </a>
-                  <a href="tel:+17086088982" className="group flex items-center gap-3 font-light text-cream/60 hover:text-amber transition-colors hover-target">
-                    <Phone className="w-4 h-4 text-teal group-hover:text-amber transition-colors" strokeWidth={1.5} />
+                  <a href="tel:+17086088982" className="group flex items-center gap-3 font-light  text-paper hover:text-amber transition-colors hover-target">
+                    <Phone className="w-4 h-4 text-amber group-hover:text-amber transition-colors" strokeWidth={1.5} />
                     (708) 608-8982
                   </a>
-                  <a href="tel:+16308009292" className="group flex items-center gap-3 font-light text-cream/60 hover:text-amber transition-colors hover-target text-[13px]">
-                    <Phone className="w-4 h-4 text-teal group-hover:text-amber transition-colors" strokeWidth={1.5} />
+                  <a href="tel:+16308009292" className="group flex items-center gap-3 font-light  text-paper hover:text-amber transition-colors hover-target text-[13px]">
+                    <Phone className="w-4 h-4 text-amber group-hover:text-amber transition-colors" strokeWidth={1.5} />
                     (630) 800-9292 — Store Rental
                   </a>
                 </div>
@@ -186,7 +186,7 @@ export default function Footer() {
 
           {/* Bottom Bar */}
           <div className="ft-col flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <p className="text-[11px] font-light text-cream/30 tracking-[1px]">
+            <p className="text-[11px] font-light  text-paper tracking-[1px]">
               &copy; {new Date().getFullYear()} Delight Enterprises LLC. All rights reserved.
             </p>
 
@@ -197,7 +197,7 @@ export default function Footer() {
                   href="#"
                   onMouseMove={handleMagneticMove}
                   onMouseLeave={handleMagneticLeave}
-                  className="text-[10px] font-medium tracking-[2px] uppercase text-cream/40 hover:text-teal-pale transition-colors hover-target px-2 py-1"
+                  className="text-[10px] font-medium tracking-[2px] uppercase  text-paper hover:text-teal-pale transition-colors hover-target px-2 py-1"
                 >
                   {social}
                 </a>

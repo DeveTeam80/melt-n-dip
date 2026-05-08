@@ -33,7 +33,7 @@ export default function CustomSelect({
 
     const theme = {
         text: light ? "text-amber" : "text-ink",
-        placeholder: light ? "text-amber/90" : "text-taupe/90",
+        placeholder: light ? "text-amber/90" : "text-teal/90",
         borderBase: light ? "border-teal-pale/90" : "border-linen",
         borderActive: light ? "border-teal-pale" : "border-teal",
         icon: light ? "text-amber/90" : "text-teal",

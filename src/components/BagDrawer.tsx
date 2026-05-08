@@ -75,7 +75,7 @@ export default function BagDrawer({
 
                     {bag.length === 0 && (
                         <div className="py-20 text-center">
-                            <p className="text-taupe italic text-[14px]">Your bag is empty.</p>
+                            <p className="text-teal/80 italic text-[14px]">Your bag is empty.</p>
                         </div>
                     )}
                 </div>

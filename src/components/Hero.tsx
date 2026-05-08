@@ -165,7 +165,7 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
 
         {/* Body */}
         <p
-          className="reveal-fade font-normal text-taupe mb-10"
+          className="reveal-fade font-normal text-teal/80 mb-10"
           style={{ fontSize: "15px", lineHeight: "1.85", maxWidth: "390px", opacity: 0 }}
         >
           Not your neighbourhood ice cream shop. Authentic Italian gelato,

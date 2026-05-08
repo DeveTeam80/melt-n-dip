@@ -126,7 +126,7 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                                 <Check className="w-7 h-7 text-teal" strokeWidth={2} />
                             </div>
                             <h3 className="font-serif font-light mb-3 text-[32px] text-ink tracking-[-0.02em]">Enquiry Sent!</h3>
-                            <p className="text-[15px] text-taupe leading-[1.8] max-w-[320px] font-light">
+                            <p className="text-[15px] text-teal/80 leading-[1.8] max-w-[320px] font-light">
                                 We'll be in touch within 48 hours. Need us sooner?{" "}
                                 <a href="tel:+17086088982" className="text-teal font-medium hover:text-teal-rich">(708) 608-8982</a>.
                             </p>
@@ -167,7 +167,7 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                                     <label className="text-[12px] font-medium tracking-[2.5px] uppercase text-teal pl-1">Additional Details</label>
                                     <textarea value={form.details} onChange={e => setForm(p => ({ ...p, details: e.target.value }))}
                                         placeholder="Date, venue, any special requests…"
-                                        className="bg-transparent border-b border-linen py-3 px-1 text-[15px] font-light text-ink outline-none focus:border-teal transition-colors resize-none h-24 placeholder:text-taupe/80" />
+                                        className="bg-transparent border-b border-linen py-3 px-1 text-[15px] font-light text-ink outline-none focus:border-teal transition-colors resize-none h-24 placeholder:text-teal/80/80" />
                                 </div>
 
                                 <div className="mt-4 relative z-0">

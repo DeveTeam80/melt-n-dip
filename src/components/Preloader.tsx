@@ -230,7 +230,7 @@ export default function Preloader({ setIsLoading }: PreloaderProps) {
                 }}
             >
                 <p
-                    className="font-sans font-light uppercase tracking-[4px] text-taupe"
+                    className="font-sans font-light uppercase tracking-[4px] text-teal/80"
                     style={{ fontSize: "15px" }}
                 >
                     Delight Enterprises

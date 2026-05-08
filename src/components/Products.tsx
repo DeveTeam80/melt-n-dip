@@ -158,7 +158,7 @@ export default function Products() {
             </span>
           </h2>
         </div>
-        <p className="products-fade-up font-sans font-normal text-taupe leading-[1.85] text-[15px] max-w-[480px] pb-2">
+        <p className="products-fade-up font-sans font-normal text-teal/80 leading-[1.85] text-[15px] max-w-[480px] pb-2">
           Every item on our menu is a deliberate choice, no fillers, no shortcuts.
           Premium ingredients, careful craft, and years of refinement.
         </p>

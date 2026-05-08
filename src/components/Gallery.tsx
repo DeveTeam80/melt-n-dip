@@ -99,7 +99,7 @@ export default function Gallery() {
       </div>
 
       {/* <div className="absolute bottom-8 left-8 sm:left-12 lg:left-20 z-10 flex items-center gap-3">
-                <span className="text-[9px] uppercase tracking-[3px] font-medium text-taupe">Scroll to Explore</span>
+                <span className="text-[9px] uppercase tracking-[3px] font-medium text-teal/80">Scroll to Explore</span>
                 <div className="w-12 h-px bg-linen" />
             </div> */}
     </section>

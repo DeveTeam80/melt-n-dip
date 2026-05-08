@@ -199,7 +199,7 @@ export default function LocationForm() {
           </h2>
 
           <p
-            className="loc-fade-up font-normal text-taupe mb-12"
+            className="loc-fade-up font-normal text-teal/80 mb-12"
             style={{ fontSize: "15px", lineHeight: 1.85, maxWidth: "420px" }}
           >
             Tucked along the LaGrange Road corridor in Palos Park, a short drive
@@ -270,7 +270,7 @@ export default function LocationForm() {
               Request a Quote
             </h3>
             <p
-              className="font-normal text-taupe mb-10"
+              className="font-normal text-teal/80 mb-10"
               style={{ fontSize: "15px" }}
             >
               Weddings, birthdays, corporate events &amp; more, tell us your
@@ -299,7 +299,7 @@ export default function LocationForm() {
                     id="firstName"
                     type="text"
                     placeholder="Sara"
-                    className="bg-transparent outline-none transition-colors placeholder:text-taupe/80 font-light text-ink"
+                    className="bg-transparent outline-none transition-colors placeholder:text-teal/80/80 font-light text-ink"
                     style={{
                       borderBottom: "1px solid var(--color-linen)",
                       padding: "10px 4px",
@@ -329,7 +329,7 @@ export default function LocationForm() {
                     id="lastName"
                     type="text"
                     placeholder="Ahmed"
-                    className="bg-transparent outline-none transition-colors placeholder:text-taupe/80 font-light text-ink"
+                    className="bg-transparent outline-none transition-colors placeholder:text-teal/80/80 font-light text-ink"
                     style={{
                       borderBottom: "1px solid var(--color-linen)",
                       padding: "10px 4px",
@@ -363,7 +363,7 @@ export default function LocationForm() {
                     id="email"
                     type="email"
                     placeholder="sara@email.com"
-                    className="bg-transparent outline-none transition-colors placeholder:text-taupe/80 font-light text-ink"
+                    className="bg-transparent outline-none transition-colors placeholder:text-teal/80/80 font-light text-ink"
                     style={{
                       borderBottom: "1px solid var(--color-linen)",
                       padding: "10px 4px",
@@ -423,7 +423,7 @@ export default function LocationForm() {
                 <textarea
                   id="vision"
                   placeholder="Date, venue, theme, guest count, dietary needs…"
-                  className="bg-transparent outline-none font-light text-ink resize-none placeholder:text-taupe/80 transition-colors"
+                  className="bg-transparent outline-none font-light text-ink resize-none placeholder:text-teal/80/80 transition-colors"
                   style={{
                     borderBottom: "1px solid var(--color-linen)",
                     padding: "10px 4px",

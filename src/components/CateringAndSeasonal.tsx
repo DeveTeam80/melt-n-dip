@@ -287,7 +287,7 @@ export default function CateringAndSeasonal() {
               </span>
             </h2>
 
-            <p className="cat-fade-up font-sans font-normal text-taupe leading-[1.85] mb-12 max-w-[440px] text-[15px]">
+            <p className="cat-fade-up font-sans font-normal text-teal/80 leading-[1.85] mb-12 max-w-[440px] text-[15px]">
               From the aroma of warm Belgian chocolate to the visual elegance of
               a flowing fountain, every detail is crafted to{" "}
               <em className="italic text-umber font-serif text-[17px] font-bold">
@@ -683,7 +683,7 @@ export default function CateringAndSeasonal() {
             </span>
           </h2>
           <p
-            className="season-fade-up font-normal text-taupe"
+            className="season-fade-up font-normal text-teal/80"
             style={{ fontSize: "15px", lineHeight: 1.85 }}
           >
             We follow the rhythm of the community, from Ramadan iftars to Easter
