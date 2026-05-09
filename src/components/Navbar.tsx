@@ -3,11 +3,19 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 
-const NAV_LINKS = ["About", "Menu", "Catering", "Events"];
+const NAV_LINKS = [
+  { label: "Our Story", href: "/#about" },
+  { label: "Menu", href: "/#products" },
+  { label: "Catering & Events", href: "/catering" },
+  { label: "Find Us", href: "/#location" },
+];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isCatering = pathname === "/catering";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -71,11 +79,10 @@ export default function Navbar() {
 
         <div className="flex flex-col items-center w-full max-w-xs gap-2">
           {NAV_LINKS.map((item, i) => {
-            const isCatering = item.toLowerCase() === "catering";
-            const href = isCatering ? "/catering" : `#${item.toLowerCase()}`;
+            const { label, href } = item;
             return (
               <Link
-                key={item}
+                key={label}
                 href={href}
                 onClick={() => setMenuOpen(false)}
                 className="group relative w-full text-center py-6 hover-target overflow-hidden"
@@ -98,7 +105,7 @@ export default function Navbar() {
                     lineHeight: 1,
                   }}
                 >
-                  {item}
+                  {label}
                 </span>
 
                 {/* Teal italic — slides in from below on hover */}
@@ -114,7 +121,7 @@ export default function Navbar() {
                     lineHeight: 1,
                   }}
                 >
-                  {item}
+                  {label}
                 </span>
               </Link>
             );
@@ -123,7 +130,7 @@ export default function Navbar() {
           <button
             onClick={scrollToQuote}
             className="cta-primary hover-target mt-12 w-full py-5"
-            style={{ fontSize: "11px" }}
+            style={{ fontSize: "13px" }}
           >
             Book Now
           </button>
@@ -177,18 +184,23 @@ export default function Navbar() {
             height={100}
             className="transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
               group-hover:opacity-90"
-            style={{ height: "100px", width: "auto" }}
+            style={{
+              height: "100px",
+              width: "auto",
+              filter: isCatering && !scrolled 
+                ? "brightness(0) invert(1)" 
+                : "drop-shadow(0 2px 8px rgba(0,0,0,0.45))",
+            }}
             priority
           />
         </Link>
 
         {/* ── DESKTOP LINKS ────────────────────────── */}
-        <ul className="hidden lg:flex items-center gap-2 list-none">
+        <ul className={`hidden lg:flex items-center gap-2 list-none transition-all duration-500 ${!scrolled && !isCatering ? "bg-white/60 backdrop-blur-md rounded-full px-4 py-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-white/50" : ""}`}>
           {NAV_LINKS.map((item, i) => {
-            const isCatering = item.toLowerCase() === "catering";
-            const href = isCatering ? "/catering" : `#${item.toLowerCase()}`;
+            const { label, href } = item;
             return (
-              <li key={item}>
+              <li key={label}>
                 <Link
                   href={href}
                   onMouseMove={onMagMove}
@@ -203,11 +215,11 @@ export default function Navbar() {
                     style={{ background: "var(--color-teal-faint)" }}
                   />
                   <span
-                    className="relative z-10 font-sans font-medium uppercase
-                    transition-colors duration-300 text-umber group-hover:text-teal"
-                    style={{ fontSize: "12px", letterSpacing: "2px" }}
+                    className={`relative z-10 font-sans font-medium uppercase
+                    transition-colors duration-300 ${isCatering && !scrolled ? "text-white group-hover:text-white/80" : "text-umber group-hover:text-teal"}`}
+                    style={{ fontSize: "14px", letterSpacing: "1.5px" }}
                   >
-                    {item}
+                    {label}
                   </span>
                 </Link>
               </li>
@@ -226,7 +238,7 @@ export default function Navbar() {
               justify-center relative overflow-hidden"
             style={{
               padding: scrolled ? "11px 26px" : "13px 30px",
-              fontSize: "10px",
+              fontSize: "13px",
             }}
           >
             Book Now
@@ -247,7 +259,7 @@ export default function Navbar() {
                   transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{
                   height: "1.5px",
-                  background: "var(--color-bark)",
+                  background: isCatering && !scrolled ? "var(--color-paper)" : "var(--color-bark)",
                   // Middle bar shorter — asymmetric design detail
                   width: i === 1 && !menuOpen ? "14px" : "22px",
                   transform:

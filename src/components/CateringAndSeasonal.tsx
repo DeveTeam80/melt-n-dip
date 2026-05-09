@@ -256,7 +256,7 @@ export default function CateringAndSeasonal() {
             <div className="cat-fade-up section-eyebrow">
               <span
                 style={{
-                  fontSize: "12px",
+                  fontSize: "11px",
                   letterSpacing: "3.5px",
                   textTransform: "uppercase",
                   color: "var(--color-teal)",
@@ -287,7 +287,7 @@ export default function CateringAndSeasonal() {
               </span>
             </h2>
 
-            <p className="cat-fade-up font-sans font-normal text-teal/80 leading-[1.85] mb-12 max-w-[440px] text-[15px]">
+            <p className="cat-fade-up font-sans font-normal text-teal leading-[1.85] mb-12 max-w-[440px] text-[17px]">
               From the aroma of warm Belgian chocolate to the visual elegance of
               a flowing fountain, every detail is crafted to{" "}
               <em className="italic text-umber font-serif text-[17px] font-bold">
@@ -349,7 +349,7 @@ export default function CateringAndSeasonal() {
                 onMouseLeave={onMagLeave}
                 className="group inline-flex items-center gap-2 hover-target"
                 style={{
-                  fontSize: "11px",
+                  fontSize: "13px",
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "var(--color-teal)",
@@ -419,7 +419,7 @@ export default function CateringAndSeasonal() {
                   // MOVED: initial text color from style to classes here
                   className="font-normal leading-relaxed mb-8 text-[var(--color-taupe)] transition-colors duration-500 group-hover:text-teal-50"
                   style={{
-                    fontSize: "15px",
+                    fontSize: "16px",
                   }}
                 >
                   {desc}
@@ -446,10 +446,11 @@ export default function CateringAndSeasonal() {
                 />
                 <span
                   style={{
-                    fontSize: "15px",
-                    letterSpacing: "4px",
+                    fontSize: "11px",
+                    letterSpacing: "3.5px",
                     textTransform: "uppercase",
                     color: "var(--color-amber)",
+                    fontWeight: 500,
                   }}
                 >
                   Quick Estimate
@@ -469,9 +470,9 @@ export default function CateringAndSeasonal() {
             </div>
             <p
               style={{
-                fontSize: "15px",
+                fontSize: "16px",
                 fontWeight: 400,
-                color: "rgba(168,216,212,0.9)",
+                color: "var(--color-teal-pale)",
                 maxWidth: "260px",
                 lineHeight: 1.7,
               }}
@@ -487,10 +488,11 @@ export default function CateringAndSeasonal() {
             <div className="flex flex-col gap-2">
               <label
                 style={{
-                  fontSize: "15px",
+                  fontSize: "11px",
                   letterSpacing: "3px",
                   textTransform: "uppercase",
-                  color: "rgba(168,216,212,0.9)",
+                  color: "var(--color-teal-pale)",
+                  fontWeight: 500,
                 }}
               >
                 Number of Guests
@@ -522,10 +524,11 @@ export default function CateringAndSeasonal() {
             <div className="flex flex-col gap-2">
               <label
                 style={{
-                  fontSize: "15px",
+                  fontSize: "11px",
                   letterSpacing: "3px",
                   textTransform: "uppercase",
-                  color: "rgba(168,216,212,0.9)",
+                  color: "var(--color-teal-pale)",
+                  fontWeight: 500,
                 }}
               >
                 Event Type
@@ -580,11 +583,12 @@ export default function CateringAndSeasonal() {
               <div>
                 <p
                   style={{
-                    fontSize: "15px",
+                    fontSize: "11px",
                     letterSpacing: "3px",
                     textTransform: "uppercase",
-                    color: "rgba(168,216,212,0.4)",
+                    color: "var(--color-teal-pale)",
                     marginBottom: "6px",
+                    fontWeight: 500,
                   }}
                 >
                   Classic Dessert Package estimate for {guestNum} guests
@@ -610,10 +614,11 @@ export default function CateringAndSeasonal() {
               <div className="text-right">
                 <p
                   style={{
-                    fontSize: "11px",
-                    color: "rgba(168,216,212,0.35)",
+                    fontSize: "12px",
+                    color: "var(--color-teal-pale)",
                     lineHeight: 1.7,
                     maxWidth: "220px",
+                    opacity: 0.6,
                   }}
                 >
                   Based on $12–$15/person. Final price depends on menu, staffing
@@ -623,7 +628,7 @@ export default function CateringAndSeasonal() {
                   href={`/catering?guests=${guests}&event=${encodeURIComponent(eventType)}#estimator`}
                   className="inline-flex items-center gap-1.5 mt-3 hover-target"
                   style={{
-                    fontSize: "10px",
+                    fontSize: "11px",
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "var(--color-teal-pale)",
@@ -653,10 +658,11 @@ export default function CateringAndSeasonal() {
           >
             <span
               style={{
-                fontSize: "12px",
+                fontSize: "11px",
                 letterSpacing: "3.5px",
                 textTransform: "uppercase",
                 color: "var(--color-teal)",
+                fontWeight: 500,
               }}
             >
               Seasonal &amp; Community
@@ -683,8 +689,8 @@ export default function CateringAndSeasonal() {
             </span>
           </h2>
           <p
-            className="season-fade-up font-normal text-teal/80"
-            style={{ fontSize: "15px", lineHeight: 1.85 }}
+            className="season-fade-up font-normal text-teal"
+            style={{ fontSize: "17px", lineHeight: 1.85 }}
           >
             We follow the rhythm of the community, from Ramadan iftars to Easter
             specials and neighbourhood moments that bring people together.
@@ -718,10 +724,11 @@ export default function CateringAndSeasonal() {
                 <p
                   className="mb-3 font-medium"
                   style={{
-                    fontSize: "15px",
+                    fontSize: "11px",
                     letterSpacing: "3px",
                     textTransform: "uppercase",
                     color: "var(--color-amber)",
+                    fontWeight: 500,
                   }}
                 >
                   {season}
@@ -743,8 +750,8 @@ export default function CateringAndSeasonal() {
                 <p
                   className="font-light"
                   style={{
-                    fontSize: "15px",
-                    color: "rgba(255,255,255,0.6)",
+                    fontSize: "16px",
+                    color: "rgba(255,255,255,0.7)",
                     lineHeight: 1.7,
                   }}
                 >

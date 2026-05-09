@@ -165,8 +165,8 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
 
         {/* Body */}
         <p
-          className="reveal-fade font-normal text-teal/80 mb-10"
-          style={{ fontSize: "15px", lineHeight: "1.85", maxWidth: "390px", opacity: 0 }}
+          className="reveal-fade font-normal text-teal mb-10"
+          style={{ fontSize: "17px", lineHeight: "1.85", maxWidth: "390px", opacity: 0 }}
         >
           Not your neighbourhood ice cream shop. Authentic Italian gelato,
           100% Belgian chocolate crepes, and the viral Dubai Chocolate
@@ -236,7 +236,7 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
                 strokeWidth={2}
               />
               <span style={{
-                fontSize: "12px",
+                fontSize: "13px",
                 fontWeight:"400",
                 letterSpacing: "0.5px",
                 textTransform: "uppercase",
@@ -355,14 +355,12 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
               </span>
             </p>
             <p style={{
-              fontSize: "8px",
+              fontSize: "10px",
               fontWeight:"500",
               letterSpacing: "2px",
               textTransform: "uppercase",
               color: "rgba(28,74,69,0.5)",
-            }}>
-              200+ Google Reviews
-            </p>
+            }}>200+ Google Reviews</p>
           </div>
 
           {/* Divider */}
@@ -403,14 +401,12 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
               </span>
             </p>
             <p style={{
-              fontSize: "8px",
+              fontSize: "10px",
               letterSpacing: "2px",
               textTransform: "uppercase",
               color: "rgba(28,74,69,0.5)",
               fontWeight: 500
-            }}>
-              Guests Delighted
-            </p>
+            }}>Guests Delighted</p>
           </div>
         </div>
 

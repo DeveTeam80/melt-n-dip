@@ -100,7 +100,7 @@ export default function Ticker() {
             {/* Text */}
             <span
               style={{
-                fontSize: "10px",
+                fontSize: "11px",
                 letterSpacing: "3.5px",
                 textTransform: "uppercase",
                 fontWeight: 400,

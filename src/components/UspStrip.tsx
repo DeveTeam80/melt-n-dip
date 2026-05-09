@@ -106,7 +106,7 @@ export default function UspStrip() {
       {/* ── INSET DARK PANEL ──────────────────────────── */}
       <div
         ref={panelRef}
-        className="mx-auto w-full max-w-[1920px] bg-bark text-paper origin-center shadow-[0_30px_80px_rgba(0,0,0,0.15)]"
+        className="mx-auto w-full max-w-[1920px] bg-ink text-paper origin-center shadow-[0_30px_80px_rgba(0,0,0,0.15)]"
         style={{
           borderTop: "1px solid rgba(255,255,255,0.05)",
           borderBottom: "1px solid rgba(255,255,255,0.05)",
@@ -115,14 +115,15 @@ export default function UspStrip() {
         {/* ── HEADER ROW ──────────────────────────── */}
         <div className="usp-header flex items-end justify-between px-8 sm:px-12 lg:px-20 pt-24 pb-16 border-b border-white/5">
           <div>
-            <div className="flex items-center gap-4 mb-4 text-[9px] tracking-[4px] uppercase text-amber">
+            <div className="flex items-center gap-4 mb-4">
               <span className="w-8 h-px bg-amber" />
               <span
                 style={{
-                  fontSize: "12px",
-                  fontWeight: 400,
+                  fontSize: "11px",
+                  fontWeight: 500,
                   letterSpacing: "3.5px",
                   textTransform: "uppercase",
+                  color: "var(--color-amber)",
                 }}
               >
                 Why Delight
@@ -137,7 +138,7 @@ export default function UspStrip() {
             <div className="font-serif font-light text-[64px] leading-none tracking-[-0.04em] mb-2">
               4
             </div>
-            <div className="text-[9px] tracking-[3px] uppercase">
+            <div className="text-[14px] tracking-[3px] uppercase" style={{ color: "var(--color-amber)" }}>
               Core Pillars
             </div>
           </div>
@@ -186,7 +187,7 @@ export default function UspStrip() {
               </div>
 
               {/* Description */}
-              <p className="text-[14px] font-light leading-[1.8] group-hover:text-amber/80 transition-colors duration-500 relative z-10">
+              <p className="text-[16px] font-light leading-[1.85] group-hover:text-amber/80 transition-colors duration-500 relative z-10">
                 {desc}
               </p>
             </div>

@@ -35,7 +35,7 @@ export default function StoreRental() {
                 <div className="flex flex-col items-start">
                     <div className="sr-fade-up opacity-0 flex items-center gap-3 mb-6">
                         <div className="w-8 h-px bg-amber" />
-                        <span className="text-[12px] font-medium tracking-[4px] uppercase text-amber">Private Hire</span>
+                        <span className="text-[14px] font-medium tracking-[3.5px] uppercase" style={{ color: "var(--color-amber)" }}>Private Hire</span>
                     </div>
 
                     <h2 className="font-serif font-light text-paper tracking-tight flex flex-col gap-1 mb-6" style={{ fontSize: "clamp(38px, 4.5vw, 64px)", lineHeight: "1.05" }}>
@@ -43,7 +43,7 @@ export default function StoreRental() {
                         <span className="overflow-hidden block py-1"><span className="sr-reveal-line block opacity-0"><em className="italic text-amber pr-2">Own the Night.</em></span></span>
                     </h2>
 
-                    <p className="sr-fade-up opacity-0 font-light text-paper leading-[1.85] text-[15px] mb-12 max-w-[440px]">
+                    <p className="sr-fade-up opacity-0 font-light text-paper leading-[1.85] text-[17px] mb-12 max-w-[440px]">
                         The Palos Park Melt n Dip lounge, exclusively yours. Up to 60 guests, full menu service, karaoke, sound system, and bespoke decoration packages available.
                     </p>
 
@@ -57,7 +57,7 @@ export default function StoreRental() {
                             { label: "Rental Line", val: "(630) 800-9292" },
                         ].map(({ label, val }) => (
                             <div key={label} className="border-l-2 border-teal-pale/20 pl-4">
-                                <p className="text-[12px] font-medium tracking-[2px] uppercase text-amber/90 mb-1.5">{label}</p>
+                                <p className="text-[14px] font-medium tracking-[2px] uppercase text-amber/90 mb-1.5">{label}</p>
                                 <p className="text-[16px] font-light text-cream/90">{val}</p>
                             </div>
                         ))}
@@ -67,7 +67,7 @@ export default function StoreRental() {
                 {/* ── RIGHT COLUMN ── */}
                 <div className="flex flex-col gap-6">
                     <div className="sr-fade-up opacity-0 p-8 lg:p-10 rounded-[3px] bg-white/5 border border-white/10 w-full">
-                        <p className="text-[12px] font-medium tracking-[2.5px] uppercase text-amber mb-6">What's Included</p>
+                        <p className="text-[15px] font-medium tracking-[2.5px] uppercase text-amber mb-6">What's Included</p>
                         <ul className="flex flex-col gap-4">
                             {[
                                 "Exclusive use of the entire lounge",
@@ -87,7 +87,7 @@ export default function StoreRental() {
                     </div>
 
                     <div className="sr-fade-up opacity-0 p-8 rounded-[3px] bg-white/5 border border-white/10 w-full">
-                        <p className="text-[12px] font-medium tracking-[2.5px] uppercase text-amber mb-5">Perfect For</p>
+                        <p className="text-[15px] font-medium tracking-[2.5px] uppercase text-amber mb-5">Perfect For</p>
                         <div className="flex flex-wrap gap-2.5">
                             {["Birthdays", "Graduations", "Book Clubs", "Anniversaries", "Engagement Parties", "Corporate Events", "Art Clubs"].map(e => (
                                 <span key={e} className="text-[15px] text-amber bg-teal-pale/10 border border-teal-pale/20 px-4 py-1.5 rounded-full">

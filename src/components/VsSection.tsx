@@ -139,12 +139,12 @@ export default function VsSection() {
 
         {/* ── COL A (Traditional - Muted) ──────────────── */}
         <div className="vs-col-a relative z-10 pr-0 lg:pr-12">
-          <p className="vs-fade-up text-[10px] font-medium tracking-[3.5px] uppercase text-white/60 mb-8">
+          <p className="vs-fade-up text-[14px] font-medium tracking-[3.5px] uppercase text-white/90 mb-8">
             What everyone else serves
           </p>
 
           {/* Masked Headline */}
-          <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-white/60 flex flex-col gap-1">
+          <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-white/85 flex flex-col gap-1">
             <span className="overflow-hidden block py-1">
               <span className="vs-reveal-line block">Traditional</span>
             </span>
@@ -156,8 +156,8 @@ export default function VsSection() {
           {/* Staggered List */}
           <ul className="list-none space-y-1">
             {traditionalPoints.map((item, i) => (
-              <li key={i} className="vs-list-item-a text-[14px] font-light py-3 border-b border-white/5 flex gap-4 items-center text-white/60">
-                <span className="text-white/60 text-[10px] shrink-0">—</span>
+              <li key={i} className="vs-list-item-a text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper">
+                <span className="text-paper/50 text-[13px] shrink-0">—</span>
                 {item}
               </li>
             ))}
@@ -182,7 +182,7 @@ export default function VsSection() {
           {/* Ambient Glow Spotlight */}
           <div className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(26,122,110,0.07)_0%,transparent_60%)] pointer-events-none z-[-1]" />
 
-          <p className="vs-fade-up text-[10px] font-medium tracking-[3.5px] uppercase text-amber/80 mb-8">
+          <p className="vs-fade-up text-[14px] font-medium tracking-[3.5px] uppercase text-amber/80 mb-8">
             What we actually serve
           </p>
 
@@ -201,8 +201,8 @@ export default function VsSection() {
           {/* Staggered List */}
           <ul className="list-none space-y-1">
             {delightPoints.map((item, i) => (
-              <li key={i} className="vs-list-item-b text-[15px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper/90">
-                <span className="text-amber text-[12px] shrink-0">✦</span>
+              <li key={i} className="vs-list-item-b text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper">
+                <span className="text-amber text-[15px] shrink-0">✦</span>
                 {item}
               </li>
             ))}

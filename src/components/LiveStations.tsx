@@ -36,14 +36,14 @@ export default function LiveStations() {
     }, []);
 
     return (
-        <section ref={containerRef} className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20 bg-ink text-cream max-w-[1400px] mx-auto overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <section ref={containerRef} className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20 bg-ink text-cream overflow-hidden">
+            <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
                 {/* Text Content */}
                 <div className="flex flex-col items-start order-2 lg:order-1">
                     <div className="ls-fade-up opacity-0 flex items-center gap-3 mb-6">
                         <div className="w-8 h-px bg-amber" />
-                        <span className="text-[9px] font-medium tracking-[4px] uppercase text-amber">The Theatrical Experience</span>
+                        <span className="text-[14px] font-medium tracking-[3.5px] uppercase" style={{ color: "var(--color-amber)" }}>The Theatrical Experience</span>
                     </div>
 
                     <h2 className="font-serif font-light text-paper tracking-tight flex flex-col gap-1 mb-6" style={{ fontSize: "clamp(38px, 4.5vw, 64px)", lineHeight: "1.05" }}>
@@ -65,8 +65,8 @@ export default function LiveStations() {
                                     <Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
                                 </div>
                                 <div>
-                                    <p className="font-serif text-[20px] text-paper mb-1">{title}</p>
-                                    <p className="font-light text-[13.5px] text-cream/50 leading-[1.6]">{desc}</p>
+                                    <p className="font-serif text-[21px] text-paper mb-1">{title}</p>
+                                    <p className="font-light text-[15px] text-cream/60 leading-[1.7]">{desc}</p>
                                 </div>
                             </div>
                         ))}
@@ -78,7 +78,7 @@ export default function LiveStations() {
                     <div className="absolute inset-0 bg-cover bg-[center_top]" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200&auto=format&fit=crop')" }} />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
                     <div className="absolute bottom-8 left-8 right-8">
-                        <p className="text-[10px] tracking-[2px] uppercase text-amber mb-2 font-medium">Add to any package</p>
+                        <p className="text-[13px] tracking-[2px] uppercase text-amber mb-2 font-medium">Add to any package</p>
                         <p className="font-serif italic text-paper text-[24px]">Live Crepe & Waffle Bar</p>
                     </div>
                 </div>

@@ -133,21 +133,23 @@ export default function About() {
     >
       {/* ── LEFT PANEL ──────────────────────────────── */}
       <div className="about-left-container flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-20 lg:py-28">
-        <div className="about-fade-up">
+        <div className="about-fade-up flex items-center gap-3 mb-5">
+          <span className="w-6 h-px shrink-0" style={{ background: "var(--color-teal-pale)" }} />
           <span
             style={{
-              fontSize: "clamp(38px, 4.2vw, 64px)",
+              fontSize: "11px",
               letterSpacing: "3.5px",
               textTransform: "uppercase",
               color: "var(--color-teal)",
+              fontWeight: 500,
             }}
           >
             Our Story
           </span>
         </div>
         <h2
-          className="font-serif font-medium text-ink tracking-tight flex flex-col gap-1 mb-8"
-          style={{ fontSize: "20px" }}
+          className="font-serif font-light text-ink flex flex-col gap-1 mb-8"
+          style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: "1.07", letterSpacing: "-0.025em" }}
         >
           {/* lineHeight: "1.05" */}
           <span className="overflow-hidden block py-1">
@@ -164,7 +166,7 @@ export default function About() {
         </h2>
 
         {/* Real origin story from client */}
-        <p className="about-fade-up font-sans font-normal text-teal/80 leading-[1.85] mb-12 max-w-[440px] text-[15px]">
+        <p className="about-fade-up font-sans font-normal text-teal leading-[1.85] mb-12 max-w-[440px] text-[17px]">
           A group of friends from diverse professional backgrounds came together
           with a shared belief, that dessert should do more than taste good. It
           should{" "}
@@ -193,7 +195,7 @@ export default function About() {
                     {sup}
                   </em>
                 </div>
-                <div className="uppercase text-teal/80 font-bold tracking-[2px] text-[9px]">
+                <div className="uppercase text-teal font-bold tracking-[2px] text-[9px]">
                   {label}
                 </div>
               </div>
@@ -210,7 +212,7 @@ export default function About() {
             href="/catering"
             onMouseMove={handleMagneticMove}
             onMouseLeave={handleMagneticLeave}
-            className="cta-primary hover-target w-[200px] h-[50px] flex items-center justify-center text-[10px]"
+            className="cta-primary hover-target w-[200px] h-[50px] flex items-center justify-center text-[13px]"
           >
             View Catering
           </a>
@@ -218,7 +220,7 @@ export default function About() {
             href="#quote"
             onMouseMove={handleMagneticMove}
             onMouseLeave={handleMagneticLeave}
-            className="group flex items-center gap-2 text-[10px] tracking-[2.5px] uppercase text-teal hover-target"
+            className="group flex items-center gap-2 text-[13px] tracking-[2.5px] uppercase text-teal hover-target"
           >
             <span className="relative overflow-hidden pb-1">
               Book an Event
@@ -253,7 +255,7 @@ export default function About() {
           />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent pointer-events-none" />
           <div className="absolute bottom-8 right-8 text-right z-10">
-            <p className="font-serif italic text-[12px] text-cream/80 tracking-[0.02em]">
+            <p className="font-serif italic text-[15px] text-cream/80 tracking-[0.02em]">
               Palos Park Lounge
             </p>
             <p className="font-sans text-[8px] uppercase tracking-[2px] text-cream/40 mt-1">

@@ -58,7 +58,7 @@ export default function EventTypes() {
   return (
     <section
       ref={containerRef}
-      className="relative py-24 lg:py-40 overflow-hidden bg-bark min-h-[800px] flex items-center"
+      className="relative py-24 lg:py-40 overflow-hidden bg-ink min-h-[800px] flex items-center"
     >
       {/* Dynamic Backgrounds */}
       {EVENTS.map((ev) => (
@@ -80,7 +80,7 @@ export default function EventTypes() {
         <div className="ls-fade-up flex items-center gap-3 mb-6">
           {" "}
           <div className="w-8 h-px bg-amber" />
-          <span className="text-[9px] font-medium tracking-[4px] uppercase text-amber">
+          <span className="text-[14px] font-medium tracking-[3.5px] uppercase" style={{ color: "var(--color-amber)" }}>
             Tailored For You
           </span>
         </div>
@@ -113,7 +113,7 @@ export default function EventTypes() {
                 className={`grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${activeEvent.id === ev.id ? "grid-rows-[1fr] opacity-100 mt-4 translate-x-4" : "grid-rows-[0fr] opacity-0 mt-0 translate-x-0"}`}
               >
                 <div className="overflow-hidden">
-                  <p className="font-light text-paper text-[15px] max-w-[400px] leading-[1.8]">
+                  <p className="font-light text-paper text-[16px] max-w-[400px] leading-[1.8]">
                     {ev.subtitle}
                   </p>
                 </div>

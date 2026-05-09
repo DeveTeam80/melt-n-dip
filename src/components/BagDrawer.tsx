@@ -46,8 +46,8 @@ export default function BagDrawer({
                     {bag.map(item => (
                         <div key={item.id} className="flex items-start justify-between gap-4 pb-4 border-b border-linen/50">
                             <div className="flex-1">
-                                <p style={{ fontSize: "14px", color: "var(--color-ink)", fontWeight: 500 }}>{item.name}</p>
-                                <p style={{ fontSize: "11px", color: "var(--color-taupe)", marginTop: "2px" }}>
+                                <p style={{ fontSize: "16px", color: "var(--color-ink)", fontWeight: 500 }}>{item.name}</p>
+                                <p style={{ fontSize: "12px", color: "var(--color-taupe)", marginTop: "2px" }}>
                                     ${item.pricePerPerson}/pp · <span className="text-teal font-medium">${(item.pricePerPerson * item.quantity).toLocaleString()} total</span>
                                 </p>
                             </div>
@@ -75,7 +75,7 @@ export default function BagDrawer({
 
                     {bag.length === 0 && (
                         <div className="py-20 text-center">
-                            <p className="text-teal/80 italic text-[14px]">Your bag is empty.</p>
+                            <p className="text-teal/80 italic text-[15px]">Your bag is empty.</p>
                         </div>
                     )}
                 </div>
@@ -86,10 +86,10 @@ export default function BagDrawer({
                         <>
                             <div className="flex justify-between mb-4">
                                 <div className="flex flex-col">
-                                    <span style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "1px", color: "var(--color-taupe)" }}>
+                                    <span style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "1px", color: "var(--color-taupe)" }}>
                                         Total Estimate
                                     </span>
-                                    <span style={{ fontSize: "12px", color: "var(--color-teal)" }}>
+                                    <span style={{ fontSize: "13px", color: "var(--color-teal)" }}>
                                         {totalServings} total servings
                                     </span>
                                 </div>
@@ -99,19 +99,19 @@ export default function BagDrawer({
                                 </span>
                             </div>
                             
-                            <p style={{ fontSize: "11px", color: "var(--color-taupe)", lineHeight: 1.6, marginBottom: "16px" }}>
+                            <p style={{ fontSize: "12px", color: "var(--color-taupe)", lineHeight: 1.6, marginBottom: "16px" }}>
                                 *Custom quantities per item. Final quote will include service fees and tax.
                             </p>
 
                             <button onClick={onRequestQuote}
                                 className="cta-primary hover-target w-full flex items-center justify-center bg-ink text-white font-medium"
-                                style={{ height: "52px", fontSize: "11px", letterSpacing: "1.5px", textTransform: "uppercase" }}>
+                                style={{ height: "52px", fontSize: "12px", letterSpacing: "1.5px", textTransform: "uppercase" }}>
                                 Request Detailed Quote
                             </button>
                             
                             <button onClick={onClear}
                                 className="w-full mt-3 hover-target opacity-60 hover:opacity-100 transition-opacity"
-                                style={{ fontSize: "10px", color: "var(--color-taupe)", letterSpacing: "1px", textTransform: "uppercase", padding: "8px" }}>
+                                style={{ fontSize: "11px", color: "var(--color-taupe)", letterSpacing: "1px", textTransform: "uppercase", padding: "8px" }}>
                                 Empty Bag
                             </button>
                         </>

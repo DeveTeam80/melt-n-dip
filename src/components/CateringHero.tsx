@@ -168,7 +168,7 @@ export default function CateringHero() {
       <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:px-12 lg:px-20 pt-20">
         {/* <div className="ch-fade-up flex items-center gap-4 mb-6">
                     <div className="w-8 h-px bg-amber" />
-                    <span className="text-[10px] tracking-[4px] uppercase font-medium text-amber">
+                    <span className="text-[13px] tracking-[4px] uppercase font-medium text-amber">
                         Delight Enterprises · Catering
                     </span>
                 </div> */}
@@ -193,7 +193,7 @@ export default function CateringHero() {
         <p
           className="ch-fade-up font-light leading-[1.85] mb-12"
           style={{
-            fontSize: "16px",
+            fontSize: "17px",
             color: "rgba(251,253,252,0.65)",
             maxWidth: "460px",
           }}
@@ -278,9 +278,9 @@ export default function CateringHero() {
               <span
                 className="uppercase font-medium"
                 style={{
-                  fontSize: "15px",
-                  letterSpacing: "1.5px",
-                  color: "rgba(168,216,212,0.55)",
+                  fontSize: "11px",
+                  letterSpacing: "2px",
+                  color: "rgba(168,216,212,0.7)",
                 }}
               >
                 {label}

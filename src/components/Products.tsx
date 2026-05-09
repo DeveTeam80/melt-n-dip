@@ -143,7 +143,7 @@ export default function Products() {
       {/* ── HEADER ──────────────────────────────────────── */}
       <div className="products-header grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-end mb-16 lg:mb-24">
         <div>
-          <div className="products-fade-up flex items-center gap-4 mb-6 text-[12px] tracking-[4px] uppercase text-teal font-medium">
+          <div className="products-fade-up flex items-center gap-4 mb-6 font-medium" style={{ fontSize: "11px", letterSpacing: "3.5px", textTransform: "uppercase", color: "var(--color-teal)" }}>
             <span className="w-8 h-px bg-teal/40" />
             Signature Offerings
           </div>
@@ -158,7 +158,7 @@ export default function Products() {
             </span>
           </h2>
         </div>
-        <p className="products-fade-up font-sans font-normal text-teal/80 leading-[1.85] text-[15px] max-w-[480px] pb-2">
+        <p className="products-fade-up font-sans font-normal text-teal leading-[1.85] text-[17px] max-w-[480px] pb-2">
           Every item on our menu is a deliberate choice, no fillers, no shortcuts.
           Premium ingredients, careful craft, and years of refinement.
         </p>
@@ -183,7 +183,7 @@ export default function Products() {
 
             {/* Text Content */}
             <div className="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2">
-              <p className="text-[12px] tracking-[3px] uppercase text-cream/90 mb-3 font-medium">
+              <p className="text-[15px] tracking-[3px] uppercase text-cream/90 mb-3 font-medium">
                 {p.tag}
               </p>
               <p className={`font-serif font-light text-cream tracking-[-0.01em] leading-[1.1] ${p.nameClass}`}>

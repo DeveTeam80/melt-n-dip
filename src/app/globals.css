@@ -22,6 +22,7 @@
 
   /* ── AMBER/GOLD — secondary brand ────────────────────────────── */
   --color-amber: #b98e3b;        /* Brand Gold (from Sparkles) */
+  --color-amber-vibrant: #d4a843; /* Vibrant gold — footer headers & high-contrast use */
   --color-amber-rich: #9c7731;   /* Hover states for gold elements */
   --color-amber-deep: #6e5422;   /* Text on light amber backgrounds */
   --color-amber-pale: #e1cc9d;   /* Subtle Dividers */
@@ -52,7 +53,7 @@
   }
 
   html {
-    font-size: 16px;
+    font-size: 20px;
     scroll-behavior: smooth;
   }
 
@@ -117,10 +118,11 @@
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    font-size: 9px;
-    letter-spacing: 4px;
+    font-size: 11px;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
     color: var(--color-teal);
+    font-weight: 500;
     margin-bottom: 1.25rem;
   }
 
@@ -149,7 +151,7 @@
   }
 
   .section-sub {
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 300;
     color: var(--color-taupe);
     line-height: 1.9;
@@ -188,7 +190,7 @@
 
   /* Ghost CTA button */
   .cta-ghost {
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--color-teal);

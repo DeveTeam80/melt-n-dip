@@ -167,10 +167,11 @@ export default function StoryScroll() {
             <div className="w-8 h-px" style={{ background: "var(--color-amber)" }} />
             <span
               style={{
-                fontSize: "15px",
-                letterSpacing: "4px",
+                fontSize: "11px",
+                letterSpacing: "3.5px",
                 textTransform: "uppercase",
-                color: "var(--color-amber)"
+                color: "var(--color-amber)",
+                fontWeight: 500,
               }}
             >
               Our Philosophy

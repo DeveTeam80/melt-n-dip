@@ -83,15 +83,16 @@ export default function Footer() {
                 <Image 
                   src="/assets/logo-horizontal.png" 
                   alt="Delight Enterprises Logo"
-                  width={180}
-                  height={60}
-                  className="h-auto w-auto brightness-0 invert" 
+                  width={150}
+                  height={50}
+                  className="h-auto w-auto"
+                  style={{ filter: "brightness(0) invert(1) opacity(0.9)" }}
                 />
               </Link>
-              <span className="block mb-6 text-[9px] uppercase tracking-[3px] text-amber font-medium">
+              <span className="block mb-6 text-[14px] uppercase tracking-[3px] font-semibold" style={{ color: "var(--color-amber-vibrant)" }}>
                 Melt &amp; Dip · Palos Park, IL
               </span>
-              <p className="font-light text-[14px]  text-paper leading-[1.85] max-w-[320px]">
+              <p className="font-light text-[17px] text-white leading-[1.9] max-w-[320px]">
                 A sanctuary of sweetness where families gather, friendships blossom,
                 and every bite brings joy. Serving the south suburbs with uncompromising craft.
               </p>
@@ -99,7 +100,7 @@ export default function Footer() {
 
             {/* Navigate Col */}
             <div className="ft-col">
-              <p className="uppercase mb-6 text-[10px] font-medium tracking-[2.5px] text-amber/80">
+              <p className="uppercase mb-6 text-[14px] font-semibold tracking-[2.5px]" style={{ color: "var(--color-amber-vibrant)" }}>
                 Navigate
               </p>
               <ul className="list-none flex flex-col gap-4">
@@ -107,7 +108,7 @@ export default function Footer() {
                   <li key={link}>
                     <Link
                       href="#"
-                      className="group inline-flex items-center gap-2 text-[14px] font-light  text-paper hover:text-cream transition-colors duration-300 hover-target"
+                      className="group inline-flex items-center gap-2 text-[17px] font-light text-white hover:text-cream transition-colors duration-300 hover-target"
                     >
                       <span className="relative overflow-hidden pb-1">
                         {link}
@@ -122,7 +123,7 @@ export default function Footer() {
 
             {/* Menu Col */}
             <div className="ft-col">
-              <p className="uppercase mb-6 text-[10px] font-medium tracking-[2.5px] text-amber/80">
+              <p className="uppercase mb-6 text-[14px] font-semibold tracking-[2.5px]" style={{ color: "var(--color-amber-vibrant)" }}>
                 Menu Highlights
               </p>
               <ul className="list-none flex flex-col gap-4">
@@ -130,7 +131,7 @@ export default function Footer() {
                   <li key={link}>
                     <Link
                       href="#"
-                      className="group inline-flex items-center gap-2 text-[14px] font-light  text-paper hover:text-cream transition-colors duration-300 hover-target"
+                      className="group inline-flex items-center gap-2 text-[17px] font-light text-white hover:text-cream transition-colors duration-300 hover-target"
                     >
                       <span className="relative overflow-hidden pb-1">
                         {link}
@@ -145,14 +146,14 @@ export default function Footer() {
 
             {/* Visit Col */}
             <div className="ft-col">
-              <p className="uppercase mb-6 text-[10px] font-medium tracking-[2.5px] text-amber/80">
+              <p className="uppercase mb-6 text-[14px] font-semibold tracking-[2.5px]" style={{ color: "var(--color-amber-vibrant)" }}>
                 Visit
               </p>
-              <div className="flex flex-col gap-6 text-[14px]">
+              <div className="flex flex-col gap-6 text-[17px]">
                 {/* Location */}
                 <div className="flex gap-3">
                   <MapPin className="w-4 h-4 text-amber shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <p className="font-light leading-[1.6]  text-paper">
+                  <p className="font-light leading-[1.7] text-white">
                     13030 LaGrange Rd<br />Palos Park, IL 60464
                   </p>
                 </div>
@@ -160,22 +161,22 @@ export default function Footer() {
                 {/* Hours */}
                 <div className="flex gap-3">
                   <Clock className="w-4 h-4 text-amber shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <p className="font-light leading-[1.6]  text-paper">
+                  <p className="font-light leading-[1.7] text-white">
                     Sun – Thu: 12pm – 11pm<br />Fri – Sat: 12pm – Midnight
                   </p>
                 </div>
 
                 {/* Contact Info */}
                 <div className="flex flex-col gap-4 pt-2 border-t border-cream/5">
-                  <a href="mailto:owners@delightenterprisesllc.com" className="group flex items-center gap-3 font-light  text-paper hover:text-amber transition-colors hover-target text-[13px]">
+                  <a href="mailto:owner@delightenterprisesllc.com" className="group flex items-center gap-3 font-light text-white hover:text-amber transition-colors hover-target text-[16px]">
                     <Mail className="w-4 h-4 text-amber group-hover:text-amber transition-colors" strokeWidth={1.5} />
-                    owners@delightenterprisesllc.com
+                    owner@delightenterprisesllc.com
                   </a>
-                  <a href="tel:+17086088982" className="group flex items-center gap-3 font-light  text-paper hover:text-amber transition-colors hover-target">
+                  <a href="tel:+17086088982" className="group flex items-center gap-3 font-light text-white hover:text-amber transition-colors hover-target text-[16px]">
                     <Phone className="w-4 h-4 text-amber group-hover:text-amber transition-colors" strokeWidth={1.5} />
                     (708) 608-8982
                   </a>
-                  <a href="tel:+16308009292" className="group flex items-center gap-3 font-light  text-paper hover:text-amber transition-colors hover-target text-[13px]">
+                  <a href="tel:+16308009292" className="group flex items-center gap-3 font-light text-white hover:text-amber transition-colors hover-target text-[16px]">
                     <Phone className="w-4 h-4 text-amber group-hover:text-amber transition-colors" strokeWidth={1.5} />
                     (630) 800-9292 — Store Rental
                   </a>
@@ -186,7 +187,7 @@ export default function Footer() {
 
           {/* Bottom Bar */}
           <div className="ft-col flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <p className="text-[11px] font-light  text-paper tracking-[1px]">
+            <p className="text-[14px] font-light text-white tracking-[1px]">
               &copy; {new Date().getFullYear()} Delight Enterprises LLC. All rights reserved.
             </p>
 
@@ -197,7 +198,7 @@ export default function Footer() {
                   href="#"
                   onMouseMove={handleMagneticMove}
                   onMouseLeave={handleMagneticLeave}
-                  className="text-[10px] font-medium tracking-[2px] uppercase  text-paper hover:text-teal-pale transition-colors hover-target px-2 py-1"
+                  className="text-[13px] font-medium tracking-[2px] uppercase text-paper hover:text-teal-pale transition-colors hover-target px-2 py-1"
                 >
                   {social}
                 </a>

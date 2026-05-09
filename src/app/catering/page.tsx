@@ -154,7 +154,8 @@ function CateringPageInner() {
       <StoreRental />
       <FoodTruck />
 
-      <Gallery />
+      {/* <Gallery /> */}
+      {/* Gallery section hidden until sufficient high-quality imagery is available */}
 
       <CateringFAQ />
 

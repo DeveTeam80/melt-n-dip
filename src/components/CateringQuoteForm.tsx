@@ -68,11 +68,11 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
 
                 {/* ── LEFT — CONTACT INFO ── */}
                 <div className="flex flex-col items-start pt-4">
-                    <div className="quote-fade opacity-0 section-eyebrow text-[12px]">Get in Touch</div>
+                    <div className="quote-fade opacity-0 section-eyebrow text-[15px]">Get in Touch</div>
                     <h2 className="quote-fade opacity-0 font-serif font-light text-ink tracking-tight flex flex-col gap-1 mb-6" style={{ fontSize: "clamp(38px, 4.5vw, 64px)", lineHeight: "1.05" }}>
                         Let's Plan Your <em className="italic text-teal pr-2">Event</em>
                     </h2>
-                    <p className="quote-fade opacity-0 font-light text-teal/80 leading-[1.85] text-[15px] mb-12 max-w-[420px]">
+                    <p className="quote-fade opacity-0 font-light text-teal leading-[1.85] text-[17px] mb-12 max-w-[420px]">
                         Tell us about your event or send us your built bag and we'll come back within 48 hours.
                     </p>
 
@@ -80,15 +80,15 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                         {[
                             { href: "tel:+17086088982", Icon: Phone, label: "Catering Enquiries", val: "(708) 608-8982" },
                             { href: "tel:+16308009292", Icon: MapPin, label: "Store Rental", val: "(630) 800-9292" },
-                            { href: "mailto:owners@delightenterprisesllc.com", Icon: Mail, label: "Email", val: "owners@delightenterprisesllc.com" },
+                            { href: "mailto:owner@delightenterprisesllc.com", Icon: Mail, label: "Email", val: "owner@delightenterprisesllc.com" },
                         ].map(({ href, Icon, label, val }) => (
                             <a key={label} href={href} onMouseMove={onMagMove} onMouseLeave={onMagLeave} className="flex items-center gap-5 hover-target group w-fit">
                                 <div className="flex items-center justify-center rounded-full shrink-0 w-11 h-11 bg-teal-faint border border-teal-pale transition-colors duration-400 group-hover:bg-teal group-hover:border-teal">
                                     <Icon className="w-[18px] h-[18px] text-teal transition-colors duration-400 group-hover:text-white" strokeWidth={1.5} />
                                 </div>
                                 <div>
-                                    <p className="font-medium text-[10px] tracking-[1.5px] uppercase text-umber mb-1">{label}</p>
-                                    <p className="font-light text-[15px] text-teal group-hover:text-teal-rich transition-colors">{val}</p>
+                                    <p className="font-medium text-[14px] tracking-[2px] uppercase text-umber mb-1">{label}</p>
+                                    <p className="font-light text-[16px] text-teal group-hover:text-teal-rich transition-colors">{val}</p>
                                 </div>
                             </a>
                         ))}
@@ -97,7 +97,7 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                     {/* Bag summary */}
                     {bag.length > 0 && guestNum > 0 && (
                         <div className="quote-fade opacity-0 mt-10 p-6 rounded-[3px] bg-teal-faint border border-teal-pale w-full">
-                            <p className="text-[10px] tracking-[2px] uppercase text-teal font-medium mb-4">
+                            <p className="text-[13px] tracking-[2px] uppercase text-teal font-medium mb-4">
                                 your Cart — included with enquiry
                             </p>
                             <div className="flex flex-col gap-3">
@@ -126,7 +126,7 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                                 <Check className="w-7 h-7 text-teal" strokeWidth={2} />
                             </div>
                             <h3 className="font-serif font-light mb-3 text-[32px] text-ink tracking-[-0.02em]">Enquiry Sent!</h3>
-                            <p className="text-[15px] text-teal/80 leading-[1.8] max-w-[320px] font-light">
+                            <p className="text-[16px] text-teal leading-[1.8] max-w-[320px] font-light">
                                 We'll be in touch within 48 hours. Need us sooner?{" "}
                                 <a href="tel:+17086088982" className="text-teal font-medium hover:text-teal-rich">(708) 608-8982</a>.
                             </p>
@@ -134,13 +134,13 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                     ) : (
                         <div className="relative z-10 flex flex-col h-full">
                             <h3 className="font-serif font-light text-[32px] text-ink tracking-[-0.02em] mb-2">Request a Quote</h3>
-                            <p className="font-normal text-[14px] text-teal mb-10">We respond within 48 hours.</p>
+                            <p className="font-normal text-[16px] text-teal mb-10">We respond within 48 hours.</p>
 
                             <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-20">
                                     {(["firstName", "lastName"] as const).map(field => (
                                         <div key={field} className="flex flex-col gap-2">
-                                            <label className="text-[12px] font-medium tracking-[2.5px] uppercase text-teal pl-1">
+                                            <label className="text-[14px] font-medium tracking-[2.5px] uppercase text-teal pl-1">
                                                 {field === "firstName" ? "First Name" : "Last Name"}
                                             </label>
                                             <input type="text" required value={form[field]}
@@ -153,7 +153,7 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                                     {(["phone", "email"] as const).map(field => (
                                         <div key={field} className="flex flex-col gap-2">
-                                            <label className="text-[12px] font-medium tracking-[2.5px] uppercase text-teal pl-1">
+                                            <label className="text-[14px] font-medium tracking-[2.5px] uppercase text-teal pl-1">
                                                 {field.charAt(0).toUpperCase() + field.slice(1)}
                                             </label>
                                             <input type={field === "email" ? "email" : "tel"} required={field === "email"} value={form[field]}
@@ -164,7 +164,7 @@ export default function CateringQuoteForm({ bag, bagTotal, guests, eventType, se
                                 </div>
 
                                 <div className="flex flex-col gap-2 mt-2 relative z-0">
-                                    <label className="text-[12px] font-medium tracking-[2.5px] uppercase text-teal pl-1">Additional Details</label>
+                                    <label className="text-[15px] font-medium tracking-[2.5px] uppercase text-teal pl-1">Additional Details</label>
                                     <textarea value={form.details} onChange={e => setForm(p => ({ ...p, details: e.target.value }))}
                                         placeholder="Date, venue, any special requests…"
                                         className="bg-transparent border-b border-linen py-3 px-1 text-[15px] font-light text-ink outline-none focus:border-teal transition-colors resize-none h-24 placeholder:text-teal/80/80" />

@@ -108,7 +108,7 @@ export default function LocationForm() {
       content: (
         <p
           className="font-light transition-colors hover:text-teal-rich"
-          style={{ fontSize: "14px", color: "var(--color-teal)" }}
+          style={{ fontSize: "16px", color: "var(--color-teal)" }}
         >
           13030 LaGrange Rd
           <br />
@@ -122,7 +122,7 @@ export default function LocationForm() {
       content: (
         <p
           className="font-light transition-colors hover:text-teal-rich"
-          style={{ fontSize: "14px", color: "var(--color-teal)" }}
+          style={{ fontSize: "16px", color: "var(--color-teal)" }}
         >
           Sun – Thu: 12pm – 11pm
           <br />
@@ -136,11 +136,11 @@ export default function LocationForm() {
       content: (
         <div className="flex flex-col gap-1.5">
           <a
-            href="mailto:owners@delightenterprisesllc.com"
+            href="mailto:owner@delightenterprisesllc.com"
             className="font-light transition-colors hover:text-teal-rich"
-            style={{ fontSize: "14px", color: "var(--color-teal)" }}
+            style={{ fontSize: "16px", color: "var(--color-teal)" }}
           >
-            owners@delightenterprisesllc.com
+            owner@delightenterprisesllc.com
           </a>
           {/* <a
             href="tel:+16308009292"
@@ -199,8 +199,8 @@ export default function LocationForm() {
           </h2>
 
           <p
-            className="loc-fade-up font-normal text-teal/80 mb-12"
-            style={{ fontSize: "15px", lineHeight: 1.85, maxWidth: "420px" }}
+            className="loc-fade-up font-normal text-teal mb-12"
+            style={{ fontSize: "17px", lineHeight: 1.85, maxWidth: "420px" }}
           >
             Tucked along the LaGrange Road corridor in Palos Park, a short drive
             from Lemont, Orland Park, Homer Glen, and Tinley Park.
@@ -232,8 +232,8 @@ export default function LocationForm() {
                   <p
                     className="font-medium uppercase mb-1"
                     style={{
-                      fontSize: "12px",
-                      letterSpacing: "1.5px",
+                      fontSize: "11px",
+                      letterSpacing: "2px",
                       color: "var(--color-umber)",
                     }}
                   >
@@ -270,7 +270,7 @@ export default function LocationForm() {
               Request a Quote
             </h3>
             <p
-              className="font-normal text-teal/80 mb-10"
+              className="font-normal text-teal mb-10"
               style={{ fontSize: "15px" }}
             >
               Weddings, birthdays, corporate events &amp; more, tell us your
@@ -288,9 +288,9 @@ export default function LocationForm() {
                     htmlFor="firstName"
                     className="uppercase font-medium"
                     style={{
-                      fontSize: "15px",
+                      fontSize: "11px",
                       letterSpacing: "2.5px",
-                      color: "rgb(110,163,157)",
+                      color: "var(--color-teal)",
                     }}
                   >
                     First Name
@@ -318,9 +318,9 @@ export default function LocationForm() {
                     htmlFor="lastName"
                     className="uppercase font-medium"
                     style={{
-                      fontSize: "15px",
+                      fontSize: "11px",
                       letterSpacing: "2.5px",
-                      color: "rgb(110,163,157)",
+                      color: "var(--color-teal)",
                     }}
                   >
                     Last Name
@@ -352,9 +352,9 @@ export default function LocationForm() {
                     htmlFor="email"
                     className="uppercase font-medium"
                     style={{
-                      fontSize: "15px",
+                      fontSize: "11px",
                       letterSpacing: "2.5px",
-                      color: "rgb(110,163,157)",
+                      color: "var(--color-teal)",
                     }}
                   >
                     Email
@@ -382,9 +382,9 @@ export default function LocationForm() {
                     htmlFor="eventType"
                     className="uppercase font-medium"
                     style={{
-                      fontSize: "15px",
+                      fontSize: "11px",
                       letterSpacing: "2.5px",
-                      color: "rgb(110,163,157)",
+                      color: "var(--color-teal)",
                     }}
                   >
                     Event Type
@@ -413,9 +413,9 @@ export default function LocationForm() {
                   htmlFor="vision"
                   className="uppercase font-medium"
                   style={{
-                    fontSize: "15px",
+                    fontSize: "11px",
                     letterSpacing: "2.5px",
-                    color: "rgb(110,163,157)",
+                    color: "var(--color-teal)",
                   }}
                 >
                   Your Vision
@@ -446,7 +446,7 @@ export default function LocationForm() {
                   onMouseMove={onMagMove}
                   onMouseLeave={onMagLeave}
                   className="cta-primary hover-target w-full flex items-center justify-center"
-                  style={{ height: "56px", fontSize: "15px" }}
+                  style={{ height: "56px", fontSize: "13px" }}
                 >
                   Submit Enquiry
                 </button>

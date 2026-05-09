@@ -63,7 +63,7 @@ export default function CateringFAQ() {
   return (
     <section
       ref={containerRef}
-      className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20 bg-parchment border-t border-linen"
+      className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20 bg-paper border-t border-linen"
     >
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start">
         {/* ── LEFT — STICKY HEADER ── */}
@@ -92,14 +92,14 @@ export default function CateringFAQ() {
           >
             Common <em className="italic text-teal pr-2">Questions</em>
           </h2>
-          <p className="font-normal text-teal text-[15px] leading-[1.85] max-w-[280px]">
+          <p className="font-normal text-teal text-[16px] leading-[1.85] max-w-[280px]">
             Can't find what you're looking for? Call us directly.
           </p>
           <a
             href="tel:+17086088982"
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
-            className="hover-target inline-flex items-center gap-2 mt-8 text-[14px] text-teal hover:text-teal-rich transition-colors font-medium"
+            className="hover-target inline-flex items-center gap-2 mt-8 text-[15px] text-teal hover:text-teal-rich transition-colors font-medium"
           >
             (708) 608-8982
           </a>
@@ -148,7 +148,7 @@ export default function CateringFAQ() {
                   className={`grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="text-[15px] font-medium text-teal leading-[1.85] pb-8 pl-[46px] pr-12">
+                    <p className="text-[16px] font-light text-teal leading-[1.9] pb-8 pl-[46px] pr-12">
                       {faq.a}
                     </p>
                   </div>
