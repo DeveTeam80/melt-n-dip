@@ -1,0 +1,866 @@
+/* =============================================================
+   MELT N DIP — meltndip.css
+   Complete styles extracted from page.tsx inline styles.
+   Colors referencing MND.* JS variables remain inline in JSX.
+   ============================================================= */
+
+/* ── SHARED / REUSABLE ── */
+.mnd-eyebrow-text {
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.mnd-eyebrow-text-sm {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.mnd-eyebrow-line {
+  flex-shrink: 0;
+}
+
+.mnd-section-desc {
+  font-size: 16px;
+  line-height: 1.85;
+  font-weight: 300;
+}
+
+.mnd-btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1px;
+  border: none;
+}
+
+.mnd-btn-secondary {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: none;
+  border: none;
+}
+
+.mnd-btn-underline {
+  height: 1px;
+}
+
+.mnd-icon-gold {
+  flex-shrink: 0;
+}
+
+/* ── PRELOADER ── */
+.mnd-preloader-logo-img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.mnd-preloader-logo-circle {
+  width: 130px;
+  height: 130px;
+}
+
+.mnd-preloader-tag-text {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 13px;
+}
+
+.mnd-preloader-tag-location {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+.mnd-preloader-counter-num {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(48px, 6vw, 80px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-style: italic;
+}
+
+.mnd-preloader-counter-pct {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.mnd-preloader-progress-wrap {
+  height: 2px;
+}
+
+.mnd-preloader-tag-pos {
+  top: calc(50% + 90px);
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+/* ── NAVBAR ── */
+.mnd-nav-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mnd-nav-link-text {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+}
+
+.mnd-nav-book-btn {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1px;
+  border: none;
+}
+
+.mnd-nav-hamburger-line {
+  height: 1.5px;
+}
+
+.mnd-mobile-nav-item-text {
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: 300;
+  line-height: 1;
+}
+
+.mnd-mobile-nav-item-hover {
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mnd-mobile-nav-book-btn {
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1px;
+  border: none;
+}
+
+.mnd-mobile-nav-location {
+  font-size: 12px;
+  letter-spacing: 4px;
+}
+
+.mnd-nav-btn-none {
+  background: none;
+  border: none;
+  cursor: none;
+}
+
+/* ── HERO ── */
+.mnd-hero-section {
+  height: 100svh;
+  min-height: 680px;
+  max-height: 1080px;
+}
+
+.mnd-hero-img-inner {
+  inset: -6%;
+  transition: transform 10s ease-out;
+  filter: brightness(1.15) saturate(1.2) contrast(1.05);
+}
+
+.mnd-hero-h1 {
+  font-size: clamp(40px, 5.5vw, 96px);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  font-weight: 300;
+  max-width: 700px;
+}
+
+.mnd-hero-rl-wrap {
+  padding-bottom: 5px;
+}
+
+.mnd-hero-headline-accent {
+  font-weight: 700;
+}
+
+.mnd-hero-thumb-img {
+  position: absolute;
+  inset: -3px;
+  background-size: cover;
+  background-position: center;
+}
+
+.mnd-hero-counter-num {
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.mnd-hero-counter-sep {
+  font-size: 11px;
+}
+
+.mnd-hero-cta-primary {
+  height: 46px;
+  padding: 0 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 1px;
+  border: none;
+}
+
+.mnd-hero-cta-secondary {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: none;
+  border: none;
+}
+
+.mnd-hero-cta-underline {
+  height: 1px;
+  padding-bottom: 2px;
+}
+
+.mnd-hero-badge-star {
+  font-size: 9px;
+}
+
+.mnd-hero-badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ── BELGIAN SECTION ── */
+.mnd-bel-section {
+  min-height: 85vh;
+}
+
+.mnd-bel-h2 {
+  font-size: clamp(30px, 3.8vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+}
+
+.mnd-bel-desc {
+  font-size: 16px;
+  line-height: 1.85;
+  max-width: 440px;
+  font-weight: 300;
+}
+
+.mnd-bel-highlight {
+  font-weight: 500;
+  font-style: italic;
+}
+
+.mnd-bel-stat-num {
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.mnd-bel-stat-sup {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+.mnd-bel-stat-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mnd-bel-stat-divider {
+  width: 1px;
+}
+
+.mnd-bel-btn-primary {
+  width: 200px;
+  height: 50px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1px;
+  border: none;
+}
+
+.mnd-bel-img-i {
+  position: absolute;
+  inset: -15%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ── USP STRIP ── */
+.mnd-usp-dot {
+  font-size: 12px;
+}
+
+.mnd-usp-text {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── MENU SECTION ── */
+.mnd-menu-section-bg {
+  background-image: url(https://meltndip.com/wp-content/uploads/2019/06/paper_bg.jpg);
+  background-size: cover;
+}
+
+.mnd-menu-texture-overlay {
+  background-image: url(https://meltndip.com/wp-content/uploads/2019/06/paper_bg.jpg);
+  background-size: cover;
+  opacity: 0.06;
+}
+
+.mnd-menu-h2 {
+  font-size: clamp(36px, 4.5vw, 60px);
+  line-height: 1.05;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.mnd-menu-h2-accent {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.mnd-menu-desc {
+  font-size: 15px;
+  line-height: 1.85;
+  max-width: 480px;
+  font-weight: 300;
+}
+
+.mnd-menu-stat-num {
+  font-size: 36px;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.mnd-menu-stat-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.mnd-menu-tab-btn {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 100px;
+  border: none;
+}
+
+.mnd-menu-tab-icon {
+  width: 11px;
+  height: 11px;
+}
+
+.mnd-menu-card {
+  border-radius: 6px;
+  padding: 18px 20px;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s,
+    border-color 0.4s;
+}
+
+.mnd-menu-card-img-wrap {
+  width: 68px;
+  height: 68px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.mnd-menu-card-name {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.mnd-menu-card-desc {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.mnd-menu-cta-text {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.mnd-menu-cta-text-bold {
+  font-weight: 500;
+}
+
+.mnd-menu-cta-btn {
+  padding: 10px 24px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1px;
+  border: none;
+}
+
+.mnd-menu-glow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ── GALLERY / MOSAIC ── */
+.mnd-mosaic-h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.mnd-mosaic-h3 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.mnd-mosaic-desc {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.85;
+  max-width: 420px;
+}
+
+.mnd-mosaic-yt-wrap {
+  aspect-ratio: 16/9;
+}
+
+.mnd-mosaic-grid {
+  height: 600px;
+}
+
+.mnd-mosaic-card {
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s;
+}
+
+.mnd-mosaic-bg {
+  inset: -10%;
+}
+
+.mnd-mosaic-card-label {
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.mnd-mosaic-dark-grad {
+  background: linear-gradient(
+    to top,
+    rgba(26, 10, 0, 0.92) 0%,
+    rgba(26, 10, 0, 0.3) 45%,
+    transparent 75%
+  );
+}
+
+.mnd-yt-play-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.mnd-yt-play-triangle {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 4px;
+}
+
+.mnd-yt-wrap {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mnd-yt-iframe {
+  border: 0;
+}
+
+/* ── CATERING SECTION ── */
+.mnd-cat-h2 {
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.1;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.mnd-cat-desc {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.85;
+  max-width: 440px;
+  margin-bottom: 24px;
+}
+
+.mnd-cat-sub-desc {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.mnd-cat-highlight {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.mnd-cat-btn-primary {
+  height: 52px;
+  padding: 0 40px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1px;
+}
+
+.mnd-cat-card {
+  padding: 28px 32px;
+  transition:
+    background 0.4s ease,
+    padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mnd-cat-card-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.mnd-cat-card-name {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.mnd-cat-card-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 360px;
+}
+
+.mnd-cat-card-arrow {
+  width: 18px;
+  height: 18px;
+}
+
+.mnd-cat-card-ghost-num {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mnd-cat-gold-bar {
+  width: 3px;
+}
+
+/* ── REVIEWS ── */
+.mnd-rev-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.mnd-rev-h2 {
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+}
+
+.mnd-rev-h2-accent {
+  font-weight: 600;
+}
+
+.mnd-rev-card {
+  background: #ffffff;
+  border: 1px solid rgba(27, 17, 8, 0.08);
+}
+
+.mnd-rev-quote-mark {
+  font-size: 80px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.mnd-rev-star {
+  width: 13px;
+  height: 13px;
+}
+
+.mnd-rev-text {
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.mnd-rev-divider {
+  border-top: 1px solid rgba(27, 17, 8, 0.08);
+}
+
+.mnd-rev-avatar {
+  width: 36px;
+  height: 36px;
+}
+
+.mnd-rev-avatar-initial {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mnd-rev-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mnd-rev-source {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.mnd-rev-pagination-count {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.mnd-rev-pagination-btn {
+  width: 40px;
+  height: 40px;
+}
+
+.mnd-rev-pagination-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── LOCATION SECTION ── */
+.mnd-loc-h2 {
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+}
+
+.mnd-loc-h2-accent {
+  font-weight: 600;
+}
+
+.mnd-loc-desc {
+  font-size: 16px;
+  line-height: 1.85;
+  max-width: 420px;
+  font-weight: 300;
+}
+
+.mnd-loc-icon-circle {
+  width: 40px;
+  height: 40px;
+}
+
+.mnd-loc-icon {
+  width: 17px;
+  height: 17px;
+}
+
+.mnd-loc-info-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.mnd-loc-info-text {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.mnd-loc-social-link {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.mnd-loc-card {
+  border-radius: 3px;
+}
+
+.mnd-loc-card-eyebrow-text {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.mnd-loc-card-h3 {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.mnd-loc-card-desc {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.85;
+  margin-bottom: 32px;
+}
+
+.mnd-loc-card-btn {
+  height: 52px;
+  padding: 0 36px;
+  border-radius: 1px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mnd-loc-card-btn-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.mnd-loc-link-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mnd-loc-link-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.mnd-map-c {
+  margin-top: 64px;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  height: 360px;
+}
+
+.mnd-map-iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  filter: brightness(0.85) contrast(1.1) saturate(0.8);
+}
+
+/* ── FOOTER ── */
+.mnd-ft-top-line {
+  opacity: 0.5;
+}
+
+.mnd-ft-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.mnd-ft-brand-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.mnd-ft-brand-desc {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.9;
+  max-width: 300px;
+}
+
+.mnd-ft-col-heading {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 600;
+}
+
+.mnd-ft-nav-link {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.mnd-ft-address-text {
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.mnd-ft-contact-link {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.mnd-ft-copyright {
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.mnd-ft-social-link {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.mnd-ft-font-16 {
+  font-size: 16px;
+}

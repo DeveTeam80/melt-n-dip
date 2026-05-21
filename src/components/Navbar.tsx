@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Our Story", href: "/#about" },
   { label: "Menu", href: "/#products" },
   { label: "Catering & Events", href: "/catering" },
+  { label: "Melt-n-dip palos", href: "/melt-n-dip-palos-park" },
   { label: "Find Us", href: "/#location" },
 ];
 
@@ -187,17 +188,20 @@ export default function Navbar() {
             style={{
               height: "100px",
               width: "auto",
-              filter: isCatering && !scrolled 
-                ? "brightness(0) invert(1)" 
-                : "drop-shadow(0 2px 8px rgba(0,0,0,0.45))",
+              filter:
+                isCatering && !scrolled
+                  ? "brightness(0) invert(1)"
+                  : "drop-shadow(0 2px 8px rgba(0,0,0,0.45))",
             }}
             priority
           />
         </Link>
 
         {/* ── DESKTOP LINKS ────────────────────────── */}
-        <ul className={`hidden lg:flex items-center gap-2 list-none transition-all duration-500 ${!scrolled && !isCatering ? "bg-white/60 backdrop-blur-md rounded-full px-4 py-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-white/50" : ""}`}>
-          {NAV_LINKS.map((item, i) => {
+        <ul
+          className={`hidden lg:flex items-center gap-2 list-none transition-all duration-500 ${!scrolled && !isCatering ? "bg-white/60 backdrop-blur-md rounded-full px-4 py-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-white/50" : ""}`}
+        >
+          {NAV_LINKS.map((item) => {
             const { label, href } = item;
             return (
               <li key={label}>
@@ -259,7 +263,10 @@ export default function Navbar() {
                   transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{
                   height: "1.5px",
-                  background: isCatering && !scrolled ? "var(--color-paper)" : "var(--color-bark)",
+                  background:
+                    isCatering && !scrolled
+                      ? "var(--color-paper)"
+                      : "var(--color-bark)",
                   // Middle bar shorter — asymmetric design detail
                   width: i === 1 && !menuOpen ? "14px" : "22px",
                   transform:

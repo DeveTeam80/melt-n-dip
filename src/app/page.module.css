@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap");
+
+.mndPage {
+  font-family: "Poppins", sans-serif;
+  background: #1b1108;
+}
+
+.mndPage *,
+.mndPage *::before,
+.mndPage *::after {
+  font-family: "Poppins", sans-serif;
+}
+
+.mndPage button {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Hide the GLOBAL Delight nav and footer only.
+   We target them specifically: the global nav has no data-mnd attribute,
+   the MndNavbar has data-mnd="nav" so it is excluded from this rule. */
+:global(body[data-page="mnd"] nav:not([data-mnd="nav"])),
+:global(body[data-page="mnd"] footer:not([data-mnd="footer"])) {
+  display: none !important;
+}
+body[data-page="mnd"] .hover-target {
+  cursor: none;
+}
+
+body[data-page="mnd"] ~ * .cursor-dot,
+body[data-page="mnd"] .cursor-dot {
+  background: #f0c06d !important;
+}
+
+body[data-page="mnd"] .cursor-ring {
+  border-color: #f0c06d !important;
+}
+:global(body[data-page="mnd"] nav[data-mnd="nav"]) {
+  border-bottom-color: rgba(203, 171, 117, 0.15) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+:global(body[data-page="mnd"] nav[data-mnd="nav"]) {
+  border-color: rgba(203, 171, 117, 0.15) !important;
+}
