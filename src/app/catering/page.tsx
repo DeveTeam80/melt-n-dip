@@ -32,16 +32,16 @@ function CateringPageInner() {
     (sum, i) => sum + i.pricePerPerson * i.quantity,
     0,
   );
-  
+
   const bagCount = bag.length; // Number of unique items
   const totalServings = bag.reduce((sum, i) => sum + i.quantity, 0);
 
   // ── BAG HELPERS ───────────────────────────────────────
-  
+
   const addItem = (
     item: { id: string; name: string; pricePerPerson: number },
     category: string,
-    initialQty?: number
+    initialQty?: number,
   ) => {
     setBag((prev) => {
       const exists = prev.find((b) => b.id === item.id);
@@ -60,7 +60,9 @@ function CateringPageInner() {
     setBag((prev) => {
       const exists = prev.find((b) => b.id === id);
       if (exists && exists.quantity > 1)
-        return prev.map((b) => (b.id === id ? { ...b, quantity: b.quantity - 1 } : b));
+        return prev.map((b) =>
+          b.id === id ? { ...b, quantity: b.quantity - 1 } : b,
+        );
       return prev.filter((b) => b.id !== id);
     });
   };
@@ -68,9 +70,11 @@ function CateringPageInner() {
   // NEW: Update quantity specifically via input
   const updateQuantity = (id: string, qty: number) => {
     setBag((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(0, qty) } : item
-      ).filter(item => item.quantity > 0)
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, quantity: Math.max(0, qty) } : item,
+        )
+        .filter((item) => item.quantity > 0),
     );
   };
 

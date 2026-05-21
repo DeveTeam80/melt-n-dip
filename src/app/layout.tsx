@@ -20,7 +20,8 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Delight Enterprises | Melt & Dip Palos",
-  description: "A sanctuary of sweetness where families gather and every bite brings joy.",
+  description:
+    "A sanctuary of sweetness where families gather and every bite brings joy.",
   icons: { icon: "/favicon.ico" },
 };
 
