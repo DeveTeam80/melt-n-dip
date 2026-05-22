@@ -409,21 +409,38 @@ export default function BagBuilder({
               The Estimator
             </span>
           </div>
-          <h2
-            className="font-serif font-light text-ink tracking-tight flex flex-col gap-1 mb-6"
-            style={{ fontSize: "clamp(38px, 4.5vw, 64px)", lineHeight: "1.05" }}
-          >
-            <span className="overflow-hidden block py-1">
-              <span className="builder-reveal-line block opacity-0">
-                Craft Your Event
+          <div className="flex align-items-center justify-between">
+            <h2
+              className="font-serif font-light text-ink tracking-tight flex flex-col gap-1 mb-6"
+              style={{
+                fontSize: "clamp(38px, 4.5vw, 64px)",
+                lineHeight: "1.05",
+              }}
+            >
+              <span className="overflow-hidden block py-1">
+                <span className="builder-reveal-line block opacity-0">
+                  Craft Your Event
+                </span>
               </span>
-            </span>
-            <span className="overflow-hidden block py-1">
-              <span className="builder-reveal-line block opacity-0">
-                <em className="italic text-teal pr-2">Your Way</em>
+              <span className="overflow-hidden block py-1">
+                <span className="builder-reveal-line block opacity-0">
+                  <em className="italic text-teal pr-2">Your Way</em>
+                </span>
               </span>
-            </span>
-          </h2>
+            </h2>
+            <p
+              className="builder-fade-up opacity-0 font-light"
+              style={{
+                fontSize: "16px",
+                color: "black",
+                lineHeight: 1.7,
+                maxWidth: "360px",
+              }}
+            >
+              Enter your guest count, select your event type and service style -
+              then pick a package or build your own from the menu below.
+            </p>
+          </div>
         </div>
 
         {/* ── Inputs Bar ───────────────────────────────────────────── */}
@@ -502,7 +519,6 @@ export default function BagBuilder({
           </div>
         </div>
 
-        {/* ── Option A ─────────────────────────────────────────────── */}
         <div id="option-a" className="mb-12">
           <div className="flex items-center gap-4 mb-8">
             <h3 className="uppercase text-[14px] tracking-[3px] font-bold text-ink">
@@ -510,32 +526,140 @@ export default function BagBuilder({
             </h3>
             <div className="h-[1px] flex-1 bg-linen" />
           </div>
+
           <div className="builder-fade-up opacity-0 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {PACKAGES.map((pkg) => (
-              <div
-                key={pkg.name}
-                className="group relative p-8 rounded-[3px] bg-ink text-paper border border-white/10 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Sparkles className="w-12 h-12" />
+            {PACKAGES.map((pkg, idx) => {
+              const bgImages = [
+                "assets/images/chocalate_drizzle.jpg",
+                "assets/images/catering/catering3.jpeg",
+                "assets/images/kunafa_crepe.jpeg",
+              ];
+
+              return (
+                <div
+                  key={pkg.name}
+                  className="group relative rounded-[3px] overflow-hidden transition-all duration-500 hover:-translate-y-2"
+                  style={{ minHeight: "380px" }}
+                >
+                  {/* Background Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    style={{
+                      backgroundImage: `url('${bgImages[idx]}')`,
+                    }}
+                  />
+
+                  {/* Dark Overlay */}
+                  <div
+                    className="absolute inset-0 transition-all duration-500"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.82) 45%, rgba(0,0,0,0.55) 100%)",
+                    }}
+                  />
+
+                  {/* Hover Overlay */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: "rgba(0,0,0,0.18)",
+                    }}
+                  />
+
+                  {/* Decorative Icon */}
+                  <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
+                    <Sparkles className="w-10 h-10 text-amber" />
+                  </div>
+
+                  {/* Content */}
+                  <div
+                    className="relative z-10 flex flex-col h-full p-8"
+                    style={{
+                      minHeight: "380px",
+                      backdropFilter: "blur(1px)",
+                      WebkitBackdropFilter: "blur(1px)",
+                    }}
+                  >
+                    {/* Package Name */}
+                    <p
+                      className="font-serif text-[24px] text-white mb-3 leading-snug "
+                      style={{
+                        textShadow: "0 3px 14px rgba(0,0,0,0.85)",
+                      }}
+                    >
+                      {pkg.name}
+                    </p>
+
+                    {/* Description */}
+                    <p
+                      className="text-[15px] leading-relaxed mb-6 h-12 line-clamp-2"
+                      style={{
+                        color: "rgba(255,255,255,0.92)",
+                        textShadow: "0 2px 10px rgba(0,0,0,0.9)",
+                      }}
+                    >
+                      {pkg.desc}
+                    </p>
+
+                    <div className="flex-1" />
+
+                    {/* Price */}
+                    <div className="flex items-baseline gap-2 mb-5">
+                      <span
+                        className="font-serif font-light"
+                        style={{
+                          fontSize: "38px",
+                          color: "#F4B942",
+                          letterSpacing: "-0.03em",
+                          textShadow: "0 2px 10px rgba(0,0,0,0.7)",
+                        }}
+                      >
+                        ${pkg.min}
+                      </span>
+
+                      <span
+                        className="uppercase font-medium tracking-wider"
+                        style={{
+                          fontSize: "11px",
+                          color: "white",
+                          textShadow: "0 1px 6px rgba(0,0,0,0.7)",
+                        }}
+                      >
+                        starting per head
+                      </span>
+                    </div>
+
+                    {/* Button */}
+                    <button
+                      className="w-full py-3.5 text-[12px] uppercase tracking-[2.5px] font-semibold transition-all duration-300"
+                      style={{
+                        border: "1px solid rgba(255,255,255,0.25)",
+                        color: "#fff",
+                        background: "rgba(255,255,255,0.08)",
+                        backdropFilter: "blur(8px)",
+                        WebkitBackdropFilter: "blur(8px)",
+                        borderRadius: "2px",
+                        textShadow: "0 1px 6px rgba(0,0,0,0.6)",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "#D4860A";
+                        e.currentTarget.style.borderColor = "#D4860A";
+                        e.currentTarget.style.color = "#fff";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background =
+                          "rgba(255,255,255,0.08)";
+                        e.currentTarget.style.borderColor =
+                          "rgba(255,255,255,0.25)";
+                        e.currentTarget.style.color = "#fff";
+                      }}
+                    >
+                      Inquire for this Set
+                    </button>
+                  </div>
                 </div>
-                <p className="font-serif text-[22px] mb-2">{pkg.name}</p>
-                <p className="text-[15px] text-paper leading-relaxed mb-6 h-12 line-clamp-2">
-                  {pkg.desc}
-                </p>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-amber text-xl font-medium">
-                    ${pkg.min}
-                  </span>
-                  <span className="text-paper/80 text-[14px] uppercase tracking-wider">
-                    Starting per head
-                  </span>
-                </div>
-                <button className="w-full py-3 border border-white/20 text-[13px] uppercase tracking-[2px] hover:bg-white hover:text-ink transition-colors duration-300">
-                  Inquire for this Set
-                </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
