@@ -41,7 +41,7 @@ const CAT_CARDS = [
 
 const SEASONAL_CARDS = [
   {
-    img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=85",
+    img: "assets/images/kunafa_crepe.jpeg",
     season: "Ramadan Special",
     name: "Kunafa Crepe",
     text: "Warm shredded pastry, sweet cheese, Belgian chocolate. Our most-loved seasonal creation.",
@@ -472,7 +472,7 @@ export default function CateringAndSeasonal() {
               style={{
                 fontSize: "16px",
                 fontWeight: 400,
-                color: "var(--color-teal-pale)",
+                color: "white",
                 maxWidth: "260px",
                 lineHeight: 1.7,
               }}

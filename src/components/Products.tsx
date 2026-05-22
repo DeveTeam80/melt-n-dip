@@ -23,8 +23,8 @@ export default function Products() {
           duration: 1.2,
           stagger: 0.1,
           ease: "power4.out",
-          scrollTrigger: { trigger: ".products-header", start: "top 80%" }
-        }
+          scrollTrigger: { trigger: ".products-header", start: "top 80%" },
+        },
       );
 
       gsap.fromTo(
@@ -36,8 +36,8 @@ export default function Products() {
           duration: 1,
           stagger: 0.15,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".products-header", start: "top 75%" }
-        }
+          scrollTrigger: { trigger: ".products-header", start: "top 75%" },
+        },
       );
 
       // 2. Cinematic Card Unmasking (Clip-Path)
@@ -50,8 +50,8 @@ export default function Products() {
           duration: 1.5,
           stagger: 0.15,
           ease: "power3.inOut",
-          scrollTrigger: { trigger: ".products-grid", start: "top 75%" }
-        }
+          scrollTrigger: { trigger: ".products-grid", start: "top 75%" },
+        },
       );
 
       // 3. Inner Image Reveal Scale
@@ -63,8 +63,8 @@ export default function Products() {
           duration: 1.5,
           stagger: 0.15,
           ease: "power3.inOut",
-          scrollTrigger: { trigger: ".products-grid", start: "top 75%" }
-        }
+          scrollTrigger: { trigger: ".products-grid", start: "top 75%" },
+        },
       );
 
       // 4. Subtle Image Parallax on Scroll
@@ -77,10 +77,9 @@ export default function Products() {
             start: "top bottom",
             end: "bottom top",
             scrub: true,
-          }
+          },
         });
       });
-
     }, containerRef);
 
     return () => ctx.revert();
@@ -96,7 +95,12 @@ export default function Products() {
   };
 
   const handleMagneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    gsap.to(e.currentTarget, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
+    gsap.to(e.currentTarget, {
+      x: 0,
+      y: 0,
+      duration: 0.8,
+      ease: "elastic.out(1, 0.3)",
+    });
   };
 
   const products = [
@@ -138,29 +142,46 @@ export default function Products() {
   ];
 
   return (
-    <section ref={containerRef} id="products" className="py-20 px-8 sm:px-12 lg:py-32 lg:px-20 bg-paper">
-
+    <section
+      ref={containerRef}
+      id="products"
+      className="py-20 px-8 sm:px-12 lg:py-32 lg:px-20 bg-paper"
+    >
       {/* ── HEADER ──────────────────────────────────────── */}
       <div className="products-header grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-end mb-16 lg:mb-24">
         <div>
-          <div className="products-fade-up flex items-center gap-4 mb-6 font-medium" style={{ fontSize: "11px", letterSpacing: "3.5px", textTransform: "uppercase", color: "var(--color-teal)" }}>
+          <div
+            className="products-fade-up flex items-center gap-4 mb-6 font-medium"
+            style={{
+              fontSize: "11px",
+              letterSpacing: "3.5px",
+              textTransform: "uppercase",
+              color: "var(--color-teal)",
+            }}
+          >
             <span className="w-8 h-px bg-teal/40" />
             Signature Offerings
           </div>
-          <h2 className="font-serif font-light text-ink tracking-tight flex flex-col gap-1" style={{ fontSize: "clamp(40px, 4.5vw, 64px)", lineHeight: "1.05" }}>
+          <h2
+            className="font-serif font-light text-ink tracking-tight flex flex-col gap-1"
+            style={{ fontSize: "clamp(40px, 4.5vw, 64px)", lineHeight: "1.05" }}
+          >
             <span className="overflow-hidden block py-1">
-              <span className="products-reveal-line block">Crafted to Be</span>
+              <span className="products-reveal-line block">
+                An Experience You{" "}
+              </span>
             </span>
             <span className="overflow-hidden block py-1">
               <span className="products-reveal-line block">
-                <em className="italic text-teal pr-2">Remembered</em>
+                <em className="italic text-teal pr-2">Won &apos; t Forget</em>
               </span>
             </span>
           </h2>
         </div>
         <p className="products-fade-up font-sans font-normal text-teal leading-[1.85] text-[17px] max-w-[480px] pb-2">
-          Every item on our menu is a deliberate choice, no fillers, no shortcuts.
-          Premium ingredients, careful craft, and years of refinement.
+          Every item on our menu is a deliberate choice, no fillers, no
+          shortcuts. Premium ingredients, careful craft, and years of
+          refinement.
         </p>
       </div>
 
@@ -186,7 +207,9 @@ export default function Products() {
               <p className="text-[15px] tracking-[3px] uppercase text-cream/90 mb-3 font-medium">
                 {p.tag}
               </p>
-              <p className={`font-serif font-light text-cream tracking-[-0.01em] leading-[1.1] ${p.nameClass}`}>
+              <p
+                className={`font-serif font-light text-cream tracking-[-0.01em] leading-[1.1] ${p.nameClass}`}
+              >
                 {p.name}
               </p>
             </div>
@@ -197,12 +220,14 @@ export default function Products() {
               onMouseLeave={handleMagneticLeave}
               className="absolute top-6 right-6 w-12 h-12 rounded-full bg-cream/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 scale-75 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:scale-100 z-10"
             >
-              <ArrowUpRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
+              <ArrowUpRight
+                className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={1.5}
+              />
             </div>
           </a>
         ))}
       </div>
-
     </section>
   );
 }

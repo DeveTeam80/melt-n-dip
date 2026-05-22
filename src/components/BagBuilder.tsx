@@ -419,12 +419,12 @@ export default function BagBuilder({
             >
               <span className="overflow-hidden block py-1">
                 <span className="builder-reveal-line block opacity-0">
-                  Craft Your Event
+                  Build Your
                 </span>
               </span>
               <span className="overflow-hidden block py-1">
                 <span className="builder-reveal-line block opacity-0">
-                  <em className="italic text-teal pr-2">Your Way</em>
+                  <em className="italic text-teal pr-2"> Dessert Order</em>
                 </span>
               </span>
             </h2>
@@ -453,7 +453,7 @@ export default function BagBuilder({
             <input
               type="number"
               min="1"
-              placeholder="75"
+              placeholder="e.g.75"
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
               className="bg-transparent outline-none font-serif font-light text-ink w-full placeholder:text-teal/80/90"
@@ -469,7 +469,7 @@ export default function BagBuilder({
           <div className="flex flex-col justify-center gap-8 lg:pr-6">
             <div className="flex flex-col gap-2">
               <label className="text-[15px] tracking-[3px] uppercase font-medium text-teal">
-                Event Type
+                Select Event Type
               </label>
               <CustomSelect
                 value={eventType}
@@ -489,7 +489,7 @@ export default function BagBuilder({
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
                 <label className="text-[15px] tracking-[3px] uppercase font-medium text-teal">
-                  Service Style
+                  Select Service Style
                 </label>
                 {/* Pulsing dot next to label when toast active */}
                 {showToast && (
@@ -522,7 +522,7 @@ export default function BagBuilder({
         <div id="option-a" className="mb-12">
           <div className="flex items-center gap-4 mb-8">
             <h3 className="uppercase text-[14px] tracking-[3px] font-bold text-ink">
-              Option A: Curated Packages
+              Option A: Special Packages
             </h3>
             <div className="h-[1px] flex-1 bg-linen" />
           </div>
@@ -916,7 +916,7 @@ export default function BagBuilder({
                         className="font-medium mb-0.5"
                         style={{ fontSize: "15px", color: "var(--color-ink)" }}
                       >
-                        Curated Packages
+                        Special Packages
                       </p>
                       <p
                         className="font-light leading-snug"

@@ -133,18 +133,6 @@ export default function UspStrip() {
               What Sets Us <em className="italic text-amber">Apart</em>
             </h2>
           </div>
-
-          <div className="hidden md:block text-right text-amber/80">
-            <div className="font-serif font-light text-[64px] leading-none tracking-[-0.04em] mb-2">
-              4
-            </div>
-            <div
-              className="text-[14px] tracking-[3px] uppercase"
-              style={{ color: "var(--color-amber)" }}
-            >
-              Core Pillars
-            </div>
-          </div>
         </div>
 
         {/* ── CARDS GRID ──────────────────────────── */}

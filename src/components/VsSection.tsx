@@ -171,7 +171,7 @@ export default function VsSection() {
           <div className="vs-mid-circle relative flex items-center justify-center shrink-0 w-[64px] h-[64px]">
             {/* Glass backdrop for the circle */}
             <div className="absolute inset-0 rounded-full bg-paper/5 backdrop-blur-sm border border-teal/30" />
-            <span className="font-serif text-[14px] text-teal tracking-[1px] uppercase relative z-10 mt-1">
+            <span className="font-serif text-[14px] text-white tracking-[1px] uppercase relative z-10 mt-1">
               vs
             </span>
           </div>

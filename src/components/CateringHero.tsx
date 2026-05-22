@@ -122,9 +122,9 @@ export default function CateringHero() {
           ref={imgRef}
           className="absolute bg-cover origin-center"
           style={{
-            inset: "-10%",
-            backgroundImage: "url('assets/images/catering/catering.jpeg')",
-            backgroundPosition: "center center",
+            inset: "0%",
+            backgroundImage: "url('assets/images/catering/catering-hero.png')",
+            backgroundPosition: "center 20%",
             willChange: "transform, filter",
           }}
         />
@@ -170,18 +170,6 @@ export default function CateringHero() {
       <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:px-12 lg:px-20 pt-20">
         <div className="flex flex-col">
           {/* Label */}
-          <div className="ch-fade-up flex items-center gap-3 mb-8">
-            <div
-              className="h-px w-8"
-              style={{ background: "var(--color-amber, #D4860A)" }}
-            />
-            <span
-              className="uppercase font-medium tracking-[3px]"
-              style={{ fontSize: "11px", color: "var(--color-amber, #D4860A)" }}
-            >
-              Delight Enterprises · Catering
-            </span>
-          </div>
 
           <h1
             className="font-serif font-light flex flex-col gap-1 mb-8 tracking-[-0.02em]"
@@ -217,7 +205,7 @@ export default function CateringHero() {
             className="ch-fade-up font-light leading-[1.85] mb-12"
             style={{
               fontSize: "17px",
-              color: "rgba(251,253,252,0.72)",
+              color: "white",
               maxWidth: "460px",
               textShadow: "0 1px 12px rgba(0,0,0,0.4)",
             }}
@@ -247,9 +235,9 @@ export default function CateringHero() {
       </div>
 
       {/* ── GLASSMORPHIC STAT DOCK ──────────────────── */}
-      <div className="ch-stat-dock absolute bottom-8 lg:bottom-12 right-8 lg:right-20 z-20 hidden md:flex">
+      <div className="ch-stat-dock absolute bottom-8 lg:bottom-12 right-8 lg:right-20 z-20 hidden md:flex md:w-[50%] lg:w-[60%]">
         <div
-          className="flex items-center rounded-[3px] divide-x"
+          className="flex items-center rounded-[3px] divide-x w-full"
           style={{
             background: "rgba(251,253,252,0.05)",
             backdropFilter: "blur(24px)",
@@ -270,9 +258,9 @@ export default function CateringHero() {
               }}
             >
               <span
-                className="font-serif font-light leading-none mb-2"
+                className=" font-light leading-none mb-2"
                 style={{
-                  fontSize: "28px",
+                  fontSize: "24px",
                   letterSpacing: "-0.03em",
                   color: "#fbfdfc",
                 }}
