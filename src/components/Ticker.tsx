@@ -18,7 +18,7 @@ const ITEMS = [
 export default function Ticker() {
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // Pause on hover — premium detail
+  // Pause on hover - premium detail
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -32,8 +32,10 @@ export default function Ticker() {
     });
 
     // timeScale must be set on the animation instance, not via gsap.to()
-    const pause = () => gsap.to(anim, { timeScale: 0, duration: 0.6, ease: "power2.out" });
-    const resume = () => gsap.to(anim, { timeScale: 1, duration: 0.6, ease: "power2.inOut" });
+    const pause = () =>
+      gsap.to(anim, { timeScale: 0, duration: 0.6, ease: "power2.out" });
+    const resume = () =>
+      gsap.to(anim, { timeScale: 1, duration: 0.6, ease: "power2.inOut" });
 
     track.addEventListener("mouseenter", pause);
     track.addEventListener("mouseleave", resume);
@@ -58,7 +60,7 @@ export default function Ticker() {
       }}
       aria-hidden="true"
     >
-      {/* Fade edges — left and right vignette */}
+      {/* Fade edges - left and right vignette */}
       <div
         className="absolute inset-y-0 left-0 z-10 pointer-events-none w-24"
         style={{
@@ -82,18 +84,24 @@ export default function Ticker() {
       >
         {doubled.map((item, i) => (
           <div key={i} className="flex items-center shrink-0">
-
-            {/* Separator diamond — SVG guaranteed across browsers */}
+            {/* Separator diamond - SVG guaranteed across browsers */}
             <svg
               className="shrink-0 mx-8"
-              width="5" height="5" viewBox="0 0 5 5"
+              width="5"
+              height="5"
+              viewBox="0 0 5 5"
               style={{ flexShrink: 0 }}
             >
               <rect
-                x="0.5" y="0.5" width="4" height="4"
+                x="0.5"
+                y="0.5"
+                width="4"
+                height="4"
                 rx="0.5"
                 transform="rotate(45 2.5 2.5)"
-                fill={item.accent ? "var(--color-amber)" : "rgba(168,216,212,0.2)"}
+                fill={
+                  item.accent ? "var(--color-amber)" : "rgba(168,216,212,0.2)"
+                }
               />
             </svg>
 

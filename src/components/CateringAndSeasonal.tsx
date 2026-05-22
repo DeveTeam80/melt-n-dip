@@ -25,7 +25,7 @@ const CAT_CARDS = [
   {
     Icon: Cake,
     name: "Birthdays",
-    desc: "From kids' crepe stations to luxury adult soirées — tailored packages for every milestone.",
+    desc: "From kids' crepe stations to luxury adult soirées - tailored packages for every milestone.",
   },
   {
     Icon: Truck,
@@ -296,7 +296,7 @@ export default function CateringAndSeasonal() {
               .
               <span className="block mt-4 text-ink/80">
                 We also cater to{" "}
-              <em className="italic text-umber font-serif text-[17px] font-bold">
+                <em className="italic text-umber font-serif text-[17px] font-bold">
                   Graduations, Iftar & Eid, Corporate Events, Book Clubs, and
                   Drop-Off Trays.
                 </em>
@@ -338,7 +338,7 @@ export default function CateringAndSeasonal() {
                 href="/catering"
                 onMouseMove={onMagMove}
                 onMouseLeave={onMagLeave}
-                className="cta-primary inline-flex items-center justify-center hover-target"
+                className="cta-primary inline-flex items-center text-[13px] justify-center hover-target"
                 style={{ height: "52px", padding: "0 44px" }}
               >
                 View All Packages
@@ -370,7 +370,7 @@ export default function CateringAndSeasonal() {
             </div>
           </div>
 
-          {/* Right — service cards */}
+          {/* Right - service cards */}
           <div className="cat-right-container grid grid-cols-1 sm:grid-cols-2 gap-4">
             {CAT_CARDS.map(({ Icon, name, desc }, idx) => (
               <div
@@ -555,7 +555,7 @@ export default function CateringAndSeasonal() {
                   : "rgba(168,216,212,0.1)",
                 color: guests ? "#fff" : "rgba(168,216,212,0.3)",
                 borderRadius: "1px",
-                fontSize: "11px",
+                fontSize: "13px",
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 whiteSpace: "nowrap",
@@ -727,8 +727,8 @@ export default function CateringAndSeasonal() {
                     fontSize: "11px",
                     letterSpacing: "3px",
                     textTransform: "uppercase",
-                    color: "var(--color-amber)",
-                    fontWeight: 500,
+                    color: " rgb(229 155 10);",
+                    fontWeight: "600",
                   }}
                 >
                   {season}
@@ -748,10 +748,10 @@ export default function CateringAndSeasonal() {
                   style={{ width: "36px", background: "var(--color-amber)" }}
                 />
                 <p
-                  className="font-light"
+                  className=""
                   style={{
                     fontSize: "16px",
-                    color: "rgba(255,255,255,0.7)",
+                    color: "white",
                     lineHeight: 1.7,
                   }}
                 >

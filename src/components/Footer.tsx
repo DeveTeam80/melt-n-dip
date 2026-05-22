@@ -116,22 +116,23 @@ export default function Footer() {
               </p>
               <ul className="list-none flex flex-col gap-4">
                 {[
-                  "Our Story",
-                  "Catering Packages",
-                  "Food Truck",
-                  "Melt-N-Dip Palos",
-                  "Private Events",
-                  "Contact",
-                ].map((link) => (
-                  <li key={link}>
+                  { label: "Our Story", href: "#" },
+                  { label: "Catering Packages", href: "/catering#estimator" },
+                  { label: "Food Truck", href: "#" },
+                  { label: "Melt-N-Dip-Palos", href: "/melt-n-dip-palos-park" },
+                  { label: "Private Events", href: "#" },
+                  { label: "Contact", href: "#" },
+                ].map((item) => (
+                  <li key={item.label}>
                     <Link
-                      href="#"
+                      href={item.href}
                       className="group inline-flex items-center gap-2 text-[17px] font-light text-white hover:text-cream transition-colors duration-300 hover-target"
                     >
                       <span className="relative overflow-hidden pb-1">
-                        {link}
+                        {item.label}
                         <span className="absolute bottom-0 left-0 w-full h-[1px] bg-teal-pale origin-right transform scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-0" />
                       </span>
+
                       <ArrowUpRight
                         className="w-3 h-3 opacity-0 -translate-x-2 translate-y-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-teal-pale"
                         strokeWidth={1.5}
@@ -242,7 +243,7 @@ export default function Footer() {
                       className="w-4 h-4 text-amber group-hover:text-amber transition-colors"
                       strokeWidth={1.5}
                     />
-                    (630) 800-9292 — Store Rental
+                    (630) 800-9292 - Store Rental
                   </a>
                 </div>
               </div>

@@ -2,39 +2,39 @@
 
 @theme {
   /* ── NEUTRALS ───────────────────────── */
-  --color-paper: #F8FAF9;
-  --color-parchment: #EEF5F3;
-  --color-linen: #D8EDEA;
-  --color-sand: #B8D8D4;
-  --color-taupe: #6FA39D;
-  --color-umber: #3D7870;
-  --color-bark: #1C4A45;
-  --color-ink: #0D2A27;
-  --color-cream: #FBFDFC;
+  --color-paper: #f8faf9;
+  --color-parchment: #eef5f3;
+  --color-linen: #d8edea;
+  --color-sand: #b8d8d4;
+  --color-taupe: #6fa39d;
+  --color-umber: #3d7870;
+  --color-bark: #1c4a45;
+  --color-ink: #0d2a27;
+  --color-cream: #fbfdfc;
 
-/* ── TEAL — primary brand ────────────────────────────────────── */
+  /* ── TEAL - primary brand ────────────────────────────────────── */
   --color-teal-vibrant: #0a838c; /* Your specific hex - Best for Buttons/Links */
-  --color-teal: #08636b;         /* Primary Brand (from Logo) */
-  --color-teal-rich: #065158;    /* Deep / Mid-tone */
-  --color-teal-deep: #033a3f;    /* High-contrast / Dark mode anchor */
-  --color-teal-pale: #8bc2c7;    /* Borders / Muted accents */
-  --color-teal-faint: #e6f0f1;   /* Section backgrounds / Light mode cards */
+  --color-teal: #08636b; /* Primary Brand (from Logo) */
+  --color-teal-rich: #065158; /* Deep / Mid-tone */
+  --color-teal-deep: #033a3f; /* High-contrast / Dark mode anchor */
+  --color-teal-pale: #8bc2c7; /* Borders / Muted accents */
+  --color-teal-faint: #e6f0f1; /* Section backgrounds / Light mode cards */
 
-  /* ── AMBER/GOLD — secondary brand ────────────────────────────── */
-  --color-amber: #b98e3b;        /* Brand Gold (from Sparkles) */
-  --color-amber-vibrant: #d4a843; /* Vibrant gold — footer headers & high-contrast use */
-  --color-amber-rich: #9c7731;   /* Hover states for gold elements */
-  --color-amber-deep: #6e5422;   /* Text on light amber backgrounds */
-  --color-amber-pale: #e1cc9d;   /* Subtle Dividers */
-  --color-amber-faint: #fbf7ee;  /* Warm background tint */
+  /* ── AMBER/GOLD - secondary brand ────────────────────────────── */
+  --color-amber: #b98e3b; /* Brand Gold (from Sparkles) */
+  --color-amber-vibrant: #d4a843; /* Vibrant gold - footer headers & high-contrast use */
+  --color-amber-rich: #9c7731; /* Hover states for gold elements */
+  --color-amber-deep: #6e5422; /* Text on light amber backgrounds */
+  --color-amber-pale: #e1cc9d; /* Subtle Dividers */
+  --color-amber-faint: #fbf7ee; /* Warm background tint */
 
-  /* ── CORAL — accent (logo cone) ─────── */
-  --color-coral: #E8522A;
-  --color-coral-soft: #F5A07A;
+  /* ── CORAL - accent (logo cone) ─────── */
+  --color-coral: #e8522a;
+  --color-coral-soft: #f5a07a;
 
   /* ── FONTS ──────────────────────────── */
-  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
-  --font-sans: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
 
   /* ── EASING ─────────────────────────── */
   --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -43,7 +43,6 @@
 
 /* ── BASE ───────────────────────────────── */
 @layer base {
-
   *,
   *::before,
   *::after {
@@ -69,7 +68,7 @@
 
   /* Film grain noise overlay */
   body::after {
-    content: '';
+    content: "";
     position: fixed;
     inset: 0;
     z-index: 9000;
@@ -112,7 +111,6 @@
 
 /* ── UTILITIES ──────────────────────────── */
 @layer utilities {
-
   /* Section typography helpers */
   .section-eyebrow {
     display: inline-flex;
@@ -127,7 +125,7 @@
   }
 
   .section-eyebrow::before {
-    content: '';
+    content: "";
     display: block;
     width: 2rem;
     height: 1px;
@@ -169,13 +167,19 @@
     padding: 15px 44px;
     border-radius: 1px;
     transition: background-color 0.35s var(--ease-silk);
+    font-size: 13px;
   }
 
   .cta-primary::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 70%
+    );
     transform: translateX(-100%);
     transition: transform 0.55s var(--ease-silk);
   }
@@ -197,7 +201,9 @@
     padding-top: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid rgba(26, 122, 110, 0.35);
-    transition: color 0.3s, border-color 0.3s;
+    transition:
+      color 0.3s,
+      border-color 0.3s;
   }
 
   .cta-ghost:hover {
@@ -205,12 +211,12 @@
     border-color: var(--color-teal);
   }
 
-  /* Hover target — triggers cursor expansion */
+  /* Hover target - triggers cursor expansion */
   .hover-target {
     cursor: none;
   }
 
-  /* Icon circle — reusable */
+  /* Icon circle - reusable */
   .icon-circle {
     display: flex;
     align-items: center;
@@ -254,7 +260,9 @@
   .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s var(--ease-snap), transform 0.8s var(--ease-snap);
+    transition:
+      opacity 0.8s var(--ease-snap),
+      transform 0.8s var(--ease-snap);
   }
 
   .reveal.in {
@@ -265,13 +273,17 @@
   .reveal-left {
     opacity: 0;
     transform: translateX(-30px);
-    transition: opacity 0.8s var(--ease-snap), transform 0.8s var(--ease-snap);
+    transition:
+      opacity 0.8s var(--ease-snap),
+      transform 0.8s var(--ease-snap);
   }
 
   .reveal-right {
     opacity: 0;
     transform: translateX(30px);
-    transition: opacity 0.8s var(--ease-snap), transform 0.8s var(--ease-snap);
+    transition:
+      opacity 0.8s var(--ease-snap),
+      transform 0.8s var(--ease-snap);
   }
 
   .reveal-left.in,

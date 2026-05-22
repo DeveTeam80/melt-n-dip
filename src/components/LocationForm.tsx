@@ -147,7 +147,7 @@ export default function LocationForm() {
             className="font-light transition-colors hover:text-teal-rich"
             style={{ fontSize: "13px", color: "var(--color-teal)" }}
           >
-            (630) 800-9292 — Store Rental
+            (630) 800-9292 - Store Rental
           </a> */}
         </div>
       ),
@@ -161,7 +161,7 @@ export default function LocationForm() {
       className="py-20 lg:py-24 px-8 sm:px-12 lg:px-20 overflow-hidden"
       style={{ background: "var(--color-paper)" }}
     >
-      {/* ── TOP GRID — info + form ─────────────────────────── */}
+      {/* ── TOP GRID - info + form ─────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-start">
         {/* LEFT: LOCATION INFO */}
         <div className="loc-left-container flex flex-col items-start pt-4">
@@ -456,7 +456,7 @@ export default function LocationForm() {
         </div>
       </div>
 
-      {/* ── MAP — full width below ─────────────────────────── */}
+      {/* ── MAP - full width below ─────────────────────────── */}
       <div
         className="map-container mt-16 w-full rounded-[3px] overflow-hidden"
         style={{

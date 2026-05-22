@@ -138,7 +138,10 @@ export default function UspStrip() {
             <div className="font-serif font-light text-[64px] leading-none tracking-[-0.04em] mb-2">
               4
             </div>
-            <div className="text-[14px] tracking-[3px] uppercase" style={{ color: "var(--color-amber)" }}>
+            <div
+              className="text-[14px] tracking-[3px] uppercase"
+              style={{ color: "var(--color-amber)" }}
+            >
               Core Pillars
             </div>
           </div>
@@ -164,7 +167,7 @@ export default function UspStrip() {
                 {num}
               </div>
 
-              {/* Hover accent line — top */}
+              {/* Hover accent line - top */}
               <div className="absolute top-0 left-0 right-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-teal to-transparent transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
 
               {/* Small number label */}
