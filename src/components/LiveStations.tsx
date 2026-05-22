@@ -138,7 +138,7 @@ export default function LiveStations() {
               Add to any package
             </p>
             <p className="font-serif italic text-paper text-[24px]">
-              Live Crepe & Waffle Bar
+              Live Crepe & Waffle
             </p>
           </div>
         </div>
