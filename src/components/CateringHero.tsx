@@ -136,7 +136,7 @@ export default function CateringHero() {
             willChange: "transform, filter",
           }}
         />
-        {/* Overlays — The mix-blend-multiply deepens shadows luxuriously */}
+        {/* Overlays - The mix-blend-multiply deepens shadows luxuriously */}
         <div
           className="absolute inset-0"
           style={{ background: "rgba(13,42,39,0.3)", mixBlendMode: "multiply" }}
@@ -211,7 +211,7 @@ export default function CateringHero() {
             style={{
               height: "56px",
               padding: "0 44px",
-              fontSize: "11px",
+              fontSize: "13px",
               boxShadow: "0 10px 40px rgba(26,122,110,0.25)",
             }}
           >

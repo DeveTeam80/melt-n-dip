@@ -134,7 +134,10 @@ export default function About() {
       {/* ── LEFT PANEL ──────────────────────────────── */}
       <div className="about-left-container flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-20 lg:py-28">
         <div className="about-fade-up flex items-center gap-3 mb-5">
-          <span className="w-6 h-px shrink-0" style={{ background: "var(--color-teal-pale)" }} />
+          <span
+            className="w-6 h-px shrink-0"
+            style={{ background: "var(--color-teal-pale)" }}
+          />
           <span
             style={{
               fontSize: "11px",
@@ -149,11 +152,17 @@ export default function About() {
         </div>
         <h2
           className="font-serif font-light text-ink flex flex-col gap-1 mb-8"
-          style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: "1.07", letterSpacing: "-0.025em" }}
+          style={{
+            fontSize: "clamp(32px, 4vw, 56px)",
+            lineHeight: "1.07",
+            letterSpacing: "-0.025em",
+          }}
         >
           {/* lineHeight: "1.05" */}
           <span className="overflow-hidden block py-1">
-            <span className="about-reveal-line block">Where Every Bite Takes You to Your Happy Place</span>
+            <span className="about-reveal-line block">
+              Where Every Bite Takes You to Your Happy Place
+            </span>
           </span>
           {/* <span className="overflow-hidden block py-1">
             <span className="about-reveal-line block">Takes You to Your</span>
@@ -212,7 +221,7 @@ export default function About() {
             href="/catering"
             onMouseMove={handleMagneticMove}
             onMouseLeave={handleMagneticLeave}
-            className="cta-primary hover-target w-[200px] h-[50px] flex items-center justify-center text-[13px]"
+            className="cta-primary hover-target w-[250px] h-[50px] flex items-center justify-center text-[13px]"
           >
             View Catering
           </a>

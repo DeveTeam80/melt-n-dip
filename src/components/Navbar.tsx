@@ -94,7 +94,7 @@ export default function Navbar() {
                       : "none",
                 }}
               >
-                {/* Default text — slides up on hover */}
+                {/* Default text - slides up on hover */}
                 <span
                   className="font-serif font-light block
                   transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
@@ -109,7 +109,7 @@ export default function Navbar() {
                   {label}
                 </span>
 
-                {/* Teal italic — slides in from below on hover */}
+                {/* Teal italic - slides in from below on hover */}
                 <span
                   className="absolute inset-0 flex items-center justify-center
                   font-serif font-light italic
@@ -188,10 +188,6 @@ export default function Navbar() {
             style={{
               height: "100px",
               width: "auto",
-              filter:
-                isCatering && !scrolled
-                  ? "brightness(0) invert(1)"
-                  : "drop-shadow(0 2px 8px rgba(0,0,0,0.45))",
             }}
             priority
           />
@@ -211,7 +207,7 @@ export default function Navbar() {
                   onMouseLeave={onMagLeave}
                   className="group relative block px-5 py-2 hover-target"
                 >
-                  {/* Pill bg — reveals on hover */}
+                  {/* Pill bg - reveals on hover */}
                   <div
                     className="absolute inset-0 rounded-full scale-50 opacity-0
                     transition-all duration-300 ease-out
@@ -248,8 +244,8 @@ export default function Navbar() {
             Book Now
           </button>
 
-          {/* Hamburger — mobile/tablet only */}
-          {/* z-[91] — just above menu overlay (z-90) but below nav (z-100) */}
+          {/* Hamburger - mobile/tablet only */}
+          {/* z-[91] - just above menu overlay (z-90) but below nav (z-100) */}
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
             className="lg:hidden flex flex-col justify-center gap-[5px]
@@ -267,7 +263,7 @@ export default function Navbar() {
                     isCatering && !scrolled
                       ? "var(--color-paper)"
                       : "var(--color-bark)",
-                  // Middle bar shorter — asymmetric design detail
+                  // Middle bar shorter - asymmetric design detail
                   width: i === 1 && !menuOpen ? "14px" : "22px",
                   transform:
                     i === 0 && menuOpen

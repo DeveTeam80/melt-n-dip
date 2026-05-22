@@ -4,9 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-const HEADLINE_WORDS = [
-  "Every", "bite", "tells", "a", "story", "of",
-];
+const HEADLINE_WORDS = ["Every", "bite", "tells", "a", "story", "of"];
 const HEADLINE_ACCENT = ["craft,", "luxury,"];
 const HEADLINE_END = ["and", "pure", "indulgence."];
 
@@ -25,26 +23,26 @@ export default function StoryScroll() {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,          // 1.5s lag — silky smooth, not snappy
+        scrub: 1.5, // 1.5s lag - silky smooth, not snappy
       };
 
       const tl = gsap.timeline({ scrollTrigger: st });
 
-      // ── 1. Image — slow cinematic zoom ──────────────
+      // ── 1. Image - slow cinematic zoom ──────────────
       tl.fromTo(
         ".story-bg",
         { scale: 1, filter: "brightness(0.7)" },
         { scale: 1.18, filter: "brightness(0.45)", ease: "none" },
-        0
+        0,
       );
 
-      // ── 2. Overlay — paper → ink atmosphere ─────────
+      // ── 2. Overlay - paper → ink atmosphere ─────────
       // Starts nearly white (paper tone), ends deep teal-ink
       tl.fromTo(
         ".story-overlay",
         { backgroundColor: "rgba(248,250,249,0.92)" },
         { backgroundColor: "rgba(9,28,25,0.78)", ease: "none" },
-        0
+        0,
       );
 
       // ── 3. Eyebrow fades in early ───────────────────
@@ -52,20 +50,21 @@ export default function StoryScroll() {
         eyebrowRef.current,
         { opacity: 0, y: 12 },
         { opacity: 1, y: 0, ease: "power2.out" },
-        0.02
+        0.02,
       );
 
-      // ── 4. Main words — large stagger ───────────────
+      // ── 4. Main words - large stagger ───────────────
       // Each word lights up independently as you scroll
       tl.fromTo(
         ".sw-main",
         { opacity: 0.08, y: 6 },
         {
-          opacity: 1, y: 0,
-          stagger: 0.18,      // large stagger — feels like words being spotlit
+          opacity: 1,
+          y: 0,
+          stagger: 0.18, // large stagger - feels like words being spotlit
           ease: "power1.out",
         },
-        0.05
+        0.05,
       );
 
       // ── 5. Accent words (teal italic) ───────────────
@@ -73,7 +72,7 @@ export default function StoryScroll() {
         ".sw-accent",
         { opacity: 0.08, y: 6 },
         { opacity: 1, y: 0, stagger: 0.18, ease: "power1.out" },
-        0.45
+        0.45,
       );
 
       // ── 6. End words ─────────────────────────────────
@@ -81,7 +80,7 @@ export default function StoryScroll() {
         ".sw-end",
         { opacity: 0.08, y: 6 },
         { opacity: 1, y: 0, stagger: 0.18, ease: "power1.out" },
-        0.72
+        0.72,
       );
 
       // ── 7. Subtitle fades in at end ──────────────────
@@ -89,15 +88,15 @@ export default function StoryScroll() {
         subtitleRef.current,
         { opacity: 0, y: 10 },
         { opacity: 1, y: 0, ease: "power2.out" },
-        0.85
+        0.85,
       );
 
-      // ── 8. Text color — ink → cream in sync ─────────
+      // ── 8. Text color - ink → cream in sync ─────────
       tl.fromTo(
         ".story-text-wrap",
         { color: "var(--color-ink)" },
         { color: "var(--color-cream)", ease: "none" },
-        0
+        0,
       );
 
       // ── 9. Progress bar ──────────────────────────────
@@ -105,21 +104,14 @@ export default function StoryScroll() {
         progressRef.current,
         { scaleX: 0 },
         { scaleX: 1, ease: "none" },
-        0
+        0,
       );
-
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
-  const Word = ({
-    children,
-    cls,
-  }: {
-    children: string;
-    cls: string;
-  }) => (
+  const Word = ({ children, cls }: { children: string; cls: string }) => (
     <span
       className={`${cls} inline-block`}
       style={{ marginRight: "0.25em", paddingBottom: "0.1em" }}
@@ -164,7 +156,10 @@ export default function StoryScroll() {
             className="flex items-center gap-3 mb-10"
             style={{ opacity: 0, paddingTop: "30px" }}
           >
-            <div className="w-8 h-px" style={{ background: "var(--color-amber)" }} />
+            <div
+              className="w-8 h-px"
+              style={{ background: "var(--color-amber)" }}
+            />
             <span
               style={{
                 fontSize: "11px",
@@ -176,7 +171,10 @@ export default function StoryScroll() {
             >
               Our Philosophy
             </span>
-            <div className="w-8 h-px" style={{ background: "var(--color-amber)" }} />
+            <div
+              className="w-8 h-px"
+              style={{ background: "var(--color-amber)" }}
+            />
           </div>
 
           {/* Headline */}
@@ -190,19 +188,25 @@ export default function StoryScroll() {
             }}
           >
             {HEADLINE_WORDS.map((w, i) => (
-              <Word key={i} cls="sw-main">{w}</Word>
+              <Word key={i} cls="sw-main">
+                {w}
+              </Word>
             ))}
 
-            {/* Accent — italic teal */}
+            {/* Accent - italic teal */}
             <em className="italic not-italic flex flex-wrap justify-center">
               {HEADLINE_ACCENT.map((w, i) => (
-                <Word key={i} cls="sw-accent italic" >{w}</Word>
+                <Word key={i} cls="sw-accent italic">
+                  {w}
+                </Word>
               ))}
             </em>
 
             {/* End */}
             {HEADLINE_END.map((w, i) => (
-              <Word key={i} cls="sw-end">{w}</Word>
+              <Word key={i} cls="sw-end">
+                {w}
+              </Word>
             ))}
           </h2>
 
@@ -220,11 +224,11 @@ export default function StoryScroll() {
             }}
           >
             Premium Belgian chocolate. Authentic Italian gelato.
-            <br/>A lounge built for moments that linger.
+            <br />A lounge built for moments that linger.
           </p>
         </div>
 
-        {/* ── PROGRESS BAR — bottom, horizontal ────── */}
+        {/* ── PROGRESS BAR - bottom, horizontal ────── */}
         {/* Horizontal is more stable than vertical scaleY for scrub */}
         {/* <div
           className="absolute bottom-10 left-1/2 -translate-x-1/2
@@ -257,20 +261,32 @@ export default function StoryScroll() {
         </div> */}
 
         {/* ── CORNER DECORATIONS ────────────────────── */}
-        {/* Top-left and bottom-right — editorial bracket feel */}
+        {/* Top-left and bottom-right - editorial bracket feel */}
         <div
           className="absolute top-10 left-10 z-10 pointer-events-none"
           style={{ opacity: 0.25 }}
         >
-          <div className="w-8 h-px" style={{ background: "var(--color-teal-pale)" }} />
-          <div className="w-px h-8 mt-0" style={{ background: "var(--color-teal-pale)" }} />
+          <div
+            className="w-8 h-px"
+            style={{ background: "var(--color-teal-pale)" }}
+          />
+          <div
+            className="w-px h-8 mt-0"
+            style={{ background: "var(--color-teal-pale)" }}
+          />
         </div>
         <div
           className="absolute bottom-10 right-10 z-10 pointer-events-none rotate-180"
           style={{ opacity: 0.25 }}
         >
-          <div className="w-8 h-px" style={{ background: "var(--color-teal-pale)" }} />
-          <div className="w-px h-8" style={{ background: "var(--color-teal-pale)" }} />
+          <div
+            className="w-8 h-px"
+            style={{ background: "var(--color-teal-pale)" }}
+          />
+          <div
+            className="w-px h-8"
+            style={{ background: "var(--color-teal-pale)" }}
+          />
         </div>
       </div>
     </section>

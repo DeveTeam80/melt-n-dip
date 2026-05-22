@@ -11,7 +11,6 @@ export default function VsSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-
       // 1. Giant Background Text Parallax
       gsap.to(".vs-bg-text", {
         xPercent: -15, // Drifts left as you scroll down
@@ -21,7 +20,7 @@ export default function VsSection() {
           start: "top bottom",
           end: "bottom top",
           scrub: true,
-        }
+        },
       });
 
       // 2. Editorial Masked Headers
@@ -35,8 +34,8 @@ export default function VsSection() {
           duration: 1.2,
           stagger: 0.1,
           ease: "power4.out",
-          scrollTrigger: { trigger: containerRef.current, start: "top 75%" }
-        }
+          scrollTrigger: { trigger: containerRef.current, start: "top 75%" },
+        },
       );
 
       // Fade up labels
@@ -48,8 +47,8 @@ export default function VsSection() {
           opacity: 1,
           duration: 1,
           ease: "power3.out",
-          scrollTrigger: { trigger: containerRef.current, start: "top 75%" }
-        }
+          scrollTrigger: { trigger: containerRef.current, start: "top 75%" },
+        },
       );
 
       // 3. Staggered List Items (Left side drifts right, Right side drifts left)
@@ -62,8 +61,8 @@ export default function VsSection() {
           duration: 1,
           stagger: 0.1,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".vs-col-a", start: "top 80%" }
-        }
+          scrollTrigger: { trigger: ".vs-col-a", start: "top 80%" },
+        },
       );
 
       gsap.fromTo(
@@ -75,8 +74,8 @@ export default function VsSection() {
           duration: 1,
           stagger: 0.1,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".vs-col-b", start: "top 80%" }
-        }
+          scrollTrigger: { trigger: ".vs-col-b", start: "top 80%" },
+        },
       );
 
       // 4. Middle Divider Animation
@@ -88,8 +87,8 @@ export default function VsSection() {
           rotate: 0,
           duration: 1.2,
           ease: "elastic.out(1, 0.5)",
-          scrollTrigger: { trigger: ".vs-mid", start: "top 80%" }
-        }
+          scrollTrigger: { trigger: ".vs-mid", start: "top 80%" },
+        },
       );
 
       gsap.fromTo(
@@ -100,10 +99,9 @@ export default function VsSection() {
           scale: 1,
           duration: 1.5,
           ease: "power3.inOut",
-          scrollTrigger: { trigger: ".vs-mid", start: "top 80%" }
-        }
+          scrollTrigger: { trigger: ".vs-mid", start: "top 80%" },
+        },
       );
-
     }, containerRef);
 
     return () => ctx.revert();
@@ -112,31 +110,30 @@ export default function VsSection() {
   const traditionalPoints = [
     "High air content, low density",
     "30–40% butterfat, heavy finish",
-    "Served at −12°C — numbs the palate",
+    "Served at −12°C - numbs the palate",
     "Mass-produced flavour bases",
-    "Seasonal — closed in winter"
+    "Seasonal - closed in winter",
   ];
 
   const delightPoints = [
     "Dense, low-air authentic texture",
-    "4–8% fat — pure, clean flavour",
-    "Served at −7°C — full taste profile",
+    "4–8% fat - pure, clean flavour",
+    "Served at −7°C - full taste profile",
     "Made-to-order, real ingredients",
-    "Warm desserts — open year-round"
+    "Warm desserts - open year-round",
   ];
 
   return (
-    <section ref={containerRef} className="bg-ink py-24 lg:py-40 px-8 sm:px-12 lg:px-20 relative overflow-hidden z-10">
-
+    <section
+      ref={containerRef}
+      className="bg-ink py-24 lg:py-40 px-8 sm:px-12 lg:px-20 relative overflow-hidden z-10"
+    >
       {/* ── BACKGROUND PARALLAX TEXT ──────────────── */}
-      <div
-        className="vs-bg-text absolute top-[40%] right-[-10%] font-serif text-[180px] lg:text-[280px] font-light text-white/[0.03] tracking-[-0.04em] whitespace-nowrap pointer-events-none select-none z-0"
-      >
+      <div className="vs-bg-text absolute top-[40%] right-[-10%] font-serif text-[180px] lg:text-[280px] font-light text-white/[0.03] tracking-[-0.04em] whitespace-nowrap pointer-events-none select-none z-0">
         GELATO
       </div>
 
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_100px_1fr] gap-16 lg:gap-0 items-start relative z-10">
-
         {/* ── COL A (Traditional - Muted) ──────────────── */}
         <div className="vs-col-a relative z-10 pr-0 lg:pr-12">
           <p className="vs-fade-up text-[14px] font-medium tracking-[3.5px] uppercase text-white/90 mb-8">
@@ -156,8 +153,11 @@ export default function VsSection() {
           {/* Staggered List */}
           <ul className="list-none space-y-1">
             {traditionalPoints.map((item, i) => (
-              <li key={i} className="vs-list-item-a text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper">
-                <span className="text-paper/50 text-[13px] shrink-0">—</span>
+              <li
+                key={i}
+                className="vs-list-item-a text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper"
+              >
+                <span className="text-paper/50 text-[13px] shrink-0">-</span>
                 {item}
               </li>
             ))}
@@ -171,7 +171,9 @@ export default function VsSection() {
           <div className="vs-mid-circle relative flex items-center justify-center shrink-0 w-[64px] h-[64px]">
             {/* Glass backdrop for the circle */}
             <div className="absolute inset-0 rounded-full bg-paper/5 backdrop-blur-sm border border-teal/30" />
-            <span className="font-serif text-[14px] text-teal tracking-[1px] uppercase relative z-10 mt-1">vs</span>
+            <span className="font-serif text-[14px] text-teal tracking-[1px] uppercase relative z-10 mt-1">
+              vs
+            </span>
           </div>
 
           <div className="vs-line w-[80px] h-px lg:w-px lg:h-[120px] bg-gradient-to-r lg:bg-[linear-gradient(to_bottom,rgba(26,122,110,0.3),transparent)] from-transparent via-teal/30 to-transparent lg:from-transparent lg:via-transparent lg:to-transparent origin-center" />
@@ -201,14 +203,16 @@ export default function VsSection() {
           {/* Staggered List */}
           <ul className="list-none space-y-1">
             {delightPoints.map((item, i) => (
-              <li key={i} className="vs-list-item-b text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper">
+              <li
+                key={i}
+                className="vs-list-item-b text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper"
+              >
                 <span className="text-amber text-[15px] shrink-0">✦</span>
                 {item}
               </li>
             ))}
           </ul>
         </div>
-
       </div>
     </section>
   );

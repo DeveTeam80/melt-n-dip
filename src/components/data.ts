@@ -68,7 +68,7 @@ export const MENU = [
         id: "cr2",
         name: "Melt n Dip Crepe",
         pricePerPerson: 9,
-        desc: "Our flagship — chocolate poured.",
+        desc: "Our flagship - chocolate poured.",
       },
       {
         id: "cr3",
@@ -218,7 +218,7 @@ export const MENU = [
         id: "gd6",
         name: "Fresh Juice",
         pricePerPerson: 4,
-        desc: "Curated fresh juices — limited choices.",
+        desc: "Curated fresh juices - limited choices.",
       },
     ],
   },
@@ -532,7 +532,7 @@ export const FAQS = [
   },
   {
     q: "Do you have a sound system?",
-    a: "Yes — our store has a sound system with TV connectivity. Karaoke available for an additional charge.",
+    a: "Yes - our store has a sound system with TV connectivity. Karaoke available for an additional charge.",
   },
   {
     q: "How far in advance must I book?",

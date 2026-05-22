@@ -5,7 +5,11 @@ import { Sparkles, BadgeCheck, Moon, ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-export default function Hero({ animationReady = false }: { animationReady?: boolean }) {
+export default function Hero({
+  animationReady = false,
+}: {
+  animationReady?: boolean;
+}) {
   const containerRef = useRef<HTMLElement>(null);
   const imgWrapRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
@@ -17,19 +21,26 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
 
     requestAnimationFrame(() => {
       ctx = gsap.context(() => {
-        const tl = gsap.timeline({ defaults: { ease: "power4.out" }, delay: 0.1 });
+        const tl = gsap.timeline({
+          defaults: { ease: "power4.out" },
+          delay: 0.1,
+        });
 
         // Cinematic image reveal
         tl.fromTo(
           imgWrapRef.current,
           { clipPath: "inset(20% 15% 20% 15% round 8px)" },
-          { clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 2, ease: "power3.inOut" },
-          0
+          {
+            clipPath: "inset(0% 0% 0% 0% round 0px)",
+            duration: 2,
+            ease: "power3.inOut",
+          },
+          0,
         ).fromTo(
           imgRef.current,
           { scale: 1.25 },
           { scale: 1, duration: 2, ease: "power3.inOut" },
-          0
+          0,
         );
 
         // Text reveals
@@ -37,7 +48,7 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
           ".reveal-line",
           { y: "110%", rotate: 1.5, opacity: 0 },
           { y: "0%", rotate: 0, opacity: 1, duration: 1.3, stagger: 0.13 },
-          0.25
+          0.25,
         );
 
         // Fade-ups
@@ -45,15 +56,21 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
           ".reveal-fade",
           { opacity: 0, y: 18 },
           { opacity: 1, y: 0, duration: 1.1, stagger: 0.09 },
-          0.6
+          0.6,
         );
 
         // Glass card
         tl.fromTo(
           ".glass-card",
           { opacity: 0, y: 36, filter: "blur(8px)" },
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.4, ease: "power3.out" },
-          1.3
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.4,
+            ease: "power3.out",
+          },
+          1.3,
         );
 
         // Parallax
@@ -79,12 +96,18 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
     gsap.to(e.currentTarget, {
       x: (e.clientX - r.left - r.width / 2) * 0.38,
       y: (e.clientY - r.top - r.height / 2) * 0.38,
-      duration: 0.4, ease: "power2.out",
+      duration: 0.4,
+      ease: "power2.out",
     });
   };
 
   const onMagLeave = (e: React.MouseEvent<HTMLButtonElement>) =>
-    gsap.to(e.currentTarget, { x: 0, y: 0, duration: 0.9, ease: "elastic.out(1, 0.3)" });
+    gsap.to(e.currentTarget, {
+      x: 0,
+      y: 0,
+      duration: 0.9,
+      ease: "elastic.out(1, 0.3)",
+    });
 
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -136,11 +159,25 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
             gap: "4px",
           }}
         >
-          <span className="overflow-hidden block" style={{ paddingBottom: "4px" }}>
-            <span className="reveal-line block" style={{ opacity: 0, transform: "translateY(110%)" }}>A Sanctuary</span>
+          <span
+            className="overflow-hidden block"
+            style={{ paddingBottom: "4px" }}
+          >
+            <span
+              className="reveal-line block"
+              style={{ opacity: 0, transform: "translateY(110%)" }}
+            >
+              A Sanctuary
+            </span>
           </span>
-          <span className="overflow-hidden block" style={{ paddingBottom: "4px" }}>
-            <span className="reveal-line block" style={{ opacity: 0, transform: "translateY(110%)" }}>
+          <span
+            className="overflow-hidden block"
+            style={{ paddingBottom: "4px" }}
+          >
+            <span
+              className="reveal-line block"
+              style={{ opacity: 0, transform: "translateY(110%)" }}
+            >
               of{" "}
               <em className="italic" style={{ color: "var(--color-teal)" }}>
                 Sweetness
@@ -150,15 +187,23 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
         </h1>
 
         {/* Divider */}
-        <div className="reveal-fade flex items-center gap-4 mb-6" style={{ opacity: 0 }}>
-          <div className="h-px w-8" style={{ background: "var(--color-sand)" }} />
-          <span style={{
-            fontSize: "12px",
-            fontWeight: "500",
-            letterSpacing: "3px",
-            textTransform: "uppercase",
-            color: "var(--color-taupe)",
-          }}>
+        <div
+          className="reveal-fade flex items-center gap-4 mb-6"
+          style={{ opacity: 0 }}
+        >
+          <div
+            className="h-px w-8"
+            style={{ background: "var(--color-sand)" }}
+          />
+          <span
+            style={{
+              fontSize: "12px",
+              fontWeight: "500",
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "var(--color-taupe)",
+            }}
+          >
             Melt &amp; Dip · Palos Park
           </span>
         </div>
@@ -166,15 +211,23 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
         {/* Body */}
         <p
           className="reveal-fade font-normal text-teal mb-10"
-          style={{ fontSize: "17px", lineHeight: "1.85", maxWidth: "390px", opacity: 0 }}
+          style={{
+            fontSize: "17px",
+            lineHeight: "1.85",
+            maxWidth: "390px",
+            opacity: 0,
+          }}
         >
-          Not your neighbourhood ice cream shop. Authentic Italian gelato,
-          100% Belgian chocolate crepes, and the viral Dubai Chocolate
-          experience, crafted for moments that matter.
+          Not your neighbourhood ice cream shop. Authentic Italian gelato, 100%
+          Belgian chocolate crepes, and the viral Dubai Chocolate experience,
+          crafted for moments that matter.
         </p>
 
         {/* CTAs */}
-        <div className="reveal-fade flex items-center gap-8 mb-10" style={{ opacity: 0 }}>
+        <div
+          className="reveal-fade flex items-center gap-8 mb-10"
+          style={{ opacity: 0 }}
+        >
           <button
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
@@ -199,7 +252,7 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
             onClick={() => scrollTo("products")}
             className="group flex items-center gap-1.5 hover-target shrink-0"
             style={{
-              fontSize: "11px",
+              fontSize: "13px",
               letterSpacing: "2.5px",
               textTransform: "uppercase",
               color: "var(--color-teal)",
@@ -222,7 +275,11 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
         {/* Trust badges */}
         <div
           className="reveal-fade flex flex-wrap items-center gap-x-7 gap-y-3"
-          style={{ paddingTop: "24px", borderTop: "1px solid var(--color-linen)", opacity: 0 }}
+          style={{
+            paddingTop: "24px",
+            borderTop: "1px solid var(--color-linen)",
+            opacity: 0,
+          }}
         >
           {[
             { Icon: Sparkles, text: "100% Belgian Chocolate" },
@@ -232,16 +289,22 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
             <div key={text} className="flex items-center gap-2">
               <Icon
                 className="shrink-0"
-                style={{ width: "15px", height: "15px", color: "var(--color-amber)" }}
+                style={{
+                  width: "15px",
+                  height: "15px",
+                  color: "var(--color-amber)",
+                }}
                 strokeWidth={2}
               />
-              <span style={{
-                fontSize: "13px",
-                fontWeight:"400",
-                letterSpacing: "0.5px",
-                textTransform: "uppercase",
-                color: "rgba(28,74,69,0.75)",
-              }}>
+              <span
+                style={{
+                  fontSize: "13px",
+                  fontWeight: "400",
+                  letterSpacing: "0.5px",
+                  textTransform: "uppercase",
+                  color: "rgba(28,74,69,0.75)",
+                }}
+              >
                 {text}
               </span>
             </div>
@@ -329,7 +392,8 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
             WebkitBackdropFilter: "blur(20px)",
             border: "1px solid rgba(255,255,255,0.6)",
             borderRadius: "3px",
-            boxShadow: "0 16px 48px rgba(13,42,39,0.18), 0 1px 0 rgba(255,255,255,0.6) inset",
+            boxShadow:
+              "0 16px 48px rgba(13,42,39,0.18), 0 1px 0 rgba(255,255,255,0.6) inset",
             opacity: 0,
           }}
         >
@@ -337,7 +401,15 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
           <div className="flex flex-col justify-center gap-1 px-5 py-4">
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
-                <svg key={i} style={{ width: "12px", height: "12px", fill: "var(--color-amber)" }} viewBox="0 0 20 20">
+                <svg
+                  key={i}
+                  style={{
+                    width: "12px",
+                    height: "12px",
+                    fill: "var(--color-amber)",
+                  }}
+                  viewBox="0 0 20 20"
+                >
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               ))}
@@ -349,24 +421,36 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
               4.9
               <span
                 className="font-sans font-medium"
-                style={{ fontSize: "13px", color: "var(--color-taupe)", letterSpacing: "normal" }}
+                style={{
+                  fontSize: "13px",
+                  color: "var(--color-taupe)",
+                  letterSpacing: "normal",
+                }}
               >
-                {" "}/ 5.0
+                {" "}
+                / 5.0
               </span>
             </p>
-            <p style={{
-              fontSize: "10px",
-              fontWeight:"500",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              color: "rgba(28,74,69,0.5)",
-            }}>200+ Google Reviews</p>
+            <p
+              style={{
+                fontSize: "10px",
+                fontWeight: "500",
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                color: "rgba(28,74,69,0.5)",
+              }}
+            >
+              200+ Google Reviews
+            </p>
           </div>
 
           {/* Divider */}
           <div
             className="self-stretch w-px my-4"
-            style={{ background: "linear-gradient(to bottom, transparent, rgba(110,163,157,0.25), transparent)" }}
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent, rgba(110,163,157,0.25), transparent)",
+            }}
           />
 
           {/* Guests + Halal */}
@@ -374,17 +458,26 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
             <div className="flex items-center gap-1.5">
               <div
                 className="flex items-center justify-center rounded-full shrink-0"
-                style={{ width: "16px", height: "16px", background: "var(--color-teal)" }}
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  background: "var(--color-teal)",
+                }}
               >
-                <BadgeCheck style={{ width: "10px", height: "10px", color: "#fff" }} strokeWidth={2.5} />
+                <BadgeCheck
+                  style={{ width: "10px", height: "10px", color: "#fff" }}
+                  strokeWidth={2.5}
+                />
               </div>
-              <span style={{
-                fontSize: "8px",
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                color: "var(--color-teal)",
-                fontWeight: 500,
-              }}>
+              <span
+                style={{
+                  fontSize: "8px",
+                  letterSpacing: "2px",
+                  textTransform: "uppercase",
+                  color: "var(--color-teal)",
+                  fontWeight: 500,
+                }}
+              >
                 100% Halal
               </span>
             </div>
@@ -395,18 +488,26 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
               10K
               <span
                 className="font-serif italic"
-                style={{ fontSize: "13px", color: "var(--color-teal)",fontWeight: 500 }}
+                style={{
+                  fontSize: "13px",
+                  color: "var(--color-teal)",
+                  fontWeight: 500,
+                }}
               >
                 +
               </span>
             </p>
-            <p style={{
-              fontSize: "10px",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              color: "rgba(28,74,69,0.5)",
-              fontWeight: 500
-            }}>Guests Delighted</p>
+            <p
+              style={{
+                fontSize: "10px",
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                color: "rgba(28,74,69,0.5)",
+                fontWeight: 500,
+              }}
+            >
+              Guests Delighted
+            </p>
           </div>
         </div>
 
@@ -417,7 +518,11 @@ export default function Hero({ animationReady = false }: { animationReady?: bool
         >
           <p
             className="font-serif italic"
-            style={{ fontSize: "12px", letterSpacing: "0.02em", color: "rgba(255,255,255,0.5)" }}
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.02em",
+              color: "rgba(255,255,255,0.5)",
+            }}
           >
             Belgian Chocolate Pour
           </p>

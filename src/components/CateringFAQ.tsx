@@ -66,11 +66,9 @@ export default function CateringFAQ() {
       className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20 bg-paper border-t border-linen"
     >
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start">
-        {/* ── LEFT — STICKY HEADER ── */}
+        {/* ── LEFT - STICKY HEADER ── */}
         <div className="faq-header lg:sticky lg:top-32 self-start flex flex-col items-start">
-          <div
-            className="reveal-fade flex items-center gap-3 mb-6"
-          >
+          <div className="reveal-fade flex items-center gap-3 mb-6">
             <span
               className="w-6 h-px shrink-0"
               style={{ background: "var(--color-teal-pale)" }}
@@ -109,7 +107,7 @@ export default function CateringFAQ() {
           </div>
         </div>
 
-        {/* ── RIGHT — ACCORDION ── */}
+        {/* ── RIGHT - ACCORDION ── */}
         <div className="border-t border-linen">
           {FAQS.map((faq, i) => {
             const isOpen = open === i;
