@@ -4,16 +4,17 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-const HEADLINE_WORDS = ["Every", "bite", "tells", "a", "story", "of"];
-const HEADLINE_ACCENT = ["craft,", "luxury,"];
-const HEADLINE_END = ["and", "pure", "indulgence."];
+const WORDS_LINE1 = ["Every", "bite", "tells"];
+const WORDS_LINE2 = ["a", "story", "of"];
+const WORDS_ACCENT = ["craft,", "luxury,"];
+const WORDS_END = ["and", "pure", "indulgence."];
 
 export default function StoryScroll() {
   const containerRef = useRef<HTMLElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const eyebrowRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
+  const counterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -23,89 +24,147 @@ export default function StoryScroll() {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5, // 1.5s lag - silky smooth, not snappy
+        scrub: 2,
       };
 
       const tl = gsap.timeline({ scrollTrigger: st });
 
-      // ── 1. Image - slow cinematic zoom ──────────────
       tl.fromTo(
         ".story-bg",
-        { scale: 1, filter: "brightness(0.7)" },
-        { scale: 1.18, filter: "brightness(0.45)", ease: "none" },
+        { scale: 1, filter: "brightness(0.55) saturate(1.2)" },
+        { scale: 1.22, filter: "brightness(0.35) saturate(0.6)", ease: "none" },
         0,
       );
 
-      // ── 2. Overlay - paper → ink atmosphere ─────────
-      // Starts nearly white (paper tone), ends deep teal-ink
       tl.fromTo(
         ".story-overlay",
-        { backgroundColor: "rgba(248,250,249,0.92)" },
-        { backgroundColor: "rgba(9,28,25,0.78)", ease: "none" },
+        { backgroundColor: "rgba(248,244,238,0.88)" },
+        { backgroundColor: "rgba(6,20,18,0.82)", ease: "none" },
         0,
       );
 
-      // ── 3. Eyebrow fades in early ───────────────────
+      tl.fromTo(
+        ".story-grain",
+        { opacity: 0 },
+        { opacity: 0.06, ease: "none" },
+        0,
+      );
+
       tl.fromTo(
         eyebrowRef.current,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, ease: "power2.out" },
+        { opacity: 0, y: 20, letterSpacing: "6px" },
+        { opacity: 1, y: 0, letterSpacing: "3.5px", ease: "power3.out" },
         0.02,
       );
 
-      // ── 4. Main words - large stagger ───────────────
-      // Each word lights up independently as you scroll
       tl.fromTo(
-        ".sw-main",
-        { opacity: 0.08, y: 6 },
+        ".sw-l1",
+        { opacity: 0, y: 48, rotateX: 25, filter: "blur(6px)" },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.18, // large stagger - feels like words being spotlit
-          ease: "power1.out",
+          rotateX: 0,
+          filter: "blur(0px)",
+          stagger: 0.12,
+          ease: "power3.out",
         },
-        0.05,
+        0.06,
       );
 
-      // ── 5. Accent words (teal italic) ───────────────
+      tl.fromTo(
+        ".sw-l2",
+        { opacity: 0, y: 48, rotateX: 25, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          filter: "blur(0px)",
+          stagger: 0.12,
+          ease: "power3.out",
+        },
+        0.28,
+      );
+
       tl.fromTo(
         ".sw-accent",
-        { opacity: 0.08, y: 6 },
-        { opacity: 1, y: 0, stagger: 0.18, ease: "power1.out" },
-        0.45,
+        {
+          opacity: 0,
+          y: 48,
+          rotateX: 25,
+          filter: "blur(8px)",
+          textShadow: "0 0 0px rgba(26,122,110,0)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          filter: "blur(0px)",
+          textShadow: "0 0 40px rgba(26,122,110,0.6)",
+          stagger: 0.14,
+          ease: "power3.out",
+        },
+        0.48,
       );
 
-      // ── 6. End words ─────────────────────────────────
       tl.fromTo(
         ".sw-end",
-        { opacity: 0.08, y: 6 },
-        { opacity: 1, y: 0, stagger: 0.18, ease: "power1.out" },
-        0.72,
+        { opacity: 0, y: 48, rotateX: 25, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          filter: "blur(0px)",
+          stagger: 0.12,
+          ease: "power3.out",
+        },
+        0.65,
       );
 
-      // ── 7. Subtitle fades in at end ──────────────────
+      tl.fromTo(
+        ".story-divider",
+        { scaleX: 0, opacity: 0 },
+        { scaleX: 1, opacity: 1, ease: "power2.inOut" },
+        0.78,
+      );
+
       tl.fromTo(
         subtitleRef.current,
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, ease: "power2.out" },
-        0.85,
+        { opacity: 0, y: 20, filter: "blur(4px)" },
+        { opacity: 1, y: 0, filter: "blur(0px)", ease: "power2.out" },
+        0.84,
       );
 
-      // ── 8. Text color - ink → cream in sync ─────────
+      tl.fromTo(
+        counterRef.current,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, ease: "power2.out" },
+        0.9,
+      );
+
       tl.fromTo(
         ".story-text-wrap",
         { color: "var(--color-ink)" },
-        { color: "var(--color-cream)", ease: "none" },
+        { color: "#fbfdfc", ease: "none" },
         0,
       );
 
-      // ── 9. Progress bar ──────────────────────────────
       tl.fromTo(
         progressRef.current,
         { scaleX: 0 },
         { scaleX: 1, ease: "none" },
         0,
       );
+
+      gsap.to(".story-particle", {
+        y: "random(-30, 30)",
+        x: "random(-20, 20)",
+        opacity: "random(0.3, 0.7)",
+        duration: "random(3, 6)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: { each: 0.8, from: "random" },
+      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -114,7 +173,7 @@ export default function StoryScroll() {
   const Word = ({ children, cls }: { children: string; cls: string }) => (
     <span
       className={`${cls} inline-block`}
-      style={{ marginRight: "0.25em", paddingBottom: "0.1em" }}
+      style={{ marginRight: "0.22em", paddingBottom: "0.08em" }}
     >
       {children}
     </span>
@@ -124,19 +183,15 @@ export default function StoryScroll() {
     <section
       ref={containerRef}
       className="relative"
-      style={{ height: "400vh", background: "var(--color-ink)" }}
+      style={{ height: "500vh", background: "var(--color-ink)" }}
     >
-      <div
-        ref={stickyRef}
-        className="sticky top-0 h-screen w-full flex flex-col
-          items-center justify-center overflow-hidden"
-      >
+      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         {/* ── BACKGROUND IMAGE ─────────────────────── */}
         <div
           className="story-bg absolute bg-cover bg-center origin-center"
           style={{
-            inset: "-12%",
-            backgroundImage: "url('/assets/texture.jpg')",
+            inset: "-15%",
+            backgroundImage: "url('/assets/images/chocalate_drizzle.jpg')",
             willChange: "transform, filter",
           }}
         />
@@ -144,17 +199,46 @@ export default function StoryScroll() {
         {/* ── ATMOSPHERE OVERLAY ───────────────────── */}
         <div className="story-overlay absolute inset-0" />
 
+        {/* ── GRAIN TEXTURE ────────────────────────── */}
+        <div
+          className="story-grain absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "200px 200px",
+            opacity: 0,
+            mixBlendMode: "overlay",
+          }}
+        />
+
+        {/* ── FLOATING PARTICLES ───────────────────── */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="story-particle absolute rounded-full pointer-events-none"
+            style={{
+              width: `${[3, 4, 2, 5, 3, 4, 2, 3][i]}px`,
+              height: `${[3, 4, 2, 5, 3, 4, 2, 3][i]}px`,
+              background:
+                i % 2 === 0 ? "rgba(168,216,212,0.5)" : "rgba(212,134,10,0.4)",
+              left: `${[15, 82, 45, 68, 28, 90, 55, 35][i]}%`,
+              top: `${[25, 60, 40, 75, 55, 30, 65, 80][i]}%`,
+              opacity: 0.4,
+              filter: "blur(1px)",
+            }}
+          />
+        ))}
+
         {/* ── CONTENT ──────────────────────────────── */}
         <div
-          className="story-text-wrap relative z-10 text-center w-full
-            px-6 sm:px-12 lg:px-20 flex flex-col items-center"
-          style={{ color: "var(--color-ink)" }}
+          className="story-text-wrap relative z-10 text-center w-full px-6 sm:px-12 lg:px-20 flex flex-col items-center"
+          style={{ color: "var(--color-ink)", perspective: "800px" }}
         >
           {/* Eyebrow */}
           <div
             ref={eyebrowRef}
             className="flex items-center gap-3 mb-10"
-            style={{ opacity: 0, paddingTop: "30px" }}
+            style={{ opacity: 0 }}
           >
             <div
               className="w-8 h-px"
@@ -179,89 +263,105 @@ export default function StoryScroll() {
 
           {/* Headline */}
           <h2
-            className="font-serif font-light leading-[1.08] flex flex-wrap
-              justify-center"
+            className="font-serif font-light leading-[1.1] flex flex-wrap justify-center"
             style={{
-              fontSize: "clamp(38px, 6vw, 92px)",
+              fontSize: "clamp(36px, 5.5vw, 88px)",
               letterSpacing: "-0.03em",
               maxWidth: "1100px",
             }}
           >
-            {HEADLINE_WORDS.map((w, i) => (
-              <Word key={i} cls="sw-main">
+            {WORDS_LINE1.map((w, i) => (
+              <Word key={`l1-${i}`} cls="sw-l1">
                 {w}
               </Word>
             ))}
-
-            {/* Accent - italic teal */}
-            <em className="italic not-italic flex flex-wrap justify-center">
-              {HEADLINE_ACCENT.map((w, i) => (
-                <Word key={i} cls="sw-accent italic">
+            {WORDS_LINE2.map((w, i) => (
+              <Word key={`l2-${i}`} cls="sw-l2">
+                {w}
+              </Word>
+            ))}
+            <em className="not-italic flex flex-wrap justify-center">
+              {WORDS_ACCENT.map((w, i) => (
+                <Word key={`acc-${i}`} cls="sw-accent italic">
                   {w}
                 </Word>
               ))}
             </em>
-
-            {/* End */}
-            {HEADLINE_END.map((w, i) => (
-              <Word key={i} cls="sw-end">
+            {WORDS_END.map((w, i) => (
+              <Word key={`end-${i}`} cls="sw-end">
                 {w}
               </Word>
             ))}
           </h2>
 
+          {/* Divider */}
+          <div
+            className="story-divider mt-10 mb-8 origin-left"
+            style={{
+              width: "60px",
+              height: "1px",
+              background:
+                "linear-gradient(to right, var(--color-amber), var(--color-teal-pale))",
+              transform: "scaleX(0)",
+              opacity: 0,
+            }}
+          />
+
           {/* Subtitle */}
           <p
             ref={subtitleRef}
-            className="mt-10 font-light"
+            className="font-light"
             style={{
               fontSize: "15px",
               letterSpacing: "0.02em",
-              color: "rgba(168,216,212,0.6)",
-              maxWidth: "420px",
-              lineHeight: 1.8,
+              color: "rgba(168,216,212,0.65)",
+              maxWidth: "400px",
+              lineHeight: 1.85,
               opacity: 0,
             }}
           >
             Premium Belgian chocolate. Authentic Italian gelato.
             <br />A lounge built for moments that linger.
           </p>
-        </div>
 
-        {/* ── PROGRESS BAR - bottom, horizontal ────── */}
-        {/* Horizontal is more stable than vertical scaleY for scrub */}
-        {/* <div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2
-            flex flex-col items-center gap-3"
-        >
+          {/* Scroll counter */}
           <div
-            className="relative overflow-hidden"
-            style={{ width: "120px", height: "1px", background: "rgba(255,255,255,0.12)" }}
+            ref={counterRef}
+            className="mt-12 flex items-center gap-3"
+            style={{ opacity: 0 }}
           >
             <div
-              ref={progressRef}
-              className="absolute inset-y-0 left-0 w-full origin-left"
+              className="relative overflow-hidden"
               style={{
-                background: "var(--color-amber)",
-                transform: "scaleX(0)",
-                willChange: "transform",
+                width: "80px",
+                height: "1px",
+                background: "rgba(255,255,255,0.1)",
               }}
-            />
+            >
+              <div
+                ref={progressRef}
+                className="absolute inset-y-0 left-0 w-full origin-left"
+                style={{
+                  background: "var(--color-amber)",
+                  transform: "scaleX(0)",
+                  willChange: "transform",
+                }}
+              />
+            </div>
+            <span
+              style={{
+                fontSize: "9px",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.25)",
+              }}
+            >
+              scroll
+            </span>
           </div>
-          <span
-            style={{
-              fontSize: "7px",
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-            }}
-          >
-            Scroll
-          </span>
-        </div> */}
+        </div>
 
         {/* ── CORNER DECORATIONS ────────────────────── */}
-        {/* Top-left and bottom-right - editorial bracket feel */}
         <div
           className="absolute top-10 left-10 z-10 pointer-events-none"
           style={{ opacity: 0.25 }}
@@ -271,7 +371,7 @@ export default function StoryScroll() {
             style={{ background: "var(--color-teal-pale)" }}
           />
           <div
-            className="w-px h-8 mt-0"
+            className="w-px h-8"
             style={{ background: "var(--color-teal-pale)" }}
           />
         </div>
@@ -288,6 +388,15 @@ export default function StoryScroll() {
             style={{ background: "var(--color-teal-pale)" }}
           />
         </div>
+
+        {/* ── VIGNETTE ──────────────────────────────── */}
+        <div
+          className="absolute inset-0 pointer-events-none z-[5]"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 40%, rgba(6,20,18,0.7) 100%)",
+          }}
+        />
       </div>
     </section>
   );

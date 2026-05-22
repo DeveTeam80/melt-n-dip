@@ -216,7 +216,7 @@ export default function Navbar() {
                   />
                   <span
                     className={`relative z-10 font-sans font-medium uppercase
-                    transition-colors duration-300 ${isCatering && !scrolled ? "text-white group-hover:text-white/80" : "text-umber group-hover:text-teal"}`}
+                    transition-colors duration-300 ${isCatering && !scrolled ? "text-white group-hover:text-teal" : "text-umber group-hover:text-teal"}`}
                     style={{ fontSize: "14px", letterSpacing: "1.5px" }}
                   >
                     {label}

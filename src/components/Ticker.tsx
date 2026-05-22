@@ -112,9 +112,7 @@ export default function Ticker() {
                 letterSpacing: "3.5px",
                 textTransform: "uppercase",
                 fontWeight: 400,
-                color: item.accent
-                  ? "var(--color-amber)"
-                  : "rgba(248,250,249,0.38)",
+                color: item.accent ? "var(--color-amber)" : "white",
                 transition: "color 0.3s",
                 paddingTop: "14px",
                 paddingBottom: "14px",

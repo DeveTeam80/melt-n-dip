@@ -38,7 +38,7 @@ export default function Hero({
           0,
         ).fromTo(
           imgRef.current,
-          { scale: 1.25 },
+          { scale: 1.04 },
           { scale: 1, duration: 2, ease: "power3.inOut" },
           0,
         );
@@ -76,7 +76,7 @@ export default function Hero({
         // Parallax
         gsap.registerPlugin(ScrollTrigger);
         gsap.to(imgRef.current, {
-          yPercent: 16,
+          yPercent: 4,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
@@ -347,27 +347,9 @@ export default function Hero({
           ref={imgRef}
           className="absolute bg-cover"
           style={{
-            inset: "-10%",
-            backgroundImage: "url('/assets/hero-chocolate-pour.jpg')",
+            inset: "0%",
+            backgroundImage: "url('assets/images/home-banner1.png')",
             backgroundPosition: "center top",
-          }}
-        />
-
-        {/* Mobile overlay */}
-        <div
-          className="absolute inset-0 lg:hidden"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(248,250,249,0.97) 0%, rgba(248,250,249,0.85) 45%, rgba(248,250,249,0.2) 80%, transparent 100%)",
-          }}
-        />
-
-        {/* Desktop subtle left bleed */}
-        <div
-          className="absolute inset-0 hidden lg:block"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(248,250,249,0.55) 0%, rgba(248,250,249,0.1) 25%, transparent 45%)",
           }}
         />
 
@@ -380,137 +362,6 @@ export default function Hero({
           }}
         />
 
-        {/* Glass card */}
-        <div
-          className="glass-card absolute z-20 hidden md:flex items-stretch gap-0"
-          style={{
-            top: "100px",
-            right: "28px",
-            maxWidth: "calc(100% - 56px)",
-            background: "rgba(251,253,252,0.88)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(255,255,255,0.6)",
-            borderRadius: "3px",
-            boxShadow:
-              "0 16px 48px rgba(13,42,39,0.18), 0 1px 0 rgba(255,255,255,0.6) inset",
-            opacity: 0,
-          }}
-        >
-          {/* Rating block */}
-          <div className="flex flex-col justify-center gap-1 px-5 py-4">
-            <div className="flex items-center gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  style={{
-                    width: "12px",
-                    height: "12px",
-                    fill: "var(--color-amber)",
-                  }}
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <p
-              className="font-serif font-light text-ink leading-none"
-              style={{ fontSize: "24px", letterSpacing: "-0.03em" }}
-            >
-              4.9
-              <span
-                className="font-sans font-medium"
-                style={{
-                  fontSize: "13px",
-                  color: "var(--color-taupe)",
-                  letterSpacing: "normal",
-                }}
-              >
-                {" "}
-                / 5.0
-              </span>
-            </p>
-            <p
-              style={{
-                fontSize: "10px",
-                fontWeight: "500",
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                color: "rgba(28,74,69,0.5)",
-              }}
-            >
-              200+ Google Reviews
-            </p>
-          </div>
-
-          {/* Divider */}
-          <div
-            className="self-stretch w-px my-4"
-            style={{
-              background:
-                "linear-gradient(to bottom, transparent, rgba(110,163,157,0.25), transparent)",
-            }}
-          />
-
-          {/* Guests + Halal */}
-          <div className="flex flex-col justify-center gap-1 px-5 py-4">
-            <div className="flex items-center gap-1.5">
-              <div
-                className="flex items-center justify-center rounded-full shrink-0"
-                style={{
-                  width: "16px",
-                  height: "16px",
-                  background: "var(--color-teal)",
-                }}
-              >
-                <BadgeCheck
-                  style={{ width: "10px", height: "10px", color: "#fff" }}
-                  strokeWidth={2.5}
-                />
-              </div>
-              <span
-                style={{
-                  fontSize: "8px",
-                  letterSpacing: "2px",
-                  textTransform: "uppercase",
-                  color: "var(--color-teal)",
-                  fontWeight: 500,
-                }}
-              >
-                100% Halal
-              </span>
-            </div>
-            <p
-              className="font-serif font-light text-ink leading-none"
-              style={{ fontSize: "24px", letterSpacing: "-0.03em" }}
-            >
-              10K
-              <span
-                className="font-serif italic"
-                style={{
-                  fontSize: "13px",
-                  color: "var(--color-teal)",
-                  fontWeight: 500,
-                }}
-              >
-                +
-              </span>
-            </p>
-            <p
-              style={{
-                fontSize: "10px",
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                color: "rgba(28,74,69,0.5)",
-                fontWeight: 500,
-              }}
-            >
-              Guests Delighted
-            </p>
-          </div>
-        </div>
-
         {/* Caption */}
         <div
           className="absolute z-10 hidden lg:block"
@@ -521,7 +372,7 @@ export default function Hero({
             style={{
               fontSize: "12px",
               letterSpacing: "0.02em",
-              color: "rgba(255,255,255,0.5)",
+              color: "white",
             }}
           >
             Belgian Chocolate Pour
@@ -532,7 +383,7 @@ export default function Hero({
               fontSize: "12px",
               letterSpacing: "2px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.28)",
+              color: "white",
               marginTop: "4px",
             }}
           >
