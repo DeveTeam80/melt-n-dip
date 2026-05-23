@@ -193,14 +193,14 @@ export default function About() {
             <div key={label} className="flex items-center">
               <div className="flex flex-col py-2 px-4 sm:px-6">
                 <div
-                  className="font-serif font-light text-ink leading-none mb-2"
+                  className="font-light text-ink leading-none mb-2"
                   style={{
                     fontSize: num.length >= 4 ? "32px" : "42px",
                     letterSpacing: "-0.03em",
                   }}
                 >
                   {num}
-                  <em className="font-serif italic text-[18px] text-teal ml-0.5">
+                  <em className=" italic text-[18px] text-teal ml-0.5">
                     {sup}
                   </em>
                 </div>
