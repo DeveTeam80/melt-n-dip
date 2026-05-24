@@ -204,7 +204,7 @@ export default function Hero({
               color: "var(--color-taupe)",
             }}
           >
-            Melt &amp; Dip · Palos Park
+            Melt N Dip · Palos Park
           </span>
         </div>
 

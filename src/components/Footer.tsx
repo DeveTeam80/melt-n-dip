@@ -97,7 +97,7 @@ export default function Footer() {
                 className="block mb-6 text-[14px] uppercase tracking-[3px] font-semibold"
                 style={{ color: "var(--color-amber-vibrant)" }}
               >
-                Melt &amp; Dip · Palos Park, IL
+                Melt N Dip · Palos Park, IL
               </span>
               <p className="font-light text-[17px] text-white leading-[1.9] max-w-[320px]">
                 A sanctuary of sweetness where families gather, friendships
