@@ -18,6 +18,8 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+
+
 export const metadata: Metadata = {
   title: "Delight Enterprises | Melt N Dip Palos",
   description:
