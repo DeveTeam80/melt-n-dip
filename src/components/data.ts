@@ -66,7 +66,7 @@ export const MENU = [
       },
       {
         id: "cr2",
-        name: "Melt n Dip Crepe",
+        name: "Melt N Dip Crepe",
         pricePerPerson: 9,
         desc: "Our flagship - chocolate poured.",
       },
@@ -120,7 +120,7 @@ export const MENU = [
       },
       {
         id: "wf2",
-        name: "Melt n Dip Waffle",
+        name: "Melt N Dip Waffle",
         pricePerPerson: 8,
         desc: "Our signature waffle with chocolate pour.",
       },
@@ -253,7 +253,7 @@ export const MENU_CATEGORIES = [
     Icon: CakeSlice,
     items: [
       {
-        name: "Melt n Dip Crepe",
+        name: "Melt N Dip Crepe",
         img: `${CDN}/2022/06/melt_n_dip_crepe-110x110.jpg`,
         desc: "French crepe with strawberry, banana, pineapple, kiwi & Belgian Chocolate",
       },
@@ -290,7 +290,7 @@ export const MENU_CATEGORIES = [
       {
         name: "Cream & Dream Crepe",
         img: `${CDN}/2022/06/cream_and_dream_crepe-110x110.jpg`,
-        desc: "Crunchy crepe filled with Melt n Dip special cream & Belgian Chocolate",
+        desc: "Crunchy crepe filled with Melt N Dip special cream & Belgian Chocolate",
       },
       {
         name: "Lotus Crepe",
@@ -417,7 +417,7 @@ export const MENU_CATEGORIES = [
       {
         name: "Lotus Salad",
         img: `${CDN}/2022/10/lotus_salad-110x110.jpg`,
-        desc: "Lotus butter, strawberry, banana & Melt n Dip special cream",
+        desc: "Lotus butter, strawberry, banana & Melt N Dip special cream",
       },
       {
         name: "Damascene Ice Cream",
@@ -437,7 +437,7 @@ export const MENU_CATEGORIES = [
     Icon: Cookie,
     items: [
       {
-        name: "Melt n Dip Waffle",
+        name: "Melt N Dip Waffle",
         img: `${CDN}/2022/06/melt_n_dip_waffle-110x110.jpg`,
         desc: "Toasted waffle with fresh fruits topped with three kinds of Belgian Chocolate (Milk, Dark, and White)",
       },
@@ -484,7 +484,7 @@ export const PACKAGES = [
     desc: "Mini crepes, fruit cups, brownies, Belgian chocolate toppings.",
   },
   {
-    name: "Premium Melt n Dip",
+    name: "Premium Melt N Dip",
     min: 18,
     max: 25,
     desc: "Crepes, waffles, gelato, fruit cups, premium chocolate station.",
@@ -528,7 +528,7 @@ export const FAQS = [
   },
   {
     q: "Is outside food allowed?",
-    a: "No outside food or beverages permitted. All food must be provided by Delight Enterprises / Melt n Dip.",
+    a: "No outside food or beverages permitted. All food must be provided by Delight Enterprises / Melt N Dip.",
   },
   {
     q: "Do you have a sound system?",

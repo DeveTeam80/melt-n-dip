@@ -24,7 +24,7 @@ export default function Footer() {
       // Reveal effect for the footer inner content
       gsap.fromTo(
         ".footer-inner",
-        { y: -150 },
+        { y: -60 },
         {
           y: 0,
           ease: "none",

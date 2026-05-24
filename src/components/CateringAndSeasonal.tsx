@@ -86,7 +86,7 @@ const EVENT_TYPES = [
 const ESTIMATE = {
   "Sweet Bites": { min: 8, max: 10 },
   "Classic Dessert": { min: 12, max: 15 },
-  "Premium Melt n Dip": { min: 18, max: 25 },
+  "Premium Melt N Dip": { min: 18, max: 25 },
 };
 
 export default function CateringAndSeasonal() {

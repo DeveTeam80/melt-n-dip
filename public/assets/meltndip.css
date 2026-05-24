@@ -1,5 +1,5 @@
 /* =============================================================
-   MELT N DIP - meltndip.css
+   Melt N Dip - meltndip.css
    Complete styles extracted from page.tsx inline styles.
    Colors referencing MND.* JS variables remain inline in JSX.
    ============================================================= */
@@ -494,12 +494,10 @@
 }
 
 .mnd-mosaic-dark-grad {
-  background: linear-gradient(
-    to top,
-    rgba(26, 10, 0, 0.92) 0%,
-    rgba(26, 10, 0, 0.3) 45%,
-    transparent 75%
-  );
+  background: linear-gradient(to top,
+      rgba(26, 10, 0, 0.92) 0%,
+      rgba(26, 10, 0, 0.3) 45%,
+      transparent 75%);
 }
 
 .mnd-yt-play-label {

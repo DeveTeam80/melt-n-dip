@@ -78,7 +78,7 @@ export default function StoreRental() {
           </h2>
 
           <p className="sr-fade-up opacity-0 font-light text-paper leading-[1.85] text-[17px] mb-12 max-w-[440px]">
-            The Palos Park Melt n Dip lounge, exclusively yours. Up to 60
+            The Palos Park Melt N Dip lounge, exclusively yours. Up to 60
             guests, full menu service, karaoke, sound system, and bespoke
             decoration packages available.
           </p>
@@ -111,7 +111,7 @@ export default function StoreRental() {
             <ul className="flex flex-col gap-4">
               {[
                 "Exclusive use of the entire lounge",
-                "Full Melt n Dip menu service",
+                "Full Melt N Dip menu service",
                 "Dedicated service staff",
                 "Custom decorations permitted",
                 "Sound system & TV connectivity",

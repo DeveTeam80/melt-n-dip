@@ -71,7 +71,7 @@ const HERO_SLIDES = [
   {
     img: "https://meltndip.com/wp-content/uploads/2020/06/eclair.jpg",
     headline: "Eclair Pyramid",
-    sub: "The tastiest Eclair filled with Melt n Dip special cream & covered with Belgian chocolate",
+    sub: "The tastiest Eclair filled with Melt N Dip special cream & covered with Belgian chocolate",
   },
   {
     img: "https://meltndip.com/wp-content/uploads/2020/06/waffle.jpg",
@@ -91,7 +91,7 @@ const USP_ITEMS = [
 const CDN = "https://meltndip.com/wp-content/uploads";
 
 const MOSAIC_IMGS = [
-  { img: "/assets/melt-n-dip-crepe.jpg", label: "Melt n Dip Crepe" },
+  { img: "/assets/melt-n-dip-crepe.jpg", label: "Melt N Dip Crepe" },
   { img: "/assets/brownie-waffle.jpg", label: "Belgian Waffle" },
   { img: "/assets/dubai-chocolate-crepe.jpg", label: "Dubai Chocolate" },
   { img: "/assets/gelato.jpg", label: "Italian Gelato" },
@@ -111,7 +111,7 @@ const CATERING_SERVICES = [
   {
     Icon: Truck,
     name: "Food Truck",
-    desc: "Bring Melt n Dip on wheels to festivals, corporate events & community gatherings.",
+    desc: "Bring Melt N Dip on wheels to festivals, corporate events & community gatherings.",
   },
   {
     Icon: Building2,
@@ -131,7 +131,7 @@ const REVIEWS = [
   },
   {
     name: "Kareem A.",
-    text: "My experience at Melt n Dip was 10/10. Highly recommend the Melt n Dip waffle. The decoration is beautiful and everything was very exquisite.",
+    text: "My experience at Melt N Dip was 10/10. Highly recommend the Melt N Dip waffle. The decoration is beautiful and everything was very exquisite.",
   },
   {
     name: "Rayan S.",
@@ -352,7 +352,7 @@ function MndPreloader({ onComplete }: { onComplete: () => void }) {
         >
           <img
             src="/assets/images/melt-n-dip-logo1.png"
-            alt="Melt n Dip"
+            alt="Melt N Dip"
             className="mnd-preloader-logo-img"
           />
         </div>
@@ -362,7 +362,7 @@ function MndPreloader({ onComplete }: { onComplete: () => void }) {
         className="absolute left-1/2 z-20 text-center mnd-preloader-tag-pos"
       >
         <p className="mnd-preloader-tag-text" style={{ color: MND.bgWarm }}>
-          Melt n Dip
+          Melt N Dip
         </p>
         <div className="flex items-center justify-center gap-3 mt-2">
           <div className="h-px w-8" style={{ background: MND.gold }} />
@@ -520,7 +520,7 @@ function MndNavbar() {
         >
           <img
             src="/assets/images/melt-n-dip-logo1.png"
-            alt="Melt n Dip"
+            alt="Melt N Dip"
             className="mnd-nav-logo"
           />
         </a>
@@ -643,7 +643,7 @@ function MndFooter() {
             <div className="mnd-ft-col flex flex-col items-start pr-0 lg:pr-12">
               <img
                 src="assets/images/melt-n-dip-logo1.png"
-                alt="Melt n Dip"
+                alt="Melt N Dip"
                 className="mnd-ft-logo"
               />
               <span
@@ -1340,7 +1340,7 @@ export default function MeltNDipPalosPage() {
             >
               <span className="w-8 h-px" style={{ background: MND.gold }} />
               <span className="mnd-eyebrow-text-sm" style={{ color: MND.gold }}>
-                Melt n Dip - Palos Park
+                Melt N Dip - Palos Park
               </span>
             </div>
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between lg:gap-16 mb-5">
@@ -1521,7 +1521,7 @@ export default function MeltNDipPalosPage() {
             className="mnd-bel-f mnd-bel-desc"
             style={{ color: MND.creamMuted }}
           >
-            At Melt n Dip, we use only premium quality ingredients and 100%
+            At Melt N Dip, we use only premium quality ingredients and 100%
             Belgian chocolate to satisfy your taste buds and elevate your mood!
             Our tagline says it all -{" "}
             <span className="mnd-bel-highlight" style={{ color: MND.gold }}>
@@ -1683,7 +1683,7 @@ export default function MeltNDipPalosPage() {
                   className="w-8 h-px"
                   style={{ background: MND.goldMuted }}
                 />
-                Melt n Dip Menu
+                Melt N Dip Menu
               </div>
               <h2
                 className="mnd-menu-h2 flex flex-col gap-1 mb-6"
@@ -1920,7 +1920,7 @@ export default function MeltNDipPalosPage() {
             >
               <img
                 src="https://img.youtube.com/vi/uGZx4GfAF7g/maxresdefault.jpg"
-                alt="Melt n Dip video"
+                alt="Melt N Dip video"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div
@@ -1968,7 +1968,7 @@ export default function MeltNDipPalosPage() {
                 <iframe
                   id="mnd-yt-frame"
                   src=""
-                  title="Melt n Dip - Belgian Chocolate"
+                  title="Melt N Dip - Belgian Chocolate"
                   className="mnd-yt-iframe w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -2069,8 +2069,8 @@ export default function MeltNDipPalosPage() {
               className="mnd-cat-f mnd-cat-desc"
               style={{ color: MND.creamMuted }}
             >
-              Delight Enterprises LLC - the official Melt n Dip franchise owner
-              in Palos Park - brings the full Melt n Dip catering experience to
+              Delight Enterprises LLC - the official Melt N Dip franchise owner
+              in Palos Park - brings the full Melt N Dip catering experience to
               your events. From the aroma of warm Belgian chocolate to live
               crepe stations, every detail is crafted to{" "}
               <span className="mnd-cat-highlight" style={{ color: MND.gold }}>
@@ -2481,7 +2481,7 @@ export default function MeltNDipPalosPage() {
                 </span>
               </div>
               <h3 className="mnd-loc-card-h3" style={{ color: MND.cream }}>
-                Melt n Dip Palos Park
+                Melt N Dip Palos Park
               </h3>
               <p
                 className="mnd-loc-card-desc"
@@ -2489,7 +2489,7 @@ export default function MeltNDipPalosPage() {
               >
                 Owned and operated by Delight Enterprises LLC - a team united by
                 a single belief: that dessert should Satisfy Your Spirit. We
-                brought Melt n Dip to Palos Park and we&apos;re here to stay.
+                brought Melt N Dip to Palos Park and we&apos;re here to stay.
               </p>
               <Link
                 href="/catering"
@@ -2541,7 +2541,7 @@ export default function MeltNDipPalosPage() {
           style={{ border: `1px solid ${MND.border}` }}
         >
           <iframe
-            title="Melt n Dip Palos Park"
+            title="Melt N Dip Palos Park"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2697.730592409325!2d-87.85768472445187!3d41.653811579427945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e41e908329ed5%3A0x16b328b69c9db322!2sMelt%20N%20Dip!5e1!3m2!1sen!2sin!4v1775709946997!5m2!1sen!2sin"
             className="mnd-map-iframe"
             allowFullScreen
