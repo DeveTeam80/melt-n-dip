@@ -182,7 +182,7 @@ export default function About() {
           <em className="italic text-umber font-serif text-[17px] font-bold">
             Satisfy Your Spirit
           </em>
-          . In Melt &amp; Dip, they found a brand that matched that vision, and
+          . In Melt N Dip, they found a brand that matched that vision, and
           together founded Delight Enterprises LLC to bring unique, joyful
           flavours and unforgettable experiences to every guest.
         </p>

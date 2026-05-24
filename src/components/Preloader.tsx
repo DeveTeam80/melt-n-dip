@@ -263,7 +263,7 @@ export default function Preloader({ setIsLoading }: PreloaderProps) {
             className="font-sans font-light uppercase tracking-[3px]"
             style={{ fontSize: "15px", color: "var(--color-amber)" }}
           >
-            Melt &amp; Dip · Palos Park
+            Melt N Dip · Palos Park
           </p>
           <div
             className="h-px w-8"

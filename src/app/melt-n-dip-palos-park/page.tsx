@@ -650,7 +650,7 @@ function MndFooter() {
                 className="mnd-ft-brand-label block mb-5"
                 style={{ color: MND.gold }}
               >
-                Melt &amp; Dip · Palos Park, IL
+                Melt N Dip · Palos Park, IL
               </span>
               <p
                 className="mnd-ft-brand-desc"
