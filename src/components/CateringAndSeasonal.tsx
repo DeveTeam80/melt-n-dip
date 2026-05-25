@@ -376,7 +376,7 @@ export default function CateringAndSeasonal() {
               <div
                 key={name}
                 className="cat-card-reveal group relative bg-white border border-linen
-      rounded-[3px] py-10 px-8 overflow-hidden hover-target cursor-default
+      rounded-[3px] py-4 px-6 overflow-hidden hover-target cursor-default
       transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
       hover:bg-[var(--color-teal)]" // Main background inversion
               >

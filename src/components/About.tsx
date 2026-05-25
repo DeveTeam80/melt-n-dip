@@ -119,7 +119,7 @@ export default function About() {
     });
 
   const stats = [
-    { num: "7", sup: "mi", label: "Radius served" },
+    // { num: "7", sup: "mi", label: "Radius served" },
     { num: "100", sup: "%", label: "Belgian chocolate" },
     { num: "2025", sup: "", label: "Established in Palos Park" },
   ];
@@ -245,7 +245,7 @@ export default function About() {
 
       {/* ── RIGHT PANEL ─────────────────────────────── */}
       <div className="about-right-container relative flex flex-col min-h-[500px] lg:min-h-full bg-parchment gap-1">
-        <div className="about-img-wrap relative overflow-hidden flex-[1.2]">
+        <div className="about-img-wrap relative overflow-hidden flex-[1]">
           <div
             className="about-img-inner about-parallax-up absolute inset-[-15%] bg-cover bg-center"
             style={{
@@ -254,11 +254,11 @@ export default function About() {
           />
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-parchment/60 to-transparent pointer-events-none" />
         </div>
-        <div className="about-img-wrap relative overflow-hidden flex-[0.8]">
+        <div className="about-img-wrap relative overflow-hidden flex-[1]">
           <div
-            className="about-img-inner about-parallax-down absolute inset-[-15%] bg-cover bg-center"
+            className="about-img-inner about-parallax-down absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/assets/store-interior.jpg')",
+              backgroundImage: "url('/assets/images/melt-n-dip-inside.webp')",
               backgroundPosition: "center right",
             }}
           />

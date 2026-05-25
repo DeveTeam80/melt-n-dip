@@ -292,3 +292,8 @@
     transform: none;
   }
 }
+
+.ingredient-card {
+  border: "1px solid rgba(255,255,255,0.08)";
+  backdropfilter: "blur(2px)";
+}

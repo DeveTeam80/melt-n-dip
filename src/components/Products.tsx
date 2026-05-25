@@ -126,7 +126,7 @@ export default function Products() {
       nameClass: "text-[24px]",
     },
     {
-      img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80",
+      img: "assets/images/kunafa_crepe.jpeg",
       tag: "Cultural Favourite",
       name: "Kunafa Crepe",
       className: "min-h-[300px]",
