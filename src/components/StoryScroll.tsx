@@ -164,19 +164,31 @@ export default function StoryScroll() {
             }}
           />
 
-          {/* OVERLAY */}
+          {/* STATIC BASE OVERLAY - always present */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(
+      to bottom,
+      rgba(6,20,18,0.60) 0%,
+      rgba(6,20,18,0.85) 35%,
+      rgba(6,20,18,0.85) 65%,
+      rgba(6,20,18,0.88) 100%
+    )`,
+            }}
+          />
+
+          {/* ANIMATED OVERLAY - scroll-driven on top */}
           <div
             className="gelato-overlay absolute inset-0"
             style={{
-              background: `
-      linear-gradient(
-        to top,
-        rgba(6,20,18,0.94) 0%,
-        rgba(6,20,18,0.72) 35%,
-        rgba(6,20,18,0.52) 65%,
-        rgba(6,20,18,0.38) 100%
-      )
-    `,
+              opacity: 0.8,
+              background: `linear-gradient(
+      to bottom,
+      rgba(6,20,18,0.55) 0%,
+      rgba(6,20,18,0.40) 50%,
+      rgba(6,20,18,0.65) 100%
+    )`,
             }}
           />
         </div>
