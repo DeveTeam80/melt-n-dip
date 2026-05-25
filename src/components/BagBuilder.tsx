@@ -696,7 +696,7 @@ export default function BagBuilder({
           </div>
           <div
             ref={gridRef}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 "
           >
             {MENU[activeTab].items.map((item) => {
               const qty = getQty(item.id);

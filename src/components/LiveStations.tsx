@@ -130,7 +130,7 @@ export default function LiveStations() {
         <div className="ls-image opacity-0 relative aspect-[4/5] rounded-[3px] overflow-hidden bg-bark order-1 lg:order-2 w-full">
           <div
             className="absolute inset-0 bg-cover bg-[center_top]"
-            style={{ backgroundImage: "url('assets/images/photo-5.png')" }}
+            style={{ backgroundImage: "url('assets/images/photo_5.png')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
           <div className="absolute bottom-8 left-8 right-8">
