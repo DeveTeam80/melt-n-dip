@@ -1,1996 +1,2040 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Delight Enterprises | Melt & Dip Palos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap"
-    rel="stylesheet" />
-  <link rel="icon" href="/favicon.ico" sizes="256x256" type="image/x-icon" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
-  <style>
-    /* ─── TOKENS ──────────────────────────── */
-    :root {
-      /* neutrals - warm white base */
-      --paper: #f8faf9;
-      --parchment: #eef5f3;
-      --linen: #d8edea;
-      --sand: #b8d8d4;
-      --taupe: #6fa39d;
-      --umber: #3d7870;
-      --bark: #1c4a45;
-      --ink: #0d2a27;
-
-      /* teal - primary brand (logo "Delight" script) */
-      --teal-faint: #e6f4f2;
-      --teal-pale: #a8d8d4;
-      --teal: #1a7a6e;
-      --teal-rich: #136058;
-      --teal-deep: #0c4640;
-
-      /* amber - secondary brand (logo "ENTERPRISES" + lines) */
-      --amber-faint: #fef4e6;
-      --amber-pale: #f5d08a;
-      --amber: #d4860a;
-      --amber-rich: #b06c06;
-      --amber-deep: #7a4a04;
-
-      /* accent - coral/orange (logo cone) */
-      --coral: #e8522a;
-      --coral-soft: #f5a07a;
-
-      /* aliases used throughout - map to teal+amber */
-      --gold-faint: var(--amber-faint);
-      --gold-pale: var(--amber-pale);
-      --gold: var(--amber);
-      --gold-rich: var(--amber-rich);
-      --gold-deep: var(--amber-deep);
-
-      --cream: #fbfdfc;
-
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "DM Sans", system-ui, sans-serif;
-    }
-
-    /* ─── RESET ───────────────────────────── */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      font-size: 16px;
-    }
-
-    body {
-      font-family: var(--sans);
-      background: var(--paper);
-      color: var(--bark);
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: var(--sans);
-      cursor: none;
-      border: none;
-      background: none;
-    }
-
-    /* ─── CUSTOM CURSOR ───────────────────── */
-    .cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--teal);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition:
-        transform 0.1s,
-        background 0.3s;
-    }
-
-    .cursor-ring {
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba(26, 122, 110, 0.4);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition:
-        width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.3s;
-    }
-
-    .cursor-ring.hovered {
-      width: 64px;
-      height: 64px;
-      border-color: var(--teal);
-      background: rgba(26, 122, 110, 0.05);
-    }
-
-    body:hover .cursor-dot {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    /* ─── NOISE ───────────────────────────── */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 9000;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.4;
-    }
-
-    /* ─── NAV ─────────────────────────────── */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px 64px;
-      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .nav.scrolled {
-      background: rgba(248, 250, 249, 0.97);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--linen);
-      padding: 16px 64px;
-      box-shadow: 0 1px 40px rgba(58, 44, 28, 0.06);
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-logo-img {
-      height: 48px;
-      width: auto;
-      transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .nav.scrolled .nav-logo-img {
-      height: 36px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 44px;
-      list-style: none;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .nav-links a {
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--umber);
-      transition: color 0.25s;
-    }
-
-    .nav-links a:hover {
-      color: var(--teal);
-    }
-
-    .nav-btn {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--teal);
-      padding: 10px 28px;
-      border: 1px solid rgba(26, 122, 110, 0.35);
-      border-radius: 1px;
-      transition: all 0.3s;
-    }
-
-    .nav-btn:hover {
-      background: var(--teal);
-      color: #fff;
-      border-color: var(--teal);
-    }
-
-    /* ─── HERO ────────────────────────────── */
-    .hero {
-      height: 100vh;
-      min-height: 720px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 160px 64px 100px 64px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-overline {
-      font-size: 9px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      overflow: hidden;
-    }
-
-    .hero-overline::before {
-      content: "";
-      width: 32px;
-      height: 1px;
-      background: var(--teal-pale);
-      flex-shrink: 0;
-    }
-
-    .hero-h1 {
-      font-family: var(--serif);
-      font-size: clamp(58px, 5.8vw, 88px);
-      font-weight: 300;
-      line-height: 0.98;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-      margin-bottom: 32px;
-      overflow: hidden;
-    }
-
-    .hero-h1 .line {
-      display: block;
-      overflow: hidden;
-    }
-
-    .hero-h1 em {
-      font-style: italic;
-      color: var(--teal);
-    }
-
-    .hero-body {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.9;
-      color: var(--taupe);
-      max-width: 380px;
-      margin-bottom: 48px;
-      overflow: hidden;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .cta-primary {
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--teal);
-      padding: 15px 44px;
-      border-radius: 1px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.35s;
-    }
-
-    .cta-primary::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg,
-          transparent 30%,
-          rgba(255, 255, 255, 0.25) 50%,
-          transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .cta-primary:hover {
-      background: var(--teal-rich);
-    }
-
-    .cta-primary:hover::after {
-      transform: translateX(100%);
-    }
-
-    .cta-ghost {
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--teal);
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(26, 122, 110, 0.35);
-      transition:
-        border-color 0.3s,
-        color 0.3s;
-    }
-
-    .cta-ghost:hover {
-      color: var(--teal-rich);
-      border-color: var(--teal);
-    }
-
-    .hero-badges {
-      display: flex;
-      gap: 28px;
-      margin-top: 56px;
-    }
-
-    .hbadge {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .hbadge-dot {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--teal-faint);
-      border: 1px solid var(--teal-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .hbadge-dot svg {
-      width: 15px;
-      height: 15px;
-      stroke: var(--teal);
-      stroke-width: 1.5;
-    }
-
-    .hbadge-text {
-      font-size: 11px;
-      color: var(--taupe);
-      line-height: 1.4;
-    }
-
-    .hbadge-text b {
-      display: block;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--umber);
-    }
-
-    /* hero right - image collage */
-    .hero-right {
-      position: relative;
-      overflow: hidden;
-      background: var(--parchment);
-    }
-
-    .hero-img-main {
-      position: absolute;
-      inset: 0;
-      background: url("https://images.unsplash.com/photo-1551024601-bec78aea704b?w=900&q=80") center/cover no-repeat;
-      transform-origin: center;
-    }
-
-    .hero-img-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to right, var(--paper) 0%, transparent 30%),
-        linear-gradient(to top, rgba(30, 22, 16, 0.3) 0%, transparent 50%);
-    }
-
-    .hero-img-caption {
-      position: absolute;
-      bottom: 40px;
-      right: 40px;
-      text-align: right;
-    }
-
-    .hero-img-caption span {
-      display: block;
-      font-family: var(--serif);
-      font-size: 13px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.7);
-      letter-spacing: 0.02em;
-    }
-
-    /* floating stat card */
-    .hero-stat-card {
-      position: absolute;
-      bottom: 64px;
-      left: -44px;
-      z-index: 5;
-      background: var(--cream);
-      border: 1px solid var(--linen);
-      border-radius: 3px;
-      padding: 22px 28px;
-      box-shadow: 0 20px 60px rgba(58, 44, 28, 0.12);
-    }
-
-    .hsc-label {
-      font-size: 8px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 4px;
-    }
-
-    .hsc-num {
-      font-family: var(--serif);
-      font-size: 36px;
-      font-weight: 300;
-      color: var(--ink);
-      line-height: 1;
-      letter-spacing: -0.03em;
-    }
-
-    .hsc-sub {
-      font-size: 11px;
-      color: var(--taupe);
-      margin-top: 2px;
-    }
-
-    /* hero scroll line */
-    .hero-scrollline {
-      position: absolute;
-      bottom: 0;
-      left: 64px;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      padding-bottom: 28px;
-    }
-
-    .hsl-bar {
-      width: 1px;
-      height: 52px;
-      background: linear-gradient(to bottom, var(--teal), transparent);
-    }
-
-    .hsl-text {
-      font-size: 7px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--sand);
-      writing-mode: vertical-rl;
-    }
-
-    /* ─── TICKER ──────────────────────────── */
-    .ticker {
-      background: var(--bark);
-      overflow: hidden;
-      padding: 15px 0;
-    }
-
-    .ticker-row {
-      display: flex;
-      gap: 0;
-      animation: ticker 30s linear infinite;
-      white-space: nowrap;
-    }
-
-    .ticker-row span {
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      padding: 0 40px;
-      flex-shrink: 0;
-    }
-
-    .ticker-row span.gold {
-      color: var(--amber);
-    }
-
-    @keyframes ticker {
-      from {
-        transform: translateX(0);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delight Enterprises | Melt & Dip Palos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="256x256" type="image/x-icon" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+    <style>
+      /* ─── TOKENS ──────────────────────────── */
+      :root {
+        /* neutrals - warm white base */
+        --paper: #f8faf9;
+        --parchment: #eef5f3;
+        --linen: #d8edea;
+        --sand: #b8d8d4;
+        --taupe: #6fa39d;
+        --umber: #3d7870;
+        --bark: #1c4a45;
+        --ink: #0d2a27;
+
+        /* teal - primary brand (logo "Delight" script) */
+        --teal-faint: #e6f4f2;
+        --teal-pale: #a8d8d4;
+        --teal: #1a7a6e;
+        --teal-rich: #136058;
+        --teal-deep: #0c4640;
+
+        /* amber - secondary brand (logo "ENTERPRISES" + lines) */
+        --amber-faint: #fef4e6;
+        --amber-pale: #f5d08a;
+        --amber: #d4860a;
+        --amber-rich: #b06c06;
+        --amber-deep: #7a4a04;
+
+        /* accent - coral/orange (logo cone) */
+        --coral: #e8522a;
+        --coral-soft: #f5a07a;
+
+        /* aliases used throughout - map to teal+amber */
+        --gold-faint: var(--amber-faint);
+        --gold-pale: var(--amber-pale);
+        --gold: var(--amber);
+        --gold-rich: var(--amber-rich);
+        --gold-deep: var(--amber-deep);
+
+        --cream: #fbfdfc;
+
+        --serif: "Cormorant Garamond", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
       }
 
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* ─── SECTION BASE ────────────────────── */
-    .section-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 9px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 20px;
-    }
-
-    .section-eyebrow::before {
-      content: "";
-      width: 32px;
-      height: 1px;
-      background: var(--teal-pale);
-    }
-
-    .section-h2 {
-      font-family: var(--serif);
-      font-size: clamp(38px, 4.2vw, 64px);
-      font-weight: 300;
-      line-height: 1.07;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-      margin-bottom: 18px;
-    }
-
-    .section-h2 em {
-      font-style: italic;
-      color: var(--teal);
-    }
-
-    .section-sub {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--taupe);
-      line-height: 1.9;
-      max-width: 500px;
-    }
-
-    /* ─── ABOUT / USP SPLIT ───────────────── */
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 90vh;
-      overflow: hidden;
-    }
-
-    .about-left {
-      padding: 120px 72px 120px 64px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .about-body {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.95;
-      color: var(--taupe);
-      margin-bottom: 48px;
-      max-width: 440px;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid var(--linen);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .astat {
-      padding: 24px 20px;
-      border-right: 1px solid var(--linen);
-      background: #fff;
-    }
-
-    .astat:last-child {
-      border-right: none;
-    }
-
-    .astat-num {
-      font-family: var(--serif);
-      font-size: 36px;
-      font-weight: 300;
-      color: var(--ink);
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-
-    .astat-num em {
-      font-style: italic;
-      color: var(--teal);
-      font-size: 22px;
-    }
-
-    .astat-lbl {
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--taupe);
-      margin-top: 6px;
-    }
-
-    .about-right {
-      position: relative;
-      background: var(--parchment);
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .about-img-top {
-      flex: 1;
-      background: url("https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80") center/cover no-repeat;
-      min-height: 240px;
-    }
-
-    .about-img-bot {
-      flex: 1;
-      background: url("https://images.unsplash.com/photo-1505394033641-40908a418490?w=800&q=80") center/cover no-repeat;
-      min-height: 240px;
-    }
-
-    .about-img-label {
-      position: absolute;
-      bottom: 28px;
-      right: 28px;
-      font-family: var(--serif);
-      font-size: 11px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    /* USP cards */
-    .usp-strip {
-      background: var(--parchment);
-      padding: 80px 64px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      border-top: 1px solid var(--linen);
-      border-bottom: 1px solid var(--linen);
-    }
-
-    .usp-item {
-      background: var(--cream);
-      padding: 44px 32px;
-      border-right: 1px solid var(--linen);
-      position: relative;
-      overflow: hidden;
-      transition: background 0.4s;
-    }
-
-    .usp-item:last-child {
-      border-right: none;
-    }
-
-    .usp-item::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--teal), var(--teal-pale));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .usp-item:hover {
-      background: var(--teal-faint);
-    }
-
-    .usp-item:hover::before {
-      transform: scaleX(1);
-    }
-
-    .usp-num {
-      font-family: var(--serif);
-      font-size: 52px;
-      font-weight: 300;
-      color: var(--linen);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-
-    .usp-icon-wrap {
-      margin-bottom: 16px;
-    }
-
-    .usp-icon-wrap svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--teal);
-      stroke-width: 1.5;
-    }
-
-    .usp-title {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .usp-desc {
-      font-size: 12px;
-      font-weight: 300;
-      color: var(--taupe);
-      line-height: 1.75;
-    }
-
-    /* ─── PRODUCTS ────────────────────────── */
-    .products {
-      padding: 140px 64px;
-    }
-
-    .products-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: end;
-      margin-bottom: 72px;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 16px;
-      height: 640px;
-    }
-
-    .prod {
-      position: relative;
-      overflow: hidden;
-      border-radius: 3px;
-      cursor: none;
-    }
-
-    .prod-1 {
-      grid-row: 1 / 3;
-    }
-
-    .prod-bg {
-      position: absolute;
-      inset: 0;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      background-size: cover;
-      background-position: center;
-    }
-
-    .prod:hover .prod-bg {
-      transform: scale(1.07);
-    }
-
-    .prod-1 .prod-bg {
-      background-image: url("https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80");
-    }
-
-    .prod-2 .prod-bg {
-      background-image: url("https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&q=80");
-    }
-
-    .prod-3 .prod-bg {
-      background-image: url("https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&q=80");
-    }
-
-    .prod-4 .prod-bg {
-      background-image: url("https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80");
-    }
-
-    .prod-5 .prod-bg {
-      background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80");
-    }
-
-    .prod-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top,
-          rgba(20, 14, 8, 0.75) 0%,
-          rgba(20, 14, 8, 0.1) 50%,
-          transparent 100%);
-    }
-
-    .prod-label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 28px;
-    }
-
-    .prod-tag {
-      font-size: 8px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 6px;
-    }
-
-    .prod-name {
-      font-family: var(--serif);
-      font-weight: 400;
-      color: #fff;
-      letter-spacing: -0.01em;
-      line-height: 1.1;
-    }
-
-    .prod-1 .prod-name {
-      font-size: 36px;
-    }
-
-    .prod-2 .prod-name,
-    .prod-3 .prod-name,
-    .prod-4 .prod-name,
-    .prod-5 .prod-name {
-      font-size: 22px;
-    }
-
-    .prod-arrow {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #fff;
-      opacity: 0;
-      transform: scale(0.8);
-      transition:
-        opacity 0.3s,
-        transform 0.3s;
-    }
-
-    .prod:hover .prod-arrow {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* ─── GELATO vs ICE CREAM ─────────────── */
-    .vs {
-      background: var(--ink);
-      padding: 140px 64px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .vs::before {
-      content: "GELATO";
-      position: absolute;
-      right: -40px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--serif);
-      font-size: 200px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.025);
-      letter-spacing: -0.04em;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    .vs-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 80px 1fr;
-      gap: 0;
-      align-items: center;
-    }
-
-    .vs-label {
-      font-size: 9px;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.3);
-      margin-bottom: 20px;
-    }
-
-    .vs-title {
-      font-family: var(--serif);
-      font-size: clamp(28px, 3vw, 44px);
-      font-weight: 300;
-      margin-bottom: 36px;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-
-    .vs-col-a .vs-title {
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .vs-col-b .vs-title {
-      color: var(--teal-pale);
-    }
-
-    .vs-col-b .vs-title em {
-      font-style: italic;
-      color: var(--amber);
-    }
-
-    .vs-list {
-      list-style: none;
-    }
-
-    .vs-list li {
-      font-size: 13px;
-      font-weight: 300;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      display: flex;
-      gap: 12px;
-      align-items: baseline;
-    }
-
-    .vs-col-a .vs-list li {
-      color: rgba(255, 255, 255, 0.3);
-    }
-
-    .vs-col-a .vs-list li::before {
-      content: "-";
-      color: rgba(255, 255, 255, 0.15);
-      font-size: 10px;
-      flex-shrink: 0;
-    }
-
-    .vs-col-b .vs-list li {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .vs-col-b .vs-list li::before {
-      content: "✦";
-      color: var(--amber);
-      font-size: 7px;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-
-    .vs-mid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
-
-    .vs-circle {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      border: 1px solid rgba(26, 122, 110, 0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--serif);
-      font-size: 13px;
-      color: var(--teal);
-      letter-spacing: 1px;
-    }
-
-    .vs-vline {
-      width: 1px;
-      height: 80px;
-      background: linear-gradient(to bottom,
-          rgba(26, 122, 110, 0.25),
-          transparent);
-    }
-
-    .vs-vline-top {
-      background: linear-gradient(to top,
-          rgba(26, 122, 110, 0.25),
-          transparent);
-    }
-
-    /* ─── SCROLL STORY ────────────────────── */
-    .story {
-      height: 350vh;
-      position: relative;
-    }
-
-    .story-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .story-bg {
-      position: absolute;
-      inset: 0;
-      background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&q=80") center/cover no-repeat;
-    }
-
-    .story-bg-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(249, 245, 238, 0.88);
-    }
-
-    .story-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 0 64px;
-    }
-
-    .story-word-wrap {
-      overflow: hidden;
-      display: inline-block;
-    }
-
-    .story-h {
-      font-family: var(--serif);
-      font-size: clamp(48px, 6.5vw, 96px);
-      font-weight: 300;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      color: var(--ink);
-      max-width: 900px;
-    }
-
-    .story-h em {
-      font-style: italic;
-      color: var(--teal);
-    }
-
-    .story-progress {
-      position: absolute;
-      bottom: 48px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-    }
-
-    .sp-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--sand);
-      transition:
-        background 0.3s,
-        transform 0.3s;
-    }
-
-    .sp-dot.active {
-      background: var(--teal);
-      transform: scale(1.5);
-    }
-
-    /* ─── CATERING ────────────────────────── */
-    .catering {
-      padding: 140px 64px;
-    }
-
-    .catering-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-    }
-
-    .cat-left {}
-
-    .cat-events {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 28px 0 40px;
-    }
-
-    .cat-tag {
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--umber);
-      background: #fff;
-      border: 1px solid var(--linen);
-      padding: 7px 16px;
-      border-radius: 20px;
-      transition: all 0.25s;
-    }
-
-    .cat-tag:hover {
-      background: var(--teal-faint);
-      border-color: var(--teal-pale);
-      color: var(--teal);
-    }
-
-    .cat-right {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .cat-card {
-      background: #fff;
-      border: 1px solid var(--linen);
-      border-radius: 3px;
-      padding: 32px 26px;
-      position: relative;
-      overflow: hidden;
-      transition:
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.4s,
-        border-color 0.3s;
-    }
-
-    .cat-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--teal), var(--teal-pale));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .cat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(26, 122, 110, 0.1);
-      border-color: var(--teal-pale);
-    }
-
-    .cat-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .cat-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--teal-faint);
-      border: 1px solid var(--teal-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-    }
-
-    .cat-icon svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--teal);
-      stroke-width: 1.5;
-    }
-
-    .cat-name {
-      font-family: var(--serif);
-      font-size: 19px;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-
-    .cat-desc {
-      font-size: 12px;
-      font-weight: 300;
-      color: var(--taupe);
-      line-height: 1.7;
-    }
-
-    /* ─── SEASONAL ────────────────────────── */
-    .seasonal {
-      background: var(--parchment);
-      padding: 140px 64px;
-    }
-
-    .seasonal-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 72px;
-    }
-
-    .season-card {
-      position: relative;
-      border-radius: 3px;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      cursor: none;
-    }
-
-    .sc-img {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .season-card:hover .sc-img {
-      transform: scale(1.06);
-    }
-
-    .sc1 .sc-img {
-      background-image: url("https://images.unsplash.com/photo-1551024601-bec78aea704b?w=700&q=80");
-    }
-
-    .sc2 .sc-img {
-      background-image: url("https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=700&q=80");
-    }
-
-    .sc3 .sc-img {
-      background-image: url("https://images.unsplash.com/photo-1488477181946-6428a0291777?w=700&q=80");
-    }
-
-    .sc-grad {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top,
-          rgba(20, 14, 8, 0.82) 0%,
-          rgba(20, 14, 8, 0.1) 55%,
-          transparent 100%);
-    }
-
-    .sc-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 36px 32px;
-    }
-
-    .sc-season {
-      font-size: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 8px;
-    }
-
-    .sc-name {
-      font-family: var(--serif);
-      font-size: 26px;
-      font-weight: 400;
-      color: #fff;
-      letter-spacing: -0.01em;
-      margin-bottom: 6px;
-    }
-
-    .sc-text {
-      font-size: 12px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.6);
-      line-height: 1.65;
-    }
-
-    /* ─── LOCATION FORM ───────────────────── */
-    .locform {
-      padding: 140px 64px;
-    }
-
-    .locform-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: start;
-    }
-
-    .lf-left {}
-
-    .lf-details {
-      margin: 40px 0;
-    }
-
-    .lf-row {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--linen);
-    }
-
-    .lf-icon {
-      width: 34px;
-      height: 34px;
-      flex-shrink: 0;
-      background: var(--teal-faint);
-      border: 1px solid var(--teal-pale);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lf-icon svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--teal);
-      stroke-width: 1.5;
-    }
-
-    .lf-text {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--taupe);
-      line-height: 1.65;
-    }
-
-    .lf-text strong {
-      display: block;
-      font-weight: 500;
-      font-size: 11px;
-      letter-spacing: 0.5px;
-      color: var(--umber);
-    }
-
-    .lf-right {
-      background: var(--parchment);
-      border: 1px solid var(--linen);
-      border-radius: 3px;
-      padding: 52px 48px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .lf-right::after {
-      content: '"';
-      font-family: var(--serif);
-      font-size: 240px;
-      font-weight: 300;
-      color: rgba(26, 122, 110, 0.06);
-      position: absolute;
-      right: -10px;
-      bottom: -60px;
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .form-title {
-      font-family: var(--serif);
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 6px;
-      letter-spacing: -0.01em;
-    }
-
-    .form-sub {
-      font-size: 12px;
-      font-weight: 300;
-      color: var(--taupe);
-      margin-bottom: 32px;
-    }
-
-    .f-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .f-full {
-      margin-bottom: 14px;
-    }
-
-    .f-field label {
-      display: block;
-      font-size: 8px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--taupe);
-      margin-bottom: 7px;
-    }
-
-    .f-field input,
-    .f-field select,
-    .f-field textarea {
-      width: 100%;
-      background: #fff;
-      color: var(--bark);
-      border: 1px solid var(--sand);
-      border-radius: 2px;
-      padding: 11px 14px;
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 300;
-      outline: none;
-      transition: border-color 0.25s;
-    }
-
-    .f-field input:focus,
-    .f-field select:focus,
-    .f-field textarea:focus {
-      border-color: var(--teal);
-    }
-
-    .f-field input::placeholder {
-      color: var(--sand);
-    }
-
-    .f-field textarea {
-      height: 88px;
-      resize: none;
-    }
-
-    .f-submit {
-      width: 100%;
-      margin-top: 24px;
-      padding: 15px;
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--teal);
-      border: none;
-      border-radius: 1px;
-      transition: background 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .f-submit::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg,
-          transparent 30%,
-          rgba(255, 255, 255, 0.25) 50%,
-          transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.55s;
-    }
-
-    .f-submit:hover {
-      background: var(--teal-rich);
-    }
-
-    .f-submit:hover::after {
-      transform: translateX(100%);
-    }
-
-    /* ─── FOOTER ──────────────────────────── */
-    footer {
-      background: var(--ink);
-      padding: 100px 64px 56px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    footer::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(to right,
-          transparent,
-          var(--teal),
-          transparent);
-    }
-
-    .ft-top {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr 1fr;
-      gap: 60px;
-      max-width: 1200px;
-      margin: 0 auto 72px;
-    }
-
-    .ft-brand-name {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 400;
-      color: rgba(253, 250, 244, 0.9);
-      letter-spacing: 0.01em;
-    }
-
-    .ft-brand-name em {
-      font-style: italic;
-      color: var(--amber);
-    }
-
-    .ft-brand-tag {
-      font-size: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.25);
-      margin-top: 4px;
-      margin-bottom: 18px;
-      display: block;
-    }
-
-    .ft-brand-desc {
-      font-size: 13px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.35);
-      line-height: 1.85;
-      max-width: 240px;
-    }
-
-    .ft-col-head {
-      font-size: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 22px;
-    }
-
-    .ft-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-    }
-
-    .ft-links a {
-      font-size: 13px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.4);
-      transition: color 0.25s;
-    }
-
-    .ft-links a:hover {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .ft-contact-line {
-      font-size: 13px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.4);
-      line-height: 1.75;
-      margin-bottom: 8px;
-    }
-
-    .ft-contact-line a {
-      color: var(--amber);
-    }
-
-    .ft-bottom {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255, 255, 255, 0.07);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .ft-copy {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.2);
-      letter-spacing: 1px;
-    }
-
-    /* ─── RESPONSIVE ──────────────────────── */
-    @media (max-width: 1024px) {
-      .hero {
-        grid-template-columns: 1fr;
+      /* ─── RESET ───────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
 
-      .hero-right {
-        display: none;
+      html {
+        font-size: 16px;
       }
 
-      .hero-left {
-        padding: 140px 40px 100px;
+      body {
+        font-family: var(--sans);
+        background: var(--paper);
+        color: var(--bark);
+        overflow-x: hidden;
+        cursor: none;
       }
 
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: var(--sans);
+        cursor: none;
+        border: none;
+        background: none;
+      }
+
+      /* ─── CUSTOM CURSOR ───────────────────── */
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--teal);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          transform 0.1s,
+          background 0.3s;
+      }
+
+      .cursor-ring {
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(26, 122, 110, 0.4);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.3s;
+      }
+
+      .cursor-ring.hovered {
+        width: 64px;
+        height: 64px;
+        border-color: var(--teal);
+        background: rgba(26, 122, 110, 0.05);
+      }
+
+      body:hover .cursor-dot {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* ─── NOISE ───────────────────────────── */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        opacity: 0.4;
+      }
+
+      /* ─── NAV ─────────────────────────────── */
       .nav {
-        padding: 20px 40px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 64px;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       .nav.scrolled {
-        padding: 14px 40px;
+        background: rgba(248, 250, 249, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--linen);
+        padding: 16px 64px;
+        box-shadow: 0 1px 40px rgba(58, 44, 28, 0.06);
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-logo-img {
+        height: 48px;
+        width: auto;
+        transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .nav.scrolled .nav-logo-img {
+        height: 36px;
       }
 
       .nav-links {
-        display: none;
+        display: flex;
+        gap: 44px;
+        list-style: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
       }
 
-      .about {
-        grid-template-columns: 1fr;
+      .nav-links a {
+        font-size: 10px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--umber);
+        transition: color 0.25s;
       }
 
-      .about-right {
-        height: 420px;
+      .nav-links a:hover {
+        color: var(--teal);
       }
 
-      .about-img-top,
-      .about-img-bot {
-        flex: 1;
+      .nav-btn {
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--teal);
+        padding: 10px 28px;
+        border: 1px solid rgba(26, 122, 110, 0.35);
+        border-radius: 1px;
+        transition: all 0.3s;
       }
 
-      .usp-strip {
+      .nav-btn:hover {
+        background: var(--teal);
+        color: #fff;
+        border-color: var(--teal);
+      }
+
+      /* ─── HERO ────────────────────────────── */
+      .hero {
+        height: 100vh;
+        min-height: 720px;
+        display: grid;
         grid-template-columns: 1fr 1fr;
-        padding: 60px 40px;
+        overflow: hidden;
+        position: relative;
       }
 
-      .usp-item {
-        border-bottom: 1px solid var(--linen);
-      }
-
-      .products {
-        padding: 100px 40px;
-      }
-
-      .products-header {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .products-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-        height: auto;
-      }
-
-      .prod-1 {
-        grid-row: auto;
-      }
-
-      .vs {
-        padding: 100px 40px;
-      }
-
-      .vs-inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .vs-mid {
-        flex-direction: row;
-      }
-
-      .vs-vline,
-      .vs-vline-top {
-        width: 80px;
-        height: 1px;
-        background: linear-gradient(to right,
-            transparent,
-            rgba(26, 122, 110, 0.25),
-            transparent);
-      }
-
-      .catering {
-        padding: 100px 40px;
-      }
-
-      .catering-inner {
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
-
-      .seasonal {
-        padding: 100px 40px;
-      }
-
-      .seasonal-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .locform {
-        padding: 100px 40px;
-      }
-
-      .locform-inner {
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
-
-      footer {
-        padding: 80px 40px 48px;
-      }
-
-      .ft-top {
-        grid-template-columns: 1fr 1fr;
-        gap: 48px;
-      }
-
-      .f-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
       .hero-left {
-        padding: 120px 24px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 160px 64px 100px 64px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-overline {
+        font-size: 9px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 32px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        overflow: hidden;
+      }
+
+      .hero-overline::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--teal-pale);
+        flex-shrink: 0;
+      }
+
+      .hero-h1 {
+        font-family: var(--serif);
+        font-size: clamp(58px, 5.8vw, 88px);
+        font-weight: 300;
+        line-height: 0.98;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin-bottom: 32px;
+        overflow: hidden;
+      }
+
+      .hero-h1 .line {
+        display: block;
+        overflow: hidden;
+      }
+
+      .hero-h1 em {
+        font-style: italic;
+        color: var(--teal);
+      }
+
+      .hero-body {
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.9;
+        color: var(--taupe);
+        max-width: 380px;
+        margin-bottom: 48px;
+        overflow: hidden;
+      }
+
+      .hero-ctas {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .cta-primary {
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--teal);
+        padding: 15px 44px;
+        border-radius: 1px;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.35s;
+      }
+
+      .cta-primary::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.25) 50%,
+          transparent 70%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .cta-primary:hover {
+        background: var(--teal-rich);
+      }
+
+      .cta-primary:hover::after {
+        transform: translateX(100%);
+      }
+
+      .cta-ghost {
+        font-size: 10px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--teal);
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(26, 122, 110, 0.35);
+        transition:
+          border-color 0.3s,
+          color 0.3s;
+      }
+
+      .cta-ghost:hover {
+        color: var(--teal-rich);
+        border-color: var(--teal);
       }
 
       .hero-badges {
+        display: flex;
+        gap: 28px;
+        margin-top: 56px;
+      }
+
+      .hbadge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hbadge-dot {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--teal-faint);
+        border: 1px solid var(--teal-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .hbadge-dot svg {
+        width: 15px;
+        height: 15px;
+        stroke: var(--teal);
+        stroke-width: 1.5;
+      }
+
+      .hbadge-text {
+        font-size: 11px;
+        color: var(--taupe);
+        line-height: 1.4;
+      }
+
+      .hbadge-text b {
+        display: block;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--umber);
+      }
+
+      /* hero right - image collage */
+      .hero-right {
+        position: relative;
+        overflow: hidden;
+        background: var(--parchment);
+      }
+
+      .hero-img-main {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1551024601-bec78aea704b?w=900&q=80")
+          center/cover no-repeat;
+        transform-origin: center;
+      }
+
+      .hero-img-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(to right, var(--paper) 0%, transparent 30%),
+          linear-gradient(to top, rgba(30, 22, 16, 0.3) 0%, transparent 50%);
+      }
+
+      .hero-img-caption {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        text-align: right;
+      }
+
+      .hero-img-caption span {
+        display: block;
+        font-family: var(--serif);
+        font-size: 13px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.02em;
+      }
+
+      /* floating stat card */
+      .hero-stat-card {
+        position: absolute;
+        bottom: 64px;
+        left: -44px;
+        z-index: 5;
+        background: var(--cream);
+        border: 1px solid var(--linen);
+        border-radius: 3px;
+        padding: 22px 28px;
+        box-shadow: 0 20px 60px rgba(58, 44, 28, 0.12);
+      }
+
+      .hsc-label {
+        font-size: 8px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 4px;
+      }
+
+      .hsc-num {
+        font-family: var(--serif);
+        font-size: 36px;
+        font-weight: 300;
+        color: var(--ink);
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+
+      .hsc-sub {
+        font-size: 11px;
+        color: var(--taupe);
+        margin-top: 2px;
+      }
+
+      /* hero scroll line */
+      .hero-scrollline {
+        position: absolute;
+        bottom: 0;
+        left: 64px;
+        z-index: 3;
+        display: flex;
         flex-direction: column;
-        gap: 14px;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 28px;
+      }
+
+      .hsl-bar {
+        width: 1px;
+        height: 52px;
+        background: linear-gradient(to bottom, var(--teal), transparent);
+      }
+
+      .hsl-text {
+        font-size: 7px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--sand);
+        writing-mode: vertical-rl;
+      }
+
+      /* ─── TICKER ──────────────────────────── */
+      .ticker {
+        background: var(--bark);
+        overflow: hidden;
+        padding: 15px 0;
+      }
+
+      .ticker-row {
+        display: flex;
+        gap: 0;
+        animation: ticker 30s linear infinite;
+        white-space: nowrap;
+      }
+
+      .ticker-row span {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 0 40px;
+        flex-shrink: 0;
+      }
+
+      .ticker-row span.gold {
+        color: var(--amber);
+      }
+
+      @keyframes ticker {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ─── SECTION BASE ────────────────────── */
+      .section-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 9px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 20px;
+      }
+
+      .section-eyebrow::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--teal-pale);
+      }
+
+      .section-h2 {
+        font-family: var(--serif);
+        font-size: clamp(38px, 4.2vw, 64px);
+        font-weight: 300;
+        line-height: 1.07;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin-bottom: 18px;
+      }
+
+      .section-h2 em {
+        font-style: italic;
+        color: var(--teal);
+      }
+
+      .section-sub {
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--taupe);
+        line-height: 1.9;
+        max-width: 500px;
+      }
+
+      /* ─── ABOUT / USP SPLIT ───────────────── */
+      .about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 90vh;
+        overflow: hidden;
       }
 
       .about-left {
-        padding: 80px 24px;
+        padding: 120px 72px 120px 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
 
+      .about-body {
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.95;
+        color: var(--taupe);
+        margin-bottom: 48px;
+        max-width: 440px;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border: 1px solid var(--linen);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .astat {
+        padding: 24px 20px;
+        border-right: 1px solid var(--linen);
+        background: #fff;
+      }
+
+      .astat:last-child {
+        border-right: none;
+      }
+
+      .astat-num {
+        font-family: var(--serif);
+        font-size: 36px;
+        font-weight: 300;
+        color: var(--ink);
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+
+      .astat-num em {
+        font-style: italic;
+        color: var(--teal);
+        font-size: 22px;
+      }
+
+      .astat-lbl {
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--taupe);
+        margin-top: 6px;
+      }
+
+      .about-right {
+        position: relative;
+        background: var(--parchment);
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .about-img-top {
+        flex: 1;
+        background: url("https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80")
+          center/cover no-repeat;
+        min-height: 240px;
+      }
+
+      .about-img-bot {
+        flex: 1;
+        background: url("https://images.unsplash.com/photo-1505394033641-40908a418490?w=800&q=80")
+          center/cover no-repeat;
+        min-height: 240px;
+      }
+
+      .about-img-label {
+        position: absolute;
+        bottom: 28px;
+        right: 28px;
+        font-family: var(--serif);
+        font-size: 11px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* USP cards */
       .usp-strip {
-        grid-template-columns: 1fr;
-        padding: 40px 24px;
+        background: var(--parchment);
+        padding: 80px 64px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        border-top: 1px solid var(--linen);
+        border-bottom: 1px solid var(--linen);
       }
 
+      .usp-item {
+        background: var(--cream);
+        padding: 44px 32px;
+        border-right: 1px solid var(--linen);
+        position: relative;
+        overflow: hidden;
+        transition: background 0.4s;
+      }
+
+      .usp-item:last-child {
+        border-right: none;
+      }
+
+      .usp-item::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(to right, var(--teal), var(--teal-pale));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .usp-item:hover {
+        background: var(--teal-faint);
+      }
+
+      .usp-item:hover::before {
+        transform: scaleX(1);
+      }
+
+      .usp-num {
+        font-family: var(--serif);
+        font-size: 52px;
+        font-weight: 300;
+        color: var(--linen);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+
+      .usp-icon-wrap {
+        margin-bottom: 16px;
+      }
+
+      .usp-icon-wrap svg {
+        width: 22px;
+        height: 22px;
+        stroke: var(--teal);
+        stroke-width: 1.5;
+      }
+
+      .usp-title {
+        font-family: var(--serif);
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--ink);
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .usp-desc {
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--taupe);
+        line-height: 1.75;
+      }
+
+      /* ─── PRODUCTS ────────────────────────── */
       .products {
-        padding: 80px 24px;
+        padding: 140px 64px;
+      }
+
+      .products-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: end;
+        margin-bottom: 72px;
       }
 
       .products-grid {
-        grid-template-columns: 1fr;
-        height: auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 16px;
+        height: 640px;
       }
 
-      .seasonal-grid {
-        grid-template-columns: 1fr;
+      .prod {
+        position: relative;
+        overflow: hidden;
+        border-radius: 3px;
+        cursor: none;
       }
 
+      .prod-1 {
+        grid-row: 1 / 3;
+      }
+
+      .prod-bg {
+        position: absolute;
+        inset: 0;
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        background-size: cover;
+        background-position: center;
+      }
+
+      .prod:hover .prod-bg {
+        transform: scale(1.07);
+      }
+
+      .prod-1 .prod-bg {
+        background-image: url("https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80");
+      }
+
+      .prod-2 .prod-bg {
+        background-image: url("https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&q=80");
+      }
+
+      .prod-3 .prod-bg {
+        background-image: url("https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&q=80");
+      }
+
+      .prod-4 .prod-bg {
+        background-image: url("https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80");
+      }
+
+      .prod-5 .prod-bg {
+        background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80");
+      }
+
+      .prod-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(20, 14, 8, 0.75) 0%,
+          rgba(20, 14, 8, 0.1) 50%,
+          transparent 100%
+        );
+      }
+
+      .prod-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 28px;
+      }
+
+      .prod-tag {
+        font-size: 8px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 6px;
+      }
+
+      .prod-name {
+        font-family: var(--serif);
+        font-weight: 400;
+        color: #fff;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+      }
+
+      .prod-1 .prod-name {
+        font-size: 36px;
+      }
+
+      .prod-2 .prod-name,
+      .prod-3 .prod-name,
+      .prod-4 .prod-name,
+      .prod-5 .prod-name {
+        font-size: 22px;
+      }
+
+      .prod-arrow {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #fff;
+        opacity: 0;
+        transform: scale(0.8);
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+      }
+
+      .prod:hover .prod-arrow {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* ─── GELATO vs ICE CREAM ─────────────── */
+      .vs {
+        background: var(--ink);
+        padding: 140px 64px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .vs::before {
+        content: "GELATO";
+        position: absolute;
+        right: -40px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: var(--serif);
+        font-size: 200px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.025);
+        letter-spacing: -0.04em;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+
+      .vs-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 80px 1fr;
+        gap: 0;
+        align-items: center;
+      }
+
+      .vs-label {
+        font-size: 9px;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 20px;
+      }
+
+      .vs-title {
+        font-family: var(--serif);
+        font-size: clamp(28px, 3vw, 44px);
+        font-weight: 300;
+        margin-bottom: 36px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .vs-col-a .vs-title {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .vs-col-b .vs-title {
+        color: var(--teal-pale);
+      }
+
+      .vs-col-b .vs-title em {
+        font-style: italic;
+        color: var(--amber);
+      }
+
+      .vs-list {
+        list-style: none;
+      }
+
+      .vs-list li {
+        font-size: 13px;
+        font-weight: 300;
+        padding: 11px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        gap: 12px;
+        align-items: baseline;
+      }
+
+      .vs-col-a .vs-list li {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      .vs-col-a .vs-list li::before {
+        content: "-";
+        color: rgba(255, 255, 255, 0.15);
+        font-size: 10px;
+        flex-shrink: 0;
+      }
+
+      .vs-col-b .vs-list li {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .vs-col-b .vs-list li::before {
+        content: "✦";
+        color: var(--amber);
+        font-size: 7px;
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+
+      .vs-mid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+
+      .vs-circle {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        border: 1px solid rgba(26, 122, 110, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--serif);
+        font-size: 13px;
+        color: var(--teal);
+        letter-spacing: 1px;
+      }
+
+      .vs-vline {
+        width: 1px;
+        height: 80px;
+        background: linear-gradient(
+          to bottom,
+          rgba(26, 122, 110, 0.25),
+          transparent
+        );
+      }
+
+      .vs-vline-top {
+        background: linear-gradient(
+          to top,
+          rgba(26, 122, 110, 0.25),
+          transparent
+        );
+      }
+
+      /* ─── SCROLL STORY ────────────────────── */
+      .story {
+        height: 350vh;
+        position: relative;
+      }
+
+      .story-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .story-bg {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&q=80")
+          center/cover no-repeat;
+      }
+
+      .story-bg-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(249, 245, 238, 0.88);
+      }
+
+      .story-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 64px;
+      }
+
+      .story-word-wrap {
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      .story-h {
+        font-family: var(--serif);
+        font-size: clamp(48px, 6.5vw, 96px);
+        font-weight: 300;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+        max-width: 900px;
+      }
+
+      .story-h em {
+        font-style: italic;
+        color: var(--teal);
+      }
+
+      .story-progress {
+        position: absolute;
+        bottom: 48px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+      }
+
+      .sp-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--sand);
+        transition:
+          background 0.3s,
+          transform 0.3s;
+      }
+
+      .sp-dot.active {
+        background: var(--teal);
+        transform: scale(1.5);
+      }
+
+      /* ─── CATERING ────────────────────────── */
       .catering {
-        padding: 80px 24px;
+        padding: 140px 64px;
+      }
+
+      .catering-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        align-items: center;
+      }
+
+      .cat-left {
+      }
+
+      .cat-events {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 28px 0 40px;
+      }
+
+      .cat-tag {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--umber);
+        background: #fff;
+        border: 1px solid var(--linen);
+        padding: 7px 16px;
+        border-radius: 20px;
+        transition: all 0.25s;
+      }
+
+      .cat-tag:hover {
+        background: var(--teal-faint);
+        border-color: var(--teal-pale);
+        color: var(--teal);
       }
 
       .cat-right {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
       }
 
+      .cat-card {
+        background: #fff;
+        border: 1px solid var(--linen);
+        border-radius: 3px;
+        padding: 32px 26px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.4s,
+          border-color 0.3s;
+      }
+
+      .cat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(to right, var(--teal), var(--teal-pale));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .cat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(26, 122, 110, 0.1);
+        border-color: var(--teal-pale);
+      }
+
+      .cat-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .cat-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--teal-faint);
+        border: 1px solid var(--teal-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+      }
+
+      .cat-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: var(--teal);
+        stroke-width: 1.5;
+      }
+
+      .cat-name {
+        font-family: var(--serif);
+        font-size: 19px;
+        font-weight: 400;
+        color: var(--ink);
+        margin-bottom: 8px;
+        letter-spacing: -0.01em;
+      }
+
+      .cat-desc {
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--taupe);
+        line-height: 1.7;
+      }
+
+      /* ─── SEASONAL ────────────────────────── */
+      .seasonal {
+        background: var(--parchment);
+        padding: 140px 64px;
+      }
+
+      .seasonal-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 72px;
+      }
+
+      .season-card {
+        position: relative;
+        border-radius: 3px;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        cursor: none;
+      }
+
+      .sc-img {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .season-card:hover .sc-img {
+        transform: scale(1.06);
+      }
+
+      .sc1 .sc-img {
+        background-image: url("https://images.unsplash.com/photo-1551024601-bec78aea704b?w=700&q=80");
+      }
+
+      .sc2 .sc-img {
+        background-image: url("https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=700&q=80");
+      }
+
+      .sc3 .sc-img {
+        background-image: url("https://images.unsplash.com/photo-1488477181946-6428a0291777?w=700&q=80");
+      }
+
+      .sc-grad {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(20, 14, 8, 0.82) 0%,
+          rgba(20, 14, 8, 0.1) 55%,
+          transparent 100%
+        );
+      }
+
+      .sc-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 36px 32px;
+      }
+
+      .sc-season {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 8px;
+      }
+
+      .sc-name {
+        font-family: var(--serif);
+        font-size: 26px;
+        font-weight: 400;
+        color: #fff;
+        letter-spacing: -0.01em;
+        margin-bottom: 6px;
+      }
+
+      .sc-text {
+        font-size: 12px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.65;
+      }
+
+      /* ─── LOCATION FORM ───────────────────── */
       .locform {
-        padding: 80px 24px;
+        padding: 140px 64px;
+      }
+
+      .locform-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        align-items: start;
+      }
+
+      .lf-left {
+      }
+
+      .lf-details {
+        margin: 40px 0;
+      }
+
+      .lf-row {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--linen);
+      }
+
+      .lf-icon {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        background: var(--teal-faint);
+        border: 1px solid var(--teal-pale);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lf-icon svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--teal);
+        stroke-width: 1.5;
+      }
+
+      .lf-text {
+        font-size: 13px;
+        font-weight: 300;
+        color: var(--taupe);
+        line-height: 1.65;
+      }
+
+      .lf-text strong {
+        display: block;
+        font-weight: 500;
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        color: var(--umber);
       }
 
       .lf-right {
-        padding: 36px 24px;
+        background: var(--parchment);
+        border: 1px solid var(--linen);
+        border-radius: 3px;
+        padding: 52px 48px;
+        position: relative;
+        overflow: hidden;
       }
 
+      .lf-right::after {
+        content: '"';
+        font-family: var(--serif);
+        font-size: 240px;
+        font-weight: 300;
+        color: rgba(26, 122, 110, 0.06);
+        position: absolute;
+        right: -10px;
+        bottom: -60px;
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .form-title {
+        font-family: var(--serif);
+        font-size: 28px;
+        font-weight: 400;
+        color: var(--ink);
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
+
+      .form-sub {
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--taupe);
+        margin-bottom: 32px;
+      }
+
+      .f-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .f-full {
+        margin-bottom: 14px;
+      }
+
+      .f-field label {
+        display: block;
+        font-size: 8px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--taupe);
+        margin-bottom: 7px;
+      }
+
+      .f-field input,
+      .f-field select,
+      .f-field textarea {
+        width: 100%;
+        background: #fff;
+        color: var(--bark);
+        border: 1px solid var(--sand);
+        border-radius: 2px;
+        padding: 11px 14px;
+        font-family: var(--sans);
+        font-size: 13px;
+        font-weight: 300;
+        outline: none;
+        transition: border-color 0.25s;
+      }
+
+      .f-field input:focus,
+      .f-field select:focus,
+      .f-field textarea:focus {
+        border-color: var(--teal);
+      }
+
+      .f-field input::placeholder {
+        color: var(--sand);
+      }
+
+      .f-field textarea {
+        height: 88px;
+        resize: none;
+      }
+
+      .f-submit {
+        width: 100%;
+        margin-top: 24px;
+        padding: 15px;
+        font-size: 10px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--teal);
+        border: none;
+        border-radius: 1px;
+        transition: background 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .f-submit::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.25) 50%,
+          transparent 70%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.55s;
+      }
+
+      .f-submit:hover {
+        background: var(--teal-rich);
+      }
+
+      .f-submit:hover::after {
+        transform: translateX(100%);
+      }
+
+      /* ─── FOOTER ──────────────────────────── */
       footer {
-        padding: 60px 24px 40px;
+        background: var(--ink);
+        padding: 100px 64px 56px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--teal),
+          transparent
+        );
       }
 
       .ft-top {
-        grid-template-columns: 1fr;
-        gap: 36px;
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 0 auto 72px;
       }
 
-      .vs {
-        padding: 80px 24px;
+      .ft-brand-name {
+        font-family: var(--serif);
+        font-size: 22px;
+        font-weight: 400;
+        color: rgba(253, 250, 244, 0.9);
+        letter-spacing: 0.01em;
       }
 
-      .seasonal {
-        padding: 80px 24px;
+      .ft-brand-name em {
+        font-style: italic;
+        color: var(--amber);
       }
-    }
 
-    /* ─── MOBILE NAV ──────────────────────── */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: none;
-      padding: 4px;
-    }
+      .ft-brand-tag {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+        margin-top: 4px;
+        margin-bottom: 18px;
+        display: block;
+      }
 
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 1.5px;
-      background: var(--bark);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      transform-origin: center;
-    }
+      .ft-brand-desc {
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.35);
+        line-height: 1.85;
+        max-width: 240px;
+      }
 
-    .nav-hamburger.open span:nth-child(1) {
-      transform: translateY(6.5px) rotate(45deg);
-    }
+      .ft-col-head {
+        font-size: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 22px;
+      }
 
-    .nav-hamburger.open span:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-
-    .nav-hamburger.open span:nth-child(3) {
-      transform: translateY(-6.5px) rotate(-45deg);
-    }
-
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      z-index: 90;
-      background: var(--paper);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 0;
-      transform: translateX(100%);
-      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .mobile-menu.open {
-      transform: translateX(0);
-    }
-
-    .mobile-menu a {
-      font-family: var(--serif);
-      font-size: clamp(36px, 8vw, 56px);
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      padding: 16px 0;
-      border-bottom: 1px solid var(--linen);
-      width: 80%;
-      text-align: center;
-      transition: color 0.25s;
-      display: block;
-    }
-
-    .mobile-menu a:hover {
-      color: var(--teal);
-    }
-
-    .mobile-menu a:last-child {
-      border-bottom: none;
-    }
-
-    .mobile-menu-cta {
-      margin-top: 40px;
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--teal);
-      padding: 15px 48px;
-      border-radius: 1px;
-      border: none;
-      cursor: none;
-    }
-
-    @media (max-width: 1024px) {
-      .nav-hamburger {
+      .ft-links {
+        list-style: none;
         display: flex;
+        flex-direction: column;
+        gap: 13px;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#" onclick="closeMobileMenu()">About</a>
-    <a href="#" onclick="closeMobileMenu()">Menu</a>
-    <a href="#" onclick="closeMobileMenu()">Catering</a>
-    <a href="#" onclick="closeMobileMenu()">Events</a>
-    <button class="mobile-menu-cta" onclick="
+      .ft-links a {
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.4);
+        transition: color 0.25s;
+      }
+
+      .ft-links a:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .ft-contact-line {
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.75;
+        margin-bottom: 8px;
+      }
+
+      .ft-contact-line a {
+        color: var(--amber);
+      }
+
+      .ft-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .ft-copy {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 1px;
+      }
+
+      /* ─── RESPONSIVE ──────────────────────── */
+      @media (max-width: 1024px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-right {
+          display: none;
+        }
+
+        .hero-left {
+          padding: 140px 40px 100px;
+        }
+
+        .nav {
+          padding: 20px 40px;
+        }
+
+        .nav.scrolled {
+          padding: 14px 40px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .about {
+          grid-template-columns: 1fr;
+        }
+
+        .about-right {
+          height: 420px;
+        }
+
+        .about-img-top,
+        .about-img-bot {
+          flex: 1;
+        }
+
+        .usp-strip {
+          grid-template-columns: 1fr 1fr;
+          padding: 60px 40px;
+        }
+
+        .usp-item {
+          border-bottom: 1px solid var(--linen);
+        }
+
+        .products {
+          padding: 100px 40px;
+        }
+
+        .products-header {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+          height: auto;
+        }
+
+        .prod-1 {
+          grid-row: auto;
+        }
+
+        .vs {
+          padding: 100px 40px;
+        }
+
+        .vs-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+
+        .vs-mid {
+          flex-direction: row;
+        }
+
+        .vs-vline,
+        .vs-vline-top {
+          width: 80px;
+          height: 1px;
+          background: linear-gradient(
+            to right,
+            transparent,
+            rgba(26, 122, 110, 0.25),
+            transparent
+          );
+        }
+
+        .catering {
+          padding: 100px 40px;
+        }
+
+        .catering-inner {
+          grid-template-columns: 1fr;
+          gap: 60px;
+        }
+
+        .seasonal {
+          padding: 100px 40px;
+        }
+
+        .seasonal-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .locform {
+          padding: 100px 40px;
+        }
+
+        .locform-inner {
+          grid-template-columns: 1fr;
+          gap: 60px;
+        }
+
+        footer {
+          padding: 80px 40px 48px;
+        }
+
+        .ft-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 48px;
+        }
+
+        .f-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-left {
+          padding: 120px 24px 80px;
+        }
+
+        .hero-badges {
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        .about-left {
+          padding: 80px 24px;
+        }
+
+        .usp-strip {
+          grid-template-columns: 1fr;
+          padding: 40px 24px;
+        }
+
+        .products {
+          padding: 80px 24px;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+          height: auto;
+        }
+
+        .seasonal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .catering {
+          padding: 80px 24px;
+        }
+
+        .cat-right {
+          grid-template-columns: 1fr;
+        }
+
+        .locform {
+          padding: 80px 24px;
+        }
+
+        .lf-right {
+          padding: 36px 24px;
+        }
+
+        footer {
+          padding: 60px 24px 40px;
+        }
+
+        .ft-top {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+
+        .vs {
+          padding: 80px 24px;
+        }
+
+        .seasonal {
+          padding: 80px 24px;
+        }
+      }
+
+      /* ─── MOBILE NAV ──────────────────────── */
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: none;
+        padding: 4px;
+      }
+
+      .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 1.5px;
+        background: var(--bark);
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        transform-origin: center;
+      }
+
+      .nav-hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+
+      .nav-hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .nav-hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        background: var(--paper);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        transform: translateX(100%);
+        transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+
+      .mobile-menu a {
+        font-family: var(--serif);
+        font-size: clamp(36px, 8vw, 56px);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        padding: 16px 0;
+        border-bottom: 1px solid var(--linen);
+        width: 80%;
+        text-align: center;
+        transition: color 0.25s;
+        display: block;
+      }
+
+      .mobile-menu a:hover {
+        color: var(--teal);
+      }
+
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+
+      .mobile-menu-cta {
+        margin-top: 40px;
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--teal);
+        padding: 15px 48px;
+        border-radius: 1px;
+        border: none;
+        cursor: none;
+      }
+
+      @media (max-width: 1024px) {
+        .nav-hamburger {
+          display: flex;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#" onclick="closeMobileMenu()">About</a>
+      <a href="#" onclick="closeMobileMenu()">Menu</a>
+      <a href="#" onclick="closeMobileMenu()">Catering</a>
+      <a href="#" onclick="closeMobileMenu()">Events</a>
+      <button
+        class="mobile-menu-cta"
+        onclick="
           closeMobileMenu();
           document
             .getElementById('quote')
             .scrollIntoView({ behavior: 'smooth' });
-        ">
-      Book Now
-    </button>
-  </div>
-  <div class="cursor-dot" id="cd"></div>
-  <div class="cursor-ring" id="cr"></div>
-
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="nav-brand">
-      <img src="assets/logo.png" alt="Delight Enterprises" class="nav-logo-img" />
+        "
+      >
+        Book Now
+      </button>
     </div>
-    <ul class="nav-links">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Menu</a></li>
-      <li><a href="#">Catering</a></li>
-      <li><a href="#">Events</a></li>
-    </ul>
-    <div style="display: flex; align-items: center; gap: 16px">
-      <button class="nav-btn" onclick="
+    <div class="cursor-dot" id="cd"></div>
+    <div class="cursor-ring" id="cr"></div>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+      <div class="nav-brand">
+        <img
+          src="assets/logo.png"
+          alt="Delight Enterprises"
+          class="nav-logo-img"
+        />
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Catering</a></li>
+        <li><a href="#">Events</a></li>
+      </ul>
+      <div style="display: flex; align-items: center; gap: 16px">
+        <button
+          class="nav-btn"
+          onclick="
             document
               .getElementById('quote')
               .scrollIntoView({ behavior: 'smooth' })
-          ">
-        Book Now
-      </button>
-      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-left">
-      <div class="hero-overline" id="ho">
-        Palos Park · Lemont · Orland Park
+          "
+        >
+          Book Now
+        </button>
+        <button
+          class="nav-hamburger"
+          id="hamburger"
+          onclick="toggleMobileMenu()"
+          aria-label="Menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <h1 class="hero-h1" id="hh">
-        <span class="line">A Sanctuary</span>
-        <span class="line">of <em>Sweetness</em></span>
-      </h1>
-      <p class="hero-body" id="hb">
-        Not your neighbourhood ice cream shop. Authentic Italian gelato, 100%
-        Belgian chocolate crepes, and the viral Dubai Chocolate experience -
-        in a premium lounge built for moments that matter.
-      </p>
-      <div class="hero-ctas" id="hc">
-        <button class="cta-primary" onclick="
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-left">
+        <div class="hero-overline" id="ho">
+          Palos Park · Lemont · Orland Park
+        </div>
+        <h1 class="hero-h1" id="hh">
+          <span class="line">A Sanctuary</span>
+          <span class="line">of <em>Sweetness</em></span>
+        </h1>
+        <p class="hero-body" id="hb">
+          Not your neighbourhood ice cream shop. Authentic Italian gelato, 100%
+          Belgian chocolate crepes, and the viral Dubai Chocolate experience -
+          in a premium lounge built for moments that matter.
+        </p>
+        <div class="hero-ctas" id="hc">
+          <button
+            class="cta-primary"
+            onclick="
               document
                 .getElementById('quote')
                 .scrollIntoView({ behavior: 'smooth' })
-            ">
-          Book Catering
-        </button>
-        <button class="cta-ghost" onclick="
+            "
+          >
+            Book Catering
+          </button>
+          <button
+            class="cta-ghost"
+            onclick="
               document
                 .getElementById('products')
                 .scrollIntoView({ behavior: 'smooth' })
-            ">
-          Explore Menu &nbsp;↓
-        </button>
-      </div>
-      <div class="hero-badges" id="hbg">
-        <div class="hbadge">
-          <div class="hbadge-dot"><i data-lucide="sparkles"></i></div>
-          <div class="hbadge-text"><b>Belgian Chocolate</b>100% premium</div>
+            "
+          >
+            Explore Menu &nbsp;↓
+          </button>
         </div>
-        <div class="hbadge">
-          <div class="hbadge-dot"><i data-lucide="badge-check"></i></div>
-          <div class="hbadge-text">
-            <b>Halal Certified</b>Always &amp; fully
+        <div class="hero-badges" id="hbg">
+          <div class="hbadge">
+            <div class="hbadge-dot"><i data-lucide="sparkles"></i></div>
+            <div class="hbadge-text"><b>Belgian Chocolate</b>100% premium</div>
+          </div>
+          <div class="hbadge">
+            <div class="hbadge-dot"><i data-lucide="badge-check"></i></div>
+            <div class="hbadge-text">
+              <b>Halal Certified</b>Always &amp; fully
+            </div>
+          </div>
+          <div class="hbadge">
+            <div class="hbadge-dot"><i data-lucide="moon"></i></div>
+            <div class="hbadge-text"><b>Open Late</b>Post-dinner lounge</div>
           </div>
         </div>
-        <div class="hbadge">
-          <div class="hbadge-dot"><i data-lucide="moon"></i></div>
-          <div class="hbadge-text"><b>Open Late</b>Post-dinner lounge</div>
-        </div>
       </div>
-    </div>
 
-    <div class="hero-right">
-      <div class="hero-img-main" id="him"></div>
-      <div class="hero-img-overlay"></div>
-      <div class="hero-img-caption">
-        <span>Belgian Chocolate Pour</span>
-        <span style="
+      <div class="hero-right">
+        <div class="hero-img-main" id="him"></div>
+        <div class="hero-img-overlay"></div>
+        <div class="hero-img-caption">
+          <span>Belgian Chocolate Pour</span>
+          <span
+            style="
               font-size: 10px;
               opacity: 0.5;
               font-style: normal;
@@ -1998,773 +2042,802 @@
               text-transform: uppercase;
               font-family: var(--sans);
               margin-top: 4px;
-            ">Palos Park Lounge</span>
-      </div>
-      <div class="hero-stat-card" id="hsc">
-        <p class="hsc-label">Guests Delighted</p>
-        <p class="hsc-num">
-          10K<span style="
+            "
+            >Palos Park Lounge</span
+          >
+        </div>
+        <div class="hero-stat-card" id="hsc">
+          <p class="hsc-label">Guests Delighted</p>
+          <p class="hsc-num">
+            10K<span
+              style="
                 font-size: 16px;
                 color: var(--teal);
                 font-style: italic;
                 font-family: var(--serif);
-              ">+</span>
-        </p>
-        <p class="hsc-sub">Since opening day</p>
+              "
+              >+</span
+            >
+          </p>
+          <p class="hsc-sub">Since opening day</p>
+        </div>
+      </div>
+
+      <div class="hero-scrollline">
+        <div class="hsl-bar"></div>
+        <span class="hsl-text">Scroll</span>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-row">
+        <span class="gold">Authentic Gelato</span><span>·</span>
+        <span>Premium Belgian Chocolate</span><span>·</span>
+        <span class="gold">Melt-n-Dip Crepe</span><span>·</span>
+        <span>Dubai Chocolate</span><span>·</span>
+        <span class="gold">Kunafa Bites</span><span>·</span>
+        <span>Halal Certified</span><span>·</span>
+        <span class="gold">Catering &amp; Events</span><span>·</span>
+        <span>Food Truck Available</span><span>·</span>
+        <span class="gold">Private Venue Hire</span><span>·</span>
+        <!-- duplicate -->
+        <span class="gold">Authentic Gelato</span><span>·</span>
+        <span>Premium Belgian Chocolate</span><span>·</span>
+        <span class="gold">Melt-n-Dip Crepe</span><span>·</span>
+        <span>Dubai Chocolate</span><span>·</span>
+        <span class="gold">Kunafa Bites</span><span>·</span>
+        <span>Halal Certified</span><span>·</span>
+        <span class="gold">Catering &amp; Events</span><span>·</span>
+        <span>Food Truck Available</span><span>·</span>
+        <span class="gold">Private Venue Hire</span><span>·</span>
       </div>
     </div>
 
-    <div class="hero-scrollline">
-      <div class="hsl-bar"></div>
-      <span class="hsl-text">Scroll</span>
-    </div>
-  </section>
-
-  <!-- TICKER -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-row">
-      <span class="gold">Authentic Gelato</span><span>·</span>
-      <span>Premium Belgian Chocolate</span><span>·</span>
-      <span class="gold">Melt-n-Dip Crepe</span><span>·</span>
-      <span>Dubai Chocolate</span><span>·</span>
-      <span class="gold">Kunafa Bites</span><span>·</span>
-      <span>Halal Certified</span><span>·</span>
-      <span class="gold">Catering &amp; Events</span><span>·</span>
-      <span>Food Truck Available</span><span>·</span>
-      <span class="gold">Private Venue Hire</span><span>·</span>
-      <!-- duplicate -->
-      <span class="gold">Authentic Gelato</span><span>·</span>
-      <span>Premium Belgian Chocolate</span><span>·</span>
-      <span class="gold">Melt-n-Dip Crepe</span><span>·</span>
-      <span>Dubai Chocolate</span><span>·</span>
-      <span class="gold">Kunafa Bites</span><span>·</span>
-      <span>Halal Certified</span><span>·</span>
-      <span class="gold">Catering &amp; Events</span><span>·</span>
-      <span>Food Truck Available</span><span>·</span>
-      <span class="gold">Private Venue Hire</span><span>·</span>
-    </div>
-  </div>
-
-  <!-- ABOUT / USP SPLIT -->
-  <section class="about">
-    <div class="about-left">
-      <div class="section-eyebrow">Our Story</div>
-      <h2 class="section-h2">
-        Where Every Bite<br />Takes You to Your<br /><em>Happy Place</em>
-      </h2>
-      <p class="about-body">
-        We didn't open another ice cream parlour. Delight Enterprises was
-        built around a singular belief - that dessert deserves to be an
-        <em>experience</em>. Authentic gelato churned from Italian tradition.
-        Crepes wrapped in 100% Belgian chocolate. A lounge designed for
-        lingering, celebrating, and returning again.
-      </p>
-      <div class="about-stats">
-        <div class="astat">
-          <div class="astat-num">7<em>mi</em></div>
-          <div class="astat-lbl">Radius served</div>
-        </div>
-        <div class="astat">
-          <div class="astat-num">100<em>%</em></div>
-          <div class="astat-lbl">Belgian chocolate</div>
-        </div>
-        <div class="astat">
-          <div class="astat-num">∞</div>
-          <div class="astat-lbl">Moments of delight</div>
-        </div>
-      </div>
-    </div>
-    <div class="about-right">
-      <div class="about-img-top"></div>
-      <div class="about-img-bot"></div>
-      <div class="about-img-label">Palos Park · 13030 LaGrange Rd</div>
-    </div>
-  </section>
-
-  <!-- USP STRIP -->
-  <div class="usp-strip">
-    <div class="usp-item">
-      <div class="usp-num">01</div>
-      <div class="usp-icon-wrap"><i data-lucide="ice-cream-bowl"></i></div>
-      <p class="usp-title">Authentic Gelato</p>
-      <p class="usp-desc">
-        Denser, richer, more flavourful than ice cream. Made the Italian way -
-        lower fat, higher intensity, served at the perfect temperature.
-      </p>
-    </div>
-    <div class="usp-item">
-      <div class="usp-num">02</div>
-      <div class="usp-icon-wrap"><i data-lucide="sparkles"></i></div>
-      <p class="usp-title">100% Belgian Chocolate</p>
-      <p class="usp-desc">
-        Every dip, every pour, every truffle - single-origin Belgian
-        couverture. No compound chocolate. Ever. The difference is undeniable.
-      </p>
-    </div>
-    <div class="usp-item">
-      <div class="usp-num">03</div>
-      <div class="usp-icon-wrap"><i data-lucide="badge-check"></i></div>
-      <p class="usp-title">Fully Halal - Always</p>
-      <p class="usp-desc">
-        Not an afterthought. A founding commitment. Every ingredient across
-        our entire menu is halal-certified, for every guest, every time.
-      </p>
-    </div>
-    <div class="usp-item">
-      <div class="usp-num">04</div>
-      <div class="usp-icon-wrap"><i data-lucide="moon-star"></i></div>
-      <p class="usp-title">The Late-Night Lounge</p>
-      <p class="usp-desc">
-        After dinner in Orland Park or Tinley Park, this is where the evening
-        continues. Premium, non-alcoholic, open late - built for grown-up
-        enjoyment.
-      </p>
-    </div>
-  </div>
-
-  <!-- PRODUCTS -->
-  <section class="products" id="products">
-    <div class="products-header">
-      <div>
-        <div class="section-eyebrow">Signature Offerings</div>
-        <h2 class="section-h2">Crafted to Be<br /><em>Remembered</em></h2>
-      </div>
-      <p class="section-sub">
-        Every item on our menu is a deliberate choice - no fillers, no
-        shortcuts. Premium ingredients, careful craft, and years of
-        refinement.
-      </p>
-    </div>
-    <div class="products-grid">
-      <div class="prod prod-1">
-        <div class="prod-bg"></div>
-        <div class="prod-overlay"></div>
-        <div class="prod-label">
-          <p class="prod-tag">Flagship Product</p>
-          <p class="prod-name">The Melt-n-Dip Crepe</p>
-        </div>
-        <div class="prod-arrow">↗</div>
-      </div>
-      <div class="prod prod-2">
-        <div class="prod-bg"></div>
-        <div class="prod-overlay"></div>
-        <div class="prod-label">
-          <p class="prod-tag">Authentic Italian</p>
-          <p class="prod-name">Artisan Gelato</p>
-        </div>
-        <div class="prod-arrow">↗</div>
-      </div>
-      <div class="prod prod-3">
-        <div class="prod-bg"></div>
-        <div class="prod-overlay"></div>
-        <div class="prod-label">
-          <p class="prod-tag">Viral Sensation</p>
-          <p class="prod-name">Dubai Chocolate</p>
-        </div>
-        <div class="prod-arrow">↗</div>
-      </div>
-      <div class="prod prod-4">
-        <div class="prod-bg"></div>
-        <div class="prod-overlay"></div>
-        <div class="prod-label">
-          <p class="prod-tag">Cultural Favourite</p>
-          <p class="prod-name">Kunafa Crepe</p>
-        </div>
-        <div class="prod-arrow">↗</div>
-      </div>
-      <div class="prod prod-5">
-        <div class="prod-bg"></div>
-        <div class="prod-overlay"></div>
-        <div class="prod-label">
-          <p class="prod-tag">100% Belgian</p>
-          <p class="prod-name">Chocolate Waffle</p>
-        </div>
-        <div class="prod-arrow">↗</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GELATO VS ICE CREAM -->
-  <section class="vs">
-    <div class="vs-inner">
-      <div class="vs-col-a">
-        <p class="vs-label">What everyone else serves</p>
-        <h3 class="vs-title">Traditional<br />Ice Cream</h3>
-        <ul class="vs-list">
-          <li>High air content, low density</li>
-          <li>30–40% butterfat, heavy finish</li>
-          <li>Served at −12°C - numbs the palate</li>
-          <li>Mass-produced flavour bases</li>
-          <li>Seasonal - closed in winter</li>
-        </ul>
-      </div>
-      <div class="vs-mid">
-        <div class="vs-vline vs-vline-top"></div>
-        <div class="vs-circle">vs</div>
-        <div class="vs-vline"></div>
-      </div>
-      <div class="vs-col-b">
-        <p class="vs-label">What we actually serve</p>
-        <h3 class="vs-title">Delight<br /><em>Gelato</em></h3>
-        <ul class="vs-list">
-          <li>Dense, low-air authentic texture</li>
-          <li>4–8% fat - pure, clean flavour</li>
-          <li>Served at −7°C - full taste profile</li>
-          <li>Made-to-order, real ingredients</li>
-          <li>Warm desserts - open year-round</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- SCROLL STORY -->
-  <section class="story">
-    <div class="story-sticky">
-      <div class="story-bg" id="sbg"></div>
-      <div class="story-bg-overlay" id="sbo"></div>
-      <div class="story-content">
-        <h2 class="story-h" id="sh">
-          Every bite tells a story<br />of <em>craft, luxury,</em><br />and
-          pure indulgence.
+    <!-- ABOUT / USP SPLIT -->
+    <section class="about">
+      <div class="about-left">
+        <div class="section-eyebrow">Our Story</div>
+        <h2 class="section-h2">
+          Where Every Bite<br />Takes You to Your<br /><em>Happy Place</em>
         </h2>
-      </div>
-      <div class="story-progress">
-        <div class="sp-dot active" id="sd0"></div>
-        <div class="sp-dot" id="sd1"></div>
-        <div class="sp-dot" id="sd2"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CATERING -->
-  <section class="catering" id="catering">
-    <div class="catering-inner">
-      <div class="cat-left">
-        <div class="section-eyebrow">Events &amp; Catering</div>
-        <h2 class="section-h2">We Bring the<br /><em>Delight</em> to You</h2>
-        <p class="section-sub" style="margin-bottom: 0">
-          From wedding dessert stations to birthday gelato bars - our team
-          handles every sweet detail so you can live in the moment.
+        <p class="about-body">
+          We didn't open another ice cream parlour. Delight Enterprises was
+          built around a singular belief - that dessert deserves to be an
+          <em>experience</em>. Authentic gelato churned from Italian tradition.
+          Crepes wrapped in 100% Belgian chocolate. A lounge designed for
+          lingering, celebrating, and returning again.
         </p>
-        <div class="cat-events">
-          <span class="cat-tag">Weddings</span>
-          <span class="cat-tag">Birthdays</span>
-          <span class="cat-tag">Anniversaries</span>
-          <span class="cat-tag">Iftar &amp; Eid</span>
-          <span class="cat-tag">Corporate</span>
-          <span class="cat-tag">Baby Showers</span>
-          <span class="cat-tag">Food Truck</span>
-        </div>
-        <button class="cta-primary" onclick="window.location.href = 'delight-catering.html'">
-          View All Packages &nbsp;→
-        </button>
-      </div>
-      <div class="cat-right">
-        <div class="cat-card">
-          <div class="cat-icon"><i data-lucide="heart"></i></div>
-          <p class="cat-name">Weddings</p>
-          <p class="cat-desc">
-            Tableside chocolate pours, gelato bars, Dubai Chocolate towers. A
-            dessert station as memorable as the ceremony.
-          </p>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon"><i data-lucide="cake"></i></div>
-          <p class="cat-name">Birthdays</p>
-          <p class="cat-desc">
-            From kids' crepe stations to luxury adult soirées - tailored
-            packages for every milestone.
-          </p>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon"><i data-lucide="truck"></i></div>
-          <p class="cat-name">Food Truck</p>
-          <p class="cat-desc">
-            Bring the Melt-n-Dip experience to any location. Festivals,
-            corporates, community events.
-          </p>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon"><i data-lucide="building-2"></i></div>
-          <p class="cat-name">Store Rental</p>
-          <p class="cat-desc">
-            Reserve the Palos Park lounge exclusively. An immersive, aesthetic
-            venue unlike any hired hall.
-          </p>
+        <div class="about-stats">
+          <div class="astat">
+            <div class="astat-num">7<em>mi</em></div>
+            <div class="astat-lbl">Radius served</div>
+          </div>
+          <div class="astat">
+            <div class="astat-num">100<em>%</em></div>
+            <div class="astat-lbl">Belgian chocolate</div>
+          </div>
+          <div class="astat">
+            <div class="astat-num">∞</div>
+            <div class="astat-lbl">Moments of delight</div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="about-right">
+        <div class="about-img-top"></div>
+        <div class="about-img-bot"></div>
+        <div class="about-img-label">Palos Park · 13030 LaGrange Rd</div>
+      </div>
+    </section>
 
-  <!-- SEASONAL -->
-  <section class="seasonal">
-    <div style="text-align: center">
-      <div class="section-eyebrow">Seasonal &amp; Community</div>
-      <h2 class="section-h2">Made for <em>Every</em> Occasion</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align: center">
-        We follow the rhythm of the community - from Ramadan iftars to Easter
-        specials and neighbourhood moments that bring people together.
-      </p>
-    </div>
-    <div class="seasonal-grid">
-      <div class="season-card sc1">
-        <div class="sc-img"></div>
-        <div class="sc-grad"></div>
-        <div class="sc-content">
-          <p class="sc-season">Ramadan Special</p>
-          <p class="sc-name">Kunafa Crepe</p>
-          <p class="sc-text">
-            Warm shredded pastry, sweet cheese, Belgian chocolate. Our
-            most-loved seasonal creation.
-          </p>
-        </div>
+    <!-- USP STRIP -->
+    <div class="usp-strip">
+      <div class="usp-item">
+        <div class="usp-num">01</div>
+        <div class="usp-icon-wrap"><i data-lucide="ice-cream-bowl"></i></div>
+        <p class="usp-title">Authentic Gelato</p>
+        <p class="usp-desc">
+          Denser, richer, more flavourful than ice cream. Made the Italian way -
+          lower fat, higher intensity, served at the perfect temperature.
+        </p>
       </div>
-      <div class="season-card sc2">
-        <div class="sc-img"></div>
-        <div class="sc-grad"></div>
-        <div class="sc-content">
-          <p class="sc-season">Easter</p>
-          <p class="sc-name">Chocolate Egg Specials</p>
-          <p class="sc-text">
-            Hand-dipped Belgian chocolate Easter eggs and seasonal gelato
-            flavours. A family tradition in the making.
-          </p>
-        </div>
+      <div class="usp-item">
+        <div class="usp-num">02</div>
+        <div class="usp-icon-wrap"><i data-lucide="sparkles"></i></div>
+        <p class="usp-title">100% Belgian Chocolate</p>
+        <p class="usp-desc">
+          Every dip, every pour, every truffle - single-origin Belgian
+          couverture. No compound chocolate. Ever. The difference is undeniable.
+        </p>
       </div>
-      <div class="season-card sc3">
-        <div class="sc-img"></div>
-        <div class="sc-grad"></div>
-        <div class="sc-content">
-          <p class="sc-season">Community Event</p>
-          <p class="sc-name">Painting with Seniors</p>
-          <p class="sc-text">
-            Dessert is community. Events like these are at the heart of why
-            Delight Enterprises exists.
-          </p>
-        </div>
+      <div class="usp-item">
+        <div class="usp-num">03</div>
+        <div class="usp-icon-wrap"><i data-lucide="badge-check"></i></div>
+        <p class="usp-title">Fully Halal - Always</p>
+        <p class="usp-desc">
+          Not an afterthought. A founding commitment. Every ingredient across
+          our entire menu is halal-certified, for every guest, every time.
+        </p>
+      </div>
+      <div class="usp-item">
+        <div class="usp-num">04</div>
+        <div class="usp-icon-wrap"><i data-lucide="moon-star"></i></div>
+        <p class="usp-title">The Late-Night Lounge</p>
+        <p class="usp-desc">
+          After dinner in Orland Park or Tinley Park, this is where the evening
+          continues. Premium, non-alcoholic, open late - built for grown-up
+          enjoyment.
+        </p>
       </div>
     </div>
-  </section>
 
-  <!-- LOCATION + FORM -->
-  <section class="locform" id="quote">
-    <div class="locform-inner">
-      <div class="lf-left">
-        <div class="section-eyebrow">Find Us</div>
-        <h2 class="section-h2">Come In.<br /><em>Stay a While.</em></h2>
+    <!-- PRODUCTS -->
+    <section class="products" id="products">
+      <div class="products-header">
+        <div>
+          <div class="section-eyebrow">Signature Offerings</div>
+          <h2 class="section-h2">Crafted to Be<br /><em>Remembered</em></h2>
+        </div>
         <p class="section-sub">
-          Tucked along the LaGrange Road corridor in Palos Park - a short
-          drive from Lemont, Orland Park, Homer Glen, and Tinley Park.
+          Every item on our menu is a deliberate choice - no fillers, no
+          shortcuts. Premium ingredients, careful craft, and years of
+          refinement.
         </p>
-        <div class="lf-details">
-          <div class="lf-row">
-            <div class="lf-icon"><i data-lucide="map-pin"></i></div>
-            <div class="lf-text">
-              <strong>Address</strong>13030 LaGrange Rd, Palos Park, IL 60464
+      </div>
+      <div class="products-grid">
+        <div class="prod prod-1">
+          <div class="prod-bg"></div>
+          <div class="prod-overlay"></div>
+          <div class="prod-label">
+            <p class="prod-tag">Flagship Product</p>
+            <p class="prod-name">The Melt-n-Dip Crepe</p>
+          </div>
+          <div class="prod-arrow">↗</div>
+        </div>
+        <div class="prod prod-2">
+          <div class="prod-bg"></div>
+          <div class="prod-overlay"></div>
+          <div class="prod-label">
+            <p class="prod-tag">Authentic Italian</p>
+            <p class="prod-name">Artisan Gelato</p>
+          </div>
+          <div class="prod-arrow">↗</div>
+        </div>
+        <div class="prod prod-3">
+          <div class="prod-bg"></div>
+          <div class="prod-overlay"></div>
+          <div class="prod-label">
+            <p class="prod-tag">Viral Sensation</p>
+            <p class="prod-name">Dubai Chocolate</p>
+          </div>
+          <div class="prod-arrow">↗</div>
+        </div>
+        <div class="prod prod-4">
+          <div class="prod-bg"></div>
+          <div class="prod-overlay"></div>
+          <div class="prod-label">
+            <p class="prod-tag">Cultural Favourite</p>
+            <p class="prod-name">Kunafa Crepe</p>
+          </div>
+          <div class="prod-arrow">↗</div>
+        </div>
+        <div class="prod prod-5">
+          <div class="prod-bg"></div>
+          <div class="prod-overlay"></div>
+          <div class="prod-label">
+            <p class="prod-tag">100% Belgian</p>
+            <p class="prod-name">Chocolate Waffle</p>
+          </div>
+          <div class="prod-arrow">↗</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GELATO VS ICE CREAM -->
+    <section class="vs">
+      <div class="vs-inner">
+        <div class="vs-col-a">
+          <p class="vs-label">What everyone else serves</p>
+          <h3 class="vs-title">Traditional<br />Ice Cream</h3>
+          <ul class="vs-list">
+            <li>High air content, low density</li>
+            <li>30–40% butterfat, heavy finish</li>
+            <li>Served at −12°C - numbs the palate</li>
+            <li>Mass-produced flavour bases</li>
+            <li>Seasonal - closed in winter</li>
+          </ul>
+        </div>
+        <div class="vs-mid">
+          <div class="vs-vline vs-vline-top"></div>
+          <div class="vs-circle">vs</div>
+          <div class="vs-vline"></div>
+        </div>
+        <div class="vs-col-b">
+          <p class="vs-label">What we actually serve</p>
+          <h3 class="vs-title">Delight<br /><em>Gelato</em></h3>
+          <ul class="vs-list">
+            <li>Dense, low-air authentic texture</li>
+            <li>4–8% fat - pure, clean flavour</li>
+            <li>Served at −7°C - full taste profile</li>
+            <li>Made-to-order, real ingredients</li>
+            <li>Warm desserts - open year-round</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCROLL STORY -->
+    <section class="story">
+      <div class="story-sticky">
+        <div class="story-bg" id="sbg"></div>
+        <div class="story-bg-overlay" id="sbo"></div>
+        <div class="story-content">
+          <h2 class="story-h" id="sh">
+            Every bite tells a story<br />of <em>craft, luxury,</em><br />and
+            pure indulgence.
+          </h2>
+        </div>
+        <div class="story-progress">
+          <div class="sp-dot active" id="sd0"></div>
+          <div class="sp-dot" id="sd1"></div>
+          <div class="sp-dot" id="sd2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATERING -->
+    <section class="catering" id="catering">
+      <div class="catering-inner">
+        <div class="cat-left">
+          <div class="section-eyebrow">Events &amp; Catering</div>
+          <h2 class="section-h2">We Bring the<br /><em>Delight</em> to You</h2>
+          <p class="section-sub" style="margin-bottom: 0">
+            From wedding dessert stations to birthday gelato bars - our team
+            handles every sweet detail so you can live in the moment.
+          </p>
+          <div class="cat-events">
+            <span class="cat-tag">Weddings</span>
+            <span class="cat-tag">Birthdays</span>
+            <span class="cat-tag">Anniversaries</span>
+            <span class="cat-tag">Iftar &amp; Eid</span>
+            <span class="cat-tag">Corporate</span>
+            <span class="cat-tag">Baby Showers</span>
+            <span class="cat-tag">Food Truck</span>
+          </div>
+          <button
+            class="cta-primary"
+            onclick="window.location.href = 'delight-catering.html'"
+          >
+            View All Packages &nbsp;→
+          </button>
+        </div>
+        <div class="cat-right">
+          <div class="cat-card">
+            <div class="cat-icon"><i data-lucide="heart"></i></div>
+            <p class="cat-name">Weddings</p>
+            <p class="cat-desc">
+              Tableside chocolate pours, gelato bars, Dubai Chocolate towers. A
+              dessert station as memorable as the ceremony.
+            </p>
+          </div>
+          <div class="cat-card">
+            <div class="cat-icon"><i data-lucide="cake"></i></div>
+            <p class="cat-name">Birthdays</p>
+            <p class="cat-desc">
+              From kids' crepe stations to luxury adult soirées - tailored
+              packages for every milestone.
+            </p>
+          </div>
+          <div class="cat-card">
+            <div class="cat-icon"><i data-lucide="truck"></i></div>
+            <p class="cat-name">Food Truck</p>
+            <p class="cat-desc">
+              Bring the Melt-n-Dip experience to any location. Festivals,
+              corporates, community events.
+            </p>
+          </div>
+          <div class="cat-card">
+            <div class="cat-icon"><i data-lucide="building-2"></i></div>
+            <p class="cat-name">Store Rental</p>
+            <p class="cat-desc">
+              Reserve the Palos Park lounge exclusively. An immersive, aesthetic
+              venue unlike any hired hall.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEASONAL -->
+    <section class="seasonal">
+      <div style="text-align: center">
+        <div class="section-eyebrow">Seasonal &amp; Community</div>
+        <h2 class="section-h2">Made for <em>Every</em> Occasion</h2>
+        <p class="section-sub" style="margin: 0 auto; text-align: center">
+          We follow the rhythm of the community - from Ramadan iftars to Easter
+          specials and neighbourhood moments that bring people together.
+        </p>
+      </div>
+      <div class="seasonal-grid">
+        <div class="season-card sc1">
+          <div class="sc-img"></div>
+          <div class="sc-grad"></div>
+          <div class="sc-content">
+            <p class="sc-season">Ramadan Special</p>
+            <p class="sc-name">Kunafa Crepe</p>
+            <p class="sc-text">
+              Warm shredded pastry, sweet cheese, Belgian chocolate. Our
+              most-loved seasonal creation.
+            </p>
+          </div>
+        </div>
+        <div class="season-card sc2">
+          <div class="sc-img"></div>
+          <div class="sc-grad"></div>
+          <div class="sc-content">
+            <p class="sc-season">Easter</p>
+            <p class="sc-name">Chocolate Egg Specials</p>
+            <p class="sc-text">
+              Hand-dipped Belgian chocolate Easter eggs and seasonal gelato
+              flavours. A family tradition in the making.
+            </p>
+          </div>
+        </div>
+        <div class="season-card sc3">
+          <div class="sc-img"></div>
+          <div class="sc-grad"></div>
+          <div class="sc-content">
+            <p class="sc-season">Community Event</p>
+            <p class="sc-name">Painting with Seniors</p>
+            <p class="sc-text">
+              Dessert is community. Events like these are at the heart of why
+              Delight Enterprises exists.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION + FORM -->
+    <section class="locform" id="quote">
+      <div class="locform-inner">
+        <div class="lf-left">
+          <div class="section-eyebrow">Find Us</div>
+          <h2 class="section-h2">Come In.<br /><em>Stay a While.</em></h2>
+          <p class="section-sub">
+            Tucked along the LaGrange Road corridor in Palos Park - a short
+            drive from Lemont, Orland Park, Homer Glen, and Tinley Park.
+          </p>
+          <div class="lf-details">
+            <div class="lf-row">
+              <div class="lf-icon"><i data-lucide="map-pin"></i></div>
+              <div class="lf-text">
+                <strong>Address</strong>13030 LaGrange Rd, Palos Park, IL 60464
+              </div>
+            </div>
+            <div class="lf-row">
+              <div class="lf-icon"><i data-lucide="clock"></i></div>
+              <div class="lf-text">
+                <strong>Hours</strong>Sun – Thu: 12pm – 11pm &nbsp;·&nbsp; Fri –
+                Sat: 12pm – Midnight
+              </div>
+            </div>
+            <div class="lf-row">
+              <div class="lf-icon"><i data-lucide="phone"></i></div>
+              <div class="lf-text">
+                <strong>Phone</strong
+                ><a href="tel:+17085550100" style="color: var(--gold-rich)"
+                  >(708) 555-0100</a
+                >
+              </div>
+            </div>
+            <div class="lf-row">
+              <div class="lf-icon"><i data-lucide="mail"></i></div>
+              <div class="lf-text">
+                <strong>Catering</strong
+                ><a
+                  href="/cdn-cgi/l/email-protection#6a090b1e0f1803040d2a0e0f06030d021e0f041e0f181a1803190f1906060944090507"
+                  style="color: var(--gold-rich)"
+                  ><span
+                    class="__cf_email__"
+                    data-cfemail="781b190c1d0a11161f381c1d14111f100c1d160c1d0a080a110b1d0b14141b561b1715"
+                    >[email&#160;protected]</span
+                  ></a
+                >
+              </div>
             </div>
           </div>
-          <div class="lf-row">
-            <div class="lf-icon"><i data-lucide="clock"></i></div>
-            <div class="lf-text">
-              <strong>Hours</strong>Sun – Thu: 12pm – 11pm &nbsp;·&nbsp; Fri –
-              Sat: 12pm – Midnight
+        </div>
+        <div class="lf-right">
+          <p class="form-title">Request a Quote</p>
+          <p class="form-sub">
+            Weddings, birthdays, corporate events &amp; more - tell us your
+            vision.
+          </p>
+          <div class="f-row">
+            <div class="f-field">
+              <label>First Name</label><input type="text" placeholder="Sara" />
+            </div>
+            <div class="f-field">
+              <label>Last Name</label><input type="text" placeholder="Ahmed" />
             </div>
           </div>
-          <div class="lf-row">
-            <div class="lf-icon"><i data-lucide="phone"></i></div>
-            <div class="lf-text">
-              <strong>Phone</strong><a href="tel:+17085550100" style="color: var(--gold-rich)">(708) 555-0100</a>
+          <div class="f-row">
+            <div class="f-field">
+              <label>Email</label
+              ><input type="email" placeholder="sara@email.com" />
+            </div>
+            <div class="f-field">
+              <label>Phone</label
+              ><input type="tel" placeholder="(708) 555-0100" />
             </div>
           </div>
-          <div class="lf-row">
-            <div class="lf-icon"><i data-lucide="mail"></i></div>
-            <div class="lf-text">
-              <strong>Catering</strong><a
-                href="/cdn-cgi/l/email-protection#6a090b1e0f1803040d2a0e0f06030d021e0f041e0f181a1803190f1906060944090507"
-                style="color: var(--gold-rich)"><span class="__cf_email__"
-                  data-cfemail="781b190c1d0a11161f381c1d14111f100c1d160c1d0a080a110b1d0b14141b561b1715">[email&#160;protected]</span></a>
+          <div class="f-row">
+            <div class="f-field">
+              <label>Event Type</label>
+              <select>
+                <option>Select…</option>
+                <option>Wedding</option>
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Iftar / Eid</option>
+                <option>Corporate</option>
+                <option>Store Rental</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="f-field">
+              <label>Guest Count</label
+              ><input type="number" placeholder="e.g. 80" />
             </div>
           </div>
+          <div class="f-full f-field">
+            <label>Tell Us About Your Vision</label>
+            <textarea
+              placeholder="Date, venue, theme, dietary needs, special requests…"
+            ></textarea>
+          </div>
+          <button class="f-submit">Submit Enquiry</button>
         </div>
       </div>
-      <div class="lf-right">
-        <p class="form-title">Request a Quote</p>
-        <p class="form-sub">
-          Weddings, birthdays, corporate events &amp; more - tell us your
-          vision.
-        </p>
-        <div class="f-row">
-          <div class="f-field">
-            <label>First Name</label><input type="text" placeholder="Sara" />
-          </div>
-          <div class="f-field">
-            <label>Last Name</label><input type="text" placeholder="Ahmed" />
-          </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="ft-top">
+        <div>
+          <div class="ft-brand-name">Delight <em>Enterprises</em></div>
+          <span class="ft-brand-tag">Melt N Dip · Palos Park, IL</span>
+          <p class="ft-brand-desc">
+            A sanctuary of sweetness where families gather, friendships blossom,
+            and every bite brings joy. Serving the south suburbs with love.
+          </p>
         </div>
-        <div class="f-row">
-          <div class="f-field">
-            <label>Email</label><input type="email" placeholder="sara@email.com" />
-          </div>
-          <div class="f-field">
-            <label>Phone</label><input type="tel" placeholder="(708) 555-0100" />
-          </div>
+        <div>
+          <p class="ft-col-head">Navigate</p>
+          <ul class="ft-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Catering Packages</a></li>
+            <li><a href="#">Food Truck</a></li>
+            <li><a href="#">Private Events</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
         </div>
-        <div class="f-row">
-          <div class="f-field">
-            <label>Event Type</label>
-            <select>
-              <option>Select…</option>
-              <option>Wedding</option>
-              <option>Birthday</option>
-              <option>Anniversary</option>
-              <option>Iftar / Eid</option>
-              <option>Corporate</option>
-              <option>Store Rental</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="f-field">
-            <label>Guest Count</label><input type="number" placeholder="e.g. 80" />
-          </div>
+        <div>
+          <p class="ft-col-head">Menu</p>
+          <ul class="ft-links">
+            <li><a href="#">Gelato &amp; Crepes</a></li>
+            <li><a href="#">Dubai Chocolate</a></li>
+            <li><a href="#">Kunafa Crepe</a></li>
+            <li><a href="#">Belgian Waffles</a></li>
+            <li><a href="#">Seasonal Specials</a></li>
+          </ul>
         </div>
-        <div class="f-full f-field">
-          <label>Tell Us About Your Vision</label>
-          <textarea placeholder="Date, venue, theme, dietary needs, special requests…"></textarea>
+        <div>
+          <p class="ft-col-head">Visit</p>
+          <p class="ft-contact-line">
+            13030 LaGrange Rd<br />Palos Park, IL 60464
+          </p>
+          <p class="ft-contact-line">
+            <a href="tel:+17085550100">(708) 555-0100</a>
+          </p>
+          <p class="ft-contact-line">
+            <a
+              href="/cdn-cgi/l/email-protection#ea898b9e8f9883848daa8e8f86838d829e8f849e8f989a9883998f99868689c4898587"
+              ><span
+                class="__cf_email__"
+                data-cfemail="b6d5d7c2d3c4dfd8d1f6d2d3dadfd1dec2d3d8c2d3c4c6c4dfc5d3c5dadad598d5d9db"
+                >[email&#160;protected]</span
+              ></a
+            >
+          </p>
         </div>
-        <button class="f-submit">Submit Enquiry</button>
       </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="ft-top">
-      <div>
-        <div class="ft-brand-name">Delight <em>Enterprises</em></div>
-        <span class="ft-brand-tag">Melt N Dip · Palos Park, IL</span>
-        <p class="ft-brand-desc">
-          A sanctuary of sweetness where families gather, friendships blossom,
-          and every bite brings joy. Serving the south suburbs with love.
+      <div class="ft-bottom">
+        <p class="ft-copy">
+          © 2025 Delight Enterprises LLC · All rights reserved
         </p>
+        <p class="ft-copy">delightenterprisesllc.com</p>
       </div>
-      <div>
-        <p class="ft-col-head">Navigate</p>
-        <ul class="ft-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Catering Packages</a></li>
-          <li><a href="#">Food Truck</a></li>
-          <li><a href="#">Private Events</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="ft-col-head">Menu</p>
-        <ul class="ft-links">
-          <li><a href="#">Gelato &amp; Crepes</a></li>
-          <li><a href="#">Dubai Chocolate</a></li>
-          <li><a href="#">Kunafa Crepe</a></li>
-          <li><a href="#">Belgian Waffles</a></li>
-          <li><a href="#">Seasonal Specials</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="ft-col-head">Visit</p>
-        <p class="ft-contact-line">
-          13030 LaGrange Rd<br />Palos Park, IL 60464
-        </p>
-        <p class="ft-contact-line">
-          <a href="tel:+17085550100">(708) 555-0100</a>
-        </p>
-        <p class="ft-contact-line">
-          <a href="/cdn-cgi/l/email-protection#ea898b9e8f9883848daa8e8f86838d829e8f849e8f989a9883998f99868689c4898587"><span
-              class="__cf_email__"
-              data-cfemail="b6d5d7c2d3c4dfd8d1f6d2d3dadfd1dec2d3d8c2d3c4c6c4dfc5d3c5dadad598d5d9db">[email&#160;protected]</span></a>
-        </p>
-      </div>
-    </div>
-    <div class="ft-bottom">
-      <p class="ft-copy">
-        © 2025 Delight Enterprises LLC · All rights reserved
-      </p>
-      <p class="ft-copy">delightenterprisesllc.com</p>
-    </div>
-  </footer>
+    </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-  <script>
-    /* ── MOBILE MENU ── */
-    function toggleMobileMenu() {
-      const menu = document.getElementById("mobile-menu");
-      const burger = document.getElementById("hamburger");
-      menu.classList.toggle("open");
-      burger.classList.toggle("open");
-      document.body.style.overflow = menu.classList.contains("open")
-        ? "hidden"
-        : "";
-    }
-    function closeMobileMenu() {
-      document.getElementById("mobile-menu").classList.remove("open");
-      document.getElementById("hamburger").classList.remove("open");
-      document.body.style.overflow = "";
-    }
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script>
+      /* ── MOBILE MENU ── */
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        const burger = document.getElementById("hamburger");
+        menu.classList.toggle("open");
+        burger.classList.toggle("open");
+        document.body.style.overflow = menu.classList.contains("open")
+          ? "hidden"
+          : "";
+      }
+      function closeMobileMenu() {
+        document.getElementById("mobile-menu").classList.remove("open");
+        document.getElementById("hamburger").classList.remove("open");
+        document.body.style.overflow = "";
+      }
 
-    /* ── LUCIDE ICONS ── */
-    lucide.createIcons();
+      /* ── LUCIDE ICONS ── */
+      lucide.createIcons();
 
-    /* ── LENIS SMOOTH SCROLL ── */
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+      /* ── LENIS SMOOTH SCROLL ── */
+      const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
 
-    /* ── GSAP ── */
-    gsap.registerPlugin(ScrollTrigger);
+      /* ── GSAP ── */
+      gsap.registerPlugin(ScrollTrigger);
 
-    // Sync lenis with GSAP ticker
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
-    lenis.on("scroll", ScrollTrigger.update);
+      // Sync lenis with GSAP ticker
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+      lenis.on("scroll", ScrollTrigger.update);
 
-    /* ── CUSTOM CURSOR ── */
-    const dot = document.getElementById("cd");
-    const ring = document.getElementById("cr");
-    let mx = 0,
-      my = 0,
-      rx = 0,
-      ry = 0;
-    document.addEventListener("mousemove", (e) => {
-      mx = e.clientX;
-      my = e.clientY;
-    });
-    (function cursorLoop() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      dot.style.left = mx + "px";
-      dot.style.top = my + "px";
-      ring.style.left = rx + "px";
-      ring.style.top = ry + "px";
-      requestAnimationFrame(cursorLoop);
-    })();
-    document
-      .querySelectorAll(
-        "a, button, .prod, .cat-card, .usp-item, .season-card",
-      )
-      .forEach((el) => {
-        el.addEventListener("mouseenter", () =>
-          ring.classList.add("hovered"),
+      /* ── CUSTOM CURSOR ── */
+      const dot = document.getElementById("cd");
+      const ring = document.getElementById("cr");
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+      });
+      (function cursorLoop() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        dot.style.left = mx + "px";
+        dot.style.top = my + "px";
+        ring.style.left = rx + "px";
+        ring.style.top = ry + "px";
+        requestAnimationFrame(cursorLoop);
+      })();
+      document
+        .querySelectorAll(
+          "a, button, .prod, .cat-card, .usp-item, .season-card",
+        )
+        .forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            ring.classList.add("hovered"),
+          );
+          el.addEventListener("mouseleave", () =>
+            ring.classList.remove("hovered"),
+          );
+        });
+
+      /* ── NAV SCROLL ── */
+      window.addEventListener(
+        "scroll",
+        () => {
+          document
+            .getElementById("nav")
+            .classList.toggle("scrolled", scrollY > 60);
+        },
+        { passive: true },
+      );
+
+      /* ── HERO ENTRANCE ── */
+      const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      heroTl
+        .from("#ho", { y: 20, opacity: 0, duration: 0.8 }, 0.2)
+        .from(
+          ".hero-h1 .line",
+          { y: "100%", opacity: 0, duration: 1, stagger: 0.15 },
+          0.4,
+        )
+        .from("#hb", { y: 24, opacity: 0, duration: 0.9 }, 0.85)
+        .from("#hc", { y: 20, opacity: 0, duration: 0.8 }, 1.0)
+        .from(
+          "#hbg .hbadge",
+          { y: 16, opacity: 0, duration: 0.6, stagger: 0.1 },
+          1.15,
+        )
+        .from(
+          "#him",
+          { scale: 1.12, opacity: 0, duration: 1.4, ease: "power2.out" },
+          0.2,
+        )
+        .from(
+          "#hsc",
+          { x: 40, opacity: 0, duration: 0.9, ease: "power3.out" },
+          0.9,
         );
-        el.addEventListener("mouseleave", () =>
-          ring.classList.remove("hovered"),
-        );
+
+      /* ── HERO IMAGE PARALLAX ── */
+      gsap.to("#him", {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
       });
 
-    /* ── NAV SCROLL ── */
-    window.addEventListener(
-      "scroll",
-      () => {
-        document
-          .getElementById("nav")
-          .classList.toggle("scrolled", scrollY > 60);
-      },
-      { passive: true },
-    );
+      /* ── ABOUT SECTION ── */
+      gsap.from(".about-left > *", {
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".about-left", start: "top 75%" },
+      });
+      gsap.from(".about-img-top", {
+        y: 60,
+        opacity: 0,
+        duration: 1.1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".about-right", start: "top 75%" },
+      });
+      gsap.from(".about-img-bot", {
+        y: 80,
+        opacity: 0,
+        duration: 1.1,
+        delay: 0.15,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".about-right", start: "top 75%" },
+      });
 
-    /* ── HERO ENTRANCE ── */
-    const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    heroTl
-      .from("#ho", { y: 20, opacity: 0, duration: 0.8 }, 0.2)
-      .from(
-        ".hero-h1 .line",
-        { y: "100%", opacity: 0, duration: 1, stagger: 0.15 },
-        0.4,
-      )
-      .from("#hb", { y: 24, opacity: 0, duration: 0.9 }, 0.85)
-      .from("#hc", { y: 20, opacity: 0, duration: 0.8 }, 1.0)
-      .from(
-        "#hbg .hbadge",
-        { y: 16, opacity: 0, duration: 0.6, stagger: 0.1 },
-        1.15,
-      )
-      .from(
-        "#him",
-        { scale: 1.12, opacity: 0, duration: 1.4, ease: "power2.out" },
-        0.2,
-      )
-      .from(
-        "#hsc",
-        { x: 40, opacity: 0, duration: 0.9, ease: "power3.out" },
-        0.9,
-      );
+      /* ── USP STRIP ── */
+      gsap.from(".usp-item", {
+        y: 48,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".usp-strip", start: "top 80%" },
+      });
 
-    /* ── HERO IMAGE PARALLAX ── */
-    gsap.to("#him", {
-      yPercent: 20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+      /* ── PRODUCTS ── */
+      gsap.from(".products-header > *", {
+        y: 36,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".products-header", start: "top 78%" },
+      });
+      gsap.from(".prod", {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".products-grid", start: "top 80%" },
+      });
 
-    /* ── ABOUT SECTION ── */
-    gsap.from(".about-left > *", {
-      y: 40,
-      opacity: 0,
-      duration: 0.9,
-      stagger: 0.15,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".about-left", start: "top 75%" },
-    });
-    gsap.from(".about-img-top", {
-      y: 60,
-      opacity: 0,
-      duration: 1.1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".about-right", start: "top 75%" },
-    });
-    gsap.from(".about-img-bot", {
-      y: 80,
-      opacity: 0,
-      duration: 1.1,
-      delay: 0.15,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".about-right", start: "top 75%" },
-    });
+      /* ── VS SECTION ── */
+      gsap.from(".vs-col-a", {
+        x: -60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".vs", start: "top 70%" },
+      });
+      gsap.from(".vs-col-b", {
+        x: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".vs", start: "top 70%" },
+      });
+      gsap.from(".vs-mid", {
+        scale: 0.6,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.5)",
+        scrollTrigger: { trigger: ".vs", start: "top 70%" },
+      });
 
-    /* ── USP STRIP ── */
-    gsap.from(".usp-item", {
-      y: 48,
-      opacity: 0,
-      duration: 0.9,
-      stagger: 0.12,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".usp-strip", start: "top 80%" },
-    });
-
-    /* ── PRODUCTS ── */
-    gsap.from(".products-header > *", {
-      y: 36,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".products-header", start: "top 78%" },
-    });
-    gsap.from(".prod", {
-      y: 60,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".products-grid", start: "top 80%" },
-    });
-
-    /* ── VS SECTION ── */
-    gsap.from(".vs-col-a", {
-      x: -60,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".vs", start: "top 70%" },
-    });
-    gsap.from(".vs-col-b", {
-      x: 60,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".vs", start: "top 70%" },
-    });
-    gsap.from(".vs-mid", {
-      scale: 0.6,
-      opacity: 0,
-      duration: 0.8,
-      ease: "back.out(1.5)",
-      scrollTrigger: { trigger: ".vs", start: "top 70%" },
-    });
-
-    /* ── SCROLL STORY (SCRUB) ── */
-    const storyTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".story",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        onUpdate: (self) => {
-          const p = self.progress;
-          ["sd0", "sd1", "sd2"].forEach((id, i) => {
-            document
-              .getElementById(id)
-              .classList.toggle("active", Math.floor(p * 3) === i);
-          });
+      /* ── SCROLL STORY (SCRUB) ── */
+      const storyTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".story",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+          onUpdate: (self) => {
+            const p = self.progress;
+            ["sd0", "sd1", "sd2"].forEach((id, i) => {
+              document
+                .getElementById(id)
+                .classList.toggle("active", Math.floor(p * 3) === i);
+            });
+          },
         },
-      },
-    });
-    storyTl
-      .fromTo("#sbo", { opacity: 0.88 }, { opacity: 0.6 }, 0)
-      .fromTo("#sbg", { scale: 1 }, { scale: 1.12 }, 0)
-      .fromTo(
-        "#sh",
-        { scale: 0.92, opacity: 0.4 },
-        { scale: 1.08, opacity: 1 },
-        0,
-      );
+      });
+      storyTl
+        .fromTo("#sbo", { opacity: 0.88 }, { opacity: 0.6 }, 0)
+        .fromTo("#sbg", { scale: 1 }, { scale: 1.12 }, 0)
+        .fromTo(
+          "#sh",
+          { scale: 0.92, opacity: 0.4 },
+          { scale: 1.08, opacity: 1 },
+          0,
+        );
 
-    /* ── CATERING ── */
-    gsap.from(".cat-left > *", {
-      y: 40,
-      opacity: 0,
-      duration: 0.9,
-      stagger: 0.12,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".catering", start: "top 75%" },
-    });
-    gsap.from(".cat-card", {
-      y: 50,
-      opacity: 0,
-      duration: 0.85,
-      stagger: 0.1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".cat-right", start: "top 78%" },
-    });
+      /* ── CATERING ── */
+      gsap.from(".cat-left > *", {
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".catering", start: "top 75%" },
+      });
+      gsap.from(".cat-card", {
+        y: 50,
+        opacity: 0,
+        duration: 0.85,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".cat-right", start: "top 78%" },
+      });
 
-    /* ── SEASONAL ── */
-    gsap.from(".season-card", {
-      y: 70,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.15,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".seasonal-grid", start: "top 78%" },
-    });
+      /* ── SEASONAL ── */
+      gsap.from(".season-card", {
+        y: 70,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".seasonal-grid", start: "top 78%" },
+      });
 
-    /* ── FORM SECTION ── */
-    gsap.from(".lf-left > *", {
-      y: 36,
-      opacity: 0,
-      duration: 0.85,
-      stagger: 0.12,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".locform", start: "top 75%" },
-    });
-    gsap.from(".lf-right", {
-      y: 48,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".lf-right", start: "top 80%" },
-    });
+      /* ── FORM SECTION ── */
+      gsap.from(".lf-left > *", {
+        y: 36,
+        opacity: 0,
+        duration: 0.85,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".locform", start: "top 75%" },
+      });
+      gsap.from(".lf-right", {
+        y: 48,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".lf-right", start: "top 80%" },
+      });
 
-    /* ── FOOTER ── */
-    gsap.from(".ft-top > *", {
-      y: 36,
-      opacity: 0,
-      duration: 0.9,
-      stagger: 0.1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: "footer", start: "top 85%" },
-    });
-  </script>
-</body>
-
+      /* ── FOOTER ── */
+      gsap.from(".ft-top > *", {
+        y: 36,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: "footer", start: "top 85%" },
+      });
+    </script>
+  </body>
 </html>

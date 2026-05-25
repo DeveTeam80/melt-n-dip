@@ -4,399 +4,292 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-const WORDS_LINE1 = ["Every", "bite", "tells"];
-const WORDS_LINE2 = ["a", "story", "of"];
-const WORDS_ACCENT = ["craft,", "luxury,"];
-const WORDS_END = ["and", "pure", "indulgence."];
+const INGREDIENTS = [
+  "https://images.unsplash.com/photo-1511381939415-e44015466834?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?q=80&w=1974&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=1974&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600841774653-5557d3cbd59b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
 
 export default function StoryScroll() {
   const containerRef = useRef<HTMLElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const eyebrowRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      const st = {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 2,
-      };
-
-      const tl = gsap.timeline({ scrollTrigger: st });
-
-      tl.fromTo(
-        ".story-bg",
-        { scale: 1, filter: "brightness(0.55) saturate(1.2)" },
-        { scale: 1.22, filter: "brightness(0.35) saturate(0.6)", ease: "none" },
-        0,
-      );
-
-      tl.fromTo(
-        ".story-overlay",
-        { backgroundColor: "rgba(248,244,238,0.88)" },
-        { backgroundColor: "rgba(6,20,18,0.82)", ease: "none" },
-        0,
-      );
-
-      tl.fromTo(
-        ".story-grain",
-        { opacity: 0 },
-        { opacity: 0.06, ease: "none" },
-        0,
-      );
-
-      tl.fromTo(
-        eyebrowRef.current,
-        { opacity: 0, y: 20, letterSpacing: "6px" },
-        { opacity: 1, y: 0, letterSpacing: "3.5px", ease: "power3.out" },
-        0.02,
-      );
-
-      tl.fromTo(
-        ".sw-l1",
-        { opacity: 0, y: 48, rotateX: 25, filter: "blur(6px)" },
-        {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          filter: "blur(0px)",
-          stagger: 0.12,
-          ease: "power3.out",
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 3,
+          anticipatePin: 1,
+          fastScrollEnd: true,
         },
-        0.06,
-      );
+      });
 
+      /* Background gelato reveal */
       tl.fromTo(
-        ".sw-l2",
-        { opacity: 0, y: 48, rotateX: 25, filter: "blur(6px)" },
+        ".gelato-bg",
         {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          filter: "blur(0px)",
-          stagger: 0.12,
-          ease: "power3.out",
+          scale: 1.25,
+          opacity: 0.4,
+          filter: "brightness(0.45)",
         },
-        0.28,
+        {
+          scale: 1.08,
+          opacity: 1,
+          filter: "brightness(0.78)",
+          ease: "power1.out",
+        },
+        0,
       );
 
+      /* Ingredient cards entrance */
       tl.fromTo(
-        ".sw-accent",
+        ".ingredient-card",
         {
           opacity: 0,
-          y: 48,
-          rotateX: 25,
-          filter: "blur(8px)",
-          textShadow: "0 0 0px rgba(26,122,110,0)",
+          y: 120,
+          rotate: gsap.utils.wrap([-8, 8]),
+          scale: 0.8,
         },
         {
           opacity: 1,
           y: 0,
-          rotateX: 0,
-          filter: "blur(0px)",
-          textShadow: "0 0 40px rgba(26,122,110,0.6)",
-          stagger: 0.14,
-          ease: "power3.out",
+          rotate: 0,
+          scale: 1,
+          stagger: 0.2,
+          ease: "expo.out",
+          duration: 1.4,
         },
-        0.48,
+        0.1,
+      );
+
+      /* Ingredient cards fly away */
+      tl.to(
+        ".ingredient-card",
+        {
+          opacity: 0,
+          scale: 0.82,
+          y: -320,
+          rotate: gsap.utils.wrap([-10, 10]),
+          stagger: 0.12,
+          ease: "expo.inOut",
+          duration: 1.6,
+        },
+        0.45,
+      );
+
+      /* Gelato image becomes hero */
+      tl.fromTo(
+        ".gelato-overlay",
+        {
+          opacity: 0.8,
+        },
+        {
+          opacity: 0.25,
+          ease: "none",
+        },
+        0.5,
+      );
+
+      /* Text animation */
+      tl.fromTo(
+        ".story-line",
+        {
+          opacity: 0,
+          y: 70,
+          filter: "blur(10px)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          stagger: 0.12,
+          ease: "expo.out",
+          duration: 1.6,
+        },
+        0.58,
       );
 
       tl.fromTo(
-        ".sw-end",
-        { opacity: 0, y: 48, rotateX: 25, filter: "blur(6px)" },
+        ".story-sub",
+        {
+          opacity: 0,
+          y: 30,
+        },
         {
           opacity: 1,
           y: 0,
-          rotateX: 0,
-          filter: "blur(0px)",
-          stagger: 0.12,
           ease: "power3.out",
         },
-        0.65,
+        0.82,
       );
 
       tl.fromTo(
         ".story-divider",
-        { scaleX: 0, opacity: 0 },
-        { scaleX: 1, opacity: 1, ease: "power2.inOut" },
+        {
+          scaleX: 0,
+          opacity: 0,
+        },
+        {
+          scaleX: 1,
+          opacity: 1,
+          ease: "power2.out",
+        },
         0.78,
       );
-
-      tl.fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 20, filter: "blur(4px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", ease: "power2.out" },
-        0.84,
-      );
-
-      tl.fromTo(
-        counterRef.current,
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, ease: "power2.out" },
-        0.9,
-      );
-
-      tl.fromTo(
-        ".story-text-wrap",
-        { color: "var(--color-ink)" },
-        { color: "#fbfdfc", ease: "none" },
-        0,
-      );
-
-      tl.fromTo(
-        progressRef.current,
-        { scaleX: 0 },
-        { scaleX: 1, ease: "none" },
-        0,
-      );
-
-      gsap.to(".story-particle", {
-        y: "random(-30, 30)",
-        x: "random(-20, 20)",
-        opacity: "random(0.3, 0.7)",
-        duration: "random(3, 6)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: { each: 0.8, from: "random" },
-      });
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
-  const Word = ({ children, cls }: { children: string; cls: string }) => (
-    <span
-      className={`${cls} inline-block`}
-      style={{ marginRight: "0.22em", paddingBottom: "0.08em" }}
-    >
-      {children}
-    </span>
-  );
-
   return (
     <section
       ref={containerRef}
-      className="relative"
-      style={{ height: "500vh", background: "var(--color-ink)" }}
+      className="relative bg-[#061412]"
+      style={{ height: "450vh" }}
     >
-      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-        {/* ── BACKGROUND IMAGE ─────────────────────── */}
-        <div
-          className="story-bg absolute bg-cover bg-center origin-center"
-          style={{
-            inset: "-15%",
-            backgroundImage: "url('/assets/images/chocalate_drizzle.jpg')",
-            willChange: "transform, filter",
-          }}
-        />
-
-        {/* ── ATMOSPHERE OVERLAY ───────────────────── */}
-        <div className="story-overlay absolute inset-0" />
-
-        {/* ── GRAIN TEXTURE ────────────────────────── */}
-        <div
-          className="story-grain absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-            backgroundRepeat: "repeat",
-            backgroundSize: "200px 200px",
-            opacity: 0,
-            mixBlendMode: "overlay",
-          }}
-        />
-
-        {/* ── FLOATING PARTICLES ───────────────────── */}
-        {[...Array(8)].map((_, i) => (
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* FULLSCREEN GELATO IMAGE */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* IMAGE */}
           <div
-            key={i}
-            className="story-particle absolute rounded-full pointer-events-none"
+            className="gelato-bg absolute inset-0 bg-cover bg-center bg-no-repeat  bg-black/2"
             style={{
-              width: `${[3, 4, 2, 5, 3, 4, 2, 3][i]}px`,
-              height: `${[3, 4, 2, 5, 3, 4, 2, 3][i]}px`,
-              background:
-                i % 2 === 0 ? "rgba(168,216,212,0.5)" : "rgba(212,134,10,0.4)",
-              left: `${[15, 82, 45, 68, 28, 90, 55, 35][i]}%`,
-              top: `${[25, 60, 40, 75, 55, 30, 65, 80][i]}%`,
-              opacity: 0.4,
-              filter: "blur(1px)",
+              backgroundImage: "url('assets/images/catering/catering3.jpeg')",
+              transform: "scale(1.08)",
             }}
           />
-        ))}
 
-        {/* ── CONTENT ──────────────────────────────── */}
-        <div
-          className="story-text-wrap relative z-10 text-center w-full px-6 sm:px-12 lg:px-20 flex flex-col items-center"
-          style={{ color: "var(--color-ink)", perspective: "800px" }}
-        >
-          {/* Eyebrow */}
+          {/* OVERLAY */}
           <div
-            ref={eyebrowRef}
-            className="flex items-center gap-3 mb-10"
-            style={{ opacity: 0 }}
-          >
+            className="gelato-overlay absolute inset-0"
+            style={{
+              background: `
+      linear-gradient(
+        to top,
+        rgba(6,20,18,0.94) 0%,
+        rgba(6,20,18,0.72) 35%,
+        rgba(6,20,18,0.52) 65%,
+        rgba(6,20,18,0.38) 100%
+      )
+    `,
+            }}
+          />
+        </div>
+
+        {/* INGREDIENT IMAGES */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+          <div className="relative h-full w-full max-w-[1400px]">
+            {INGREDIENTS.map((src, i) => (
+              <div
+                key={i}
+                className="ingredient-card absolute overflow-hidden rounded-[24px] border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+                style={{
+                  width: i % 2 === 0 ? "240px" : "280px",
+                  height: i % 2 === 0 ? "320px" : "360px",
+                  top: ["14%", "22%", "55%", "50%"][i],
+                  left: ["10%", "68%", "18%", "70%"][i],
+                  rotate: `${i % 2 === 0 ? "-6deg" : "6deg"}`,
+                }}
+              >
+                <div className="relative h-full w-full">
+                  {/* IMAGE */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                      backgroundImage: `url(${src})`,
+                    }}
+                  />
+
+                  {/* OVERLAY */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(6,20,18,0.55) 0%, rgba(6,20,18,0.15) 45%, rgba(6,20,18,0.05) 100%)",
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CONTENT */}
+        <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
+          {/* EYEBROW */}
+          <div className="story-line mb-10 flex items-center gap-4 opacity-0">
             <div
-              className="w-8 h-px"
-              style={{ background: "var(--color-amber)" }}
+              className="h-px w-10"
+              style={{ background: "rgba(212,134,10,0.9)" }}
             />
+
             <span
               style={{
                 fontSize: "11px",
-                letterSpacing: "3.5px",
+                letterSpacing: "3px",
                 textTransform: "uppercase",
-                color: "var(--color-amber)",
-                fontWeight: 500,
+                color: "#D4860A",
               }}
             >
               Our Philosophy
             </span>
+
             <div
-              className="w-8 h-px"
-              style={{ background: "var(--color-amber)" }}
+              className="h-px w-10"
+              style={{ background: "rgba(212,134,10,0.9)" }}
             />
           </div>
 
-          {/* Headline */}
+          {/* HEADLINE */}
           <h2
-            className="font-serif font-light leading-[1.1] flex flex-wrap justify-center"
+            className="font-serif font-light leading-[1.05] tracking-[-0.04em] text-white"
             style={{
-              fontSize: "clamp(36px, 5.5vw, 88px)",
-              letterSpacing: "-0.03em",
+              fontSize: "clamp(42px,6vw,96px)",
               maxWidth: "1100px",
             }}
           >
-            {WORDS_LINE1.map((w, i) => (
-              <Word key={`l1-${i}`} cls="sw-l1">
-                {w}
-              </Word>
-            ))}
-            {WORDS_LINE2.map((w, i) => (
-              <Word key={`l2-${i}`} cls="sw-l2">
-                {w}
-              </Word>
-            ))}
-            <em className="not-italic flex flex-wrap justify-center">
-              {WORDS_ACCENT.map((w, i) => (
-                <Word key={`acc-${i}`} cls="sw-accent italic">
-                  {w}
-                </Word>
-              ))}
-            </em>
-            {WORDS_END.map((w, i) => (
-              <Word key={`end-${i}`} cls="sw-end">
-                {w}
-              </Word>
-            ))}
+            <div className="overflow-hidden py-1">
+              <div className="story-line">Every bite tells</div>
+            </div>
+
+            <div className="overflow-hidden py-1">
+              <div className="story-line">a story of</div>
+            </div>
+
+            <div className="overflow-hidden py-1 italic text-[#D4860A]">
+              <div className="story-line">craft, luxury,</div>
+            </div>
+
+            <div className="overflow-hidden py-1">
+              <div className="story-line">and pure indulgence.</div>
+            </div>
           </h2>
 
-          {/* Divider */}
+          {/* DIVIDER */}
           <div
-            className="story-divider mt-10 mb-8 origin-left"
+            className="story-divider mt-10 mb-8 h-px w-[70px] origin-center opacity-0"
             style={{
-              width: "60px",
-              height: "1px",
               background:
-                "linear-gradient(to right, var(--color-amber), var(--color-teal-pale))",
-              transform: "scaleX(0)",
-              opacity: 0,
+                "linear-gradient(to right, transparent, #D4860A, transparent)",
             }}
           />
 
-          {/* Subtitle */}
+          {/* SUBTEXT */}
           <p
-            ref={subtitleRef}
-            className="font-light"
+            className="story-sub max-w-[460px] font-light leading-[1.9] text-white opacity-0"
             style={{
-              fontSize: "15px",
-              letterSpacing: "0.02em",
-              color: "rgba(168,216,212,0.65)",
-              maxWidth: "400px",
-              lineHeight: 1.85,
-              opacity: 0,
+              fontSize: "16px",
             }}
           >
             Premium Belgian chocolate. Authentic Italian gelato.
             <br />A lounge built for moments that linger.
           </p>
-
-          {/* Scroll counter */}
-          <div
-            ref={counterRef}
-            className="mt-12 flex items-center gap-3"
-            style={{ opacity: 0 }}
-          >
-            <div
-              className="relative overflow-hidden"
-              style={{
-                width: "80px",
-                height: "1px",
-                background: "rgba(255,255,255,0.1)",
-              }}
-            >
-              <div
-                ref={progressRef}
-                className="absolute inset-y-0 left-0 w-full origin-left"
-                style={{
-                  background: "var(--color-amber)",
-                  transform: "scaleX(0)",
-                  willChange: "transform",
-                }}
-              />
-            </div>
-            <span
-              style={{
-                fontSize: "9px",
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.25)",
-              }}
-            >
-              scroll
-            </span>
-          </div>
         </div>
-
-        {/* ── CORNER DECORATIONS ────────────────────── */}
-        <div
-          className="absolute top-10 left-10 z-10 pointer-events-none"
-          style={{ opacity: 0.25 }}
-        >
-          <div
-            className="w-8 h-px"
-            style={{ background: "var(--color-teal-pale)" }}
-          />
-          <div
-            className="w-px h-8"
-            style={{ background: "var(--color-teal-pale)" }}
-          />
-        </div>
-        <div
-          className="absolute bottom-10 right-10 z-10 pointer-events-none rotate-180"
-          style={{ opacity: 0.25 }}
-        >
-          <div
-            className="w-8 h-px"
-            style={{ background: "var(--color-teal-pale)" }}
-          />
-          <div
-            className="w-px h-8"
-            style={{ background: "var(--color-teal-pale)" }}
-          />
-        </div>
-
-        {/* ── VIGNETTE ──────────────────────────────── */}
-        <div
-          className="absolute inset-0 pointer-events-none z-[5]"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, transparent 40%, rgba(6,20,18,0.7) 100%)",
-          }}
-        />
       </div>
     </section>
   );

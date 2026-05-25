@@ -340,7 +340,7 @@ export default function Hero({
       {/* ── RIGHT PANEL ─────────────────────────────────────── */}
       <div
         ref={imgWrapRef}
-        className="absolute inset-0 lg:relative lg:inset-auto lg:w-[45%] lg:h-full overflow-hidden z-0"
+        className="absolute inset-0 lg:relative lg:inset-auto lg:w-[55%] lg:h-full overflow-hidden z-0"
         style={{ clipPath: "inset(0% 0% 0% 0% round 0px)" }}
       >
         <div
@@ -348,7 +348,7 @@ export default function Hero({
           className="absolute bg-cover"
           style={{
             inset: "0%",
-            backgroundImage: "url('assets/images/home-banner1.png')",
+            backgroundImage: "url('assets/store-interior.jpg')",
             backgroundPosition: "center top",
           }}
         />
@@ -367,7 +367,7 @@ export default function Hero({
           className="absolute z-10 hidden lg:block"
           style={{ bottom: "32px", left: "32px" }}
         >
-          <p
+          {/* <p
             className="font-serif italic"
             style={{
               fontSize: "12px",
@@ -375,8 +375,8 @@ export default function Hero({
               color: "white",
             }}
           >
-            Belgian Chocolate Pour
-          </p>
+            Triple Chocolate Crepe
+          </p> */}
           <p
             className="font-sans"
             style={{

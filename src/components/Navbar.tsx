@@ -60,6 +60,17 @@ export default function Navbar() {
     document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
       {/* ── MOBILE FULL-SCREEN MENU ──────────────────── */}
@@ -156,7 +167,7 @@ export default function Navbar() {
           transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
           ${
             scrolled
-              ? "pb-4 px-8 md:px-12 lg:px-16"
+              ? "pb-2 px-8 md:px-12 lg:px-16"
               : "pb-8 px-8 md:px-12 lg:px-16"
           }`}
         style={
@@ -183,11 +194,13 @@ export default function Navbar() {
             alt="Delight Enterprises"
             width={250}
             height={100}
-            className="transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
-              group-hover:opacity-90"
+            className={`
+          transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
+          group-hover:opacity-90
+          ${isSticky ? "w-[80px]" : "w-[100px]"}
+        `}
             style={{
-              height: "100px",
-              width: "auto",
+              height: "auto",
             }}
             priority
           />

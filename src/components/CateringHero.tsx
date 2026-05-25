@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Phone, ArrowDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -91,6 +91,7 @@ export default function CateringHero() {
 
   const onMagMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
+
     gsap.to(e.currentTarget, {
       x: (e.clientX - r.left - r.width / 2) * 0.38,
       y: (e.clientY - r.top - r.height / 2) * 0.38,
@@ -98,6 +99,7 @@ export default function CateringHero() {
       ease: "power2.out",
     });
   };
+
   const onMagLeave = (e: React.MouseEvent<HTMLAnchorElement>) =>
     gsap.to(e.currentTarget, {
       x: 0,
@@ -128,12 +130,17 @@ export default function CateringHero() {
             willChange: "transform, filter",
           }}
         />
+
         {/* Deep teal multiply overlay */}
         <div
           className="absolute inset-0"
-          style={{ background: "rgba(13,42,39,0.3)", mixBlendMode: "multiply" }}
+          style={{
+            background: "rgba(13,42,39,0.3)",
+            mixBlendMode: "multiply",
+          }}
         />
-        {/* Left-to-right gradient — keeps left side very dark for text */}
+
+        {/* Left-to-right gradient */}
         <div
           className="absolute inset-0"
           style={{
@@ -141,6 +148,7 @@ export default function CateringHero() {
               "linear-gradient(to right, rgba(9,24,22,0.96) 0%, rgba(9,24,22,0.75) 40%, rgba(9,24,22,0.35) 70%, transparent 100%)",
           }}
         />
+
         {/* Bottom fade */}
         <div
           className="absolute inset-0"
@@ -149,6 +157,7 @@ export default function CateringHero() {
               "linear-gradient(to top, rgba(9,24,22,0.95) 0%, transparent 40%)",
           }}
         />
+
         {/* Top fade */}
         <div
           className="absolute inset-0"
@@ -167,15 +176,13 @@ export default function CateringHero() {
       `}</style>
 
       {/* ── CONTENT ─────────────────────────────────── */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:px-12 lg:px-20 pt-20">
+      <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:px-12 lg:px-20">
         <div className="flex flex-col">
-          {/* Label */}
-
           <h1
             className="font-serif font-light flex flex-col gap-1 mb-8 tracking-[-0.02em]"
             style={{
               fontSize: "clamp(44px, 6vw, 88px)",
-              lineHeight: 1.05,
+              lineHeight: 1,
               color: "#fbfdfc",
               textShadow: "0 2px 40px rgba(0,0,0,0.5)",
             }}
@@ -185,9 +192,11 @@ export default function CateringHero() {
                 Dessert Catering That
               </span>
             </span>
+
             <span className="overflow-hidden block py-1">
               <span className="ch-reveal-line block">Turns Every Event</span>
             </span>
+
             <span className="overflow-hidden block py-1">
               <span className="ch-reveal-line block">
                 Into a{" "}
@@ -202,7 +211,7 @@ export default function CateringHero() {
           </h1>
 
           <p
-            className="ch-fade-up font-light leading-[1.85] mb-12"
+            className="ch-fade-up font-light leading-[1.85] mb-4 md:mb-12"
             style={{
               fontSize: "17px",
               color: "white",
@@ -213,8 +222,14 @@ export default function CateringHero() {
             Build your dessert bag, choose your guest count, and get an instant
             estimate, then connect with our team to finalise your perfect event.
           </p>
+        </div>
+      </div>
 
-          <div className="ch-fade-up flex flex-wrap items-center gap-8">
+      {/* ── BOTTOM ACTION ROW ───────────────────────── */}
+      <div className="absolute bottom-26 lg:bottom-14 left-8 right-8 lg:left-20 lg:right-20 z-20">
+        <div className="flex items-center justify-between gap-8">
+          {/* CTA BUTTON */}
+          <div className="ch-fade-up pb-2">
             <a
               href="#estimator"
               onMouseMove={onMagMove}
@@ -231,54 +246,55 @@ export default function CateringHero() {
               <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
             </a>
           </div>
-        </div>
-      </div>
 
-      {/* ── GLASSMORPHIC STAT DOCK ──────────────────── */}
-      <div className="ch-stat-dock absolute bottom-8 lg:bottom-12 right-8 lg:right-20 z-20 hidden md:flex md:w-[50%] lg:w-[60%]">
-        <div
-          className="flex items-center rounded-[3px] divide-x w-full"
-          style={{
-            background: "rgba(251,253,252,0.05)",
-            backdropFilter: "blur(24px)",
-            WebkitBackdropFilter: "blur(24px)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
-          }}
-        >
-          {STATS.map(({ num, label }, i) => (
+          {/* GLASSMORPHIC STAT DOCK */}
+          <div className="ch-stat-dock hidden md:flex md:w-[50%] lg:w-[60%]">
             <div
-              key={label}
-              className="flex flex-col py-5 px-8"
+              className="flex items-center rounded-[3px] divide-x w-full"
               style={{
-                borderRight:
-                  i < STATS.length - 1
-                    ? "1px solid rgba(255,255,255,0.12)"
-                    : "none",
+                background: "rgba(251,253,252,0.05)",
+                backdropFilter: "blur(24px)",
+                WebkitBackdropFilter: "blur(24px)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
               }}
             >
-              <span
-                className=" font-light leading-none mb-2"
-                style={{
-                  fontSize: "24px",
-                  letterSpacing: "-0.03em",
-                  color: "#fbfdfc",
-                }}
-              >
-                {num}
-              </span>
-              <span
-                className="uppercase font-medium"
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "2px",
-                  color: "rgba(168,216,212,0.7)",
-                }}
-              >
-                {label}
-              </span>
+              {STATS.map(({ num, label }, i) => (
+                <div
+                  key={label}
+                  className="flex flex-col py-5 px-8"
+                  style={{
+                    borderRight:
+                      i < STATS.length - 1
+                        ? "1px solid rgba(255,255,255,0.12)"
+                        : "none",
+                  }}
+                >
+                  <span
+                    className="font-light leading-none mb-2"
+                    style={{
+                      fontSize: "24px",
+                      letterSpacing: "-0.03em",
+                      color: "#fbfdfc",
+                    }}
+                  >
+                    {num}
+                  </span>
+
+                  <span
+                    className="uppercase font-medium"
+                    style={{
+                      fontSize: "11px",
+                      letterSpacing: "2px",
+                      color: "rgba(168,216,212,0.7)",
+                    }}
+                  >
+                    {label}
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
@@ -288,6 +304,7 @@ export default function CateringHero() {
           className="w-10 h-px"
           style={{ background: "var(--color-teal-pale)" }}
         />
+
         <div
           className="w-px h-10"
           style={{ background: "var(--color-teal-pale)" }}

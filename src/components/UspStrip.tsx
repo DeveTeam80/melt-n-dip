@@ -151,7 +151,7 @@ export default function UspStrip() {
               }}
             >
               {/* Ghost number watermark */}
-              <div className="usp-num-bg absolute top-[-10px] right-[10px] select-none pointer-events-none font-serif text-[140px] font-light leading-none tracking-[-0.05em] text-amber/50 transition-colors duration-500 group-hover:text-amber">
+              <div className="usp-num-bg absolute top-[18px] right-[10px] select-none pointer-events-none text-[80px] font-light leading-none tracking-[-0.05em] text-amber/50 transition-colors duration-500 group-hover:text-amber">
                 {num}
               </div>
 
