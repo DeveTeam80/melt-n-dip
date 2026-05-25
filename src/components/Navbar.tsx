@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "Our Story", href: "/#about" },
   { label: "Menu", href: "/#products" },
   { label: "Catering & Events", href: "/catering" },
-  { label: "Melt-n-dip palos", href: "/melt-n-dip-palos-park" },
+  { label: "Melt-n-dip Palos Park", href: "/melt-n-dip-palos-park" },
   { label: "Find Us", href: "/#location" },
 ];
 
