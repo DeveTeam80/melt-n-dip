@@ -9,8 +9,8 @@ import gsap from "gsap";
 const NAV_LINKS = [
   { label: "Our Story", href: "/#about" },
   { label: "Menu", href: "/#products" },
-  { label: "Catering & Events", href: "/catering" },
-  { label: "Melt-n-dip Palos Park", href: "/melt-n-dip-palos-park" },
+  { label: "Catering", href: "/catering" },
+  { label: "Palos Park", href: "/melt-n-dip-palos-park" },
   { label: "Find Us", href: "/#location" },
 ];
 
@@ -75,9 +75,10 @@ export default function Navbar() {
     <>
       {/* ── MOBILE FULL-SCREEN MENU ──────────────────── */}
       <div
-        className={`fixed inset-0 z-[90] flex flex-col justify-center items-center
+        className={`fixed inset-0 z-[90] flex flex-col justify-between items-center
           transform transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]
-          ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
+          ${menuOpen ? "translate-x-0" : "translate-x-full"}
+          overflow-y-auto py-24 px-8`}
         style={{ background: "var(--color-paper)" }}
       >
         {/* Decorative left edge */}
@@ -89,7 +90,7 @@ export default function Navbar() {
           }}
         />
 
-        <div className="flex flex-col items-center w-full max-w-xs gap-2">
+        <div className="flex flex-col items-center w-full max-w-xs gap-2 my-auto">
           {NAV_LINKS.map((item, i) => {
             const { label, href } = item;
             return (
@@ -97,7 +98,7 @@ export default function Navbar() {
                 key={label}
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className="group relative w-full text-center py-6 hover-target overflow-hidden"
+                className="group relative w-full text-center py-5 hover-target overflow-hidden"
                 style={{
                   borderBottom:
                     i < NAV_LINKS.length - 1
@@ -111,7 +112,7 @@ export default function Navbar() {
                   transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
                   group-hover:-translate-y-[120%]"
                   style={{
-                    fontSize: "clamp(36px, 8vw, 56px)",
+                    fontSize: "clamp(32px, 6vw, 44px)",
                     letterSpacing: "-0.02em",
                     color: "var(--color-ink)",
                     lineHeight: 1,
@@ -127,7 +128,7 @@ export default function Navbar() {
                   translate-y-[120%] group-hover:translate-y-0
                   transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
-                    fontSize: "clamp(36px, 8vw, 56px)",
+                    fontSize: "clamp(32px, 6vw, 44px)",
                     letterSpacing: "-0.02em",
                     color: "var(--color-teal)",
                     lineHeight: 1,
@@ -141,7 +142,7 @@ export default function Navbar() {
 
           <button
             onClick={scrollToQuote}
-            className="cta-primary hover-target mt-12 w-full py-5"
+            className="cta-primary hover-target mt-8 w-full py-4"
             style={{ fontSize: "13px" }}
           >
             Book Now
@@ -149,39 +150,40 @@ export default function Navbar() {
         </div>
 
         <p
-          className="absolute bottom-12 uppercase font-medium"
+          className="uppercase font-medium mt-12 shrink-0 text-center"
           style={{
-            fontSize: "15px",
-            letterSpacing: "4px",
+            fontSize: "12px",
+            letterSpacing: "2.5px",
             color: "var(--color-taupe)",
           }}
         >
-          Palos Park, IL
+          60 Old Creek Rd, Palos Park, IL 60464
         </p>
       </div>
 
       {/* ── DESKTOP NAV ──────────────────────────────── */}
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-[100] flex items-center justify-between
-          transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
-          ${
-            scrolled
-              ? "pb-2 px-8 md:px-12 lg:px-16"
-              : "pb-8 px-8 md:px-12 lg:px-16"
-          }`}
-        style={
-          scrolled
-            ? {
-                background: "rgba(248,250,249,0.92)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                borderBottom: "1px solid var(--color-linen)",
-                boxShadow: "0 1px 32px rgba(26,122,110,0.06)",
-              }
-            : {}
-        }
+        className="fixed top-0 left-0 right-0 z-[100] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        style={{
+          transitionProperty: "background, backdrop-filter, WebkitBackdropFilter, padding, border-color, box-shadow",
+          background: scrolled ? "rgba(248,250,249,0.92)" : "transparent",
+          backdropFilter: scrolled ? "blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+          borderBottom: scrolled
+            ? "1px solid var(--color-linen)"
+            : "1px solid transparent",
+          boxShadow: scrolled ? "0 1px 32px rgba(26,122,110,0.06)" : "none",
+        }}
       >
+        <div
+          className={`max-w-[1400px] mx-auto w-full flex items-center justify-between transition-all duration-700
+            ${
+              scrolled
+                ? "py-2 px-8 md:px-12 lg:px-16"
+                : "py-6 px-8 md:px-12 lg:px-16"
+            }`}
+        >
         {/* ── LOGO ─────────────────────────────────── */}
         <Link
           href="/"
@@ -194,12 +196,9 @@ export default function Navbar() {
             alt="Delight Enterprises"
             width={250}
             height={100}
-            className={`
-          transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
-          group-hover:opacity-90
-          ${isSticky ? "w-[80px]" : "w-[100px]"}
-        `}
+            className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen ? "" : "nav-logo-responsive"}`}
             style={{
+              width: isSticky ? "80px" : "100px",
               height: "auto",
             }}
             priority
@@ -208,7 +207,18 @@ export default function Navbar() {
 
         {/* ── DESKTOP LINKS ────────────────────────── */}
         <ul
-          className={`hidden lg:flex items-center gap-2 list-none transition-all duration-500 ${!scrolled && !isCatering ? "bg-white/60 backdrop-blur-md rounded-full px-4 py-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-white/50" : ""}`}
+          className="hidden xl:flex items-center gap-2 list-none duration-500"
+          style={{
+            transitionProperty: "background-color, border-color, box-shadow, padding, backdrop-filter, WebkitBackdropFilter",
+            backgroundColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.6)" : "transparent",
+            backdropFilter: (!scrolled && !isCatering) ? "blur(12px)" : "none",
+            WebkitBackdropFilter: (!scrolled && !isCatering) ? "blur(12px)" : "none",
+            borderRadius: "9999px",
+            padding: (!scrolled && !isCatering) ? "6px 16px" : "0px",
+            border: "1px solid",
+            borderColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.5)" : "transparent",
+            boxShadow: (!scrolled && !isCatering) ? "0 4px 24px rgba(0,0,0,0.04)" : "none",
+          }}
         >
           {NAV_LINKS.map((item) => {
             const { label, href } = item;
@@ -247,8 +257,8 @@ export default function Navbar() {
             onClick={scrollToQuote}
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
-            className="cta-primary hover-target hidden sm:flex items-center
-              justify-center relative overflow-hidden"
+            className={`cta-primary hover-target hidden ${menuOpen ? "" : "sm:flex"} items-center
+              justify-center relative overflow-hidden`}
             style={{
               padding: scrolled ? "11px 26px" : "13px 30px",
               fontSize: "13px",
@@ -261,28 +271,30 @@ export default function Navbar() {
           {/* z-[91] - just above menu overlay (z-90) but below nav (z-100) */}
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="lg:hidden flex flex-col justify-center gap-[5px]
-              w-10 h-10 items-end hover-target z-[91]"
+            className={`xl:hidden flex flex-col justify-center gap-[5px]
+              w-10 h-10 ${menuOpen ? "items-center" : "items-end"} hover-target z-[91]`}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
             {[0, 1, 2].map((i) => (
               <span
                 key={i}
-                className="block origin-right rounded-full
+                className="block origin-center rounded-full
                   transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{
                   height: "1.5px",
                   background:
-                    isCatering && !scrolled
-                      ? "var(--color-paper)"
-                      : "var(--color-bark)",
+                    menuOpen
+                      ? "var(--color-bark)"
+                      : scrolled
+                        ? "var(--color-bark)"
+                        : "var(--color-paper)",
                   // Middle bar shorter - asymmetric design detail
                   width: i === 1 && !menuOpen ? "14px" : "22px",
                   transform:
                     i === 0 && menuOpen
-                      ? "rotate(-45deg) translate(-4px, 4px)"
+                      ? "translateY(6.5px) rotate(45deg)"
                       : i === 2 && menuOpen
-                        ? "rotate(45deg) translate(-4px, -4px)"
+                        ? "translateY(-6.5px) rotate(-45deg)"
                         : "none",
                   opacity: i === 1 && menuOpen ? 0 : 1,
                 }}
@@ -290,7 +302,8 @@ export default function Navbar() {
             ))}
           </button>
         </div>
-      </nav>
+      </div>
+    </nav>
     </>
   );
 }

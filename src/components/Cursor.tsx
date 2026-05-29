@@ -7,8 +7,17 @@ export default function Cursor() {
   const ringRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isMnd, setIsMnd] = useState(false);
+  const [hasMouse, setHasMouse] = useState(false);
 
+  // 1. Detect device capability on mount
   useEffect(() => {
+    setHasMouse(window.matchMedia("(pointer: fine)").matches);
+  }, []);
+
+  // 2. Setup mouse tracking when pointer: fine is true and elements are rendered
+  useEffect(() => {
+    if (!hasMouse) return;
+
     // Detect MND page
     const checkPage = () =>
       setIsMnd(document.body.getAttribute("data-page") === "mnd");
@@ -18,6 +27,7 @@ export default function Cursor() {
       attributes: true,
       attributeFilter: ["data-page"],
     });
+
     const dot = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
@@ -59,7 +69,6 @@ export default function Cursor() {
     };
     const onMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // Let's use a simpler check, if we leave an actionable element
       if (
         !e.relatedTarget ||
         !(e.relatedTarget as HTMLElement).closest("a, button, .hover-target")
@@ -76,9 +85,11 @@ export default function Cursor() {
       document.removeEventListener("mouseover", onMouseOver);
       document.removeEventListener("mouseout", onMouseOut);
       cancelAnimationFrame(reqId);
+      observer.disconnect();
     };
-    observer.disconnect();
-  }, []);
+  }, [hasMouse]);
+
+  if (!hasMouse) return null;
 
   return (
     <>

@@ -506,7 +506,8 @@ export const EVENT_TYPES = [
 ];
 
 export const SERVICE_STYLES = [
-  "Drop-Off (no staff)",
+  "Self-Pickup (Palos Park Lounge)",
+  "Drop-Off Catering Trays",
   "Delivery & Setup",
   "Live Crepe / Waffle Station",
   "Full-Service Staffed Catering",

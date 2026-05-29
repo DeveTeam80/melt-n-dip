@@ -219,8 +219,7 @@ export default function CateringHero() {
               textShadow: "0 1px 12px rgba(0,0,0,0.4)",
             }}
           >
-            Build your dessert bag, choose your guest count, and get an instant
-            estimate, then connect with our team to finalise your perfect event.
+            Bring Melt N Dip's famous Belgian chocolate desserts, crepes, waffles, and gelato to your next gathering. Build your dessert cart, choose your guest count, get an instant estimate, and let us finalize the details.
           </p>
         </div>
       </div>

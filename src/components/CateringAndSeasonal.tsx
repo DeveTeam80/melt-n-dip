@@ -5,6 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import {
   Heart,
+  Briefcase,
   Cake,
   Truck,
   Building2,
@@ -19,44 +20,44 @@ import CustomSelect from "./CustomSelect";
 const CAT_CARDS = [
   {
     Icon: Heart,
-    name: "Weddings",
-    desc: "Belgian chocolate pours, gelato bars, Dubai Chocolate towers. A dessert station as memorable as the ceremony.",
+    name: "Luxury Wedding Catering",
+    desc: "Breathtaking dessert table setups, flowing Belgian chocolate fountains, and artisan gelato bars. We design custom dessert stations as memorable as your ceremony.",
   },
   {
-    Icon: Cake,
-    name: "Birthdays",
-    desc: "From kids' crepe stations to luxury adult soirées - tailored packages for every milestone.",
+    Icon: Briefcase,
+    name: "Corporate Event Catering",
+    desc: "From interactive live crepe stations to custom bulk dessert orders, we provide seamless catering for office parties and corporate events across Chicagoland.",
   },
   {
     Icon: Truck,
-    name: "Food Truck",
-    desc: "Bring the Melt-n-Dip experience to any location. Festivals, corporates, community events.",
+    name: "Mobile Dessert Stations",
+    desc: "Bring the ultimate experience to any location. Our food trucks and mobile gelato carts are perfect for outdoor festivals, corporate events, and community block parties.",
   },
   {
     Icon: Building2,
-    name: "Store Rental",
-    desc: "Hire the Palos Park lounge exclusively. An immersive, aesthetic venue unlike any hired hall.",
+    name: "Private Venue Rental",
+    desc: "Hire our aesthetic Palos Park lounge exclusively. An immersive, high-end private venue rental perfect for bridal showers, Sweet 16s, and intimate banquets.",
   },
 ];
 
 const SEASONAL_CARDS = [
   {
+    img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&q=80",
+    season: "Summer & Spring",
+    name: "Mobile Gelato Carts",
+    text: "Artisan gelato and refreshing sorbets served from our mobile gelato carts, perfect for warm-weather block parties and weddings.",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80",
+    season: "Holiday & Winter",
+    name: "Festive Dessert Stations",
+    text: "Custom sweet platters and luxury chocolate fountains crafted for Thanksgiving, winter banquets, and corporate holiday parties.",
+  },
+  {
     img: "assets/images/kunafa_crepe.jpeg",
-    season: "Ramadan Special",
-    name: "Kunafa Crepe",
-    text: "Warm shredded pastry, sweet cheese, Belgian chocolate. Our most-loved seasonal creation.",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1457301353672-324d6d14f471?w=800&q=85",
-    season: "Easter",
-    name: "Chocolate Egg Specials",
-    text: "Hand-dipped Belgian chocolate Easter eggs and seasonal gelato flavours.",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=85",
-    season: "Community Event",
-    name: "Painting with Seniors",
-    text: "Dessert is community. Events like these are at the heart of why Delight Enterprises exists.",
+    season: "Cultural Traditions",
+    name: "Ramadan & Eid Specials",
+    text: "Warm Kunafa crepes, custom platters, and 100% Halal dessert stations designed for community and family iftars.",
   },
 ];
 
@@ -247,10 +248,10 @@ export default function CateringAndSeasonal() {
       {/* ── CATERING ──────────────────────────────────────── */}
       <section
         id="catering"
-        className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20 overflow-hidden"
+        className="py-20 lg:py-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
         style={{ background: "var(--color-paper)" }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left */}
           <div className="cat-left-container flex flex-col items-start">
             <div className="cat-fade-up section-eyebrow">
@@ -262,14 +263,14 @@ export default function CateringAndSeasonal() {
                   color: "var(--color-teal)",
                 }}
               >
-                Events &amp; Catering
+                CHICAGO EVENTS &amp; CATERING
               </span>
             </div>
 
             <h2
               className="font-serif font-light text-ink flex flex-col gap-1 mb-6"
               style={{
-                fontSize: "clamp(38px, 4.5vw, 64px)",
+                fontSize: "clamp(30px, 4.5vw, 64px)",
                 lineHeight: "1.05",
                 letterSpacing: "-0.025em",
               }}
@@ -280,7 +281,7 @@ export default function CateringAndSeasonal() {
               <span className="overflow-hidden block py-1">
                 <span className="cat-reveal-line block">
                   <em className="italic" style={{ color: "var(--color-teal)" }}>
-                    Delight
+                    Luxury Dessert Experience
                   </em>{" "}
                   to You
                 </span>
@@ -288,21 +289,16 @@ export default function CateringAndSeasonal() {
             </h2>
 
             <p className="cat-fade-up font-sans font-normal text-teal leading-[1.85] mb-12 max-w-[440px] text-[17px]">
-              From the aroma of warm Belgian chocolate to the visual elegance of
-              a flowing fountain, every detail is crafted to{" "}
+              From the aroma of warm Belgian chocolate at a downtown Chicago gala to the visual elegance of a custom dessert table in the South Suburbs, every detail is meticulously crafted to{" "}
               <em className="italic text-umber font-serif text-[17px] font-bold">
                 Satisfy Your Spirit
               </em>
               .
               <span className="block mt-4 text-ink/80">
-                We also cater to{" "}
-                <em className="italic text-umber font-serif text-[17px] font-bold">
-                  Graduations, Iftar & Eid, Corporate Events, Book Clubs, and
-                  Drop-Off Trays.
-                </em>
+                We specialize in high-end corporate dessert catering, luxury weddings, and 100% Halal sweet platters. We also cater to Graduations, Iftar & Eid, and provide custom Drop-Off Trays.
               </span>
               <span className="block mt-4 text-[15px]">
-                We respond to all enquiries within 48 hours.
+                We respond to all catering enquiries within 48 hours.
               </span>
             </p>
 
@@ -333,21 +329,21 @@ export default function CateringAndSeasonal() {
             </div> */}
 
             {/* CTAs */}
-            <div className="cat-fade-up flex items-center gap-6 flex-wrap">
+            <div className="cat-fade-up flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 w-full sm:w-auto">
               <Link
                 href="/catering"
                 onMouseMove={onMagMove}
                 onMouseLeave={onMagLeave}
-                className="cta-primary inline-flex items-center text-[13px] justify-center hover-target"
+                className="cta-primary inline-flex items-center text-[13px] justify-center hover-target w-full sm:w-auto"
                 style={{ height: "52px", padding: "0 44px" }}
               >
-                View All Packages
+                View Catering Packages
               </Link>
               <Link
                 href="/catering#estimator"
                 onMouseMove={onMagMove}
                 onMouseLeave={onMagLeave}
-                className="group inline-flex items-center gap-2 hover-target"
+                className="group inline-flex items-center justify-center sm:justify-start gap-2 hover-target w-full sm:w-auto py-3 sm:py-0"
                 style={{
                   fontSize: "13px",
                   letterSpacing: "2px",
@@ -360,12 +356,12 @@ export default function CateringAndSeasonal() {
                   strokeWidth={1.5}
                 />
                 <span className="relative pb-px">
-                  Get an Estimate
+                  Get a Free Estimate
                   <span
                     className="absolute bottom-0 left-0 w-full h-px origin-right scale-x-100 group-hover:scale-x-0 transition-transform duration-500"
                     style={{ background: "rgba(26,122,110,0.35)" }}
                   />
-                </span>
+                 </span>
               </Link>
             </div>
           </div>
@@ -602,13 +598,7 @@ export default function CateringAndSeasonal() {
                     lineHeight: 1,
                   }}
                 >
-                  ${low.toLocaleString()}
-                  <span
-                    style={{ fontSize: "18px", color: "rgba(168,216,212,0.5)" }}
-                  >
-                    {" "}
-                    – ${high.toLocaleString()}
-                  </span>
+                  ${low.toLocaleString()} – ${high.toLocaleString()}
                 </p>
               </div>
               <div className="text-right">
@@ -648,10 +638,11 @@ export default function CateringAndSeasonal() {
 
       {/* ── SEASONAL ──────────────────────────────────────── */}
       <section
-        className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20 overflow-hidden"
+        className="py-20 lg:py-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
         style={{ background: "var(--color-parchment)" }}
       >
-        <div className="seasonal-header text-center max-w-[580px] mx-auto mb-20">
+        <div className="max-w-[1400px] mx-auto w-full">
+          <div className="seasonal-header text-center max-w-[580px] mx-auto mb-20">
           <div
             className="season-fade-up section-eyebrow"
             style={{ justifyContent: "center" }}
@@ -665,13 +656,13 @@ export default function CateringAndSeasonal() {
                 fontWeight: 500,
               }}
             >
-              Seasonal &amp; Community
+              Seasonal &amp; Festive Catering
             </span>
           </div>
           <h2
             className="font-serif font-light text-ink flex flex-col items-center gap-1 mb-6"
             style={{
-              fontSize: "clamp(38px, 4.5vw, 64px)",
+              fontSize: "clamp(30px, 4.5vw, 64px)",
               lineHeight: "1.05",
               letterSpacing: "-0.025em",
             }}
@@ -685,15 +676,15 @@ export default function CateringAndSeasonal() {
               </span>
             </span>
             <span className="overflow-hidden block py-1">
-              <span className="season-reveal-line block">Occasion</span>
+              <span className="season-reveal-line block">Season</span>
             </span>
           </h2>
           <p
             className="season-fade-up font-normal text-teal"
             style={{ fontSize: "17px", lineHeight: 1.85 }}
           >
-            We follow the rhythm of the community, from Ramadan iftars to Easter
-            specials and neighbourhood moments that bring people together.
+            We follow the rhythm of the year, from summer outdoor weddings to
+            festive corporate holiday parties and cultural community celebrations.
           </p>
         </div>
 
@@ -727,7 +718,7 @@ export default function CateringAndSeasonal() {
                     fontSize: "11px",
                     letterSpacing: "3px",
                     textTransform: "uppercase",
-                    color: " rgb(229 155 10);",
+                    color: "rgb(229 155 10)",
                     fontWeight: "600",
                   }}
                 >
@@ -777,7 +768,8 @@ export default function CateringAndSeasonal() {
             </div>
           ))}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+  </div>
   );
 }

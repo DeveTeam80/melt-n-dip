@@ -132,131 +132,137 @@ export default function About() {
       style={{ minHeight: "90vh" }}
     >
       {/* ── LEFT PANEL ──────────────────────────────── */}
-      <div className="about-left-container flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-20 lg:py-28">
-        <div className="about-fade-up flex items-center gap-3 mb-5">
-          <span
-            className="w-6 h-px shrink-0"
-            style={{ background: "var(--color-teal-pale)" }}
-          />
-          <span
+      <div className="about-left-container flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-20 lg:py-32">
+        <div className="w-full max-w-[480px] lg:ml-auto">
+          <div className="about-fade-up flex items-center gap-3 mb-5">
+            <span
+              className="w-6 h-px shrink-0"
+              style={{ background: "var(--color-teal-pale)" }}
+            />
+            <span
+              style={{
+                fontSize: "11px",
+                letterSpacing: "3.5px",
+                textTransform: "uppercase",
+                color: "var(--color-teal)",
+                fontWeight: 500,
+              }}
+            >
+              Our Story
+            </span>
+          </div>
+          <h2
+            className="font-serif font-light text-ink flex flex-col gap-1 mb-8"
             style={{
-              fontSize: "11px",
-              letterSpacing: "3.5px",
-              textTransform: "uppercase",
-              color: "var(--color-teal)",
-              fontWeight: 500,
+              fontSize: "clamp(32px, 4vw, 56px)",
+              lineHeight: "1.07",
+              letterSpacing: "-0.025em",
             }}
           >
-            Our Story
-          </span>
-        </div>
-        <h2
-          className="font-serif font-light text-ink flex flex-col gap-1 mb-8"
-          style={{
-            fontSize: "clamp(32px, 4vw, 56px)",
-            lineHeight: "1.07",
-            letterSpacing: "-0.025em",
-          }}
-        >
-          {/* lineHeight: "1.05" */}
-          <span className="overflow-hidden block py-1">
-            <span className="about-reveal-line block">
-              Where Every Bite Takes You to Your Happy Place
+            {/* lineHeight: "1.05" */}
+            <span className="overflow-hidden block py-1">
+              <span className="about-reveal-line block">
+                A Sanctuary of Sweetness,
+              </span>
             </span>
-          </span>
-          {/* <span className="overflow-hidden block py-1">
-            <span className="about-reveal-line block">Takes You to Your</span>
-          </span>
-          <span className="overflow-hidden block py-1">
-            <span className="about-reveal-line block">
-              <em className="italic text-teal pr-2">Happy Place</em>
+            <span className="overflow-hidden block py-1">
+              <span className="about-reveal-line block">
+                <em className="italic text-teal pr-2">Wherever You Celebrate</em>
+              </span>
             </span>
-          </span> */}
-        </h2>
+            {/* <span className="overflow-hidden block py-1">
+              <span className="about-reveal-line block">Takes You to Your</span>
+            </span>
+            <span className="overflow-hidden block py-1">
+              <span className="about-reveal-line block">
+                <em className="italic text-teal pr-2">Happy Place</em>
+              </span>
+            </span> */}
+          </h2>
 
-        {/* Real origin story from client */}
-        <p className="about-fade-up font-sans font-normal text-teal leading-[1.85] mb-12 max-w-[440px] text-[17px]">
-          A group of friends from diverse professional backgrounds came together
-          with a shared belief, that dessert should do more than taste good. It
-          should{" "}
-          <em className="italic text-umber font-serif text-[17px] font-bold">
-            Satisfy Your Spirit
-          </em>
-          . In Melt N Dip, they found a brand that matched that vision, and
-          together founded Delight Enterprises LLC to bring unique, joyful
-          flavours and unforgettable experiences to every guest.
-        </p>
+          {/* Real origin story from client */}
+          <p className="about-fade-up font-sans font-normal text-teal leading-[1.85] mb-12 max-w-[440px] text-[17px]">
+            We believe dessert should do more than just taste good—it should{" "}
+            <em className="italic text-umber font-serif text-[17px] font-bold">
+              Satisfy Your Spirit
+            </em>
+            . Delight Enterprises LLC was founded to bring that exact feeling to
+            your special events. As a premier dessert catering company, we
+            meticulously craft luxury dessert tables, live catering stations, and
+            custom platters to bring joy to every celebration.
+          </p>
 
-        {/* Stats */}
-        <div className="about-stats-grid about-fade-up flex justify-between max-w-[430px]">
-          {stats.map(({ num, sup, label }, i) => (
-            <div key={label} className="flex items-center">
-              <div className="flex flex-col py-2 px-4 sm:px-6">
-                <div
-                  className="font-light text-ink leading-none mb-2"
-                  style={{
-                    fontSize: num.length >= 4 ? "32px" : "42px",
-                    letterSpacing: "-0.03em",
-                  }}
-                >
-                  {num}
-                  <em className=" italic text-[18px] text-teal ml-0.5">
-                    {sup}
-                  </em>
+          {/* Stats */}
+          <div className="about-stats-grid about-fade-up flex justify-between max-w-[430px]">
+            {stats.map(({ num, sup, label }, i) => (
+              <div key={label} className="flex items-center">
+                <div className="flex flex-col py-2 px-4 sm:px-6">
+                  <div
+                    className="font-light text-ink leading-none mb-2"
+                    style={{
+                      fontSize: num.length >= 4 ? "32px" : "42px",
+                      letterSpacing: "-0.03em",
+                    }}
+                  >
+                    {num}
+                    <em className=" italic text-[18px] text-teal ml-0.5">
+                      {sup}
+                    </em>
+                  </div>
+                  <div className="uppercase text-teal font-bold tracking-[2px] text-[9px]">
+                    {label}
+                  </div>
                 </div>
-                <div className="uppercase text-teal font-bold tracking-[2px] text-[9px]">
-                  {label}
-                </div>
+                {i < stats.length - 1 && (
+                  <div className="stat-divider w-px h-12 bg-linen origin-top" />
+                )}
               </div>
-              {i < stats.length - 1 && (
-                <div className="stat-divider w-px h-12 bg-linen origin-top" />
-              )}
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* CTAs */}
-        <div className="about-fade-up flex flex-wrap items-center gap-8 mt-16">
-          <a
-            href="/catering"
-            onMouseMove={handleMagneticMove}
-            onMouseLeave={handleMagneticLeave}
-            className="cta-primary hover-target w-[250px] h-[50px] flex items-center justify-center text-[13px]"
-          >
-            View Catering
-          </a>
-          <a
-            href="#quote"
-            onMouseMove={handleMagneticMove}
-            onMouseLeave={handleMagneticLeave}
-            className="group flex items-center gap-2 text-[13px] tracking-[2.5px] uppercase text-teal hover-target"
-          >
-            <span className="relative overflow-hidden pb-1">
-              Book an Event
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-teal origin-right transform scale-x-100 transition-transform duration-500 ease-out group-hover:scale-x-0" />
-            </span>
-            <ArrowUpRight
-              className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
-              strokeWidth={1.5}
-            />
-          </a>
+          {/* CTAs */}
+          <div className="about-fade-up flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mt-12 sm:mt-16 w-full sm:w-auto">
+            <a
+              href="/catering"
+              onMouseMove={handleMagneticMove}
+              onMouseLeave={handleMagneticLeave}
+              className="cta-primary hover-target w-full sm:w-[250px] h-[50px] flex items-center justify-center text-[13px]"
+            >
+              View Catering
+            </a>
+            <a
+              href="#quote"
+              onMouseMove={handleMagneticMove}
+              onMouseLeave={handleMagneticLeave}
+              className="group flex items-center justify-center sm:justify-start gap-2 text-[13px] tracking-[2.5px] uppercase text-teal hover-target w-full sm:w-auto py-3 sm:py-0"
+            >
+              <span className="relative overflow-hidden pb-1">
+                Book an Event
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-teal origin-right transform scale-x-100 transition-transform duration-500 ease-out group-hover:scale-x-0" />
+              </span>
+              <ArrowUpRight
+                className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
+                strokeWidth={1.5}
+              />
+            </a>
+          </div>
         </div>
       </div>
 
       {/* ── RIGHT PANEL ─────────────────────────────── */}
-      <div className="about-right-container relative flex flex-col min-h-[500px] lg:min-h-full bg-parchment gap-1">
-        <div className="about-img-wrap relative overflow-hidden flex-[1]">
+      <div className="about-right-container relative grid grid-rows-[auto_1fr] w-full min-h-[500px] lg:min-h-0 bg-parchment gap-1">
+        <div className="about-img-wrap relative overflow-hidden w-full aspect-[16/9]">
           <div
-            className="about-img-inner about-parallax-up absolute inset-[-15%] bg-cover bg-center"
+            className="about-img-inner absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/assets/store-exterior-night.jpg')",
+              backgroundImage: "url('/assets/catering-event-guests.png')",
             }}
           />
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-parchment/60 to-transparent pointer-events-none" />
         </div>
-        <div className="about-img-wrap relative overflow-hidden flex-[1]">
+        <div className="about-img-wrap relative overflow-hidden">
           <div
-            className="about-img-inner about-parallax-down absolute inset-0 bg-cover bg-center"
+            className="about-img-inner about-parallax-down absolute inset-[-15%] bg-cover bg-center"
             style={{
               backgroundImage: "url('/assets/images/melt-n-dip-inside.webp')",
               backgroundPosition: "center right",
@@ -268,7 +274,7 @@ export default function About() {
               Palos Park Lounge
             </p>
             <p className="font-sans text-[8px] uppercase tracking-[2px] text-cream/40 mt-1">
-              13030 LaGrange Rd
+              60 Old Creek Rd
             </p>
           </div>
         </div>

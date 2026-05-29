@@ -61,9 +61,20 @@
     background-color: var(--color-paper);
     color: var(--color-bark);
     overflow-x: hidden;
-    cursor: none;
     font-weight: 300;
     line-height: 1.7;
+  }
+
+  @media (pointer: fine) {
+    body, button, a, .hover-target, .cursor-none {
+      cursor: none;
+    }
+  }
+
+  @media (pointer: coarse) {
+    body, button, a, .hover-target, .cursor-none {
+      cursor: auto !important;
+    }
   }
 
   /* Film grain noise overlay */
@@ -89,7 +100,6 @@
 
   button {
     font-family: var(--font-sans);
-    cursor: none;
     border: none;
     background: none;
   }
@@ -213,7 +223,7 @@
 
   /* Hover target - triggers cursor expansion */
   .hover-target {
-    cursor: none;
+    /* Managed via pointer media queries */
   }
 
   /* Icon circle - reusable */
@@ -297,3 +307,90 @@
   border: "1px solid rgba(255,255,255,0.08)";
   backdropfilter: "blur(2px)";
 }
+
+/* ── HERO MOBILE READABILITY ── */
+.hero-mobile-overlay {
+  background-color: rgba(13, 42, 39, 0.78) !important;
+}
+
+.hero-title {
+  color: #fbfdfc !important; /* cream */
+}
+
+.hero-title em {
+  color: var(--color-amber) !important;
+}
+
+.hero-divider {
+  background-color: var(--color-amber) !important; /* solid gold/amber for high visibility */
+}
+
+.hero-subtitle {
+  color: rgba(251, 253, 252, 0.9) !important; /* cream/90 for high readability */
+}
+
+.hero-body {
+  color: rgba(251, 253, 252, 0.9) !important; /* cream/90 */
+}
+
+.hero-link {
+  color: #fbfdfc !important; /* cream */
+}
+
+.hero-link-underline {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.hero-badge-text {
+  color: rgba(251, 253, 252, 0.85) !important; /* cream/85 */
+}
+
+/* ── RESPONSIVE NAV LOGO & BUTTONS ── */
+.nav-logo-responsive {
+  filter: brightness(0) invert(1) !important;
+}
+
+@media (min-width: 1280px) {
+  .nav-logo-responsive {
+    filter: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-mobile-overlay {
+    background-color: transparent !important;
+  }
+
+  .hero-title {
+    color: var(--color-ink) !important;
+  }
+
+  .hero-title em {
+    color: var(--color-teal) !important;
+  }
+
+  .hero-divider {
+    background-color: var(--color-sand) !important;
+  }
+
+  .hero-subtitle {
+    color: var(--color-taupe) !important;
+  }
+
+  .hero-body {
+    color: var(--color-teal) !important;
+  }
+
+  .hero-link {
+    color: var(--color-teal) !important;
+  }
+
+  .hero-link-underline {
+    background-color: rgba(8, 99, 107, 0.35) !important; /* teal/35 */
+  }
+
+  .hero-badge-text {
+    color: rgba(28, 74, 69, 0.75) !important; /* bark/75 */
+  }
+}
+

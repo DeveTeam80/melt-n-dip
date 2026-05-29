@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { ShoppingBag } from "lucide-react";
 import { BagItem } from "../../components/data";
@@ -25,6 +25,18 @@ function CateringPageInner() {
   const [serviceStyle, setServiceStyle] = useState("");
   const [bag, setBag] = useState<BagItem[]>([]);
   const [bagOpen, setBagOpen] = useState(false);
+
+  // Load saved bag on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("saved_catering_bag");
+    if (saved) {
+      try {
+        setBag(JSON.parse(saved));
+      } catch (e) {
+        console.error("Error loading saved bag", e);
+      }
+    }
+  }, []);
 
   // ── BAG CALCULATIONS ──────────────────────────────────
   // Total is now just Price * Quantity for each item

@@ -436,7 +436,7 @@ function MndNavbar() {
   return (
     <>
       <div
-        className="fixed inset-0 z-[190] flex flex-col justify-center items-center transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="fixed inset-0 z-[190] flex flex-col justify-between items-center transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto py-24 px-8"
         style={{
           background: MND.bg,
           transform: menuOpen ? "translateX(0)" : "translateX(100%)",
@@ -448,7 +448,7 @@ function MndNavbar() {
             background: `linear-gradient(to bottom, transparent, ${MND.goldMuted}, transparent)`,
           }}
         />
-        <div className="flex flex-col items-center w-full max-w-xs gap-0">
+        <div className="flex flex-col items-center w-full max-w-xs gap-0 my-auto">
           {MND_NAV.map((item, i) => (
             <button
               key={item.label}
@@ -489,8 +489,8 @@ function MndNavbar() {
           </button>
         </div>
         <p
-          className="mnd-mobile-nav-location absolute bottom-12 uppercase font-medium"
-          style={{ color: MND.creamFaint }}
+          className="mnd-mobile-nav-location uppercase font-medium mt-12 shrink-0 text-center"
+          style={{ color: MND.creamFaint, fontSize: "12px", letterSpacing: "2.5px" }}
         >
           Palos Park, IL
         </p>
@@ -498,8 +498,9 @@ function MndNavbar() {
 
       <nav
         data-mnd="nav"
-        className="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-8 md:px-12 lg:px-16 transition-all duration-700"
+        className="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-8 md:px-12 lg:px-16 duration-700"
         style={{
+          transitionProperty: "background, backdrop-filter, WebkitBackdropFilter, padding-top, padding-bottom",
           paddingTop: scrolled ? "14px" : "24px",
           paddingBottom: scrolled ? "14px" : "24px",
           background: navBg,
@@ -559,22 +560,22 @@ function MndNavbar() {
           </button>
           <button
             onClick={() => setMenuOpen((p) => !p)}
-            className="lg:hidden flex flex-col justify-center gap-[5px] w-10 h-10 items-end hover-target z-[201]"
+            className={`lg:hidden flex flex-col justify-center gap-[5px] w-10 h-10 ${menuOpen ? "items-center" : "items-end"} hover-target z-[201]`}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             style={{ background: "none", border: "none" }}
           >
             {[0, 1, 2].map((i) => (
               <span
                 key={i}
-                className="mnd-nav-hamburger-line block origin-right rounded-full transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="mnd-nav-hamburger-line block origin-center rounded-full transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{
                   background: MND.cream,
                   width: i === 1 && !menuOpen ? "14px" : "22px",
                   transform:
                     i === 0 && menuOpen
-                      ? "rotate(-45deg) translate(-4px, 4px)"
+                      ? "translateY(6.5px) rotate(45deg)"
                       : i === 2 && menuOpen
-                        ? "rotate(45deg) translate(-4px, -4px)"
+                        ? "translateY(-6.5px) rotate(-45deg)"
                         : "none",
                   opacity: i === 1 && menuOpen ? 0 : 1,
                 }}
@@ -748,7 +749,7 @@ function MndFooter() {
                     className="mnd-ft-address-text"
                     style={{ color: MND.bgWarm }}
                   >
-                    13030 LaGrange Rd
+                    60 Old Creek Rd
                     <br />
                     Palos Park, IL 60464
                   </p>
@@ -1422,14 +1423,14 @@ export default function MeltNDipPalosPage() {
               style={{ borderTop: `1px solid ${MND.gold}20` }}
             >
               <div
-                className="mnd-hero-f flex items-center gap-5"
+                className="mnd-hero-f flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 w-full sm:w-auto"
                 style={{ opacity: 0 }}
               >
                 <button
                   onMouseMove={onMag}
                   onMouseLeave={offMag}
                   onClick={() => scrollTo("mnd-menu")}
-                  className="mnd-hero-cta-primary hover-target shrink-0"
+                  className="mnd-hero-cta-primary hover-target w-full sm:w-auto shrink-0"
                   style={{
                     background: MND.gold,
                     color: MND.ink,
@@ -1442,7 +1443,7 @@ export default function MeltNDipPalosPage() {
                   onMouseMove={onMag}
                   onMouseLeave={offMag}
                   onClick={() => scrollTo("mnd-catering")}
-                  className="mnd-hero-cta-secondary group flex items-center gap-1.5 hover-target shrink-0"
+                  className="mnd-hero-cta-secondary group flex items-center justify-center sm:justify-start gap-1.5 hover-target w-full sm:w-auto py-3 sm:py-0 shrink-0"
                   style={{ color: MND.gold }}
                 >
                   <span className="relative" style={{ paddingBottom: "2px" }}>
@@ -1459,7 +1460,7 @@ export default function MeltNDipPalosPage() {
                 </button>
               </div>
               <div
-                className="mnd-hero-f flex items-center gap-5"
+                className="mnd-hero-f flex flex-wrap items-center gap-4 sm:gap-6 w-full"
                 style={{ opacity: 0 }}
               >
                 {["Belgian Chocolate", "Halal", "Italian Gelato"].map(
@@ -1564,12 +1565,12 @@ export default function MeltNDipPalosPage() {
               </div>
             ))}
           </div>
-          <div className="mnd-bel-f flex flex-wrap items-center gap-8 mt-16">
+          <div className="mnd-bel-f flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mt-12 sm:mt-16 w-full sm:w-auto">
             <button
               onClick={() => scrollTo("mnd-menu")}
               onMouseMove={onMag}
               onMouseLeave={offMag}
-              className="mnd-bel-btn-primary hover-target flex items-center justify-center"
+              className="mnd-bel-btn-primary hover-target flex items-center justify-center w-full sm:w-[200px]"
               style={{ background: MND.gold, color: MND.ink }}
             >
               Check our Menu
@@ -1578,7 +1579,7 @@ export default function MeltNDipPalosPage() {
               onClick={() => scrollTo("mnd-catering")}
               onMouseMove={onMag}
               onMouseLeave={offMag}
-              className="mnd-btn-secondary group flex items-center gap-2 hover-target"
+              className="mnd-btn-secondary group flex items-center justify-center sm:justify-start gap-2 hover-target w-full sm:w-auto py-3 sm:py-0"
               style={{ color: MND.gold }}
             >
               <span className="relative overflow-hidden pb-1">
@@ -2083,14 +2084,14 @@ export default function MeltNDipPalosPage() {
             >
               We cater Weddings, Graduations, Iftar &amp; Eid, Corporate Events,
               Birthdays, Book Clubs &amp; Drop-Off Trays. We respond to all
-              enquiries within 48 hours.
+              inquiries within 48 hours.
             </p>
-            <div className="mnd-cat-f flex flex-wrap items-center gap-6">
+            <div className="mnd-cat-f flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 w-full sm:w-auto mt-8">
               <Link
                 href="/catering"
                 onMouseMove={onMag}
                 onMouseLeave={offMag}
-                className="mnd-cat-btn-primary hover-target inline-flex items-center justify-center"
+                className="mnd-cat-btn-primary hover-target inline-flex items-center justify-center w-full sm:w-auto"
                 style={{ background: MND.gold, color: MND.ink }}
               >
                 View Catering Packages
@@ -2099,7 +2100,7 @@ export default function MeltNDipPalosPage() {
                 href="/#quote"
                 onMouseMove={onMag}
                 onMouseLeave={offMag}
-                className="mnd-btn-secondary group inline-flex items-center gap-2 hover-target"
+                className="mnd-btn-secondary group inline-flex items-center justify-center sm:justify-start gap-2 hover-target w-full sm:w-auto py-3 sm:py-0"
                 style={{ color: MND.gold }}
               >
                 <span className="relative pb-0.5">
@@ -2358,7 +2359,7 @@ export default function MeltNDipPalosPage() {
               className="mnd-loc-f mnd-loc-desc"
               style={{ color: MND.creamMuted }}
             >
-              Tucked along the LaGrange Road corridor in Palos Park, a short
+              Located on Old Creek Road in Palos Park, a short
               drive from Lemont, Orland Park, Homer Glen, and Tinley Park.
             </p>
             <div className="mnd-loc-f flex flex-col gap-8 w-full mt-12">
@@ -2371,7 +2372,7 @@ export default function MeltNDipPalosPage() {
                       className="mnd-loc-info-text"
                       style={{ color: MND.creamMuted }}
                     >
-                      13030 LaGrange Rd
+                      60 Old Creek Rd
                       <br />
                       Palos Park, IL 60464
                     </p>

@@ -111,13 +111,13 @@ export default function VsSection() {
     "High air content, low density",
     "30–40% butterfat, heavy finish",
     "Served at −12°C - numbs the palate",
-    "Mass-produced flavour bases",
+    "Mass-produced flavor bases",
     "Seasonal - closed in winter",
   ];
 
   const delightPoints = [
     "Dense, low-air authentic texture",
-    "4–8% fat - pure, clean flavour",
+    "4–8% fat - pure, clean flavor",
     "Served at −7°C - full taste profile",
     "Made-to-order, real ingredients",
     "Warm desserts - open year-round",
@@ -126,7 +126,7 @@ export default function VsSection() {
   return (
     <section
       ref={containerRef}
-      className="bg-ink py-24 lg:py-40 px-8 sm:px-12 lg:px-20 relative overflow-hidden z-10"
+      className="bg-ink py-20 lg:py-32 px-8 sm:px-12 lg:px-20 relative overflow-hidden z-10"
     >
       {/* ── BACKGROUND PARALLAX TEXT ──────────────── */}
       <div className="vs-bg-text absolute top-[40%] right-[-10%] font-serif text-[180px] lg:text-[280px] font-light text-white/[0.03] tracking-[-0.04em] whitespace-nowrap pointer-events-none select-none z-0">
@@ -191,7 +191,7 @@ export default function VsSection() {
           {/* Masked Headline */}
           <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-paper flex flex-col gap-1">
             <span className="overflow-hidden block py-1">
-              <span className="vs-reveal-line block">Delight</span>
+              <span className="vs-reveal-line block">Melt N Dip</span>
             </span>
             <span className="overflow-hidden block py-1">
               <span className="vs-reveal-line block">

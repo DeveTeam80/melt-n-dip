@@ -21,9 +21,9 @@ const dmSans = DM_Sans({
 
 
 export const metadata: Metadata = {
-  title: "Delight Enterprises | Melt N Dip Palos",
+  title: "Premium Dessert Catering in Chicago | Delight Enterprises LLC",
   description:
-    "A sanctuary of sweetness where families gather and every bite brings joy.",
+    "Elevating events across Chicagoland with luxury Belgian chocolate, live crepe stations, artisan gelato carts, and 100% Halal custom sweet platters.",
   icons: { icon: "/favicon.ico" },
 };
 
@@ -31,7 +31,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`} suppressHydrationWarning>
       <body className="antialiased selection:bg-teal-900 selection:text-white">
         {/* We wrap everything in ClientLayout to provide smooth scroll and global UI */}
         <ClientLayout>{children}</ClientLayout>
