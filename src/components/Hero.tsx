@@ -133,8 +133,7 @@ export default function Hero({
     >
       {/* ── LEFT PANEL ──────────────────────────────────────── */}
       <div
-        className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-8 sm:px-12 xl:px-20"
-        style={{ paddingTop: "136px", paddingBottom: "72px" }}
+        className="relative z-10 w-full lg:w-[55%] flex flex-col lg:justify-start justify-center px-8 sm:px-12 xl:px-20 pt-28 pb-10 sm:pt-36 sm:pb-16 lg:pt-30 lg:pb-24"
       >
         {/* Overline */}
         {/* <div className="reveal-fade flex items-center gap-3 mb-6" style={{ opacity: 0 }}>
@@ -151,9 +150,9 @@ export default function Hero({
 
         {/* Headline */}
         <h1
-          className="font-serif font-light text-ink flex flex-col mb-6"
+          className="font-serif font-light hero-title flex flex-col mb-5 sm:mb-6"
           style={{
-            fontSize: "clamp(52px, 5.5vw, 88px)",
+            fontSize: "clamp(32px, 6vw, 88px)",
             lineHeight: "0.97",
             letterSpacing: "-0.03em",
             gap: "4px",
@@ -161,26 +160,26 @@ export default function Hero({
         >
           <span
             className="overflow-hidden block"
-            style={{ paddingBottom: "4px" }}
+            style={{ paddingBottom: "10px" }}
           >
             <span
               className="reveal-line block"
               style={{ opacity: 0, transform: "translateY(110%)" }}
             >
-              A Sanctuary
+              Chicago’s Premier
             </span>
           </span>
           <span
             className="overflow-hidden block"
-            style={{ paddingBottom: "4px" }}
+            style={{ paddingBottom: "10px" }}
           >
             <span
               className="reveal-line block"
               style={{ opacity: 0, transform: "translateY(110%)" }}
             >
-              of{" "}
-              <em className="italic" style={{ color: "var(--color-teal)" }}>
-                Sweetness
+              Dessert{" "}
+              <em className="italic">
+                Catering
               </em>
             </span>
           </span>
@@ -188,53 +187,52 @@ export default function Hero({
 
         {/* Divider */}
         <div
-          className="reveal-fade flex items-center gap-4 mb-6"
+          className="reveal-fade flex items-center gap-4 mb-4 sm:mb-6"
           style={{ opacity: 0 }}
         >
           <div
-            className="h-px w-8"
-            style={{ background: "var(--color-sand)" }}
+            className="h-px w-8 hero-divider"
           />
           <span
+            className="hero-subtitle"
             style={{
               fontSize: "12px",
               fontWeight: "500",
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "var(--color-taupe)",
             }}
           >
-            Melt N Dip · Palos Park
+            Delight Enterprises | Serving Greater Chicago
           </span>
         </div>
 
         {/* Body */}
         <p
-          className="reveal-fade font-normal text-teal mb-10"
+          className="reveal-fade font-normal hero-body mb-8 sm:mb-10"
           style={{
-            fontSize: "17px",
+            fontSize: "clamp(15px, 1.8vw, 17px)",
             lineHeight: "1.85",
             maxWidth: "390px",
             opacity: 0,
           }}
         >
-          Not your neighbourhood ice cream shop. Authentic Italian gelato, 100%
-          Belgian chocolate crepes, and the viral Dubai Chocolate experience,
-          crafted for moments that matter.
+          Unforgettable dessert experiences for weddings and corporate events
+          across Chicagoland. From luxury Belgian chocolate fountains and live
+          crepe stations to 100% Halal custom sweet platters, we craft moments
+          that matter.
         </p>
 
         {/* CTAs */}
         <div
-          className="reveal-fade flex items-center gap-8 mb-10"
+          className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-8 mb-8 sm:mb-10 w-full sm:w-auto"
           style={{ opacity: 0 }}
         >
           <button
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
             onClick={() => scrollTo("quote")}
-            className="cta-primary hover-target shrink-0"
+            className="cta-primary hover-target w-full sm:w-auto sm:min-w-[180px] shrink-0"
             style={{
-              minWidth: "180px",
               height: "52px",
               display: "flex",
               alignItems: "center",
@@ -250,19 +248,18 @@ export default function Hero({
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
             onClick={() => scrollTo("products")}
-            className="group flex items-center gap-1.5 hover-target shrink-0"
+            className="group flex items-center justify-center sm:justify-start gap-1.5 hover-target shrink-0 hero-link w-full sm:w-auto py-3 sm:py-0"
             style={{
               fontSize: "13px",
               letterSpacing: "2.5px",
               textTransform: "uppercase",
-              color: "var(--color-teal)",
             }}
           >
             <span className="relative" style={{ paddingBottom: "2px" }}>
               Explore Menu
               <span
-                className="absolute bottom-0 left-0 w-full origin-right transition-transform duration-500 ease-out group-hover:scale-x-0"
-                style={{ height: "1px", background: "rgba(26,122,110,0.35)" }}
+                className="absolute bottom-0 left-0 w-full origin-right transition-transform duration-500 ease-out group-hover:scale-x-0 hero-link-underline"
+                style={{ height: "1px" }}
               />
             </span>
             <ArrowUpRight
@@ -274,10 +271,9 @@ export default function Hero({
 
         {/* Trust badges */}
         <div
-          className="reveal-fade flex flex-wrap items-center gap-x-7 gap-y-3"
+          className="reveal-fade flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/10 lg:border-linen"
           style={{
             paddingTop: "24px",
-            borderTop: "1px solid var(--color-linen)",
             opacity: 0,
           }}
         >
@@ -297,12 +293,12 @@ export default function Hero({
                 strokeWidth={2}
               />
               <span
+                className="hero-badge-text"
                 style={{
                   fontSize: "13px",
                   fontWeight: "400",
                   letterSpacing: "0.5px",
                   textTransform: "uppercase",
-                  color: "rgba(28,74,69,0.75)",
                 }}
               >
                 {text}
@@ -348,14 +344,17 @@ export default function Hero({
           className="absolute bg-cover"
           style={{
             inset: "0%",
-            backgroundImage: "url('assets/store-interior.jpg')",
+            backgroundImage: "url('/assets/hero.jpg')",
             backgroundPosition: "center top",
           }}
         />
 
+        {/* Mobile dark overlay (hidden on desktop) */}
+        <div className="absolute inset-0 hero-mobile-overlay z-10 pointer-events-none" />
+
         {/* Bottom scrim */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 z-20"
           style={{
             background:
               "linear-gradient(to top, rgba(13,42,39,0.65) 0%, rgba(13,42,39,0.1) 35%, transparent 60%)",
@@ -387,7 +386,7 @@ export default function Hero({
               marginTop: "4px",
             }}
           >
-            Palos Park · 13030 LaGrange Rd
+            Palos Park · 60 Old Creek Rd
           </p>
         </div>
       </div>

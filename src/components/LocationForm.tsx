@@ -110,7 +110,7 @@ export default function LocationForm() {
           className="font-light transition-colors hover:text-teal-rich"
           style={{ fontSize: "16px", color: "var(--color-teal)" }}
         >
-          13030 LaGrange Rd
+          60 Old Creek Rd
           <br />
           Palos Park, IL 60464
         </p>
@@ -158,11 +158,12 @@ export default function LocationForm() {
     <section
       ref={containerRef}
       id="quote"
-      className="py-20 lg:py-24 px-8 sm:px-12 lg:px-20 overflow-hidden"
+      className="py-20 lg:py-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
       style={{ background: "var(--color-paper)" }}
     >
-      {/* ── TOP GRID - info + form ─────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-start">
+      <div className="max-w-[1400px] mx-auto w-full">
+        {/* ── TOP GRID - info + form ─────────────────────────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-start">
         {/* LEFT: LOCATION INFO */}
         <div className="loc-left-container flex flex-col items-start pt-4">
           <div className="loc-fade-up section-eyebrow">
@@ -174,25 +175,25 @@ export default function LocationForm() {
                 color: "var(--color-teal)",
               }}
             >
-              Find Us
+              Get in Touch
             </span>
           </div>
 
           <h2
             className="font-serif font-light text-ink flex flex-col gap-1 mb-6"
             style={{
-              fontSize: "clamp(38px, 4.5vw, 64px)",
+              fontSize: "clamp(30px, 4.5vw, 64px)",
               lineHeight: "1.05",
               letterSpacing: "-0.025em",
             }}
           >
             <span className="overflow-hidden block py-1">
-              <span className="loc-reveal-line block">Come In.</span>
+              <span className="loc-reveal-line block">Let&apos;s Make It</span>
             </span>
             <span className="overflow-hidden block py-1">
               <span className="loc-reveal-line block">
                 <em className="italic" style={{ color: "var(--color-teal)" }}>
-                  Stay a While.
+                  Sweet.
                 </em>
               </span>
             </span>
@@ -202,8 +203,7 @@ export default function LocationForm() {
             className="loc-fade-up font-normal text-teal mb-12"
             style={{ fontSize: "17px", lineHeight: 1.85, maxWidth: "420px" }}
           >
-            Tucked along the LaGrange Road corridor in Palos Park, a short drive
-            from Lemont, Orland Park, Homer Glen, and Tinley Park.
+            Have questions about our catering packages, live dessert stations, or food truck? Reach out to plan your perfect event.
           </p>
 
           {/* Info rows */}
@@ -248,7 +248,7 @@ export default function LocationForm() {
 
         {/* RIGHT: FORM */}
         <div
-          className="form-container relative bg-white rounded-[3px] p-10 lg:p-14"
+          className="form-container relative bg-white rounded-[3px] p-6 sm:p-10 lg:p-14"
           style={{
             border: "1px solid var(--color-linen)",
             boxShadow: "0 20px 80px rgba(26,122,110,0.05)",
@@ -448,7 +448,7 @@ export default function LocationForm() {
                   className="cta-primary hover-target w-full flex items-center justify-center"
                   style={{ height: "56px", fontSize: "13px" }}
                 >
-                  Submit Enquiry
+                  Submit Inquiry
                 </button>
               </div>
             </form>
@@ -476,6 +476,7 @@ export default function LocationForm() {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </div>
-    </section>
+    </div>
+  </section>
   );
 }

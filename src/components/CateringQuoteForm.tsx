@@ -127,7 +127,7 @@ export default function CateringQuoteForm({
               {
                 href: "tel:+17086088982",
                 Icon: Phone,
-                label: "Catering Enquiries",
+                label: "Catering Inquiries",
                 val: "(708) 608-8982",
               },
               {
@@ -172,7 +172,7 @@ export default function CateringQuoteForm({
           {bag.length > 0 && guestNum > 0 && (
             <div className="quote-fade opacity-0 mt-10 p-6 rounded-[3px] bg-teal-faint border border-teal-pale w-full">
               <p className="text-[13px] tracking-[2px] uppercase text-teal font-medium mb-4">
-                your Cart - included with enquiry
+                your Cart - included with inquiry
               </p>
               <div className="flex flex-col gap-3">
                 {bag.map((i) => (
@@ -216,7 +216,7 @@ export default function CateringQuoteForm({
                 <Check className="w-7 h-7 text-teal" strokeWidth={2} />
               </div>
               <h3 className="font-serif font-light mb-3 text-[32px] text-ink tracking-[-0.02em]">
-                Enquiry Sent!
+                Inquiry Sent!
               </h3>
               <p className="text-[16px] text-teal leading-[1.8] max-w-[320px] font-light">
                 We &apos;ll be in touch within 48 hours. Need us sooner?{" "}
@@ -300,7 +300,7 @@ export default function CateringQuoteForm({
                     className="cta-primary hover-target w-full flex items-center justify-center h-[56px] text-[13px]"
                     style={{ opacity: sending ? 0.7 : 1 }}
                   >
-                    {sending ? "Sending…" : "Submit Enquiry"}
+                    {sending ? "Sending…" : "Submit Inquiry"}
                   </button>
                 </div>
               </form>

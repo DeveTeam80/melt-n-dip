@@ -87,7 +87,7 @@ export default function BagDrawer({
                             <div className="flex justify-between mb-4">
                                 <div className="flex flex-col">
                                     <span style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "1px", color: "var(--color-taupe)" }}>
-                                        Total Estimate
+                                        Estimated Catering Total
                                     </span>
                                     <span style={{ fontSize: "13px", color: "var(--color-teal)" }}>
                                         {totalServings} total servings
@@ -100,18 +100,35 @@ export default function BagDrawer({
                             </div>
                             
                             <p style={{ fontSize: "12px", color: "var(--color-taupe)", lineHeight: 1.6, marginBottom: "16px" }}>
-                                *Custom quantities per item. Final quote will include service fees and tax.
+                                This is an approximate estimate. Final pricing depends on event location, timing, staffing, setup, menu customization, and availability. Call us to finalize your catering order.
                             </p>
 
-                            <button onClick={onRequestQuote}
-                                className="cta-primary hover-target w-full flex items-center justify-center bg-ink text-white font-medium"
-                                style={{ height: "52px", fontSize: "12px", letterSpacing: "1.5px", textTransform: "uppercase" }}>
-                                Request Detailed Quote
-                            </button>
+                            <div className="flex flex-col gap-2.5">
+                                <button onClick={onRequestQuote}
+                                    className="cta-primary hover-target w-full flex items-center justify-center bg-teal text-white font-medium"
+                                    style={{ height: "48px", fontSize: "11px", letterSpacing: "1.5px", textTransform: "uppercase" }}>
+                                    Request Catering Quote
+                                </button>
+                                
+                                <a href="tel:+17086088982"
+                                    className="hover-target w-full flex items-center justify-center border border-teal text-teal font-medium hover:bg-teal-faint transition-colors duration-300"
+                                    style={{ height: "48px", fontSize: "11px", letterSpacing: "1.5px", textTransform: "uppercase", borderRadius: "1px" }}>
+                                    Call to Customize
+                                </a>
+
+                                <button onClick={() => {
+                                    localStorage.setItem("saved_catering_bag", JSON.stringify(bag));
+                                    alert("Catering bag saved successfully! You can retrieve it anytime you return to this browser.");
+                                }}
+                                    className="w-full hover-target text-center py-2 opacity-70 hover:opacity-100 transition-opacity"
+                                    style={{ fontSize: "11px", color: "var(--color-umber)", letterSpacing: "1px", textTransform: "uppercase" }}>
+                                    Save My Bag
+                                </button>
+                            </div>
                             
                             <button onClick={onClear}
-                                className="w-full mt-3 hover-target opacity-60 hover:opacity-100 transition-opacity"
-                                style={{ fontSize: "11px", color: "var(--color-taupe)", letterSpacing: "1px", textTransform: "uppercase", padding: "8px" }}>
+                                className="w-full mt-2 hover-target opacity-60 hover:opacity-100 transition-opacity text-center"
+                                style={{ fontSize: "10px", color: "var(--color-taupe)", letterSpacing: "1px", textTransform: "uppercase", padding: "4px" }}>
                                 Empty Bag
                             </button>
                         </>

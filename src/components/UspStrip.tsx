@@ -9,26 +9,26 @@ const USPS = [
   {
     num: "01",
     Icon: IceCreamBowl,
-    title: "Authentic Gelato",
-    desc: "Denser, richer, more flavourful than ice cream. Made the Italian way, lower fat, higher intensity, served at the perfect temperature.",
+    title: "Authentic Artisan Gelato",
+    desc: "Denser, richer, and more flavorful than traditional ice cream. Crafted the authentic Italian way, our gelato is served from our mobile gelato carts or in our lounge to elevate your next Chicago corporate event.",
   },
   {
     num: "02",
     Icon: Sparkles,
     title: "100% Belgian Chocolate",
-    desc: "Every dip, every pour, every truffle, single-origin Belgian couverture. No compound chocolate. Ever. The difference is undeniable.",
+    desc: "Every dip and pour uses premium, single-origin Belgian couverture—never compound chocolate. Our luxury Belgian chocolate catering will elevate your wedding dessert tables and leave a lasting impression.",
   },
   {
     num: "03",
     Icon: BadgeCheck,
     title: "Fully Halal, Always",
-    desc: "Not an afterthought. A founding commitment. Every ingredient across our entire menu is halal-certified, for every guest, every time.",
+    desc: "Inclusivity is our founding commitment. Every single ingredient across our entire catering operation is strictly Halal-certified, making us the top choice for Halal catering in the South Suburbs.",
   },
   {
     num: "04",
     Icon: MoonStar,
-    title: "The Late-Night Lounge",
-    desc: "After dinner in Orland Park or Tinley Park, this is where the evening continues. Premium, non-alcoholic, open late.",
+    title: "The Late-Night Lounge & Private Venue",
+    desc: "The perfect spot to continue the evening after dinner in Orland Park or Tinley Park. Our Palos Park space is also available for exclusive private venue hire for bridal showers, Sweet 16s, and intimate banquets.",
   },
 ];
 
@@ -101,7 +101,7 @@ export default function UspStrip() {
     <section
       ref={containerRef}
       // The outer container matches the light theme above and below it
-      className="w-full bg-paper py-12 md:pt-24 overflow-hidden"
+      className="w-full bg-paper pt-0 pb-12 md:pb-16 overflow-hidden"
     >
       {/* ── INSET DARK PANEL ──────────────────────────── */}
       <div
@@ -126,11 +126,11 @@ export default function UspStrip() {
                   color: "var(--color-amber)",
                 }}
               >
-                Why Delight
+                WHY DELIGHT ENTERPRISES
               </span>
             </div>
             <h2 className="font-serif font-light text-[clamp(36px,4vw,56px)] leading-[1.05] tracking-[-0.02em]">
-              What Sets Us <em className="italic text-amber">Apart</em>
+              What Sets Our Dessert Catering <em className="italic text-amber">Apart</em>
             </h2>
           </div>
         </div>

@@ -54,22 +54,7 @@ export default function Footer() {
     return () => ctx.revert();
   }, []);
 
-  const handleMagneticMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const el = e.currentTarget;
-    const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
-    gsap.to(el, { x, y, duration: 0.4, ease: "power2.out" });
-  };
 
-  const handleMagneticLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    gsap.to(e.currentTarget, {
-      x: 0,
-      y: 0,
-      duration: 0.8,
-      ease: "elastic.out(1, 0.3)",
-    });
-  };
 
   return (
     <footer
@@ -194,7 +179,7 @@ export default function Footer() {
                     strokeWidth={1.5}
                   />
                   <p className="font-light leading-[1.7] text-white">
-                    13030 LaGrange Rd
+                    60 Old Creek Rd
                     <br />
                     Palos Park, IL 60464
                   </p>
@@ -251,25 +236,11 @@ export default function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="ft-col flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <div className="ft-col flex justify-center text-center">
             <p className="text-[14px] font-light text-white tracking-[1px]">
               &copy; {new Date().getFullYear()} Delight Enterprises LLC. All
               rights reserved.
             </p>
-
-            <div className="flex items-center gap-6">
-              {["Instagram", "Facebook", "TikTok"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  onMouseMove={handleMagneticMove}
-                  onMouseLeave={handleMagneticLeave}
-                  className="text-[13px] font-medium tracking-[2px] uppercase text-paper hover:text-teal-pale transition-colors hover-target px-2 py-1"
-                >
-                  {social}
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </div>

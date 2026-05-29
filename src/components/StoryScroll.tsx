@@ -199,7 +199,7 @@ export default function StoryScroll() {
             {INGREDIENTS.map((src, i) => (
               <div
                 key={i}
-                className="ingredient-card absolute overflow-hidden rounded-[24px] border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+                className="ingredient-card absolute hidden lg:block overflow-hidden rounded-[24px] border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
                 style={{
                   width: i % 2 === 0 ? "240px" : "280px",
                   height: i % 2 === 0 ? "320px" : "360px",
