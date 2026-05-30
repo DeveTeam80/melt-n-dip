@@ -510,7 +510,7 @@ export default function CateringAndSeasonal() {
             className="text-center mx-auto"
             style={{
               fontSize: "15px",
-              color: "rgba(168,216,212,0.4)",
+              color: "white",
               maxWidth: "340px",
               lineHeight: 1.75,
               marginBottom: "56px",
@@ -548,7 +548,7 @@ export default function CateringAndSeasonal() {
               <div className="flex flex-col items-center text-center px-6 sm:px-10 py-10 sm:py-12">
                 <label
                   style={{
-                    fontSize: "10px",
+                    fontSize: "12px",
                     letterSpacing: "4px",
                     textTransform: "uppercase",
                     color: "var(--color-teal-pale)",
@@ -592,7 +592,7 @@ export default function CateringAndSeasonal() {
               <div className="flex flex-col items-center text-center px-6 sm:px-10 py-10 sm:py-12">
                 <label
                   style={{
-                    fontSize: "10px",
+                    fontSize: "12px",
                     letterSpacing: "4px",
                     textTransform: "uppercase",
                     color: "var(--color-teal-pale)",
@@ -673,9 +673,7 @@ export default function CateringAndSeasonal() {
                       fontSize: "10px",
                       letterSpacing: "3.5px",
                       textTransform: "uppercase",
-                      color: guests
-                        ? "var(--color-amber)"
-                        : "rgba(168,216,212,0.15)",
+                      color: guests ? "var(--color-amber)" : "white",
                       fontWeight: 500,
                       transition: "color 0.7s",
                     }}
