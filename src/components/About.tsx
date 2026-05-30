@@ -167,7 +167,9 @@ export default function About() {
             </span>
             <span className="overflow-hidden block py-1">
               <span className="about-reveal-line block">
-                <em className="italic text-teal pr-2">Wherever You Celebrate</em>
+                <em className="italic text-teal pr-2">
+                  Wherever You Celebrate
+                </em>
               </span>
             </span>
             {/* <span className="overflow-hidden block py-1">
@@ -188,8 +190,8 @@ export default function About() {
             </em>
             . Delight Enterprises LLC was founded to bring that exact feeling to
             your special events. As a premier dessert catering company, we
-            meticulously craft luxury dessert tables, live catering stations, and
-            custom platters to bring joy to every celebration.
+            meticulously craft luxury dessert tables, live catering stations,
+            and custom platters to bring joy to every celebration.
           </p>
 
           {/* Stats */}
@@ -269,14 +271,6 @@ export default function About() {
             }}
           />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent pointer-events-none" />
-          <div className="absolute bottom-8 right-8 text-right z-10">
-            <p className="font-serif italic text-[15px] text-cream/80 tracking-[0.02em]">
-              Palos Park Lounge
-            </p>
-            <p className="font-sans text-[8px] uppercase tracking-[2px] text-cream/40 mt-1">
-              60 Old Creek Rd
-            </p>
-          </div>
         </div>
         <div className="absolute left-0 top-[20%] bottom-[20%] w-px bg-gradient-to-b from-transparent via-teal-pale/50 to-transparent pointer-events-none z-20" />
       </div>
