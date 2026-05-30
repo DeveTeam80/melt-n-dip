@@ -134,7 +134,7 @@ export default function VsSection() {
       </div>
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_100px_1fr] gap-16 lg:gap-0 items-start relative z-10">
         {/* ── COL A (Traditional - Muted) ──────────────── */}
-        <div className="vs-col-a relative z-10 pr-0 lg:pr-12">
+        <div className="vs-col-a relative z-10 pr-0 lg:pl-12">
           <p className="vs-fade-up text-[14px] font-medium tracking-[3.5px] uppercase text-zinc mb-8">
             What everyone else serves
           </p>
@@ -142,10 +142,9 @@ export default function VsSection() {
           {/* Masked Headline */}
           <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-zinc flex flex-col gap-1">
             <span className="overflow-hidden block py-1">
-              <span className="vs-reveal-line block">Traditional</span>
-            </span>
-            <span className="overflow-hidden block py-1">
-              <span className="vs-reveal-line block">Ice Cream</span>
+              <span className="vs-reveal-line block">
+                Traditional Ice Cream
+              </span>
             </span>
           </h3>
 
@@ -179,7 +178,7 @@ export default function VsSection() {
         </div>
 
         {/* ── COL B (Delight - Highlighted) ────────────── */}
-        <div className="vs-col-b relative z-10 pl-0 lg:pl-12">
+        <div className="vs-col-b relative z-10 pl-0 lg:pl-20">
           {/* Ambient Glow Spotlight */}
           <div className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(26,122,110,0.07)_0%,transparent_60%)] pointer-events-none z-[-1]" />
 
@@ -190,11 +189,8 @@ export default function VsSection() {
           {/* Masked Headline */}
           <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-zinc flex flex-col gap-1">
             <span className="overflow-hidden block py-1">
-              <span className="vs-reveal-line block">Melt N Dip</span>
-            </span>
-            <span className="overflow-hidden block py-1">
               <span className="vs-reveal-line block">
-                <em className="italic text-amber">Gelato</em>
+                Melt N Dip <em className="italic text-amber">Gelato</em>
               </span>
             </span>
           </h3>
