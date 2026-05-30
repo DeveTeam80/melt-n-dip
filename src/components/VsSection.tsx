@@ -126,22 +126,21 @@ export default function VsSection() {
   return (
     <section
       ref={containerRef}
-      className="bg-ink py-20 lg:py-32 px-8 sm:px-12 lg:px-20 relative overflow-hidden z-10"
+      className="bg-parchment py-20 lg:py-32 px-8 sm:px-12 lg:px-20 relative overflow-hidden z-10"
     >
       {/* ── BACKGROUND PARALLAX TEXT ──────────────── */}
-      <div className="vs-bg-text absolute top-[40%] right-[-10%] font-serif text-[180px] lg:text-[280px] font-light text-white/[0.03] tracking-[-0.04em] whitespace-nowrap pointer-events-none select-none z-0">
+      <div className="vs-bg-text absolute top-[40%] right-[-10%] font-serif text-[180px] lg:text-[280px] font-light text-black/5 tracking-[-0.04em] whitespace-nowrap pointer-events-none select-none z-0">
         GELATO
       </div>
-
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_100px_1fr] gap-16 lg:gap-0 items-start relative z-10">
         {/* ── COL A (Traditional - Muted) ──────────────── */}
         <div className="vs-col-a relative z-10 pr-0 lg:pr-12">
-          <p className="vs-fade-up text-[14px] font-medium tracking-[3.5px] uppercase text-white/90 mb-8">
+          <p className="vs-fade-up text-[14px] font-medium tracking-[3.5px] uppercase text-zinc mb-8">
             What everyone else serves
           </p>
 
           {/* Masked Headline */}
-          <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-white/85 flex flex-col gap-1">
+          <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-zinc flex flex-col gap-1">
             <span className="overflow-hidden block py-1">
               <span className="vs-reveal-line block">Traditional</span>
             </span>
@@ -155,7 +154,7 @@ export default function VsSection() {
             {traditionalPoints.map((item, i) => (
               <li
                 key={i}
-                className="vs-list-item-a text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper"
+                className="vs-list-item-a text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-slate-900"
               >
                 <span className="text-paper/50 text-[13px] shrink-0">-</span>
                 {item}
@@ -171,7 +170,7 @@ export default function VsSection() {
           <div className="vs-mid-circle relative flex items-center justify-center shrink-0 w-[64px] h-[64px]">
             {/* Glass backdrop for the circle */}
             <div className="absolute inset-0 rounded-full bg-paper/5 backdrop-blur-sm border border-teal/30" />
-            <span className="font-serif text-[14px] text-white tracking-[1px] uppercase relative z-10 mt-1">
+            <span className="font-serif text-[14px] text-black tracking-[1px] font-bold uppercase relative z-10 mt-1">
               vs
             </span>
           </div>
@@ -189,7 +188,7 @@ export default function VsSection() {
           </p>
 
           {/* Masked Headline */}
-          <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-paper flex flex-col gap-1">
+          <h3 className="font-serif text-[clamp(32px,3.5vw,48px)] font-light leading-[1.05] tracking-[-0.02em] mb-10 text-zinc flex flex-col gap-1">
             <span className="overflow-hidden block py-1">
               <span className="vs-reveal-line block">Melt N Dip</span>
             </span>
@@ -205,7 +204,7 @@ export default function VsSection() {
             {delightPoints.map((item, i) => (
               <li
                 key={i}
-                className="vs-list-item-b text-[16px] font-light py-3 border-b border-white/10 flex gap-4 items-center text-paper"
+                className="vs-list-item-b text-[16px] font-semibold py-3 border-b border-white/10 flex gap-4 items-center text-zinc"
               >
                 <span className="text-amber text-[15px] shrink-0">✦</span>
                 {item}
