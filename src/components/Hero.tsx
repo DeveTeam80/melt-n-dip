@@ -132,9 +132,7 @@ export default function Hero({
       style={{ height: "100svh", minHeight: "680px", maxHeight: "1000px" }}
     >
       {/* ── LEFT PANEL ──────────────────────────────────────── */}
-      <div
-        className="relative z-10 w-full lg:w-[55%] flex flex-col lg:justify-start justify-center px-8 sm:px-12 xl:px-20 pt-28 pb-10 sm:pt-36 sm:pb-16 lg:pt-30 lg:pb-24"
-      >
+      <div className="relative z-10 w-full lg:w-[55%] flex flex-col lg:justify-start justify-center px-8 sm:px-12 xl:px-20 pt-28 pb-10 sm:pt-36 sm:pb-16 lg:pt-30 lg:pb-24">
         {/* Overline */}
         {/* <div className="reveal-fade flex items-center gap-3 mb-6" style={{ opacity: 0 }}>
           <span className="w-6 h-px shrink-0" style={{ background: "var(--color-teal-pale)" }} />
@@ -150,7 +148,7 @@ export default function Hero({
 
         {/* Headline */}
         <h1
-          className="font-serif font-light hero-title flex flex-col mb-5 sm:mb-6"
+          className="font-serif font-light hero-title flex flex-col mb-5 sm:mb-4 mt-3"
           style={{
             fontSize: "clamp(32px, 6vw, 88px)",
             lineHeight: "0.97",
@@ -160,7 +158,7 @@ export default function Hero({
         >
           <span
             className="overflow-hidden block"
-            style={{ paddingBottom: "10px" }}
+            style={{ paddingBottom: "8px" }}
           >
             <span
               className="reveal-line block"
@@ -177,22 +175,17 @@ export default function Hero({
               className="reveal-line block"
               style={{ opacity: 0, transform: "translateY(110%)" }}
             >
-              Dessert{" "}
-              <em className="italic">
-                Catering
-              </em>
+              Dessert <em className="italic">Catering</em>
             </span>
           </span>
         </h1>
 
         {/* Divider */}
         <div
-          className="reveal-fade flex items-center gap-4 mb-4 sm:mb-6"
+          className="reveal-fade flex items-center gap-4 mb-4 sm:mb-5"
           style={{ opacity: 0 }}
         >
-          <div
-            className="h-px w-8 hero-divider"
-          />
+          <div className="h-px w-8 hero-divider" />
           <span
             className="hero-subtitle"
             style={{
@@ -208,7 +201,7 @@ export default function Hero({
 
         {/* Body */}
         <p
-          className="reveal-fade font-normal hero-body mb-8 sm:mb-10"
+          className="reveal-fade font-normal hero-body mb-8 sm:mb-5"
           style={{
             fontSize: "clamp(15px, 1.8vw, 17px)",
             lineHeight: "1.85",
@@ -224,7 +217,7 @@ export default function Hero({
 
         {/* CTAs */}
         <div
-          className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-8 mb-8 sm:mb-10 w-full sm:w-auto"
+          className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-8 mb-8 sm:mb-5 w-full sm:w-auto"
           style={{ opacity: 0 }}
         >
           <button
@@ -357,13 +350,13 @@ export default function Hero({
           className="absolute inset-0 z-20"
           style={{
             background:
-              "linear-gradient(to top, rgba(13,42,39,0.65) 0%, rgba(13,42,39,0.1) 35%, transparent 60%)",
+              "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.55) 12%, rgba(0,0,0,0.2) 28%, transparent 50%)",
           }}
         />
 
         {/* Caption */}
         <div
-          className="absolute z-10 hidden lg:block"
+          className="absolute z-[30] hidden lg:block"
           style={{ bottom: "32px", left: "32px" }}
         >
           {/* <p
@@ -377,12 +370,12 @@ export default function Hero({
             Triple Chocolate Crepe
           </p> */}
           <p
-            className="font-sans"
+            className="font-sans  !text-white"
             style={{
-              fontSize: "12px",
+              fontSize: "14px",
               letterSpacing: "2px",
               textTransform: "uppercase",
-              color: "white",
+              color: "#fff",
               marginTop: "4px",
             }}
           >

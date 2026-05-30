@@ -66,13 +66,21 @@
   }
 
   @media (pointer: fine) {
-    body, button, a, .hover-target, .cursor-none {
+    body,
+    button,
+    a,
+    .hover-target,
+    .cursor-none {
       cursor: none;
     }
   }
 
   @media (pointer: coarse) {
-    body, button, a, .hover-target, .cursor-none {
+    body,
+    button,
+    a,
+    .hover-target,
+    .cursor-none {
       cursor: auto !important;
     }
   }
@@ -318,15 +326,22 @@
 }
 
 .hero-title em {
-  color: var(--color-amber) !important;
+  color: white !important;
 }
 
 .hero-divider {
-  background-color: var(--color-amber) !important; /* solid gold/amber for high visibility */
+  background-color: var(
+    --color-amber
+  ) !important; /* solid gold/amber for high visibility */
 }
 
 .hero-subtitle {
-  color: rgba(251, 253, 252, 0.9) !important; /* cream/90 for high readability */
+  color: rgba(
+    251,
+    253,
+    252,
+    0.9
+  ) !important; /* cream/90 for high readability */
 }
 
 .hero-body {
@@ -393,4 +408,3 @@
     color: rgba(28, 74, 69, 0.75) !important; /* bark/75 */
   }
 }
-
