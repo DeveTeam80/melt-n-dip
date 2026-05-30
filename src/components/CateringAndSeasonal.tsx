@@ -42,13 +42,13 @@ const CAT_CARDS = [
 
 const SEASONAL_CARDS = [
   {
-    img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&q=80",
+    img: "assets/images/delight-enterprises-1.png",
     season: "Summer & Spring",
     name: "Mobile Gelato Carts",
     text: "Artisan gelato and refreshing sorbets served from our mobile gelato carts, perfect for warm-weather block parties and weddings.",
   },
   {
-    img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80",
+    img: "assets/images/delight-enterprises-4.png",
     season: "Holiday & Winter",
     name: "Festive Dessert Stations",
     text: "Custom sweet platters and luxury chocolate fountains crafted for Thanksgiving, winter banquets, and corporate holiday parties.",
@@ -432,61 +432,342 @@ export default function CateringAndSeasonal() {
 
       {/* ── ESTIMATOR NUDGE STRIP ─────────────────────────── */}
       <div
-        className="estimator-strip px-8 sm:px-12 lg:px-20 py-14"
+        className="estimator-strip relative overflow-hidden px-6 sm:px-12 lg:px-16 py-28 sm:py-28"
         style={{ background: "var(--color-ink)" }}
       >
-        <div className="max-w-[960px] mx-auto">
-          {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div
-                  className="w-5 h-px"
-                  style={{ background: "var(--color-amber)" }}
-                />
-                <span
+        {/* ── Ambient glow ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(191,155,48,0.04) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 40% 60% at 50% 80%, rgba(168,216,212,0.03) 0%, transparent 60%)",
+          }}
+        />
+
+        <div className="relative max-w-[1100px] mx-auto">
+          {/* ── Ornamental accent ── */}
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div
+              className="h-px w-10"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, var(--color-amber))",
+              }}
+            />
+            <div
+              style={{
+                width: "6px",
+                height: "6px",
+                border: "1px solid var(--color-amber)",
+                transform: "rotate(45deg)",
+                opacity: 0.7,
+              }}
+            />
+            <div
+              className="h-px w-10"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--color-amber), transparent)",
+              }}
+            />
+          </div>
+
+          {/* ── Label ── */}
+          <p
+            className="text-center mb-5"
+            style={{
+              fontSize: "11px",
+              letterSpacing: "4.5px",
+              textTransform: "uppercase",
+              color: "var(--color-amber)",
+              fontWeight: 500,
+            }}
+          >
+            Quick Estimate
+          </p>
+
+          {/* ── Heading ── */}
+          <h3
+            className="font-serif font-light text-center"
+            style={{
+              fontSize: "clamp(32px, 4vw, 50px)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.12,
+              color: "var(--color-paper)",
+              marginBottom: "12px",
+            }}
+          >
+            How much will your event cost?
+          </h3>
+          <p
+            className="text-center mx-auto"
+            style={{
+              fontSize: "15px",
+              color: "rgba(168,216,212,0.4)",
+              maxWidth: "340px",
+              lineHeight: 1.75,
+              marginBottom: "56px",
+            }}
+          >
+            Get a ballpark in seconds, then build your perfect dessert spread.
+          </p>
+
+          {/* ── Floating glass card ── */}
+          <div
+            className="relative mx-auto"
+            style={{
+              maxWidth: "960px",
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
+              border: "1px solid rgba(191,155,48,0.12)",
+              borderRadius: "4px",
+              boxShadow:
+                "0 4px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(191,155,48,0.06)",
+            }}
+          >
+            {/* Subtle gold top-edge highlight */}
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2"
+              style={{
+                width: "40%",
+                height: "1px",
+                background:
+                  "linear-gradient(90deg, transparent, rgba(191,155,48,0.35), transparent)",
+              }}
+            />
+
+            <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto_auto] items-center">
+              {/* ── Guest Count ── */}
+              <div className="flex flex-col items-center text-center px-6 sm:px-10 py-10 sm:py-12">
+                <label
                   style={{
-                    fontSize: "11px",
-                    letterSpacing: "3.5px",
+                    fontSize: "10px",
+                    letterSpacing: "4px",
                     textTransform: "uppercase",
-                    color: "var(--color-amber)",
-                    fontWeight: 500,
+                    color: "var(--color-teal-pale)",
+                    fontWeight: 600,
+                    marginBottom: "24px",
+                    opacity: 0.7,
                   }}
                 >
-                  Quick Estimate
-                </span>
+                  Guest Count{" "}
+                  <span style={{ color: "var(--color-amber)" }}>*</span>
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  placeholder="e.g. 75"
+                  value={guests}
+                  onChange={(e) => setGuests(e.target.value)}
+                  className="bg-transparent outline-none font-serif font-light w-full text-center placeholder:font-serif placeholder:opacity-20"
+                  style={{
+                    fontSize: "clamp(44px, 5vw, 60px)",
+                    color: "var(--color-paper)",
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1,
+                    border: "none",
+                    maxWidth: "200px",
+                  }}
+                />
               </div>
-              <h3
+
+              {/* Divider */}
+              <div
+                className="hidden sm:block self-stretch"
+                style={{
+                  width: "1px",
+                  background:
+                    "linear-gradient(180deg, transparent 15%, rgba(191,155,48,0.12) 50%, transparent 85%)",
+                }}
+              />
+
+              {/* ── Event Type ── */}
+              <div className="flex flex-col items-center text-center px-6 sm:px-10 py-10 sm:py-12">
+                <label
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "4px",
+                    textTransform: "uppercase",
+                    color: "var(--color-teal-pale)",
+                    fontWeight: 600,
+                    marginBottom: "24px",
+                    opacity: 0.7,
+                  }}
+                >
+                  Event Type
+                </label>
+                <CustomSelect
+                  value={eventType}
+                  onChange={setEventType}
+                  options={EVENT_TYPES}
+                  placeholder="Select occasion…"
+                  light={true}
+                />
+              </div>
+
+              {/* Divider */}
+              <div
+                className="hidden sm:block self-stretch"
+                style={{
+                  width: "1px",
+                  background:
+                    "linear-gradient(180deg, transparent 15%, rgba(191,155,48,0.12) 50%, transparent 85%)",
+                }}
+              />
+
+              {/* ── CTA ── */}
+              <div className="flex items-center justify-center px-6 sm:px-10 py-10 sm:py-12">
+                <button
+                  onClick={handleEstimate}
+                  disabled={!guests}
+                  className="hover-target group flex flex-col items-center gap-5 transition-all duration-700"
+                  style={{
+                    cursor: guests ? "none" : "default",
+                    background: "none",
+                    border: "none",
+                  }}
+                >
+                  <div
+                    className="relative flex items-center justify-center transition-all duration-700"
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      borderRadius: "50%",
+                      border: `1px solid ${guests ? "var(--color-amber)" : "rgba(168,216,212,0.08)"}`,
+                      background: guests
+                        ? "rgba(191,155,48,0.06)"
+                        : "transparent",
+                      boxShadow: guests
+                        ? "0 0 24px rgba(191,155,48,0.1)"
+                        : "none",
+                    }}
+                  >
+                    {/* Inner ring */}
+                    <div
+                      className="absolute inset-[3px] rounded-full transition-all duration-700"
+                      style={{
+                        border: `1px solid ${guests ? "rgba(191,155,48,0.2)" : "transparent"}`,
+                      }}
+                    />
+                    <ArrowUpRight
+                      style={{
+                        width: "18px",
+                        height: "18px",
+                        color: guests
+                          ? "var(--color-amber)"
+                          : "rgba(168,216,212,0.15)",
+                        transition: "all 0.7s",
+                      }}
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      letterSpacing: "3.5px",
+                      textTransform: "uppercase",
+                      color: guests
+                        ? "var(--color-amber)"
+                        : "rgba(168,216,212,0.15)",
+                      fontWeight: 500,
+                      transition: "color 0.7s",
+                    }}
+                  >
+                    Estimate
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Live result ── */}
+          {guestNum > 0 && (
+            <div className="mt-20 text-center">
+              {/* Ornamental divider */}
+              <div className="flex items-center justify-center gap-3 mb-10">
+                <div
+                  className="h-px w-8"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent, rgba(191,155,48,0.3))",
+                  }}
+                />
+                <div
+                  style={{
+                    width: "4px",
+                    height: "4px",
+                    background: "var(--color-amber)",
+                    borderRadius: "50%",
+                    opacity: 0.5,
+                  }}
+                />
+                <div
+                  className="h-px w-8"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, rgba(191,155,48,0.3), transparent)",
+                  }}
+                />
+              </div>
+
+              <p
+                style={{
+                  fontSize: "10px",
+                  letterSpacing: "4.5px",
+                  textTransform: "uppercase",
+                  color: "var(--color-amber)",
+                  marginBottom: "20px",
+                  fontWeight: 500,
+                }}
+              >
+                Classic Dessert Package · {guestNum} Guests
+              </p>
+
+              <p
                 className="font-serif font-light"
                 style={{
-                  fontSize: "clamp(26px, 3vw, 38px)",
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.1,
+                  fontSize: "clamp(40px, 5.5vw, 58px)",
+                  letterSpacing: "-0.03em",
                   color: "var(--color-paper)",
+                  lineHeight: 1,
+                  marginBottom: "20px",
                 }}
               >
-                How much will your event cost?
-              </h3>
-            </div>
-            <p
-              style={{
-                fontSize: "16px",
-                fontWeight: 400,
-                color: "white",
-                maxWidth: "260px",
-                lineHeight: 1.7,
-              }}
-            >
-              Get a ballpark in seconds, then head to our full estimator to
-              build your perfect dessert spread.
-            </p>
-          </div>
+                ${low.toLocaleString()}
+                <span
+                  className="inline-block mx-3"
+                  style={{
+                    width: "24px",
+                    height: "1px",
+                    background: "rgba(191,155,48,0.4)",
+                    verticalAlign: "middle",
+                  }}
+                />
+                ${high.toLocaleString()}
+              </p>
 
-          {/* Input row */}
-          <div className="grid grid-cols-1 sm:grid-cols-[1fr_1.2fr_auto] gap-4 items-end">
-            {/* Guest count */}
-            <div className="flex flex-col gap-2">
-              <label
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "rgba(168,216,212,0.3)",
+                  lineHeight: 1.7,
+                  marginBottom: "32px",
+                }}
+              >
+                Based on $12 – $15 per person · Final price varies by menu,
+                staffing & location
+              </p>
+
+              <Link
+                href={`/catering?guests=${guests}&event=${encodeURIComponent(eventType)}#estimator`}
+                className="hover-target group inline-flex items-center gap-3 transition-all duration-500"
                 style={{
                   fontSize: "11px",
                   letterSpacing: "3px",
@@ -495,146 +776,19 @@ export default function CateringAndSeasonal() {
                   fontWeight: 500,
                 }}
               >
-                Number of Guests
-              </label>
-              <input
-                type="number"
-                min="1"
-                placeholder="e.g. 75"
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                className="bg-transparent outline-none font-light w-full"
-                style={{
-                  borderBottom: "1px solid rgba(168,216,212,0.5)",
-                  padding: "10px 0",
-                  fontSize: "22px",
-                  color: "var(--color-paper)",
-                  letterSpacing: "-0.02em",
-                }}
-                onFocus={(e) =>
-                  (e.target.style.borderBottomColor = "var(--color-teal-pale)")
-                }
-                onBlur={(e) =>
-                  (e.target.style.borderBottomColor = "rgba(168,216,212,0.2)")
-                }
-              />
-            </div>
-
-            {/* Event type */}
-            <div className="flex flex-col gap-2">
-              <label
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "3px",
-                  textTransform: "uppercase",
-                  color: "var(--color-teal-pale)",
-                  fontWeight: 500,
-                }}
-              >
-                Event Type
-              </label>
-              <CustomSelect
-                value={eventType}
-                onChange={setEventType}
-                options={EVENT_TYPES}
-                placeholder="Select occasion…"
-                light={true}
-              />
-            </div>
-
-            {/* CTA */}
-            <button
-              onClick={handleEstimate}
-              disabled={!guests}
-              className="hover-target flex items-center justify-center gap-2 transition-all duration-300"
-              style={{
-                height: "52px",
-                padding: "0 32px",
-                background: guests
-                  ? "var(--color-teal)"
-                  : "rgba(168,216,212,0.1)",
-                color: guests ? "#fff" : "rgba(168,216,212,0.3)",
-                borderRadius: "1px",
-                fontSize: "13px",
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                whiteSpace: "nowrap",
-                cursor: guests ? "none" : "default",
-                border: `1px solid ${guests ? "var(--color-teal)" : "rgba(168,216,212,0.1)"}`,
-              }}
-            >
-              See Estimate
-              <ArrowUpRight
-                style={{ width: "14px", height: "14px" }}
-                strokeWidth={1.5}
-              />
-            </button>
-          </div>
-
-          {/* Live preview */}
-          {guestNum > 0 && (
-            <div
-              className="mt-8 p-5 rounded-[2px] flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(168,216,212,0.08)",
-              }}
-            >
-              <div>
-                <p
+                <span
                   style={{
-                    fontSize: "11px",
-                    letterSpacing: "3px",
-                    textTransform: "uppercase",
-                    color: "var(--color-teal-pale)",
-                    marginBottom: "6px",
-                    fontWeight: 500,
+                    paddingBottom: "3px",
+                    borderBottom: "1px solid rgba(168,216,212,0.15)",
                   }}
                 >
-                  Classic Dessert Package estimate for {guestNum} guests
-                </p>
-                <p
-                  className="font-serif font-light"
-                  style={{
-                    fontSize: "32px",
-                    letterSpacing: "-0.03em",
-                    color: "var(--color-paper)",
-                    lineHeight: 1,
-                  }}
-                >
-                  ${low.toLocaleString()} – ${high.toLocaleString()}
-                </p>
-              </div>
-              <div className="text-right">
-                <p
-                  style={{
-                    fontSize: "12px",
-                    color: "var(--color-teal-pale)",
-                    lineHeight: 1.7,
-                    maxWidth: "220px",
-                    opacity: 0.6,
-                  }}
-                >
-                  Based on $12–$15/person. Final price depends on menu, staffing
-                  & location.
-                </p>
-                <Link
-                  href={`/catering?guests=${guests}&event=${encodeURIComponent(eventType)}#estimator`}
-                  className="inline-flex items-center gap-1.5 mt-3 hover-target"
-                  style={{
-                    fontSize: "11px",
-                    letterSpacing: "2px",
-                    textTransform: "uppercase",
-                    color: "var(--color-teal-pale)",
-                  }}
-                >
-                  Build full estimate
-                  <ArrowUpRight
-                    style={{ width: "12px", height: "12px" }}
-                    strokeWidth={1.5}
-                  />
-                </Link>
-              </div>
+                  Build Full Estimate
+                </span>
+                <ArrowUpRight
+                  style={{ width: "13px", height: "13px" }}
+                  strokeWidth={1.5}
+                />
+              </Link>
             </div>
           )}
         </div>

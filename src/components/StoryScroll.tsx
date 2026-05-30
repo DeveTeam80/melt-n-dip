@@ -5,10 +5,10 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 const INGREDIENTS = [
-  "https://images.unsplash.com/photo-1511381939415-e44015466834?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?q=80&w=1974&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=1974&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600841774653-5557d3cbd59b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "assets/images/tempting_crepe.jpeg",
+  "assets/images/home-banner1.png",
+  "assets/images/kunafa_crepe.jpeg",
+  "assets/brownie-waffle.jpg",
 ];
 
 export default function StoryScroll() {

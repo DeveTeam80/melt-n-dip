@@ -16,7 +16,7 @@ const USPS = [
     num: "02",
     Icon: Sparkles,
     title: "100% Belgian Chocolate",
-    desc: "Every dip and pour uses premium, single-origin Belgian couverture—never compound chocolate. Our luxury Belgian chocolate catering will elevate your wedding dessert tables and leave a lasting impression.",
+    desc: "Every dip and pour uses premium, single-origin Belgian couverturenever compound chocolate. Our luxury Belgian chocolate catering will elevate your wedding dessert tables and leave a lasting impression.",
   },
   {
     num: "03",
@@ -27,7 +27,7 @@ const USPS = [
   {
     num: "04",
     Icon: MoonStar,
-    title: "The Late-Night Lounge & Private Venue",
+    title: "Private Lounge & Event Venue",
     desc: "The perfect spot to continue the evening after dinner in Orland Park or Tinley Park. Our Palos Park space is also available for exclusive private venue hire for bridal showers, Sweet 16s, and intimate banquets.",
   },
 ];
@@ -130,7 +130,8 @@ export default function UspStrip() {
               </span>
             </div>
             <h2 className="font-serif font-light text-[clamp(36px,4vw,56px)] leading-[1.05] tracking-[-0.02em]">
-              What Sets Our Dessert Catering <em className="italic text-amber">Apart</em>
+              What Sets Our Dessert Catering{" "}
+              <em className="italic text-amber">Apart</em>
             </h2>
           </div>
         </div>

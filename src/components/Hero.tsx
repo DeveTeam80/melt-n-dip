@@ -271,7 +271,7 @@ export default function Hero({
           }}
         >
           {[
-            { Icon: Sparkles, text: "100% Belgian Chocolate" },
+            { Icon: Sparkles, text: "100% Satisfaction Guarantee" },
             { Icon: BadgeCheck, text: "Halal Certified" },
             { Icon: Moon, text: "Open Late" },
           ].map(({ Icon, text }) => (

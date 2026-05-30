@@ -118,12 +118,6 @@ export default function About() {
       ease: "elastic.out(1, 0.3)",
     });
 
-  const stats = [
-    // { num: "7", sup: "mi", label: "Radius served" },
-    { num: "100", sup: "%", label: "Belgian chocolate" },
-    { num: "2025", sup: "", label: "Established in Palos Park" },
-  ];
-
   return (
     <section
       ref={containerRef}
@@ -184,7 +178,7 @@ export default function About() {
 
           {/* Real origin story from client */}
           <p className="about-fade-up font-sans font-normal text-teal leading-[1.85] mb-12 max-w-[440px] text-[17px]">
-            We believe dessert should do more than just taste good—it should{" "}
+            We believe dessert should do more than just taste good it should{" "}
             <em className="italic text-umber font-serif text-[17px] font-bold">
               Satisfy Your Spirit
             </em>
@@ -193,34 +187,6 @@ export default function About() {
             meticulously craft luxury dessert tables, live catering stations,
             and custom platters to bring joy to every celebration.
           </p>
-
-          {/* Stats */}
-          <div className="about-stats-grid about-fade-up flex justify-between max-w-[430px]">
-            {stats.map(({ num, sup, label }, i) => (
-              <div key={label} className="flex items-center">
-                <div className="flex flex-col py-2 px-4 sm:px-6">
-                  <div
-                    className="font-light text-ink leading-none mb-2"
-                    style={{
-                      fontSize: num.length >= 4 ? "32px" : "42px",
-                      letterSpacing: "-0.03em",
-                    }}
-                  >
-                    {num}
-                    <em className=" italic text-[18px] text-teal ml-0.5">
-                      {sup}
-                    </em>
-                  </div>
-                  <div className="uppercase text-teal font-bold tracking-[2px] text-[9px]">
-                    {label}
-                  </div>
-                </div>
-                {i < stats.length - 1 && (
-                  <div className="stat-divider w-px h-12 bg-linen origin-top" />
-                )}
-              </div>
-            ))}
-          </div>
 
           {/* CTAs */}
           <div className="about-fade-up flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mt-12 sm:mt-16 w-full sm:w-auto">

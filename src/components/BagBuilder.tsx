@@ -480,7 +480,7 @@ export default function BagBuilder({
             </div>
           </div>
 
-          {/* Service Style — visually highlighted when toast is showing */}
+          {/* Service Style  visually highlighted when toast is showing */}
           <div
             ref={serviceBoxRef}
             className="flex flex-col justify-center gap-8 rounded-[3px] transition-all duration-500"
@@ -925,7 +925,7 @@ export default function BagBuilder({
                           color: "var(--color-umber)",
                         }}
                       >
-                        Pre-built tiers — Sweet Bites, Classic or Premium. Quick
+                        Pre-built tiers Sweet Bites, Classic or Premium. Quick
                         &amp; easy.
                       </p>
                     </div>
@@ -985,8 +985,8 @@ export default function BagBuilder({
                           color: "var(--color-umber)",
                         }}
                       >
-                        Build your own spread — pick items &amp; see live
-                        pricing as you go.
+                        Build your own spread pick items &amp; see live pricing
+                        as you go.
                       </p>
                     </div>
                     <ArrowRight
