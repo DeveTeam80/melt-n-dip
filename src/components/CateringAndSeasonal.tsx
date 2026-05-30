@@ -289,13 +289,17 @@ export default function CateringAndSeasonal() {
             </h2>
 
             <p className="cat-fade-up font-sans font-normal text-teal leading-[1.85] mb-12 max-w-[440px] text-[17px]">
-              From the aroma of warm Belgian chocolate at a downtown Chicago gala to the visual elegance of a custom dessert table in the South Suburbs, every detail is meticulously crafted to{" "}
+              From the aroma of warm Belgian chocolate at a downtown Chicago
+              gala to the visual elegance of a custom dessert table in the South
+              Suburbs, every detail is meticulously crafted to{" "}
               <em className="italic text-umber font-serif text-[17px] font-bold">
                 Satisfy Your Spirit
               </em>
               .
               <span className="block mt-4 text-ink/80">
-                We specialize in high-end corporate dessert catering, luxury weddings, and 100% Halal sweet platters. We also cater to Graduations, Iftar & Eid, and provide custom Drop-Off Trays.
+                We specialize in high-end corporate dessert catering, luxury
+                weddings, and 100% Halal sweet platters. We also cater to
+                Graduations, Iftar & Eid, and provide custom Drop-Off Trays.
               </span>
               <span className="block mt-4 text-[15px]">
                 We respond to all catering enquiries within 48 hours.
@@ -361,7 +365,7 @@ export default function CateringAndSeasonal() {
                     className="absolute bottom-0 left-0 w-full h-px origin-right scale-x-100 group-hover:scale-x-0 transition-transform duration-500"
                     style={{ background: "rgba(26,122,110,0.35)" }}
                   />
-                 </span>
+                </span>
               </Link>
             </div>
           </div>
@@ -643,133 +647,135 @@ export default function CateringAndSeasonal() {
       >
         <div className="max-w-[1400px] mx-auto w-full">
           <div className="seasonal-header text-center max-w-[580px] mx-auto mb-20">
-          <div
-            className="season-fade-up section-eyebrow"
-            style={{ justifyContent: "center" }}
-          >
-            <span
-              style={{
-                fontSize: "11px",
-                letterSpacing: "3.5px",
-                textTransform: "uppercase",
-                color: "var(--color-teal)",
-                fontWeight: 500,
-              }}
-            >
-              Seasonal &amp; Festive Catering
-            </span>
-          </div>
-          <h2
-            className="font-serif font-light text-ink flex flex-col items-center gap-1 mb-6"
-            style={{
-              fontSize: "clamp(30px, 4.5vw, 64px)",
-              lineHeight: "1.05",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            <span className="overflow-hidden block py-1">
-              <span className="season-reveal-line block">
-                Made for{" "}
-                <em className="italic" style={{ color: "var(--color-teal)" }}>
-                  Every
-                </em>
-              </span>
-            </span>
-            <span className="overflow-hidden block py-1">
-              <span className="season-reveal-line block">Season</span>
-            </span>
-          </h2>
-          <p
-            className="season-fade-up font-normal text-teal"
-            style={{ fontSize: "17px", lineHeight: 1.85 }}
-          >
-            We follow the rhythm of the year, from summer outdoor weddings to
-            festive corporate holiday parties and cultural community celebrations.
-          </p>
-        </div>
-
-        <div className="seasonal-grid grid grid-cols-1 md:grid-cols-3 gap-6">
-          {SEASONAL_CARDS.map(({ img, season, name, text }) => (
             <div
-              key={name}
-              className="season-card-wrap group relative rounded-[3px] overflow-hidden hover-target cursor-none"
-              style={{ aspectRatio: "3/4", background: "var(--color-bark)" }}
+              className="season-fade-up section-eyebrow"
+              style={{ justifyContent: "center" }}
             >
-              <div
-                className="season-bg absolute bg-cover bg-center transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+              <span
                 style={{
-                  inset: "-15%",
-                  backgroundImage: `url('${img}')`,
-                  willChange: "transform",
-                }}
-              />
-              <div
-                className="absolute inset-0 transition-opacity duration-700 group-hover:opacity-95"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(13,42,39,0.92) 0%, rgba(13,42,39,0.2) 50%, transparent 100%)",
-                  opacity: 0.8,
-                }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 z-10">
-                <p
-                  className="mb-3 font-medium"
-                  style={{
-                    fontSize: "11px",
-                    letterSpacing: "3px",
-                    textTransform: "uppercase",
-                    color: "rgb(229 155 10)",
-                    fontWeight: "600",
-                  }}
-                >
-                  {season}
-                </p>
-                <p
-                  className="font-serif font-light text-white mb-3"
-                  style={{
-                    fontSize: "26px",
-                    letterSpacing: "-0.01em",
-                    lineHeight: 1.1,
-                  }}
-                >
-                  {name}
-                </p>
-                <div
-                  className="mb-4 h-px origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                  style={{ width: "36px", background: "var(--color-amber)" }}
-                />
-                <p
-                  className=""
-                  style={{
-                    fontSize: "16px",
-                    color: "white",
-                    lineHeight: 1.7,
-                  }}
-                >
-                  {text}
-                </p>
-              </div>
-              <div
-                className="absolute top-6 right-6 flex items-center justify-center rounded-full z-10 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  background: "rgba(251,253,252,0.1)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(255,255,255,0.2)",
+                  fontSize: "11px",
+                  letterSpacing: "3.5px",
+                  textTransform: "uppercase",
+                  color: "var(--color-teal)",
+                  fontWeight: 500,
                 }}
               >
-                <ArrowUpRight
-                  className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  style={{ width: "16px", height: "16px", color: "#fff" }}
-                  strokeWidth={1.5}
-                />
-              </div>
+                Seasonal &amp; Festive Catering
+              </span>
             </div>
-          ))}
+            <h2
+              className="font-serif font-light text-ink flex flex-col items-center gap-1 mb-6"
+              style={{
+                fontSize: "clamp(30px, 4.5vw, 64px)",
+                lineHeight: "1.05",
+                letterSpacing: "-0.025em",
+              }}
+            >
+              <span className="overflow-hidden block py-1">
+                <span className="season-reveal-line block">
+                  Made for{" "}
+                  <em className="italic" style={{ color: "var(--color-teal)" }}>
+                    Every
+                  </em>
+                </span>
+              </span>
+              <span className="overflow-hidden block py-1">
+                <span className="season-reveal-line block">Season</span>
+              </span>
+            </h2>
+            <p
+              className="season-fade-up font-normal text-teal"
+              style={{ fontSize: "17px", lineHeight: 1.85 }}
+            >
+              We follow the rhythm of the year, from summer outdoor weddings to
+              festive corporate holiday parties and cultural community
+              celebrations.
+            </p>
+          </div>
+
+          <div className="seasonal-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+            {SEASONAL_CARDS.map(({ img, season, name, text }) => (
+              <div
+                key={name}
+                className="season-card-wrap group relative rounded-[3px] overflow-hidden hover-target cursor-none"
+                style={{ aspectRatio: "3/4", background: "var(--color-bark)" }}
+              >
+                <div
+                  className="season-bg absolute bg-cover bg-center transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+                  style={{
+                    inset: "-15%",
+                    backgroundImage: `url('${img}')`,
+                    willChange: "transform",
+                  }}
+                />
+                {/* Replace this existing overlay div inside each card */}
+                <div
+                  className="absolute inset-0 transition-opacity duration-700 group-hover:opacity-95"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(13,42,39,0.97) 0%, rgba(13,42,39,0.65) 50%, rgba(13,42,39,0.3) 100%)",
+                    opacity: 1,
+                  }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 z-10">
+                  <p
+                    className="mb-3 font-medium"
+                    style={{
+                      fontSize: "11px",
+                      letterSpacing: "3px",
+                      textTransform: "uppercase",
+                      color: "rgb(229 155 10)",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {season}
+                  </p>
+                  <p
+                    className="font-serif font-light text-white mb-3"
+                    style={{
+                      fontSize: "26px",
+                      letterSpacing: "-0.01em",
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {name}
+                  </p>
+                  <div
+                    className="mb-4 h-px origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    style={{ width: "36px", background: "var(--color-amber)" }}
+                  />
+                  <p
+                    className=""
+                    style={{
+                      fontSize: "16px",
+                      color: "white",
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {text}
+                  </p>
+                </div>
+                <div
+                  className="absolute top-6 right-6 flex items-center justify-center rounded-full z-10 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    background: "rgba(251,253,252,0.1)",
+                    backdropFilter: "blur(8px)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                  }}
+                >
+                  <ArrowUpRight
+                    className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    style={{ width: "16px", height: "16px", color: "#fff" }}
+                    strokeWidth={1.5}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  </div>
+      </section>
+    </div>
   );
 }

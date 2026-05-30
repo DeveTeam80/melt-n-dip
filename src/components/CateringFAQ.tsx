@@ -91,7 +91,7 @@ export default function CateringFAQ() {
             Common <em className="italic text-teal pr-2">Questions</em>
           </h2>
           <p className="font-normal text-teal text-[16px] leading-[1.85] max-w-[280px]">
-            Can't find what you're looking for? Call us directly.
+            Can &apos;t find what you &apos;re looking for? Call us directly.
           </p>
           <a
             href="tel:+17086088982"
