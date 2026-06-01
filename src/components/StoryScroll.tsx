@@ -5,9 +5,9 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 const INGREDIENTS = [
-  "assets/images/tempting_crepe.jpeg",
-  "assets/images/home-banner1.png",
-  "assets/images/kunafa_crepe.jpeg",
+  "assets/images/products/kunafacup.png",
+  "assets/images/products/oreocheescake.png",
+  "assets/images/products/mndwaffle.png",
   "assets/brownie-waffle.jpg",
 ];
 
@@ -33,9 +33,9 @@ export default function StoryScroll() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top",
+          start: "top 25%",
           end: "bottom bottom",
-          scrub: 3, // keep same feel
+          scrub: 1, // responsive and lag-free
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -59,11 +59,11 @@ export default function StoryScroll() {
           y: 0,
           scale: 1,
           rotation: 0,
-          stagger: 0.15,
-          duration: 1.2,
+          stagger: 0.06,
+          duration: 0.5,
           ease: "expo.out",
         },
-        0.08,
+        0,
       );
 
       // ✅ Delay fly away so users can see cards (less scroll needed)
@@ -74,29 +74,29 @@ export default function StoryScroll() {
           scale: 0.82,
           y: -320,
           rotation: (i: number) => (i % 2 === 0 ? -10 : 10),
-          stagger: 0.12,
-          duration: 1.6,
+          stagger: 0.08,
+          duration: 1.0,
           ease: "expo.inOut",
         },
-        0.62,
+        0.7,
       );
 
       // Overlay becomes lighter
-      tl.to(".gelato-overlay", { opacity: 0.25 }, 0.5);
+      tl.to(".gelato-overlay", { opacity: 0.25 }, 0.4);
 
       // ✅ Text reveals later (after cards sequence)
       tl.to(
         ".story-line",
-        { opacity: 1, y: 0, stagger: 0.12, duration: 1.6, ease: "expo.out" },
-        0.72,
+        { opacity: 1, y: 0, stagger: 0.06, duration: 1.0, ease: "expo.out" },
+        0.9,
       );
 
       tl.to(
         ".story-divider",
         { scaleX: 1, opacity: 1, ease: "power2.out" },
-        0.84,
+        1.1,
       );
-      tl.to(".story-sub", { opacity: 1, y: 0, ease: "power3.out" }, 0.88);
+      tl.to(".story-sub", { opacity: 1, y: 0, ease: "power3.out" }, 1.2);
 
       ScrollTrigger.refresh();
     }, containerRef);

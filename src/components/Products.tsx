@@ -174,7 +174,7 @@ export default function Products() {
               </span>
               <span className="overflow-hidden block py-1">
                 <span className="products-reveal-line block">
-                  <em className="italic text-teal pr-2">Won &apos; t Forget</em>
+                  <em className="italic text-teal pr-2">Won&apos;t Forget</em>
                 </span>
               </span>
             </h2>
