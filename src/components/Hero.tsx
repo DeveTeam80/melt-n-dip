@@ -261,69 +261,6 @@ export default function Hero({
             />
           </button>
         </div>
-
-        {/* Trust badges */}
-        <div
-          className="reveal-fade flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/10 lg:border-linen"
-          style={{
-            paddingTop: "24px",
-            opacity: 0,
-          }}
-        >
-          {[
-            { Icon: Sparkles, text: "100% Satisfaction Guarantee" },
-            { Icon: BadgeCheck, text: "Halal Certified" },
-            { Icon: Moon, text: "Open Late" },
-          ].map(({ Icon, text }) => (
-            <div key={text} className="flex items-center gap-2">
-              <Icon
-                className="shrink-0"
-                style={{
-                  width: "15px",
-                  height: "15px",
-                  color: "var(--color-amber)",
-                }}
-                strokeWidth={2}
-              />
-              <span
-                className="hero-badge-text"
-                style={{
-                  fontSize: "13px",
-                  fontWeight: "400",
-                  letterSpacing: "0.5px",
-                  textTransform: "uppercase",
-                }}
-              >
-                {text}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Scroll indicator */}
-        {/* <div
-          className="absolute flex flex-col items-center gap-2 pointer-events-none"
-          style={{ bottom: "52px", left: "32px" }}
-        >
-          <div
-            className="w-px"
-            style={{
-              height: "28px",
-              background: "linear-gradient(to bottom, var(--color-teal-pale), transparent)",
-            }}
-          />
-          <span
-            className="[writing-mode:vertical-rl]"
-            style={{
-              fontSize: "8px",
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "var(--color-sand)",
-            }}
-          >
-            Scroll
-          </span>
-        </div> */}
       </div>
 
       {/* ── RIGHT PANEL ─────────────────────────────────────── */}

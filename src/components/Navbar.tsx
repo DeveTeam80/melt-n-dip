@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "Our Story", href: "/#about" },
   { label: "Menu", href: "/#products" },
   { label: "Catering", href: "/catering" },
-  { label: "Palos Park", href: "/melt-n-dip-palos-park" },
+  { label: "Melt N Dip", href: "/melt-n-dip-palos-park" },
   { label: "Find Us", href: "/#location" },
 ];
 
@@ -20,11 +20,31 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 60);
+      setIsSticky(currentScrollY > 50);
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY <= 80) {
+        setVisible(true);
+      } else {
+        if (currentScrollY > lastScrollY.current) {
+          setVisible(false);
+        } else {
+          setVisible(true);
+        }
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -59,18 +79,6 @@ export default function Navbar() {
     setMenuOpen(false);
     document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" });
   };
-
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <>
       {/* ── MOBILE FULL-SCREEN MENU ──────────────────── */}
@@ -166,7 +174,8 @@ export default function Navbar() {
         ref={navRef}
         className="fixed top-0 left-0 right-0 z-[100] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
         style={{
-          transitionProperty: "background, backdrop-filter, WebkitBackdropFilter, padding, border-color, box-shadow",
+          transitionProperty: "background, backdrop-filter, WebkitBackdropFilter, padding, border-color, box-shadow, transform",
+          transform: (visible || menuOpen) ? "translateY(0)" : "translateY(-100%)",
           background: scrolled ? "rgba(248,250,249,0.92)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
@@ -178,132 +187,131 @@ export default function Navbar() {
       >
         <div
           className={`max-w-[1400px] mx-auto w-full flex items-center justify-between transition-all duration-700
-            ${
-              scrolled
-                ? "py-2 px-8 md:px-12 lg:px-16"
-                : "py-6 px-8 md:px-12 lg:px-16"
+            ${scrolled
+              ? "py-2 px-8 md:px-12 lg:px-16"
+              : "py-6 px-8 md:px-12 lg:px-16"
             }`}
         >
-        {/* ── LOGO ─────────────────────────────────── */}
-        <Link
-          href="/"
-          onMouseMove={onMagMove}
-          onMouseLeave={onMagLeave}
-          className="hover-target shrink-0 group"
-        >
-          <Image
-            src="/assets/logo.png"
-            alt="Delight Enterprises"
-            width={250}
-            height={100}
-            className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen ? "" : "nav-logo-responsive"}`}
-            style={{
-              width: isSticky ? "80px" : "100px",
-              height: "auto",
-            }}
-            priority
-          />
-        </Link>
-
-        {/* ── DESKTOP LINKS ────────────────────────── */}
-        <ul
-          className="hidden xl:flex items-center gap-2 list-none duration-500"
-          style={{
-            transitionProperty: "background-color, border-color, box-shadow, padding, backdrop-filter, WebkitBackdropFilter",
-            backgroundColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.6)" : "transparent",
-            backdropFilter: (!scrolled && !isCatering) ? "blur(12px)" : "none",
-            WebkitBackdropFilter: (!scrolled && !isCatering) ? "blur(12px)" : "none",
-            borderRadius: "9999px",
-            padding: (!scrolled && !isCatering) ? "6px 16px" : "0px",
-            border: "1px solid",
-            borderColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.5)" : "transparent",
-            boxShadow: (!scrolled && !isCatering) ? "0 4px 24px rgba(0,0,0,0.04)" : "none",
-          }}
-        >
-          {NAV_LINKS.map((item) => {
-            const { label, href } = item;
-            return (
-              <li key={label}>
-                <Link
-                  href={href}
-                  onMouseMove={onMagMove}
-                  onMouseLeave={onMagLeave}
-                  className="group relative block px-5 py-2 hover-target"
-                >
-                  {/* Pill bg - reveals on hover */}
-                  <div
-                    className="absolute inset-0 rounded-full scale-50 opacity-0
-                    transition-all duration-300 ease-out
-                    group-hover:scale-100 group-hover:opacity-100"
-                    style={{ background: "var(--color-teal-faint)" }}
-                  />
-                  <span
-                    className={`relative z-10 font-sans font-medium uppercase
-                    transition-colors duration-300 ${isCatering && !scrolled ? "text-white group-hover:text-teal" : "text-umber group-hover:text-teal"}`}
-                    style={{ fontSize: "14px", letterSpacing: "1.5px" }}
-                  >
-                    {label}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* ── RIGHT ────────────────────────────────── */}
-        <div className="flex items-center gap-4 sm:gap-6">
-          {/* Book Now */}
-          <button
-            onClick={scrollToQuote}
+          {/* ── LOGO ─────────────────────────────────── */}
+          <Link
+            href="/"
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
-            className={`cta-primary hover-target hidden ${menuOpen ? "" : "sm:flex"} items-center
-              justify-center relative overflow-hidden`}
+            className="hover-target shrink-0 group"
+          >
+            <Image
+              src="/assets/logo.png"
+              alt="Delight Enterprises"
+              width={250}
+              height={100}
+              className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen ? "" : "nav-logo-responsive"}`}
+              style={{
+                width: isSticky ? "80px" : "100px",
+                height: "auto",
+              }}
+              priority
+            />
+          </Link>
+
+          {/* ── DESKTOP LINKS ────────────────────────── */}
+          <ul
+            className="hidden xl:flex items-center gap-2 list-none duration-500"
             style={{
-              padding: scrolled ? "11px 26px" : "13px 30px",
-              fontSize: "13px",
+              transitionProperty: "background-color, border-color, box-shadow, padding, backdrop-filter, WebkitBackdropFilter",
+              backgroundColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.6)" : "transparent",
+              backdropFilter: (!scrolled && !isCatering) ? "blur(12px)" : "none",
+              WebkitBackdropFilter: (!scrolled && !isCatering) ? "blur(12px)" : "none",
+              borderRadius: "9999px",
+              padding: (!scrolled && !isCatering) ? "6px 16px" : "0px",
+              border: "1px solid",
+              borderColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.5)" : "transparent",
+              boxShadow: (!scrolled && !isCatering) ? "0 4px 24px rgba(0,0,0,0.04)" : "none",
             }}
           >
-            Book Now
-          </button>
+            {NAV_LINKS.map((item) => {
+              const { label, href } = item;
+              return (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    onMouseMove={onMagMove}
+                    onMouseLeave={onMagLeave}
+                    className="group relative block px-5 py-2 hover-target"
+                  >
+                    {/* Pill bg - reveals on hover */}
+                    <div
+                      className="absolute inset-0 rounded-full scale-50 opacity-0
+                    transition-all duration-300 ease-out
+                    group-hover:scale-100 group-hover:opacity-100"
+                      style={{ background: "var(--color-teal-faint)" }}
+                    />
+                    <span
+                      className={`relative z-10 font-sans font-medium uppercase
+                    transition-colors duration-300 ${isCatering && !scrolled ? "text-white group-hover:text-teal" : "text-umber group-hover:text-teal"}`}
+                      style={{ fontSize: "14px", letterSpacing: "1.5px" }}
+                    >
+                      {label}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
 
-          {/* Hamburger - mobile/tablet only */}
-          {/* z-[91] - just above menu overlay (z-90) but below nav (z-100) */}
-          <button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className={`xl:hidden flex flex-col justify-center gap-[5px]
+          {/* ── RIGHT ────────────────────────────────── */}
+          <div className="flex items-center gap-4 sm:gap-6">
+            {/* Book Now */}
+            <button
+              onClick={scrollToQuote}
+              onMouseMove={onMagMove}
+              onMouseLeave={onMagLeave}
+              className={`cta-primary hover-target hidden ${menuOpen ? "" : "sm:flex"} items-center
+              justify-center relative overflow-hidden`}
+              style={{
+                padding: scrolled ? "11px 26px" : "13px 30px",
+                fontSize: "13px",
+              }}
+            >
+              Book Now
+            </button>
+
+            {/* Hamburger - mobile/tablet only */}
+            {/* z-[91] - just above menu overlay (z-90) but below nav (z-100) */}
+            <button
+              onClick={() => setMenuOpen((prev) => !prev)}
+              className={`xl:hidden flex flex-col justify-center gap-[5px]
               w-10 h-10 ${menuOpen ? "items-center" : "items-end"} hover-target z-[91]`}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-          >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                className="block origin-center rounded-full
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+            >
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  className="block origin-center rounded-full
                   transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-                style={{
-                  height: "1.5px",
-                  background:
-                    menuOpen
-                      ? "var(--color-bark)"
-                      : scrolled
+                  style={{
+                    height: "1.5px",
+                    background:
+                      menuOpen
                         ? "var(--color-bark)"
-                        : "var(--color-paper)",
-                  // Middle bar shorter - asymmetric design detail
-                  width: i === 1 && !menuOpen ? "14px" : "22px",
-                  transform:
-                    i === 0 && menuOpen
-                      ? "translateY(6.5px) rotate(45deg)"
-                      : i === 2 && menuOpen
-                        ? "translateY(-6.5px) rotate(-45deg)"
-                        : "none",
-                  opacity: i === 1 && menuOpen ? 0 : 1,
-                }}
-              />
-            ))}
-          </button>
+                        : scrolled
+                          ? "var(--color-bark)"
+                          : "var(--color-paper)",
+                    // Middle bar shorter - asymmetric design detail
+                    width: i === 1 && !menuOpen ? "14px" : "22px",
+                    transform:
+                      i === 0 && menuOpen
+                        ? "translateY(6.5px) rotate(45deg)"
+                        : i === 2 && menuOpen
+                          ? "translateY(-6.5px) rotate(-45deg)"
+                          : "none",
+                    opacity: i === 1 && menuOpen ? 0 : 1,
+                  }}
+                />
+              ))}
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
     </>
   );
 }

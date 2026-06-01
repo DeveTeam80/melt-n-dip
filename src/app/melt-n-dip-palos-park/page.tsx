@@ -412,11 +412,29 @@ function MndPreloader({ onComplete }: { onComplete: () => void }) {
 function MndNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 60);
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY <= 80) {
+        setVisible(true);
+      } else {
+        if (currentScrollY > lastScrollY.current) {
+          setVisible(false);
+        } else {
+          setVisible(true);
+        }
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -500,7 +518,8 @@ function MndNavbar() {
         data-mnd="nav"
         className="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between px-8 md:px-12 lg:px-16 duration-700"
         style={{
-          transitionProperty: "background, backdrop-filter, WebkitBackdropFilter, padding-top, padding-bottom",
+          transitionProperty: "background, backdrop-filter, WebkitBackdropFilter, padding-top, padding-bottom, transform",
+          transform: (visible || menuOpen) ? "translateY(0)" : "translateY(-100%)",
           paddingTop: scrolled ? "14px" : "24px",
           paddingBottom: scrolled ? "14px" : "24px",
           background: navBg,
@@ -749,7 +768,7 @@ function MndFooter() {
                     className="mnd-ft-address-text"
                     style={{ color: MND.bgWarm }}
                   >
-                    60 Old Creek Rd
+                    13030 Lagrange Rd
                     <br />
                     Palos Park, IL 60464
                   </p>
@@ -2359,7 +2378,7 @@ export default function MeltNDipPalosPage() {
               className="mnd-loc-f mnd-loc-desc"
               style={{ color: MND.creamMuted }}
             >
-              Located on Old Creek Road in Palos Park, a short
+              Located on Lagrange Road in Palos Park, a short
               drive from Lemont, Orland Park, Homer Glen, and Tinley Park.
             </p>
             <div className="mnd-loc-f flex flex-col gap-8 w-full mt-12">
@@ -2372,7 +2391,7 @@ export default function MeltNDipPalosPage() {
                       className="mnd-loc-info-text"
                       style={{ color: MND.creamMuted }}
                     >
-                      60 Old Creek Rd
+                      13030 Lagrange Rd
                       <br />
                       Palos Park, IL 60464
                     </p>
@@ -2543,7 +2562,7 @@ export default function MeltNDipPalosPage() {
         >
           <iframe
             title="Melt N Dip Palos Park"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2697.730592409325!2d-87.85768472445187!3d41.653811579427945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e41e908329ed5%3A0x16b328b69c9db322!2sMelt%20N%20Dip!5e1!3m2!1sen!2sin!4v1775709946997!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2980.793214878652!2d-87.85457382337777!3d41.66258937126131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e22709cf7d953%3A0x6b6a0378e9f5651e!2s13030%20LaGrange%20Rd%2C%20Palos%20Park%2C%20IL%2060464!5e0!3m2!1sen!2sus!4v1717238400000!5m2!1sen!2sus"
             className="mnd-map-iframe"
             allowFullScreen
             loading="lazy"
