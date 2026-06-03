@@ -24,8 +24,8 @@ export default function Home() {
         "url": "https://delightenterprisesllc.com/",
         "logo": "https://delightenterprisesllc.com/assets/logo.png",
         "image": "https://delightenterprisesllc.com/assets/hero-banner.jpg",
-        "description": "Chicago's premier dessert catering service. We specialize in luxury Belgian chocolate fountains, live crepe stations, artisan gelato carts, and 100% Halal custom sweet platters for corporate events and weddings.",
-        "telephone": "+1-708-608-8982",
+        "description": "Chicago's premier dessert catering service. We specialize in premium Belgian chocolate fountains, live crepe stations, artisan gelato carts, and Halal custom sweet platters for corporate events and weddings.",
+        "telephone": "+1-312-497-3697",
         "email": "owner@delightenterprisesllc.com",
         "priceRange": "$$$",
         "servesCuisine": [
@@ -84,7 +84,7 @@ export default function Home() {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Luxury Wedding Dessert Tables"
+                "name": "Wedding Dessert Tables"
               }
             },
             {
@@ -109,7 +109,7 @@ export default function Home() {
         "@id": "https://delightenterprisesllc.com/#webpage",
         "url": "https://delightenterprisesllc.com/",
         "name": "Premium Dessert Catering in Chicago | Delight Enterprises LLC",
-        "description": "Elevating events across Chicagoland with luxury Belgian chocolate, live crepe stations, artisan gelato carts, and 100% Halal custom sweet platters.",
+        "description": "Elevating events across Chicagoland with premium Belgian chocolate, live crepe stations, artisan gelato carts, and Halal custom sweet platters.",
         "isPartOf": {
           "@id": "https://delightenterprisesllc.com/#website"
         },

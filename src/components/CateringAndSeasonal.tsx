@@ -20,7 +20,7 @@ import CustomSelect from "./CustomSelect";
 const CAT_CARDS = [
   {
     Icon: Heart,
-    name: "Luxury Wedding Catering",
+    name: "Wedding Catering",
     desc: "Breathtaking dessert table setups, flowing Belgian chocolate fountains, and artisan gelato bars. We design custom dessert stations as memorable as your ceremony.",
   },
   {
@@ -36,7 +36,7 @@ const CAT_CARDS = [
   {
     Icon: Building2,
     name: "Private Venue Rental",
-    desc: "Hire our aesthetic Palos Park lounge exclusively. An immersive, high-end private venue rental perfect for bridal showers, Sweet 16s, and intimate banquets.",
+    desc: "Hire our aesthetic Palos Park store exclusively. An immersive, high-end private venue rental perfect for bridal showers, Sweet 16s, and intimate banquets.",
   },
 ];
 
@@ -51,13 +51,13 @@ const SEASONAL_CARDS = [
     img: "assets/images/delight-enterprises-4.png",
     season: "Holiday & Winter",
     name: "Festive Dessert Stations",
-    text: "Custom sweet platters and luxury chocolate fountains crafted for Thanksgiving, winter banquets, and corporate holiday parties.",
+    text: "Custom sweet platters and premium chocolate fountains crafted for Thanksgiving, winter banquets, and corporate holiday parties.",
   },
   {
-    img: "assets/images/kunafa_crepe.jpeg",
+    img: "assets/images/catering/ramadan_eid_celebration.png",
     season: "Cultural Traditions",
     name: "Ramadan & Eid Specials",
-    text: "Warm Kunafa crepes, custom platters, and 100% Halal dessert stations designed for community and family iftars.",
+    text: "Warm Kunafa crepes, custom platters, and Halal dessert stations designed for community and family iftars.",
   },
 ];
 
@@ -248,7 +248,7 @@ export default function CateringAndSeasonal() {
       {/* ── CATERING ──────────────────────────────────────── */}
       <section
         id="catering"
-        className="py-20 lg:py-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
+        className="py-20 lg:pt-16 lg:pb-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
         style={{ background: "var(--color-paper)" }}
       >
         <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -281,7 +281,7 @@ export default function CateringAndSeasonal() {
               <span className="overflow-hidden block py-1">
                 <span className="cat-reveal-line block">
                   <em className="italic" style={{ color: "var(--color-teal)" }}>
-                    Luxury Dessert Experience
+                    Artisanal Dessert Experience
                   </em>{" "}
                   to You
                 </span>
@@ -297,8 +297,8 @@ export default function CateringAndSeasonal() {
               </em>
               .
               <span className="block mt-4 text-ink/80">
-                We specialize in high-end corporate dessert catering, luxury
-                weddings, and 100% Halal sweet platters. We also cater to
+                We specialize in high-end corporate dessert catering, wedding
+                celebrations, and Halal sweet platters. We also cater to
                 Graduations, Iftar & Eid, and provide custom Drop-Off Trays.
               </span>
               <span className="block mt-4 text-[15px]">
@@ -794,7 +794,7 @@ export default function CateringAndSeasonal() {
 
       {/* ── SEASONAL ──────────────────────────────────────── */}
       <section
-        className="py-20 lg:py-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
+        className="py-20 lg:pt-16 lg:pb-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
         style={{ background: "var(--color-parchment)" }}
       >
         <div className="max-w-[1400px] mx-auto w-full">
@@ -825,14 +825,14 @@ export default function CateringAndSeasonal() {
             >
               <span className="overflow-hidden block py-1">
                 <span className="season-reveal-line block">
-                  Made for{" "}
+                  Crafted for{" "}
                   <em className="italic" style={{ color: "var(--color-teal)" }}>
                     Every
                   </em>
                 </span>
               </span>
               <span className="overflow-hidden block py-1">
-                <span className="season-reveal-line block">Season</span>
+                <span className="season-reveal-line block">Celebration</span>
               </span>
             </h2>
             <p

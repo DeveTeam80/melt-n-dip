@@ -121,7 +121,7 @@ export default function Products() {
     {
       img: "assets/dubai-chocolate-crepe.jpg",
       tag: "Viral Sensation",
-      name: "Dubai Chocolate",
+      name: "Dubai Chocolate Crepe",
       className: "min-h-[300px]",
       nameClass: "text-[24px]",
     },
@@ -135,7 +135,7 @@ export default function Products() {
     {
       img: "assets/brownie-waffle.jpg",
       tag: "100% Belgian",
-      name: "Chocolate Waffle",
+      name: "Brownie Waffle",
       className: "min-h-[300px]",
       nameClass: "text-[24px]",
     },

@@ -126,7 +126,7 @@ export default function About() {
       style={{ minHeight: "90vh" }}
     >
       {/* ── LEFT PANEL ──────────────────────────────── */}
-      <div className="about-left-container flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-20 lg:py-32">
+      <div className="about-left-container flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-20 lg:pt-20 lg:pb-32">
         <div className="w-full max-w-[480px] lg:ml-auto">
           <div className="about-fade-up flex items-center gap-3 mb-5">
             <span
@@ -184,7 +184,7 @@ export default function About() {
             </em>
             . Delight Enterprises LLC was founded to bring that exact feeling to
             your special events. As a premier dessert catering company, we
-            meticulously craft luxury dessert tables, live catering stations,
+            meticulously craft custom dessert tables, live catering stations,
             and custom platters to bring joy to every celebration.
           </p>
 

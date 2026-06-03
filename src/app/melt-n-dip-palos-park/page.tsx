@@ -116,7 +116,7 @@ const CATERING_SERVICES = [
   {
     Icon: Building2,
     name: "Store Rental",
-    desc: "Hire the Palos Park lounge exclusively for private events & intimate celebrations.",
+    desc: "Hire the Palos Park store exclusively for private events & intimate celebrations.",
   },
 ];
 
@@ -723,7 +723,7 @@ function MndFooter() {
                 {[
                   "Artisan Gelato",
                   "Melt-n-Dip Crepes",
-                  "Dubai Chocolate",
+                  "Dubai Chocolate Crepe",
                   "Belgian Waffles",
                   "Lotus Waffle",
                 ].map((item) => (

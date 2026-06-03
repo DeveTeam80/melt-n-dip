@@ -51,14 +51,14 @@ export default function BagDrawer({
                                     ${item.pricePerPerson}/pp · <span className="text-teal font-medium">${(item.pricePerPerson * item.quantity).toLocaleString()} total</span>
                                 </p>
                             </div>
-                            
+
                             <div className="flex items-center gap-2 bg-white border border-linen rounded-full p-1 shadow-sm">
                                 <button onClick={() => onRemove(item.id)}
                                     className="hover-target w-7 h-7 flex items-center justify-center rounded-full hover:bg-parchment transition-colors">
                                     <Minus style={{ width: "11px", height: "11px" }} strokeWidth={2} />
                                 </button>
-                                
-                                <input 
+
+                                <input
                                     type="number"
                                     value={item.quantity}
                                     onChange={(e) => onUpdateQty(item.id, parseInt(e.target.value) || 0)}
@@ -98,7 +98,7 @@ export default function BagDrawer({
                                     ${bagTotal.toLocaleString()}
                                 </span>
                             </div>
-                            
+
                             <p style={{ fontSize: "12px", color: "var(--color-taupe)", lineHeight: 1.6, marginBottom: "16px" }}>
                                 This is an approximate estimate. Final pricing depends on event location, timing, staffing, setup, menu customization, and availability. Call us to finalize your catering order.
                             </p>
@@ -109,7 +109,7 @@ export default function BagDrawer({
                                     style={{ height: "48px", fontSize: "11px", letterSpacing: "1.5px", textTransform: "uppercase" }}>
                                     Request Catering Quote
                                 </button>
-                                
+
                                 <a href="tel:+17086088982"
                                     className="hover-target w-full flex items-center justify-center border border-teal text-teal font-medium hover:bg-teal-faint transition-colors duration-300"
                                     style={{ height: "48px", fontSize: "11px", letterSpacing: "1.5px", textTransform: "uppercase", borderRadius: "1px" }}>
@@ -125,7 +125,7 @@ export default function BagDrawer({
                                     Save My Bag
                                 </button>
                             </div>
-                            
+
                             <button onClick={onClear}
                                 className="w-full mt-2 hover-target opacity-60 hover:opacity-100 transition-opacity text-center"
                                 style={{ fontSize: "10px", color: "var(--color-taupe)", letterSpacing: "1px", textTransform: "uppercase", padding: "4px" }}>

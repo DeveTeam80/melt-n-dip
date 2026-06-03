@@ -393,7 +393,7 @@ export default function BagBuilder({
       <section
         ref={containerRef}
         id="estimator"
-        className="relative z-40 py-24 lg:py-32 px-8 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
+        className="relative z-40 py-24 lg:pt-20 lg:pb-32 px-8 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
       >
         {/* Header */}
         <div className="mb-16 lg:mb-20">

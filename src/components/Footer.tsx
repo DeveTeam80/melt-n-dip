@@ -140,7 +140,7 @@ export default function Footer() {
                 {[
                   "Artisan Gelato",
                   "Melt-n-Dip Crepes",
-                  "Dubai Chocolate",
+                  "Dubai Chocolate Crepe",
                   "Belgian Waffles",
                   "Seasonal Specials",
                 ].map((link) => (
@@ -163,28 +163,15 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Visit Col */}
+            {/* Office Info Col */}
             <div className="ft-col">
               <p
                 className="uppercase mb-6 text-[14px] font-semibold tracking-[2.5px]"
                 style={{ color: "var(--color-amber-vibrant)" }}
               >
-                Visit
+                Office Info
               </p>
               <div className="flex flex-col gap-6 text-[17px]">
-                {/* Location */}
-                <div className="flex gap-3">
-                  <MapPin
-                    className="w-4 h-4 text-amber shrink-0 mt-0.5"
-                    strokeWidth={1.5}
-                  />
-                  <p className="font-light leading-[1.7] text-white">
-                    60 Old Creek Rd
-                    <br />
-                    Palos Park, IL 60464
-                  </p>
-                </div>
-
                 {/* Hours */}
                 <div className="flex gap-3">
                   <Clock
@@ -192,9 +179,7 @@ export default function Footer() {
                     strokeWidth={1.5}
                   />
                   <p className="font-light leading-[1.7] text-white">
-                    Sun – Thu: 12pm – 11pm
-                    <br />
-                    Fri – Sat: 12pm – Midnight
+                    Mon – Fri: 9am – 6pm
                   </p>
                 </div>
 
@@ -211,16 +196,6 @@ export default function Footer() {
                     owner@delightenterprisesllc.com
                   </a>
                   <a
-                    href="tel:+17086088982"
-                    className="group flex items-center gap-3 font-light text-white hover:text-amber transition-colors hover-target text-[16px]"
-                  >
-                    <Phone
-                      className="w-4 h-4 text-amber group-hover:text-amber transition-colors"
-                      strokeWidth={1.5}
-                    />
-                    (708) 608-8982
-                  </a>
-                  <a
                     href="tel:+16308009292"
                     className="group flex items-center gap-3 font-light text-white hover:text-amber transition-colors hover-target text-[16px]"
                   >
@@ -230,6 +205,34 @@ export default function Footer() {
                     />
                     (630) 800-9292 - Store Rental
                   </a>
+                  <a
+                    href="tel:+13124973697"
+                    className="group flex items-center gap-3 font-light text-white hover:text-amber transition-colors hover-target text-[16px]"
+                  >
+                    <Phone
+                      className="w-4 h-4 text-amber group-hover:text-amber transition-colors"
+                      strokeWidth={1.5}
+                    />
+                    (312) 497-3697
+                  </a>
+                </div>
+
+                {/* Mailing Address */}
+                <div className="flex gap-3 pt-2 border-t border-cream/5">
+                  <MapPin
+                    className="w-4 h-4 text-amber shrink-0 mt-0.5"
+                    strokeWidth={1.5}
+                  />
+                  <div>
+                    <p className="text-[12px] uppercase tracking-[1.5px] text-amber/80 mb-1 font-semibold">
+                      Mailing Address
+                    </p>
+                    <p className="font-light leading-[1.7] text-white">
+                      60 Old Creek Rd
+                      <br />
+                      Palos Park, IL 60464
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
