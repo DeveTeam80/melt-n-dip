@@ -63,7 +63,7 @@ export default function CateringFAQ() {
   return (
     <section
       ref={containerRef}
-      className="pt-24 lg:pt-36 px-8 sm:px-12 lg:px-20 bg-paper border-t border-linen"
+      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-12 lg:px-20 bg-paper border-t border-linen"
     >
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start">
         {/* ── LEFT - STICKY HEADER ── */}
