@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ChevronRight } from "lucide-react";
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -29,8 +29,10 @@ export default function CateringHero() {
         delay: 0.1,
       });
 
+      // Instantly show image wrapper
       tl.to(imgWrapRef.current, { opacity: 1, duration: 0.01 }, 0);
 
+      // Clip-path reveal + unblur
       tl.fromTo(
         imgWrapRef.current,
         { clipPath: "inset(15% 10% 15% 10% round 12px)" },
@@ -47,23 +49,34 @@ export default function CateringHero() {
         0,
       );
 
+      // Badge
+      tl.fromTo(
+        ".ch-badge",
+        { opacity: 0, y: 12, filter: "blur(6px)" },
+        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
+        0.2,
+      );
+
+      // Headline lines
       tl.fromTo(
         ".ch-reveal-line",
-        { y: "120%", rotate: 2, opacity: 0 },
-        { y: "0%", rotate: 0, opacity: 1, duration: 1.2, stagger: 0.12 },
-        0.3,
+        { y: "110%", rotate: 1.5, opacity: 0 },
+        { y: "0%", rotate: 0, opacity: 1, duration: 1.2, stagger: 0.1 },
+        0.35,
       );
 
+      // Body + CTA
       tl.fromTo(
         ".ch-fade-up",
-        { opacity: 0, y: 24 },
+        { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 1, stagger: 0.1 },
-        0.6,
+        0.65,
       );
 
+      // Stats dock
       tl.fromTo(
         ".ch-stat-dock",
-        { opacity: 0, y: 40, filter: "blur(10px)" },
+        { opacity: 0, y: 40, filter: "blur(8px)" },
         {
           opacity: 1,
           y: 0,
@@ -71,9 +84,25 @@ export default function CateringHero() {
           duration: 1.2,
           ease: "power3.out",
         },
-        1,
+        1.0,
       );
 
+      // Vertical tag + brackets
+      tl.fromTo(
+        ".ch-side-tag",
+        { opacity: 0, x: 16 },
+        { opacity: 1, x: 0, duration: 1, ease: "power3.out" },
+        0.8,
+      );
+
+      tl.fromTo(
+        ".ch-corner",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8, stagger: 0.1 },
+        0.5,
+      );
+
+      // Scroll parallax
       gsap.to(imgRef.current, {
         yPercent: 15,
         ease: "none",
@@ -91,7 +120,6 @@ export default function CateringHero() {
 
   const onMagMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
-
     gsap.to(e.currentTarget, {
       x: (e.clientX - r.left - r.width / 2) * 0.38,
       y: (e.clientY - r.top - r.height / 2) * 0.38,
@@ -112,8 +140,18 @@ export default function CateringHero() {
     <section
       ref={containerRef}
       className="relative w-full overflow-hidden bg-ink"
-      style={{ height: "100svh", minHeight: "720px", maxHeight: "1100px" }}
+      style={{ height: "100svh", minHeight: "620px", maxHeight: "1100px" }}
     >
+      {/* ── PRE-HIDE ─────────────────────────────────── */}
+      <style>{`
+        .ch-badge       { opacity: 0; }
+        .ch-reveal-line { opacity: 0; transform: translateY(110%); }
+        .ch-fade-up     { opacity: 0; }
+        .ch-stat-dock   { opacity: 0; }
+        .ch-side-tag    { opacity: 0; }
+        .ch-corner      { opacity: 0; }
+      `}</style>
+
       {/* ── BACKGROUND ──────────────────────────────── */}
       <div
         ref={imgWrapRef}
@@ -131,21 +169,18 @@ export default function CateringHero() {
           }}
         />
 
-        {/* Deep teal multiply overlay */}
+        {/* Teal multiply overlay */}
         <div
           className="absolute inset-0"
-          style={{
-            background: "rgba(13,42,39,0.3)",
-            mixBlendMode: "multiply",
-          }}
+          style={{ background: "rgba(13,42,39,0.3)", mixBlendMode: "multiply" }}
         />
 
-        {/* Left-to-right gradient */}
+        {/* Left-to-right gradient — slightly lighter on mobile so image peeks through */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, rgba(9,24,22,0.96) 0%, rgba(9,24,22,0.75) 40%, rgba(9,24,22,0.35) 70%, transparent 100%)",
+              "linear-gradient(to right, rgba(9,24,22,0.96) 0%, rgba(9,24,22,0.82) 38%, rgba(9,24,22,0.4) 65%, transparent 100%)",
           }}
         />
 
@@ -154,7 +189,7 @@ export default function CateringHero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(9,24,22,0.95) 0%, transparent 40%)",
+              "linear-gradient(to top, rgba(9,24,22,0.97) 0%, rgba(9,24,22,0.4) 28%, transparent 50%)",
           }}
         />
 
@@ -163,151 +198,154 @@ export default function CateringHero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(9,24,22,0.4) 0%, transparent 25%)",
+              "linear-gradient(to bottom, rgba(9,24,22,0.5) 0%, transparent 20%)",
           }}
         />
       </div>
 
-      {/* Pre-hide animated elements */}
-      <style>{`
-        .ch-reveal-line { opacity: 0; transform: translateY(120%); }
-        .ch-fade-up     { opacity: 0; }
-        .ch-stat-dock   { opacity: 0; }
-      `}</style>
+      {/* ── CORNER BRACKETS ─────────────────────────── */}
+      {/* Top-left */}
+      <div className="ch-corner absolute top-8 left-8 z-10 pointer-events-none hidden lg:block">
+        <div className="relative w-10 h-10">
+          <div className="absolute top-0 left-0 w-10 h-px" style={{ background: "var(--color-teal-pale)", opacity: 0.35 }} />
+          <div className="absolute top-0 left-0 w-px h-10" style={{ background: "var(--color-teal-pale)", opacity: 0.35 }} />
+        </div>
+      </div>
+      {/* Top-right */}
+      <div className="ch-corner absolute top-8 right-8 z-10 pointer-events-none hidden lg:block">
+        <div className="relative w-10 h-10">
+          <div className="absolute top-0 right-0 w-10 h-px" style={{ background: "var(--color-teal-pale)", opacity: 0.35 }} />
+          <div className="absolute top-0 right-0 w-px h-10" style={{ background: "var(--color-teal-pale)", opacity: 0.35 }} />
+        </div>
+      </div>
+
+      {/* ── VERTICAL SIDE TAG (right) ────────────────── */}
+      <div
+        className="ch-side-tag absolute right-10 top-1/2 z-10 pointer-events-none hidden lg:flex"
+        style={{ transform: "translateY(-50%)" }}
+      >
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-px h-16" style={{ background: "linear-gradient(to bottom, transparent, rgba(251,253,252,0.25))" }} />
+          <span
+            className="font-light tracking-[0.25em] uppercase"
+            style={{
+              fontSize: "10px",
+              color: "rgba(251,253,252,0.3)",
+              writingMode: "vertical-rl",
+              textOrientation: "mixed",
+              letterSpacing: "0.28em",
+            }}
+          >
+            Premium Event Catering
+          </span>
+          <div className="w-px h-16" style={{ background: "linear-gradient(to top, transparent, rgba(251,253,252,0.25))" }} />
+        </div>
+      </div>
 
       {/* ── CONTENT ─────────────────────────────────── */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:px-12 lg:px-20">
-        <div className="flex flex-col">
+      <div className="relative z-10 h-full flex flex-col justify-center pt-20 sm:pt-28 lg:pt-0 px-8 sm:px-12 lg:px-20">
+        <div className="flex flex-col max-w-2xl">
+
+          {/* Badge */}
+          <div className="ch-badge mb-6 w-fit">
+            <span
+              className="inline-flex items-center gap-2 font-light tracking-widest uppercase"
+              style={{
+                fontSize: "10px",
+                color: "var(--color-amber, #D4860A)",
+                border: "1px solid rgba(212,134,10,0.35)",
+                padding: "6px 14px",
+                letterSpacing: "0.18em",
+              }}
+            >
+              <span
+                className="inline-block w-1.5 h-1.5 rounded-full"
+                style={{ background: "var(--color-amber, #D4860A)" }}
+              />
+              Belgian Chocolate · Gelato · Live Stations
+            </span>
+          </div>
+
+          {/* Headline */}
           <h1
-            className="font-serif font-light flex flex-col gap-1 mb-8 tracking-[-0.02em]"
+            className="font-serif font-light flex flex-col gap-1 mb-7 tracking-[-0.02em]"
             style={{
-              fontSize: "clamp(44px, 6vw, 88px)",
-              lineHeight: 1,
+              fontSize: "clamp(40px, 5.5vw, 84px)",
+              lineHeight: 1.02,
               color: "#fbfdfc",
               textShadow: "0 2px 40px rgba(0,0,0,0.5)",
             }}
           >
             <span className="overflow-hidden block py-1">
-              <span className="ch-reveal-line block">
-                Dessert Catering That
-              </span>
+              <span className="ch-reveal-line block">Dessert Catering That</span>
             </span>
-
             <span className="overflow-hidden block py-1">
               <span className="ch-reveal-line block">Turns Every Event</span>
             </span>
-
             <span className="overflow-hidden block py-1">
               <span className="ch-reveal-line block">
                 Into a{" "}
-                <em
-                  className="italic"
-                  style={{ color: "var(--color-amber, #D4860A)" }}
-                >
+                <em className="italic" style={{ color: "var(--color-amber, #D4860A)" }}>
                   Celebration.
                 </em>
               </span>
             </span>
           </h1>
 
+          {/* Body */}
           <p
-            className="ch-fade-up font-light leading-[1.85] mb-4 md:mb-12"
+            className="ch-fade-up font-light leading-[1.85] mb-8"
             style={{
-              fontSize: "17px",
-              color: "white",
-              maxWidth: "460px",
+              fontSize: "16px",
+              color: "rgba(251,253,252,0.72)",
+              maxWidth: "440px",
               textShadow: "0 1px 12px rgba(0,0,0,0.4)",
             }}
           >
-            Bring Melt N Dip's famous Belgian chocolate desserts, crepes, waffles, and gelato to your next gathering. Build your dessert cart, choose your guest count, get an instant estimate, and let us finalize the details.
+            Bring Melt N Dip's signature Belgian chocolate creations, live
+            stations, and artisan gelato to your next gathering. Customize your
+            menu, select your guest count, and receive an instant estimate.
           </p>
-        </div>
-      </div>
 
-      {/* ── BOTTOM ACTION ROW ───────────────────────── */}
-      <div className="absolute bottom-26 lg:bottom-14 left-8 right-8 lg:left-20 lg:right-20 z-20">
-        <div className="flex items-center justify-between gap-8">
-          {/* CTA BUTTON */}
-          <div className="ch-fade-up pb-2">
+          {/* CTAs */}
+          <div className="ch-fade-up flex items-center gap-5 flex-wrap">
             <a
               href="#estimator"
               onMouseMove={onMagMove}
               onMouseLeave={onMagLeave}
-              className="cta-primary hover-target flex items-center justify-center gap-3"
+              className="cta-primary hover-target inline-flex items-center justify-center gap-3 w-fit"
               style={{
-                height: "56px",
-                padding: "0 44px",
-                fontSize: "13px",
+                height: "54px",
+                padding: "0 34px",
+                fontSize: "12.5px",
+                letterSpacing: "0.06em",
                 boxShadow: "0 10px 40px rgba(26,122,110,0.35)",
               }}
             >
-              Build your Cart
+              Plan Your Menu
               <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
             </a>
-          </div>
 
-          {/* GLASSMORPHIC STAT DOCK */}
-          <div className="ch-stat-dock hidden md:flex md:w-[50%] lg:w-[60%]">
-            <div
-              className="flex items-center rounded-[3px] divide-x w-full"
+            {/* Ghost secondary CTA */}
+            <a
+              href="#how-it-works"
+              className="inline-flex items-center gap-1.5 font-light transition-all group"
               style={{
-                background: "rgba(251,253,252,0.05)",
-                backdropFilter: "blur(24px)",
-                WebkitBackdropFilter: "blur(24px)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+                fontSize: "13px",
+                color: "rgba(251,253,252,0.5)",
+                letterSpacing: "0.04em",
               }}
             >
-              {STATS.map(({ num, label }, i) => (
-                <div
-                  key={label}
-                  className="flex flex-col py-5 px-8"
-                  style={{
-                    borderRight:
-                      i < STATS.length - 1
-                        ? "1px solid rgba(255,255,255,0.12)"
-                        : "none",
-                  }}
-                >
-                  <span
-                    className="font-light leading-none mb-2"
-                    style={{
-                      fontSize: "24px",
-                      letterSpacing: "-0.03em",
-                      color: "#fbfdfc",
-                    }}
-                  >
-                    {num}
-                  </span>
-
-                  <span
-                    className="uppercase font-medium"
-                    style={{
-                      fontSize: "11px",
-                      letterSpacing: "2px",
-                      color: "rgba(168,216,212,0.7)",
-                    }}
-                  >
-                    {label}
-                  </span>
-                </div>
-              ))}
-            </div>
+              <span className="group-hover:text-white transition-colors duration-300">
+                See how it works
+              </span>
+              <ChevronRight
+                className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                strokeWidth={1.5}
+              />
+            </a>
           </div>
         </div>
-      </div>
-
-      {/* ── CORNER BRACKET ──────────────────────────── */}
-      <div className="absolute top-10 right-10 z-10 opacity-20 pointer-events-none rotate-180 hidden lg:block">
-        <div
-          className="w-10 h-px"
-          style={{ background: "var(--color-teal-pale)" }}
-        />
-
-        <div
-          className="w-px h-10"
-          style={{ background: "var(--color-teal-pale)" }}
-        />
       </div>
     </section>
   );

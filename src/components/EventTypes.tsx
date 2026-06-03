@@ -58,7 +58,7 @@ export default function EventTypes() {
   return (
     <section
       ref={containerRef}
-      className="relative py-24 lg:pt-24 lg:pb-32 overflow-hidden bg-ink min-h-[800px] flex items-center"
+      className="relative py-12 sm:py-16 lg:pt-24 lg:pb-32 overflow-hidden bg-ink min-h-[600px] lg:min-h-[800px] flex items-center"
     >
       {/* Dynamic Backgrounds */}
       {EVENTS.map((ev) => (
@@ -76,7 +76,7 @@ export default function EventTypes() {
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent" />
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-8 sm:px-12 lg:px-20">
+      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-4 sm:px-12 lg:px-20">
         <div className="ls-fade-up flex items-center gap-3 mb-6">
           {" "}
           <div className="w-8 h-px bg-amber" />
@@ -90,13 +90,14 @@ export default function EventTypes() {
             <div
               key={ev.id}
               onMouseEnter={() => setActiveEvent(ev)}
+              onClick={() => setActiveEvent(ev)}
               className="et-fade opacity-0 group flex flex-col justify-center py-8 lg:py-10 border-t border-white/10 hover-target cursor-none transition-colors duration-500 hover:border-teal-pale/50"
             >
               <div className="flex items-center justify-between">
                 <h3
                   className={`font-serif font-light transition-all duration-500 ${activeEvent.id === ev.id ? "text-amber translate-x-4" : "text-white"}`}
                   style={{
-                    fontSize: "clamp(40px, 5vw, 72px)",
+                    fontSize: "clamp(30px, 5vw, 72px)",
                     letterSpacing: "-0.02em",
                   }}
                 >

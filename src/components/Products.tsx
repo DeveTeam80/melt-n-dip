@@ -133,7 +133,7 @@ export default function Products() {
       nameClass: "text-[24px]",
     },
     {
-      img: "assets/brownie-waffle.jpg",
+      img: "assets/images/products/brownieswaffle.png",
       tag: "100% Belgian",
       name: "Brownie Waffle",
       className: "min-h-[300px]",

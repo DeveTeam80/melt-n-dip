@@ -393,10 +393,10 @@ export default function BagBuilder({
       <section
         ref={containerRef}
         id="estimator"
-        className="relative z-40 py-24 lg:pt-20 lg:pb-32 px-8 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
+        className="relative z-40 py-12 lg:pt-16 lg:pb-24 px-4 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
       >
         {/* Header */}
-        <div className="mb-16 lg:mb-20">
+        <div className="mb-8 lg:mb-12">
           <div className="builder-fade-up opacity-0 section-eyebrow">
             <span
               style={{
@@ -409,9 +409,9 @@ export default function BagBuilder({
               The Estimator
             </span>
           </div>
-          <div className="flex align-items-center justify-between">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <h2
-              className="font-serif font-light text-ink tracking-tight flex flex-col gap-1 mb-6"
+              className="font-serif font-light text-ink tracking-tight flex flex-col gap-1 md:mb-0"
               style={{
                 fontSize: "clamp(38px, 4.5vw, 64px)",
                 lineHeight: "1.05",
@@ -444,9 +444,9 @@ export default function BagBuilder({
         </div>
 
         {/* ── Inputs Bar ───────────────────────────────────────────── */}
-        <div className="builder-fade-up opacity-0 relative z-50 grid grid-cols-1 lg:grid-cols-[1.5fr_1fr_1fr] gap-8 lg:gap-12 mb-24 p-8 lg:p-12 rounded-[3px] bg-parchment border border-linen shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
+        <div className="builder-fade-up opacity-0 relative z-50 grid grid-cols-1 lg:grid-cols-[1.5fr_1fr_1fr] gap-6 lg:gap-12 mb-12 lg:mb-16 p-6 sm:p-8 lg:p-12 rounded-[3px] bg-parchment border border-linen shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
           {/* Guest Count */}
-          <div className="flex flex-col gap-2 border-b lg:border-b-0 lg:border-r border-linen pb-8 lg:pb-0 lg:pr-12">
+          <div className="flex flex-col gap-2 lg:border-r border-linen lg:pr-12">
             <label className="text-[15px] tracking-[3px] uppercase font-medium text-teal mb-2">
               Guest Count <span className="text-amber">*</span>
             </label>
@@ -456,7 +456,7 @@ export default function BagBuilder({
               placeholder="e.g.75"
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
-              className="bg-transparent outline-none font-serif font-light text-ink w-full placeholder:text-teal/80/90"
+              className="bg-transparent outline-none font-serif font-light text-ink w-full placeholder:text-teal/60 border-b border-linen lg:border-b-0 pb-3"
               style={{
                 fontSize: "clamp(48px, 6vw, 72px)",
                 letterSpacing: "-0.02em",
@@ -466,7 +466,7 @@ export default function BagBuilder({
           </div>
 
           {/* Event Type */}
-          <div className="flex flex-col justify-center gap-8 lg:pr-6">
+          <div className="flex flex-col justify-center lg:border-r border-linen lg:px-12">
             <div className="flex flex-col gap-2">
               <label className="text-[15px] tracking-[3px] uppercase font-medium text-teal">
                 Select Event Type
@@ -483,7 +483,7 @@ export default function BagBuilder({
           {/* Service Style  visually highlighted when toast is showing */}
           <div
             ref={serviceBoxRef}
-            className="flex flex-col justify-center gap-8 rounded-[3px] transition-all duration-500"
+            className="flex flex-col justify-center lg:pl-12 rounded-[3px] transition-all duration-500"
             style={{ padding: "8px", margin: "-8px" }}
           >
             <div className="flex flex-col gap-2">
@@ -519,7 +519,7 @@ export default function BagBuilder({
           </div>
         </div>
 
-        <div id="option-a" className="mb-12">
+        <div id="option-a" className="mb-8 lg:mb-12">
           <div className="flex items-center gap-4 mb-8">
             <h3 className="uppercase text-[14px] tracking-[3px] font-bold text-ink">
               Option A: Special Packages
@@ -527,7 +527,7 @@ export default function BagBuilder({
             <div className="h-[1px] flex-1 bg-linen" />
           </div>
 
-          <div className="builder-fade-up opacity-0 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="builder-fade-up opacity-0 grid grid-cols-1 md:grid-cols-3 gap-6">
             {PACKAGES.map((pkg, idx) => {
               const bgImages = [
                 "assets/images/chocalate_drizzle.jpg",
@@ -664,7 +664,7 @@ export default function BagBuilder({
         </div>
 
         {/* ── Divider ──────────────────────────────────────────────── */}
-        <div className="relative py-20 flex justify-center items-center">
+        <div className="relative py-12 lg:py-20 flex justify-center items-center">
           <div className="absolute w-full h-[1px] bg-linen" />
           <div className="relative z-10 bg-paper px-6 py-2 border border-linen rounded-full font-serif font-bold text-teal text-lg shadow-sm">
             or build your own
@@ -672,7 +672,7 @@ export default function BagBuilder({
         </div>
 
         {/* ── Option B ─────────────────────────────────────────────── */}
-        <div id="option-b" className="mb-12">
+        <div id="option-b" className="mb-8 lg:mb-12">
           <div className="flex items-center gap-4 mb-10">
             <h3 className="uppercase text-[14px] tracking-[3px] font-bold text-ink">
               Option B: Choose from the Menu!
