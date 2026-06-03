@@ -102,7 +102,7 @@ export default function CateringQuoteForm({
     <section
       ref={containerRef}
       id="quote"
-      className="relative z-40 py-24 lg:py-36 px-8 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
+      className="relative z-40 py-24 lg:pt-20 lg:pb-36 px-8 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
         {/* ── LEFT - CONTACT INFO ── */}
@@ -125,16 +125,16 @@ export default function CateringQuoteForm({
           <div className="quote-fade opacity-0 flex flex-col gap-6 w-full">
             {[
               {
-                href: "tel:+17086088982",
-                Icon: Phone,
-                label: "Catering Inquiries",
-                val: "(708) 608-8982",
-              },
-              {
                 href: "tel:+16308009292",
-                Icon: MapPin,
+                Icon: Phone,
                 label: "Store Rental",
                 val: "(630) 800-9292",
+              },
+              {
+                href: "tel:+13124973697",
+                Icon: Phone,
+                label: "Office",
+                val: "(312) 497-3697",
               },
               {
                 href: "mailto:owner@delightenterprisesllc.com",

@@ -46,7 +46,7 @@ export default function StoreRental() {
   return (
     <section
       ref={containerRef}
-      className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20 bg-ink text-cream"
+      className="py-24 lg:pt-20 lg:pb-36 px-8 sm:px-12 lg:px-20 bg-ink text-cream"
     >
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
         {/* ── LEFT COLUMN ── */}
@@ -67,7 +67,7 @@ export default function StoreRental() {
           >
             <span className="overflow-hidden block py-1">
               <span className="sr-reveal-line block opacity-0">
-                Rent Our Lounge
+                Rent Our Store
               </span>
             </span>
             <span className="overflow-hidden block py-1">
@@ -78,7 +78,7 @@ export default function StoreRental() {
           </h2>
 
           <p className="sr-fade-up opacity-0 font-light text-paper leading-[1.85] text-[17px] mb-12 max-w-[440px]">
-            The Palos Park Melt N Dip lounge, exclusively yours. Up to 60
+            The Palos Park Melt N Dip store, exclusively yours. Up to 60
             guests, full menu service, karaoke, sound system, and bespoke
             decoration packages available.
           </p>
@@ -110,7 +110,7 @@ export default function StoreRental() {
             </p>
             <ul className="flex flex-col gap-4">
               {[
-                "Exclusive use of the entire lounge",
+                "Exclusive use of the entire store",
                 "Full Melt N Dip menu service",
                 "Dedicated service staff",
                 "Custom decorations permitted",

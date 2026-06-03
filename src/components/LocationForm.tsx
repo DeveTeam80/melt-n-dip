@@ -104,7 +104,7 @@ export default function LocationForm() {
   const INFO = [
     {
       Icon: MapPin,
-      label: "Address",
+      label: "Mailing Address",
       content: (
         <p
           className="font-light transition-colors hover:text-teal-rich"
@@ -118,15 +118,13 @@ export default function LocationForm() {
     },
     {
       Icon: Clock,
-      label: "Hours",
+      label: "Office Hours",
       content: (
         <p
           className="font-light transition-colors hover:text-teal-rich"
           style={{ fontSize: "16px", color: "var(--color-teal)" }}
         >
-          Sun – Thu: 12pm – 11pm
-          <br />
-          Fri – Sat: 12pm – Midnight
+          Mon – Fri: 9am – 6pm
         </p>
       ),
     },
@@ -158,7 +156,7 @@ export default function LocationForm() {
     <section
       ref={containerRef}
       id="quote"
-      className="py-20 lg:py-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
+      className="py-20 lg:pt-16 lg:pb-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
       style={{ background: "var(--color-paper)" }}
     >
       <div className="max-w-[1400px] mx-auto w-full">

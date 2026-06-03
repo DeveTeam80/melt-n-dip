@@ -45,7 +45,7 @@ export default function FoodTruck() {
   return (
     <section
       ref={containerRef}
-      className="py-24 lg:py-32 px-8 sm:px-12 lg:px-20 bg-paper"
+      className="py-24 lg:pt-20 lg:pb-32 px-8 sm:px-12 lg:px-20 bg-paper"
     >
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-14">

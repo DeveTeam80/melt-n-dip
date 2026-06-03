@@ -23,7 +23,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Premium Dessert Catering in Chicago | Delight Enterprises LLC",
   description:
-    "Elevating events across Chicagoland with luxury Belgian chocolate, live crepe stations, artisan gelato carts, and 100% Halal custom sweet platters.",
+    "Elevating events across Chicagoland with premium Belgian chocolate, live crepe stations, artisan gelato carts, and Halal custom sweet platters.",
   icons: { icon: "/favicon.ico" },
 };
 

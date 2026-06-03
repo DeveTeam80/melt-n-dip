@@ -10,25 +10,25 @@ const USPS = [
     num: "01",
     Icon: IceCreamBowl,
     title: "Authentic Artisan Gelato",
-    desc: "Denser, richer, and more flavorful than traditional ice cream. Crafted the authentic Italian way, our gelato is served from our mobile gelato carts or in our lounge to elevate your next Chicago corporate event.",
+    desc: "Denser, richer, and more flavorful than traditional ice cream. Crafted the authentic Italian way and served from our mobile carts or in-store to elevate your Chicago events.",
   },
   {
     num: "02",
     Icon: Sparkles,
     title: "100% Belgian Chocolate",
-    desc: "Every dip and pour uses premium, single-origin Belgian couverturenever compound chocolate. Our luxury Belgian chocolate catering will elevate your wedding dessert tables and leave a lasting impression.",
+    desc: "Every dip uses premium, single-origin Belgian couverture—never compound chocolate. Our premium chocolate catering will elevate your events and leave a lasting impression.",
   },
   {
     num: "03",
     Icon: BadgeCheck,
-    title: "Fully Halal, Always",
-    desc: "Inclusivity is our founding commitment. Every single ingredient across our entire catering operation is strictly Halal-certified, making us the top choice for Halal catering in the South Suburbs.",
+    title: "Halal Menu",
+    desc: "Inclusivity is our founding commitment. Our dessert catering is prepared with Halal ingredients, ensuring a welcoming and worry-free experience for all your guests.",
   },
   {
     num: "04",
     Icon: MoonStar,
-    title: "Private Lounge & Event Venue",
-    desc: "The perfect spot to continue the evening after dinner in Orland Park or Tinley Park. Our Palos Park space is also available for exclusive private venue hire for bridal showers, Sweet 16s, and intimate banquets.",
+    title: "Private Store & Event Venue",
+    desc: "The perfect spot to continue your evening. Our Palos Park store is also available for exclusive private venue hire, birthdays, bridal showers, and intimate banquets.",
   },
 ];
 
@@ -119,9 +119,9 @@ export default function UspStrip() {
               <span className="w-8 h-px bg-amber" />
               <span
                 style={{
-                  fontSize: "11px",
+                  fontSize: "13px",
                   fontWeight: 500,
-                  letterSpacing: "3.5px",
+                  letterSpacing: "3px",
                   textTransform: "uppercase",
                   color: "var(--color-amber)",
                 }}

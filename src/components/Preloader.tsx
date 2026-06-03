@@ -24,126 +24,162 @@ export default function Preloader({ setIsLoading }: PreloaderProps) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          document.body.style.overflow = "";
-          setIsLoading(false);
-        },
-      });
+    let handleLoad: (() => void) | null = null;
+    let safetyTimeout: NodeJS.Timeout | null = null;
+    let progressTween: gsap.core.Tween | null = null;
 
-      // ── PHASE 1: Panels already cover screen - no entrance needed
-      // Just set them in place immediately
+    const ctx = gsap.context(() => {
+      // 1. Set initial states
       gsap.set(panelLeftRef.current, { x: "0%" });
       gsap.set(panelRgtRef.current, { x: "0%" });
+      gsap.set(dripLineRef.current, { scaleY: 0, transformOrigin: "top center" });
+      gsap.set(dripHeadRef.current, { y: "-100vh", opacity: 0 });
+      gsap.set(logoRef.current, { scale: 0.7, opacity: 0, filter: "blur(6px)" });
+      gsap.set(tagRef.current, { opacity: 0, y: 6 });
 
-      // ── PHASE 2: Drip line grows downward ─────────────────
-      // The "chocolate" line starts at top and drips to 100vh
-      tl.fromTo(
+      // 2. Entrance Timeline (Fast!)
+      const entrance = gsap.timeline();
+      
+      entrance.to(
         dripLineRef.current,
-        { scaleY: 0, transformOrigin: "top center" },
-        { scaleY: 1, duration: 1.6, ease: "power2.in" },
-        0.5,
+        { scaleY: 1, duration: 0.5, ease: "power2.in" },
+        0
       );
-
-      // Drip head (teardrop blob) follows the line bottom edge
-      tl.fromTo(
+      entrance.to(
         dripHeadRef.current,
-        { y: "-100vh", opacity: 0 },
-        {
-          y: "0vh",
-          opacity: 1,
-          duration: 1.6,
-          ease: "power2.in",
-          onUpdate() {
-            // Keep drip head stuck to bottom of line
-          },
-        },
-        0.5,
+        { y: "0vh", opacity: 1, duration: 0.5, ease: "power2.in" },
+        0
       );
 
-      // ── PHASE 3: Logo pops in at midpoint of drip ─────────
-      tl.fromTo(
+      entrance.to(
         logoRef.current,
-        { scale: 0.7, opacity: 0, filter: "blur(6px)" },
         {
           scale: 1,
           opacity: 1,
           filter: "blur(0px)",
-          duration: 0.9,
-          ease: "elastic.out(1, 0.5)",
+          duration: 0.4,
+          ease: "back.out(1.5)",
         },
-        1.2,
+        0.2
       );
 
-      // Tag line
-      tl.fromTo(
+      entrance.to(
         tagRef.current,
-        { opacity: 0, y: 6 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-        1.7,
+        { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+        0.3
       );
 
-      // ── PHASE 4: Counter + progress ───────────────────────
-      const counter = { val: 0 };
-      tl.to(
-        counter,
-        {
+      const progressObj = { val: 0 };
+
+      // Function to trigger exit
+      const triggerExit = () => {
+        const exit = gsap.timeline({
+          onComplete: () => {
+            document.body.style.overflow = "";
+            setIsLoading(false);
+          }
+        });
+
+        exit.to([logoRef.current, tagRef.current], {
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.2,
+          ease: "power2.in",
+        });
+        exit.to(
+          [counterRef.current, dripHeadRef.current],
+          { opacity: 0, duration: 0.2, ease: "power2.in" },
+          "<"
+        );
+
+        exit.to(
+          dripLineRef.current,
+          {
+            scaleY: 0,
+            transformOrigin: "top center",
+            duration: 0.3,
+            ease: "power3.in",
+          },
+          "-=0.1"
+        );
+
+        exit.to(
+          panelLeftRef.current,
+          { x: "-100%", duration: 0.6, ease: "power4.inOut" },
+          "-=0.15"
+        ).to(
+          panelRgtRef.current,
+          { x: "100%", duration: 0.6, ease: "power4.inOut" },
+          "<"
+        );
+      };
+
+      // Function to animate progress to 100 and exit
+      const completeLoading = (customDuration = 0.8, customDelay = 0) => {
+        if (progressTween) progressTween.kill();
+        
+        progressTween = gsap.to(progressObj, {
           val: 100,
-          duration: 1.9,
-          ease: "power1.inOut",
+          duration: customDuration,
+          delay: customDelay,
+          ease: "power2.out",
           onUpdate() {
-            const v = Math.round(counter.val);
+            const v = Math.round(progressObj.val);
             setCount(v);
             if (progressRef.current) {
               progressRef.current.style.transform = `scaleX(${v / 100})`;
             }
           },
-        },
-        0.5,
-      );
+          onComplete() {
+            // Keep the loaded 100% state visible for 0.4s before sweeping the panels open
+            gsap.delayedCall(0.4, triggerExit);
+          }
+        });
+      };
 
-      // ── PHASE 5: Hold ─────────────────────────────────────
-      tl.to({}, { duration: 0.5 });
+      const isLoaded = document.readyState === "complete";
+      
+      if (isLoaded) {
+        // If already loaded, count up smoothly over 1.2s after a slight 0.2s delay
+        completeLoading(1.2, 0.2);
+      } else {
+        // Slow increment to 90
+        progressTween = gsap.to(progressObj, {
+          val: 90,
+          duration: 12,
+          ease: "power1.out",
+          onUpdate() {
+            const v = Math.round(progressObj.val);
+            setCount(v);
+            if (progressRef.current) {
+              progressRef.current.style.transform = `scaleX(${v / 100})`;
+            }
+          }
+        });
 
-      // ── PHASE 6: Everything exits center ──────────────────
-      tl.to([logoRef.current, tagRef.current], {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.4,
-        ease: "power2.in",
-      });
-      tl.to(
-        [counterRef.current, dripHeadRef.current],
-        { opacity: 0, duration: 0.3, ease: "power2.in" },
-        "<",
-      );
+        handleLoad = () => {
+          completeLoading(0.8, 0);
+        };
 
-      // Drip line retracts upward
-      tl.to(
-        dripLineRef.current,
-        {
-          scaleY: 0,
-          transformOrigin: "top center",
-          duration: 0.5,
-          ease: "power3.in",
-        },
-        "-=0.1",
-      );
-
-      // ── PHASE 7: Panels split open left/right ─────────────
-      tl.to(
-        panelLeftRef.current,
-        { x: "-100%", duration: 1.0, ease: "power4.inOut" },
-        "-=0.15",
-      ).to(
-        panelRgtRef.current,
-        { x: "100%", duration: 1.0, ease: "power4.inOut" },
-        "<",
-      );
+        window.addEventListener("load", handleLoad);
+        
+        safetyTimeout = setTimeout(() => {
+          completeLoading(0.8, 0);
+        }, 15000);
+      }
     }, rootRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      if (progressTween) progressTween.kill();
+      if (handleLoad) {
+        window.removeEventListener("load", handleLoad);
+      }
+      if (safetyTimeout) {
+        clearTimeout(safetyTimeout);
+      }
+      document.body.style.overflow = "";
+    };
   }, [setIsLoading]);
 
   return (

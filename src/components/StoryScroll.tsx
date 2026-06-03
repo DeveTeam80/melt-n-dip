@@ -7,8 +7,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 const INGREDIENTS = [
   "assets/images/products/kunafacup.png",
   "assets/images/products/oreocheescake.png",
-  "assets/images/products/mndwaffle.png",
-  "assets/brownie-waffle.jpg",
+  "assets/images/products/pistachioeclair.png",
+  "assets/images/products/lovelycookies.png",
 ];
 
 export default function StoryScroll() {
@@ -107,7 +107,7 @@ export default function StoryScroll() {
   return (
     <section
       ref={containerRef}
-      className="relative bg-[#061412]"
+      className="relative bg-ink"
       style={{ height: "250vh" }} // ✅ less scroll needed
     >
       <div className="sticky top-0 h-screen overflow-hidden">
@@ -115,9 +115,8 @@ export default function StoryScroll() {
         <div className="absolute inset-0 overflow-hidden">
           {/* IMAGE */}
           <div
-            className="gelato-bg absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="gelato-bg absolute inset-0 bg-no-repeat bg-ink"
             style={{
-              backgroundImage: "url('assets/images/catering/catering3.jpeg')",
               transform: "scale(1.08)",
             }}
           />
@@ -128,10 +127,10 @@ export default function StoryScroll() {
             style={{
               background: `linear-gradient(
                 to bottom,
-                rgba(6,20,18,0.60) 0%,
-                rgba(6,20,18,0.85) 35%,
-                rgba(6,20,18,0.85) 65%,
-                rgba(6,20,18,0.88) 100%
+                rgba(13,42,39,0.60) 0%,
+                rgba(13,42,39,0.85) 35%,
+                rgba(13,42,39,0.85) 65%,
+                rgba(13,42,39,0.88) 100%
               )`,
             }}
           />
@@ -143,9 +142,9 @@ export default function StoryScroll() {
               opacity: 0.8,
               background: `linear-gradient(
                 to bottom,
-                rgba(6,20,18,0.55) 0%,
-                rgba(6,20,18,0.40) 50%,
-                rgba(6,20,18,0.65) 100%
+                rgba(13,42,39,0.55) 0%,
+                rgba(13,42,39,0.40) 50%,
+                rgba(13,42,39,0.65) 100%
               )`,
             }}
           />
@@ -178,7 +177,7 @@ export default function StoryScroll() {
                     className="absolute inset-0"
                     style={{
                       background:
-                        "linear-gradient(to top, rgba(6,20,18,0.55) 0%, rgba(6,20,18,0.15) 45%, rgba(6,20,18,0.05) 100%)",
+                        "linear-gradient(to top, rgba(13,42,39,0.55) 0%, rgba(13,42,39,0.15) 45%, rgba(13,42,39,0.05) 100%)",
                     }}
                   />
                 </div>
@@ -223,7 +222,7 @@ export default function StoryScroll() {
               <div className="story-line">a story of</div>
             </div>
             <div className="overflow-hidden py-1 italic text-[#D4860A]">
-              <div className="story-line">craft, luxury,</div>
+              <div className="story-line">craft, elegance,</div>
             </div>
             <div className="overflow-hidden py-1">
               <div className="story-line">and pure indulgence.</div>
@@ -244,8 +243,8 @@ export default function StoryScroll() {
             className="story-sub max-w-[460px] font-light leading-[1.9] text-white opacity-0"
             style={{ fontSize: "16px" }}
           >
-            Premium Belgian chocolate. Authentic Italian gelato.
-            <br />A lounge built for moments that linger.
+            A melody of rich Belgian chocolate and artisan gelato.
+            <br />An atmosphere crafted to elevate your celebrations.
           </p>
         </div>
       </div>

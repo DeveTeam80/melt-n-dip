@@ -506,7 +506,7 @@ export const EVENT_TYPES = [
 ];
 
 export const SERVICE_STYLES = [
-  "Self-Pickup (Palos Park Lounge)",
+  "Self-Pickup (Palos Park Store)",
   "Drop-Off Catering Trays",
   "Delivery & Setup",
   "Live Crepe / Waffle Station",
@@ -521,7 +521,7 @@ export const FAQS = [
   },
   {
     q: "What do you serve?",
-    a: "Belgian chocolate fountains, artisan gelato, fresh crepes, waffles, fruit displays, brownie bites, éclairs, Dubai Chocolate Strawberry Cups, and signature chai and coffee beverages. All 100% Halal-certified.",
+    a: "Belgian chocolate fountains, artisan gelato, fresh crepes, waffles, fruit displays, brownie bites, éclairs, Dubai Chocolate Strawberry Cups, and signature chai and coffee beverages. All Halal.",
   },
   {
     q: "What hours are you available?",

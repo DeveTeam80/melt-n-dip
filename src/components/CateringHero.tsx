@@ -12,7 +12,7 @@ const STATS = [
   { num: "$750", label: "Min. In-House" },
   { num: "$1.5K", label: "Food Truck Min." },
   { num: "48hr", label: "Response Time" },
-  { num: "100%", label: "Halal Certified" },
+  { num: "Always", label: "Halal Catering" },
 ];
 
 export default function CateringHero() {

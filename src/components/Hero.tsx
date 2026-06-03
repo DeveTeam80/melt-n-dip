@@ -210,8 +210,8 @@ export default function Hero({
           }}
         >
           Unforgettable dessert experiences for weddings and corporate events
-          across Chicagoland. From luxury Belgian chocolate fountains and live
-          crepe stations to 100% Halal custom sweet platters, we craft moments
+          across Chicagoland. From premium Belgian chocolate fountains and live
+          crepe stations to Halal custom sweet platters, we craft moments
           that matter.
         </p>
 
@@ -306,7 +306,7 @@ export default function Hero({
           >
             Triple Chocolate Crepe
           </p> */}
-          <p
+          {/* <p
             className="font-sans  !text-white"
             style={{
               fontSize: "14px",
@@ -317,7 +317,7 @@ export default function Hero({
             }}
           >
             Palos Park · 60 Old Creek Rd
-          </p>
+          </p> */}
         </div>
       </div>
     </section>

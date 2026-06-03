@@ -7,9 +7,9 @@ const ITEMS = [
   { text: "Authentic Gelato", accent: true },
   { text: "Premium Belgian Chocolate", accent: false },
   { text: "Melt-n-Dip Crepe", accent: true },
-  { text: "Dubai Chocolate", accent: false },
+  { text: "Dubai Chocolate Crepe", accent: false },
   { text: "Kunafa Bites", accent: true },
-  { text: "Halal Certified", accent: false },
+  { text: "Halal", accent: false },
   { text: "Catering & Events", accent: true },
   { text: "Food Truck Available", accent: false },
   { text: "Private Venue Hire", accent: true },
@@ -100,7 +100,7 @@ export default function Ticker() {
                 rx="0.5"
                 transform="rotate(45 2.5 2.5)"
                 fill={
-                  item.accent ? "var(--color-amber)" : "rgba(168,216,212,0.2)"
+                  item.accent ? "var(--color-amber-vibrant)" : "rgba(168,216,212,0.2)"
                 }
               />
             </svg>
@@ -112,7 +112,7 @@ export default function Ticker() {
                 letterSpacing: "3.5px",
                 textTransform: "uppercase",
                 fontWeight: 400,
-                color: item.accent ? "var(--color-amber)" : "white",
+                color: item.accent ? "var(--color-amber-vibrant)" : "white",
                 transition: "color 0.3s",
                 paddingTop: "14px",
                 paddingBottom: "14px",
