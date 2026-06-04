@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 
 const NAV_LINKS = [
@@ -16,33 +16,17 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const isCatering = pathname === "/catering";
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const lastScrollY = useRef(0);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrolled(currentScrollY > 60);
-      setIsSticky(currentScrollY > 50);
-
-      // Hide on scroll down, show on scroll up
-      if (currentScrollY <= 80) {
-        setVisible(true);
-      } else {
-        if (currentScrollY > lastScrollY.current) {
-          setVisible(false);
-        } else {
-          setVisible(true);
-        }
-      }
-      lastScrollY.current = currentScrollY;
+      setScrolled(window.scrollY > 50);
     };
-
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -77,8 +61,13 @@ export default function Navbar() {
 
   const scrollToQuote = () => {
     setMenuOpen(false);
-    document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" });
+    if (pathname === "/") {
+      document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#quote");
+    }
   };
+
   return (
     <>
       {/* ── MOBILE FULL-SCREEN MENU ──────────────────── */}
@@ -169,14 +158,13 @@ export default function Navbar() {
         </p>
       </div>
 
-      {/* ── DESKTOP NAV ──────────────────────────────── */}
+      {/* ── DESKTOP & MOBILE NAVIGATION HEADER ── */}
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-[100] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="fixed top-0 left-0 right-0 z-[100]"
         style={{
-          transitionProperty: "background, backdrop-filter, WebkitBackdropFilter, padding, border-color, box-shadow, transform",
-          transform: (visible || menuOpen) ? "translateY(0)" : "translateY(-100%)",
-          background: scrolled ? "rgba(248,250,249,0.92)" : "transparent",
+          transition: "background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+          background: scrolled ? "rgba(248, 250, 249, 0.92)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: scrolled
@@ -186,10 +174,10 @@ export default function Navbar() {
         }}
       >
         <div
-          className={`max-w-[1400px] mx-auto w-full flex items-center justify-between transition-all duration-700
+          className={`max-w-[1400px] mx-auto w-full flex items-center justify-between transition-all duration-300
             ${scrolled
-              ? "py-2 px-8 md:px-12 lg:px-16"
-              : "py-6 px-8 md:px-12 lg:px-16"
+              ? "py-2 px-6 md:px-12 lg:py-2.5 lg:px-16"
+              : "py-2.5 px-6 md:px-12 lg:py-6 lg:px-16"
             }`}
         >
           {/* ── LOGO ─────────────────────────────────── */}
@@ -204,10 +192,10 @@ export default function Navbar() {
               alt="Delight Enterprises"
               width={250}
               height={100}
-              className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen ? "" : "nav-logo-responsive"}`}
+              className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen ? "" : "nav-logo-responsive"} ${scrolled ? "w-[60px] lg:w-[80px]" : "w-[80px] lg:w-[100px]"}`}
               style={{
-                width: isSticky ? "80px" : "100px",
                 height: "auto",
+                transition: "width 0.3s ease",
               }}
               priority
             />
@@ -215,7 +203,7 @@ export default function Navbar() {
 
           {/* ── DESKTOP LINKS ────────────────────────── */}
           <ul
-            className="hidden xl:flex items-center gap-2 list-none duration-500"
+            className="hidden xl:flex items-center gap-2 list-none duration-300"
             style={{
               transitionProperty: "background-color, border-color, box-shadow, padding, backdrop-filter, WebkitBackdropFilter",
               backgroundColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.6)" : "transparent",
@@ -241,13 +229,13 @@ export default function Navbar() {
                     {/* Pill bg - reveals on hover */}
                     <div
                       className="absolute inset-0 rounded-full scale-50 opacity-0
-                    transition-all duration-300 ease-out
-                    group-hover:scale-100 group-hover:opacity-100"
+                      transition-all duration-300 ease-out
+                      group-hover:scale-100 group-hover:opacity-100"
                       style={{ background: "var(--color-teal-faint)" }}
                     />
                     <span
                       className={`relative z-10 font-sans font-medium uppercase
-                    transition-colors duration-300 ${isCatering && !scrolled ? "text-white group-hover:text-teal" : "text-umber group-hover:text-teal"}`}
+                        transition-colors duration-300 ${(isCatering && !scrolled) ? "text-white group-hover:text-teal" : "text-umber group-hover:text-teal"}`}
                       style={{ fontSize: "14px", letterSpacing: "1.5px" }}
                     >
                       {label}
@@ -266,7 +254,7 @@ export default function Navbar() {
               onMouseMove={onMagMove}
               onMouseLeave={onMagLeave}
               className={`cta-primary hover-target hidden ${menuOpen ? "" : "sm:flex"} items-center
-              justify-center relative overflow-hidden`}
+              justify-center relative overflow-hidden transition-all duration-300`}
               style={{
                 padding: scrolled ? "11px 26px" : "13px 30px",
                 fontSize: "13px",
@@ -276,7 +264,6 @@ export default function Navbar() {
             </button>
 
             {/* Hamburger - mobile/tablet only */}
-            {/* z-[91] - just above menu overlay (z-90) but below nav (z-100) */}
             <button
               onClick={() => setMenuOpen((prev) => !prev)}
               className={`xl:hidden flex flex-col justify-center gap-[5px]
@@ -296,7 +283,6 @@ export default function Navbar() {
                         : scrolled
                           ? "var(--color-bark)"
                           : "var(--color-paper)",
-                    // Middle bar shorter - asymmetric design detail
                     width: i === 1 && !menuOpen ? "14px" : "22px",
                     transform:
                       i === 0 && menuOpen

@@ -155,7 +155,7 @@ export default function LocationForm() {
   return (
     <section
       ref={containerRef}
-      id="quote"
+      id="location"
       className="py-20 lg:pt-16 lg:pb-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
       style={{ background: "var(--color-paper)" }}
     >
@@ -249,6 +249,7 @@ export default function LocationForm() {
 
           {/* RIGHT: FORM */}
           <div
+            id="quote"
             className="form-container relative bg-white rounded-[3px] p-6 sm:p-10 lg:p-14"
             style={{
               border: "1px solid var(--color-linen)",

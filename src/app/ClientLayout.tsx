@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ReactLenis } from "lenis/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { usePathname } from "next/navigation";
 import { LoadingProvider, useLoading } from "@/context/LoadingContext";
 import Preloader from "@/components/Preloader";
 import Cursor from "@/components/Cursor";
@@ -17,6 +18,17 @@ if (typeof window !== "undefined") {
 // 1. Create a sub-component to handle the logic
 function LayoutContent({ children }: { children: React.ReactNode }) {
   const { isLoading, setIsLoading } = useLoading();
+  const pathname = usePathname();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     gsap.ticker.lagSmoothing(0);
@@ -29,6 +41,36 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    const handleHashScroll = () => {
+      if (window.location.hash) {
+        const el = document.querySelector(window.location.hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    const timer = setTimeout(handleHashScroll, 600);
+
+    window.addEventListener("hashchange", handleHashScroll);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("hashchange", handleHashScroll);
+    };
+  }, [pathname]);
+
+  if (isMobile) {
+    return (
+      <>
+        <Cursor />
+        <Navbar />
+        <main id="main-content">{children}</main>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <ReactLenis
       root
@@ -38,7 +80,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
         prevent: () => isLoading,
       }}
     >
-        {/* {isLoading && <Preloader setIsLoading={setIsLoading} />} */}
+      {/* {isLoading && <Preloader setIsLoading={setIsLoading} />} */}
       <Cursor />
       <Navbar />
       <main id="main-content">{children}</main>
