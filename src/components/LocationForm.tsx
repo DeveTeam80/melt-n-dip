@@ -300,7 +300,7 @@ export default function LocationForm() {
                       id="firstName"
                       type="text"
                       placeholder="Sara"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/80/80 font-light text-ink"
+                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink"
                       style={{
                         borderBottom: "1px solid var(--color-linen)",
                         padding: "10px 4px",
@@ -331,7 +331,7 @@ export default function LocationForm() {
                       id="lastName"
                       type="text"
                       placeholder="Ahmed"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/80/80 font-light text-ink"
+                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink"
                       style={{
                         borderBottom: "1px solid var(--color-linen)",
                         padding: "10px 4px",
@@ -366,7 +366,7 @@ export default function LocationForm() {
                       id="email"
                       type="email"
                       placeholder="sara@email.com"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/80/80 font-light text-ink"
+                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink"
                       style={{
                         borderBottom: "1px solid var(--color-linen)",
                         padding: "10px 4px",
@@ -427,7 +427,7 @@ export default function LocationForm() {
                   <textarea
                     id="vision"
                     placeholder="Date, venue, theme, guest count, dietary needs…"
-                    className="bg-transparent outline-none font-light text-ink resize-none placeholder:text-teal/80/80 transition-colors"
+                    className="bg-transparent outline-none font-light text-ink resize-none placeholder:text-teal/70 transition-colors"
                     style={{
                       borderBottom: "1px solid var(--color-linen)",
                       padding: "10px 4px",

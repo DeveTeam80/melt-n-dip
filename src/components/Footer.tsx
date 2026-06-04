@@ -224,7 +224,7 @@ export default function Footer() {
                     strokeWidth={1.5}
                   />
                   <div>
-                    <p className="text-[12px] uppercase tracking-[1.5px] text-amber/80 mb-1 font-semibold">
+                    <p className="text-[12px] uppercase tracking-[1.5px] text-amber mb-1 font-semibold">
                       Mailing Address
                     </p>
                     <p className="font-light leading-[1.7] text-white">

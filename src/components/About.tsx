@@ -126,7 +126,7 @@ export default function About() {
       style={{ minHeight: "90vh" }}
     >
       {/* ── LEFT PANEL ──────────────────────────────── */}
-      <div className="about-left-container flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-20 lg:pt-20 lg:pb-32">
+      <div className="about-left-container flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-12 lg:pt-36 lg:pb-40">
         <div className="w-full max-w-[480px] lg:ml-auto">
           <div className="about-fade-up flex items-center gap-3 mb-5">
             <span
@@ -226,7 +226,7 @@ export default function About() {
               backgroundImage: "url('/assets/catering-event-guests.png')",
             }}
           />
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-parchment/60 to-transparent pointer-events-none" />
+          {/* Removed white gradient overlay */}
         </div>
         <div className="about-img-wrap relative overflow-hidden">
           <div

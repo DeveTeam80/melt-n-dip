@@ -285,7 +285,7 @@ export default function Preloader({ setIsLoading }: PreloaderProps) {
         }}
       >
         <p
-          className="font-sans font-light uppercase tracking-[4px] text-teal/80"
+          className="font-sans font-light uppercase tracking-[4px] text-teal"
           style={{ fontSize: "15px" }}
         >
           Delight Enterprises
@@ -326,7 +326,7 @@ export default function Preloader({ setIsLoading }: PreloaderProps) {
           className="font-sans font-light"
           style={{
             fontSize: "15px",
-            color: "var(--color-taupe)",
+            color: "var(--color-ink)",
             letterSpacing: "1px",
           }}
         >

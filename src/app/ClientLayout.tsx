@@ -38,7 +38,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
         prevent: () => isLoading,
       }}
     >
-        {isLoading && <Preloader setIsLoading={setIsLoading} />}      
+        {/* {isLoading && <Preloader setIsLoading={setIsLoading} />} */}
       <Cursor />
       <Navbar />
       <main id="main-content">{children}</main>

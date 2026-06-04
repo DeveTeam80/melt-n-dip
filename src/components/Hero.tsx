@@ -6,7 +6,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function Hero({
-  animationReady = false,
+  animationReady = true,
 }: {
   animationReady?: boolean;
 }) {
@@ -15,64 +15,10 @@ export default function Hero({
   const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!animationReady) return;
-
     let ctx: gsap.Context;
 
     requestAnimationFrame(() => {
       ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          defaults: { ease: "power4.out" },
-          delay: 0.1,
-        });
-
-        // Cinematic image reveal
-        tl.fromTo(
-          imgWrapRef.current,
-          { clipPath: "inset(20% 15% 20% 15% round 8px)" },
-          {
-            clipPath: "inset(0% 0% 0% 0% round 0px)",
-            duration: 2,
-            ease: "power3.inOut",
-          },
-          0,
-        ).fromTo(
-          imgRef.current,
-          { scale: 1.04 },
-          { scale: 1, duration: 2, ease: "power3.inOut" },
-          0,
-        );
-
-        // Text reveals
-        tl.fromTo(
-          ".reveal-line",
-          { y: "110%", rotate: 1.5, opacity: 0 },
-          { y: "0%", rotate: 0, opacity: 1, duration: 1.3, stagger: 0.13 },
-          0.25,
-        );
-
-        // Fade-ups
-        tl.fromTo(
-          ".reveal-fade",
-          { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration: 1.1, stagger: 0.09 },
-          0.6,
-        );
-
-        // Glass card
-        tl.fromTo(
-          ".glass-card",
-          { opacity: 0, y: 36, filter: "blur(8px)" },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 1.4,
-            ease: "power3.out",
-          },
-          1.3,
-        );
-
         // Parallax
         gsap.registerPlugin(ScrollTrigger);
         gsap.to(imgRef.current, {
@@ -89,7 +35,7 @@ export default function Hero({
     });
 
     return () => ctx?.revert();
-  }, [animationReady]);
+  }, []);
 
   const onMagMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -112,19 +58,6 @@ export default function Hero({
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-  if (!animationReady) {
-    return (
-      <section
-        style={{
-          height: "100svh",
-          minHeight: "680px",
-          maxHeight: "1000px",
-          visibility: "hidden",
-        }}
-      />
-    );
-  }
-
   return (
     <section
       ref={containerRef}
@@ -132,7 +65,7 @@ export default function Hero({
       style={{ height: "100svh", minHeight: "680px", maxHeight: "1000px" }}
     >
       {/* ── LEFT PANEL ──────────────────────────────────────── */}
-      <div className="relative z-10 w-full lg:w-[55%] flex flex-col lg:justify-start justify-center px-8 sm:px-12 xl:px-20 pt-28 pb-10 sm:pt-36 sm:pb-16 lg:pt-30 lg:pb-24">
+      <div className="relative z-10 w-full lg:w-[55%] flex flex-col lg:justify-start justify-center h-full px-8 sm:px-12 xl:px-20 pt-28 pb-10 sm:pt-36 sm:pb-16 lg:pt-30 lg:pb-24">
         {/* Overline */}
         {/* <div className="reveal-fade flex items-center gap-3 mb-6" style={{ opacity: 0 }}>
           <span className="w-6 h-px shrink-0" style={{ background: "var(--color-teal-pale)" }} />
@@ -160,10 +93,7 @@ export default function Hero({
             className="overflow-hidden block"
             style={{ paddingBottom: "8px" }}
           >
-            <span
-              className="reveal-line block"
-              style={{ opacity: 0, transform: "translateY(110%)" }}
-            >
+            <span className="reveal-line block">
               Chicago’s Premier
             </span>
           </span>
@@ -171,20 +101,14 @@ export default function Hero({
             className="overflow-hidden block"
             style={{ paddingBottom: "10px" }}
           >
-            <span
-              className="reveal-line block"
-              style={{ opacity: 0, transform: "translateY(110%)" }}
-            >
+            <span className="reveal-line block">
               Dessert <em className="italic">Catering</em>
             </span>
           </span>
         </h1>
 
         {/* Divider */}
-        <div
-          className="reveal-fade flex items-center gap-4 mb-4 sm:mb-5"
-          style={{ opacity: 0 }}
-        >
+        <div className="reveal-fade flex items-center gap-4 mb-4 sm:mb-5">
           <div className="h-px w-8 hero-divider" />
           <span
             className="hero-subtitle"
@@ -206,7 +130,6 @@ export default function Hero({
             fontSize: "clamp(15px, 1.8vw, 17px)",
             lineHeight: "1.85",
             maxWidth: "390px",
-            opacity: 0,
           }}
         >
           Unforgettable dessert experiences for weddings and corporate events
@@ -216,10 +139,7 @@ export default function Hero({
         </p>
 
         {/* CTAs */}
-        <div
-          className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-8 mb-8 sm:mb-5 w-full sm:w-auto"
-          style={{ opacity: 0 }}
-        >
+        <div className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-8 mb-8 sm:mb-5 w-full sm:w-auto">
           <button
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
