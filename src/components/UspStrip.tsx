@@ -179,7 +179,7 @@ export default function UspStrip() {
               </div>
 
               {/* Description */}
-              <p className="text-[16px] font-light leading-[1.85] group-hover:text-amber/80 transition-colors duration-500 relative z-10">
+              <p className="text-[16px] font-light leading-[1.85] group-hover:text-amber transition-colors duration-500 relative z-10">
                 {desc}
               </p>
             </div>

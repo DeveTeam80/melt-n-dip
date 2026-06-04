@@ -24,84 +24,6 @@ export default function CateringHero() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: "power4.out" },
-        delay: 0.1,
-      });
-
-      // Instantly show image wrapper
-      tl.to(imgWrapRef.current, { opacity: 1, duration: 0.01 }, 0);
-
-      // Clip-path reveal + unblur
-      tl.fromTo(
-        imgWrapRef.current,
-        { clipPath: "inset(15% 10% 15% 10% round 12px)" },
-        {
-          clipPath: "inset(0% 0% 0% 0% round 0px)",
-          duration: 2,
-          ease: "power3.inOut",
-        },
-        0,
-      ).fromTo(
-        imgRef.current,
-        { scale: 1.25, filter: "blur(12px)" },
-        { scale: 1, filter: "blur(0px)", duration: 2, ease: "power3.inOut" },
-        0,
-      );
-
-      // Badge
-      tl.fromTo(
-        ".ch-badge",
-        { opacity: 0, y: 12, filter: "blur(6px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
-        0.2,
-      );
-
-      // Headline lines
-      tl.fromTo(
-        ".ch-reveal-line",
-        { y: "110%", rotate: 1.5, opacity: 0 },
-        { y: "0%", rotate: 0, opacity: 1, duration: 1.2, stagger: 0.1 },
-        0.35,
-      );
-
-      // Body + CTA
-      tl.fromTo(
-        ".ch-fade-up",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1, stagger: 0.1 },
-        0.65,
-      );
-
-      // Stats dock
-      tl.fromTo(
-        ".ch-stat-dock",
-        { opacity: 0, y: 40, filter: "blur(8px)" },
-        {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          duration: 1.2,
-          ease: "power3.out",
-        },
-        1.0,
-      );
-
-      // Vertical tag + brackets
-      tl.fromTo(
-        ".ch-side-tag",
-        { opacity: 0, x: 16 },
-        { opacity: 1, x: 0, duration: 1, ease: "power3.out" },
-        0.8,
-      );
-
-      tl.fromTo(
-        ".ch-corner",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.8, stagger: 0.1 },
-        0.5,
-      );
-
       // Scroll parallax
       gsap.to(imgRef.current, {
         yPercent: 15,
@@ -142,21 +64,11 @@ export default function CateringHero() {
       className="relative w-full overflow-hidden bg-ink"
       style={{ height: "100svh", minHeight: "620px", maxHeight: "1100px" }}
     >
-      {/* ── PRE-HIDE ─────────────────────────────────── */}
-      <style>{`
-        .ch-badge       { opacity: 0; }
-        .ch-reveal-line { opacity: 0; transform: translateY(110%); }
-        .ch-fade-up     { opacity: 0; }
-        .ch-stat-dock   { opacity: 0; }
-        .ch-side-tag    { opacity: 0; }
-        .ch-corner      { opacity: 0; }
-      `}</style>
-
       {/* ── BACKGROUND ──────────────────────────────── */}
       <div
         ref={imgWrapRef}
         className="absolute inset-0 z-0 overflow-hidden"
-        style={{ opacity: 0 }}
+        style={{ opacity: 1 }}
       >
         <div
           ref={imgRef}

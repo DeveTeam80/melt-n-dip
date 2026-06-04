@@ -60,16 +60,16 @@ export default function Ticker() {
       }}
       aria-hidden="true"
     >
-      {/* Fade edges - left and right vignette */}
+      {/* Fade edges - left and right vignette (hidden on mobile) */}
       <div
-        className="absolute inset-y-0 left-0 z-10 pointer-events-none w-24"
+        className="absolute inset-y-0 left-0 z-10 pointer-events-none w-24 hidden md:block"
         style={{
           background:
             "linear-gradient(to right, var(--color-ink) 0%, transparent 100%)",
         }}
       />
       <div
-        className="absolute inset-y-0 right-0 z-10 pointer-events-none w-24"
+        className="absolute inset-y-0 right-0 z-10 pointer-events-none w-24 hidden md:block"
         style={{
           background:
             "linear-gradient(to left, var(--color-ink) 0%, transparent 100%)",

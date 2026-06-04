@@ -162,7 +162,7 @@ export default function Navbar() {
           style={{
             fontSize: "12px",
             letterSpacing: "2.5px",
-            color: "var(--color-taupe)",
+            color: "var(--color-teal)",
           }}
         >
           60 Old Creek Rd, Palos Park, IL 60464

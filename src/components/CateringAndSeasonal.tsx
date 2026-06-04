@@ -22,42 +22,25 @@ const CAT_CARDS = [
     Icon: Heart,
     name: "Wedding Catering",
     desc: "Breathtaking dessert table setups, flowing Belgian chocolate fountains, and artisan gelato bars. We design custom dessert stations as memorable as your ceremony.",
+    img: "assets/images/catering/catering3.jpeg",
   },
   {
     Icon: Briefcase,
     name: "Corporate Event Catering",
     desc: "From interactive live crepe stations to custom bulk dessert orders, we provide seamless catering for office parties and corporate events across Chicagoland.",
+    img: "assets/images/festive_dessert_station.png",
   },
   {
     Icon: Truck,
     name: "Mobile Dessert Stations",
     desc: "Bring the ultimate experience to any location. Our food trucks and mobile gelato carts are perfect for outdoor festivals, corporate events, and community block parties.",
+    img: "assets/images/delight-enterprises-1.png",
   },
   {
     Icon: Building2,
     name: "Private Venue Rental",
     desc: "Hire our aesthetic Palos Park store exclusively. An immersive, high-end private venue rental perfect for bridal showers, Sweet 16s, and intimate banquets.",
-  },
-];
-
-const SEASONAL_CARDS = [
-  {
-    img: "assets/images/delight-enterprises-1.png",
-    season: "Summer & Spring",
-    name: "Mobile Gelato Carts",
-    text: "Artisan gelato and refreshing sorbets served from our mobile gelato carts, perfect for warm-weather block parties and weddings.",
-  },
-  {
-    img: "assets/images/festive_dessert_station.png",
-    season: "Holiday & Winter",
-    name: "Festive Dessert Stations",
-    text: "Custom sweet platters and premium chocolate fountains crafted for Thanksgiving, winter banquets, and corporate holiday parties.",
-  },
-  {
-    img: "assets/images/catering/ramadan_eid_celebration.png",
-    season: "Cultural Traditions",
-    name: "Ramadan & Eid Specials",
-    text: "Warm Kunafa crepes, custom platters, and Halal dessert stations designed for community and family iftars.",
+    img: "assets/images/melt-n-dip-inside.webp",
   },
 ];
 
@@ -296,7 +279,7 @@ export default function CateringAndSeasonal() {
                 Satisfy Your Spirit
               </em>
               .
-              <span className="block mt-4 text-ink/80">
+              <span className="block mt-4 text-ink">
                 We specialize in high-end corporate dessert catering, wedding
                 celebrations, and Halal sweet platters. We also cater to
                 Graduations, Iftar & Eid, and provide custom Drop-Off Trays.
@@ -372,18 +355,28 @@ export default function CateringAndSeasonal() {
 
           {/* Right - service cards */}
           <div className="cat-right-container grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {CAT_CARDS.map(({ Icon, name, desc }, idx) => (
+            {CAT_CARDS.map(({ Icon, name, desc, img }) => (
               <div
                 key={name}
                 className="cat-card-reveal group relative bg-white border border-linen
-      rounded-[3px] py-4 px-6 overflow-hidden hover-target cursor-default
-      transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
-      hover:bg-[var(--color-teal)]" // Main background inversion
+                  rounded-[3px] py-6 px-6 min-h-[220px] overflow-hidden hover-target cursor-default
+                  transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+                  flex flex-col justify-start"
               >
+                {/* Background Image on Hover */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  style={{ backgroundImage: `url('${img}')` }}
+                />
+                {/* Dark Gradient Overlay on Hover */}
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-[var(--color-teal)]/95 via-[var(--color-teal)]/85 to-[var(--color-teal)]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+
                 {/* Icon Container */}
                 <div
-                  className="flex items-center justify-center rounded-full mb-6 transition-all duration-500 
-      group-hover:scale-110 group-hover:bg-white/10 group-hover:border-white/20"
+                  className="relative z-10 flex items-center justify-center rounded-full mb-6 transition-all duration-500 
+                    group-hover:scale-110 group-hover:bg-white/10 group-hover:border-white/20"
                   style={{
                     width: "48px",
                     height: "48px",
@@ -393,11 +386,10 @@ export default function CateringAndSeasonal() {
                 >
                   <Icon
                     className="transition-colors duration-500 group-hover:text-white"
-                    // Move initial color into Tailwind class if possible, otherwise it must change on hover
                     style={{
                       width: "18px",
                       height: "18px",
-                      color: "var(--color-teal)", // Default color. Change happens via class.
+                      color: "var(--color-teal)",
                     }}
                     strokeWidth={1.5}
                   />
@@ -405,8 +397,7 @@ export default function CateringAndSeasonal() {
 
                 {/* Text Content */}
                 <p
-                  // MOVED: initial text color from style to classes here
-                  className="font-serif font-normal mb-3 text-[var(--color-ink)] transition-colors duration-500 group-hover:text-white"
+                  className="relative z-10 font-serif font-normal mb-3 text-[var(--color-ink)] transition-colors duration-500 group-hover:text-white"
                   style={{
                     fontSize: "21px",
                     letterSpacing: "-0.01em",
@@ -416,8 +407,7 @@ export default function CateringAndSeasonal() {
                 </p>
 
                 <p
-                  // MOVED: initial text color from style to classes here
-                  className="font-normal leading-relaxed mb-8 text-[var(--color-taupe)] transition-colors duration-500 group-hover:text-teal-50"
+                  className="relative z-10 font-normal leading-relaxed text-[var(--color-bark)] transition-colors duration-500 group-hover:text-teal-50"
                   style={{
                     fontSize: "16px",
                   }}
@@ -551,10 +541,9 @@ export default function CateringAndSeasonal() {
                     fontSize: "12px",
                     letterSpacing: "4px",
                     textTransform: "uppercase",
-                    color: "var(--color-teal-pale)",
+                    color: "var(--color-amber)",
                     fontWeight: 600,
                     marginBottom: "24px",
-                    opacity: 0.7,
                   }}
                 >
                   Guest Count{" "}
@@ -595,10 +584,9 @@ export default function CateringAndSeasonal() {
                     fontSize: "12px",
                     letterSpacing: "4px",
                     textTransform: "uppercase",
-                    color: "var(--color-teal-pale)",
+                    color: "var(--color-amber)",
                     fontWeight: 600,
                     marginBottom: "24px",
-                    opacity: 0.7,
                   }}
                 >
                   Event Type
@@ -622,8 +610,8 @@ export default function CateringAndSeasonal() {
                 }}
               />
 
-              {/* ── CTA ── */}
-              <div className="flex items-center justify-center px-6 sm:px-10 py-10 sm:py-12">
+              {/* ── CTA (Desktop only) ── */}
+              <div className="hidden sm:flex items-center justify-center px-6 sm:px-10 py-10 sm:py-12">
                 <button
                   onClick={handleEstimate}
                   disabled={!guests}
@@ -682,12 +670,71 @@ export default function CateringAndSeasonal() {
                   </span>
                 </button>
               </div>
+
+              {/* ── Mobile Live Result (inside the card) ── */}
+              {guestNum > 0 && (
+                <div className="sm:hidden flex flex-col items-center text-center px-6 pb-10 pt-4 border-t border-linen/10 w-full">
+                  <p
+                    style={{
+                      fontSize: "10px",
+                      letterSpacing: "4.5px",
+                      textTransform: "uppercase",
+                      color: "var(--color-amber)",
+                      marginBottom: "12px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Classic Dessert Package · {guestNum} Guests
+                  </p>
+                  <p
+                    className="font-serif font-light"
+                    style={{
+                      fontSize: "44px",
+                      letterSpacing: "-0.03em",
+                      color: "var(--color-paper)",
+                      lineHeight: 1,
+                      marginBottom: "16px",
+                    }}
+                  >
+                    ${low.toLocaleString()} - ${high.toLocaleString()}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "rgba(255,255,255,0.6)",
+                      lineHeight: 1.6,
+                      maxWidth: "280px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    Based on $12 – $15 per person · Final price varies by menu, staffing & location
+                  </p>
+                  <button
+                    onClick={handleEstimate}
+                    className="cta-primary hover-target w-full h-[48px] flex items-center justify-center text-[12px] uppercase tracking-[2px]"
+                  >
+                    Build Full Estimate
+                  </button>
+                </div>
+              )}
+
+              {/* ── Mobile Placeholder CTA when guest count is empty ── */}
+              {guestNum === 0 && (
+                <div className="sm:hidden flex items-center justify-center px-6 pb-10 w-full">
+                  <button
+                    disabled
+                    className="w-full h-[48px] flex items-center justify-center text-[12px] uppercase tracking-[3px] border border-white/10 text-white/30 rounded-[3px]"
+                  >
+                    Enter Guest Count
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* ── Live result ── */}
+          {/* ── Live result (Desktop only) ── */}
           {guestNum > 0 && (
-            <div className="mt-20 text-center">
+            <div className="mt-20 text-center hidden sm:block">
               {/* Ornamental divider */}
               <div className="flex items-center justify-center gap-3 mb-10">
                 <div
@@ -754,7 +801,7 @@ export default function CateringAndSeasonal() {
               <p
                 style={{
                   fontSize: "13px",
-                  color: "rgba(168,216,212,0.3)",
+                  color: "white",
                   lineHeight: 1.7,
                   marginBottom: "32px",
                 }}
@@ -770,7 +817,7 @@ export default function CateringAndSeasonal() {
                   fontSize: "11px",
                   letterSpacing: "3px",
                   textTransform: "uppercase",
-                  color: "var(--color-teal-pale)",
+                  color: "var(--color-amber)",
                   fontWeight: 500,
                 }}
               >
@@ -792,142 +839,7 @@ export default function CateringAndSeasonal() {
         </div>
       </div>
 
-      {/* ── SEASONAL ──────────────────────────────────────── */}
-      <section
-        className="py-20 lg:pt-16 lg:pb-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
-        style={{ background: "var(--color-parchment)" }}
-      >
-        <div className="max-w-[1400px] mx-auto w-full">
-          <div className="seasonal-header text-center max-w-[580px] mx-auto mb-20">
-            <div
-              className="season-fade-up section-eyebrow"
-              style={{ justifyContent: "center" }}
-            >
-              <span
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "3.5px",
-                  textTransform: "uppercase",
-                  color: "var(--color-teal)",
-                  fontWeight: 500,
-                }}
-              >
-                Seasonal &amp; Festive Catering
-              </span>
-            </div>
-            <h2
-              className="font-serif font-light text-ink flex flex-col items-center gap-1 mb-6"
-              style={{
-                fontSize: "clamp(30px, 4.5vw, 64px)",
-                lineHeight: "1.05",
-                letterSpacing: "-0.025em",
-              }}
-            >
-              <span className="overflow-hidden block py-1">
-                <span className="season-reveal-line block">
-                  Crafted for{" "}
-                  <em className="italic" style={{ color: "var(--color-teal)" }}>
-                    Every
-                  </em>
-                </span>
-              </span>
-              <span className="overflow-hidden block py-1">
-                <span className="season-reveal-line block">Celebration</span>
-              </span>
-            </h2>
-            <p
-              className="season-fade-up font-normal text-teal"
-              style={{ fontSize: "17px", lineHeight: 1.85 }}
-            >
-              We follow the rhythm of the year, from summer outdoor weddings to
-              festive corporate holiday parties and cultural community
-              celebrations.
-            </p>
-          </div>
 
-          <div className="seasonal-grid grid grid-cols-1 md:grid-cols-3 gap-6">
-            {SEASONAL_CARDS.map(({ img, season, name, text }) => (
-              <div
-                key={name}
-                className="season-card-wrap group relative rounded-[3px] overflow-hidden hover-target cursor-none"
-                style={{ aspectRatio: "3/4", background: "var(--color-bark)" }}
-              >
-                <div
-                  className="season-bg absolute bg-cover bg-center transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
-                  style={{
-                    inset: "-15%",
-                    backgroundImage: `url('${img}')`,
-                    willChange: "transform",
-                  }}
-                />
-                {/* Replace this existing overlay div inside each card */}
-                <div
-                  className="absolute inset-0 transition-opacity duration-700 group-hover:opacity-95"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(13,42,39,0.97) 0%, rgba(13,42,39,0.65) 50%, rgba(13,42,39,0.3) 100%)",
-                    opacity: 1,
-                  }}
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 z-10">
-                  <p
-                    className="mb-3 font-medium"
-                    style={{
-                      fontSize: "11px",
-                      letterSpacing: "3px",
-                      textTransform: "uppercase",
-                      color: "rgb(229 155 10)",
-                      fontWeight: "600",
-                    }}
-                  >
-                    {season}
-                  </p>
-                  <p
-                    className="font-serif font-light text-white mb-3"
-                    style={{
-                      fontSize: "26px",
-                      letterSpacing: "-0.01em",
-                      lineHeight: 1.1,
-                    }}
-                  >
-                    {name}
-                  </p>
-                  <div
-                    className="mb-4 h-px origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                    style={{ width: "36px", background: "var(--color-amber)" }}
-                  />
-                  <p
-                    className=""
-                    style={{
-                      fontSize: "16px",
-                      color: "white",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {text}
-                  </p>
-                </div>
-                <div
-                  className="absolute top-6 right-6 flex items-center justify-center rounded-full z-10 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    background: "rgba(251,253,252,0.1)",
-                    backdropFilter: "blur(8px)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                  }}
-                >
-                  <ArrowUpRight
-                    className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    style={{ width: "16px", height: "16px", color: "#fff" }}
-                    strokeWidth={1.5}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
