@@ -154,7 +154,7 @@ export default function Products() {
             <div
               className="products-fade-up flex items-center gap-4 mb-6 font-medium"
               style={{
-                fontSize: "11px",
+                fontSize: "15px",
                 letterSpacing: "3.5px",
                 textTransform: "uppercase",
                 color: "var(--color-teal)",
@@ -165,7 +165,7 @@ export default function Products() {
             </div>
             <h2
               className="font-serif font-light text-ink tracking-tight flex flex-col gap-1"
-              style={{ fontSize: "clamp(40px, 4.5vw, 64px)", lineHeight: "1.05" }}
+              style={{ fontSize: "clamp(46px, 5.2vw, 76px)", lineHeight: "1.05" }}
             >
               <span className="overflow-hidden block py-1">
                 <span className="products-reveal-line block">
@@ -179,7 +179,7 @@ export default function Products() {
               </span>
             </h2>
           </div>
-          <p className="products-fade-up font-sans font-normal text-teal leading-[1.85] text-[17px] max-w-[480px] pb-2">
+          <p className="products-fade-up font-sans font-normal text-teal leading-[1.85] text-[20px] max-w-[540px] pb-2">
             Every item on our menu is a deliberate choice, no fillers, no
             shortcuts. Premium ingredients, careful craft, and years of
             refinement.

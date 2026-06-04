@@ -174,7 +174,7 @@ export default function StoryScroll() {
           />
           <span
             style={{
-              fontSize: "11px",
+              fontSize: "15px",
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#D4860A",
@@ -191,7 +191,7 @@ export default function StoryScroll() {
         {/* HEADLINE */}
         <h2
           className="font-serif font-light leading-[1.05] tracking-[-0.04em] text-white"
-          style={{ fontSize: "clamp(36px, 4.2vw, 76px)", maxWidth: "850px" }}
+          style={{ fontSize: "clamp(42px, 4.8vw, 84px)", maxWidth: "850px" }}
         >
           <div className="overflow-hidden py-1">
             <div className="story-line">Every bite tells</div>
@@ -218,8 +218,8 @@ export default function StoryScroll() {
 
         {/* SUBTEXT */}
         <p
-          className="story-sub max-w-[460px] font-light leading-[1.9] text-white opacity-0"
-          style={{ fontSize: "16px" }}
+          className="story-sub max-w-[560px] font-light leading-[1.9] text-white opacity-0"
+          style={{ fontSize: "20px" }}
         >
           A melody of rich Belgian chocolate and artisan gelato.
           <br />An atmosphere crafted to elevate your celebrations.

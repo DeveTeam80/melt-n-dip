@@ -108,7 +108,7 @@ export default function LocationForm() {
       content: (
         <p
           className="font-light transition-colors hover:text-teal-rich"
-          style={{ fontSize: "16px", color: "var(--color-teal)" }}
+          style={{ fontSize: "18px", color: "var(--color-teal)" }}
         >
           60 Old Creek Rd
           <br />
@@ -122,7 +122,7 @@ export default function LocationForm() {
       content: (
         <p
           className="font-light transition-colors hover:text-teal-rich"
-          style={{ fontSize: "16px", color: "var(--color-teal)" }}
+          style={{ fontSize: "18px", color: "var(--color-teal)" }}
         >
           Mon – Fri: 9am – 6pm
         </p>
@@ -136,7 +136,7 @@ export default function LocationForm() {
           <a
             href="mailto:owner@delightenterprisesllc.com"
             className="font-light transition-colors hover:text-teal-rich"
-            style={{ fontSize: "16px", color: "var(--color-teal)" }}
+            style={{ fontSize: "18px", color: "var(--color-teal)" }}
           >
             owner@delightenterprisesllc.com
           </a>
@@ -167,7 +167,7 @@ export default function LocationForm() {
             <div className="loc-fade-up section-eyebrow">
               <span
                 style={{
-                  fontSize: "12px",
+                  fontSize: "15px",
                   letterSpacing: "3.5px",
                   textTransform: "uppercase",
                   color: "var(--color-teal)",
@@ -180,7 +180,7 @@ export default function LocationForm() {
             <h2
               className="font-serif font-light text-ink flex flex-col gap-1 mb-6"
               style={{
-                fontSize: "clamp(30px, 4.5vw, 64px)",
+                fontSize: "clamp(38px, 5vw, 76px)",
                 lineHeight: "1.05",
                 letterSpacing: "-0.025em",
               }}
@@ -201,7 +201,7 @@ export default function LocationForm() {
 
             <p
               className="loc-fade-up font-normal text-teal mb-12"
-              style={{ fontSize: "17px", lineHeight: 1.85, maxWidth: "420px" }}
+              style={{ fontSize: "20px", lineHeight: 1.85, maxWidth: "500px" }}
             >
               Have questions about our catering packages, live dessert stations,
               or food truck? Reach out to plan your perfect event.
@@ -233,7 +233,7 @@ export default function LocationForm() {
                     <p
                       className="font-medium uppercase mb-1"
                       style={{
-                        fontSize: "11px",
+                        fontSize: "13px",
                         letterSpacing: "2px",
                         color: "var(--color-umber)",
                       }}
