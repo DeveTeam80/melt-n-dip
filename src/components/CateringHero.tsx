@@ -131,52 +131,9 @@ export default function CateringHero() {
         </div>
       </div>
 
-      {/* ── VERTICAL SIDE TAG (right) ────────────────── */}
-      <div
-        className="ch-side-tag absolute right-10 top-1/2 z-10 pointer-events-none hidden lg:flex"
-        style={{ transform: "translateY(-50%)" }}
-      >
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-px h-16" style={{ background: "linear-gradient(to bottom, transparent, rgba(251,253,252,0.25))" }} />
-          <span
-            className="font-light tracking-[0.25em] uppercase"
-            style={{
-              fontSize: "10px",
-              color: "rgba(251,253,252,0.3)",
-              writingMode: "vertical-rl",
-              textOrientation: "mixed",
-              letterSpacing: "0.28em",
-            }}
-          >
-            Premium Event Catering
-          </span>
-          <div className="w-px h-16" style={{ background: "linear-gradient(to top, transparent, rgba(251,253,252,0.25))" }} />
-        </div>
-      </div>
-
       {/* ── CONTENT ─────────────────────────────────── */}
       <div className="relative z-10 h-full flex flex-col justify-center pt-20 sm:pt-28 lg:pt-0 px-8 sm:px-12 lg:px-20">
         <div className="flex flex-col max-w-2xl">
-
-          {/* Badge */}
-          <div className="ch-badge mb-6 w-fit">
-            <span
-              className="inline-flex items-center gap-2 font-light tracking-widest uppercase"
-              style={{
-                fontSize: "10px",
-                color: "var(--color-amber, #D4860A)",
-                border: "1px solid rgba(212,134,10,0.35)",
-                padding: "6px 14px",
-                letterSpacing: "0.18em",
-              }}
-            >
-              <span
-                className="inline-block w-1.5 h-1.5 rounded-full"
-                style={{ background: "var(--color-amber, #D4860A)" }}
-              />
-              Belgian Chocolate · Gelato · Live Stations
-            </span>
-          </div>
 
           {/* Headline */}
           <h1
