@@ -65,7 +65,7 @@ export default function Hero({
       style={{ height: "100svh", minHeight: "680px", maxHeight: "1000px" }}
     >
       {/* ── LEFT PANEL ──────────────────────────────────────── */}
-      <div className="relative z-10 w-full lg:w-[55%] flex flex-col lg:justify-start justify-center h-full px-8 sm:px-12 xl:px-20 pt-28 pb-10 sm:pt-36 sm:pb-16 lg:pt-30 lg:pb-24">
+      <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-start h-full px-8 sm:px-12 xl:px-20 pt-24 pb-6 sm:pt-36 sm:pb-16 lg:pt-30 lg:pb-24">
         {/* Overline */}
         {/* <div className="reveal-fade flex items-center gap-3 mb-6" style={{ opacity: 0 }}>
           <span className="w-6 h-px shrink-0" style={{ background: "var(--color-teal-pale)" }} />
@@ -81,12 +81,12 @@ export default function Hero({
 
         {/* Headline */}
         <h1
-          className="font-serif font-light hero-title flex flex-col mb-5 sm:mb-4 mt-3"
+          className="font-serif font-light hero-title flex flex-col mb-3 sm:mb-4 mt-2"
           style={{
-            fontSize: "clamp(32px, 6vw, 88px)",
+            fontSize: "clamp(30px, 5.5vw, 88px)",
             lineHeight: "0.97",
             letterSpacing: "-0.03em",
-            gap: "4px",
+            gap: "2px",
           }}
         >
           <span
@@ -108,12 +108,12 @@ export default function Hero({
         </h1>
 
         {/* Divider */}
-        <div className="reveal-fade flex items-center gap-4 mb-4 sm:mb-5">
+        <div className="reveal-fade flex items-center gap-4 mb-3 sm:mb-5">
           <div className="h-px w-8 hero-divider" />
           <span
             className="hero-subtitle"
             style={{
-              fontSize: "12px",
+              fontSize: "11px",
               fontWeight: "500",
               letterSpacing: "3px",
               textTransform: "uppercase",
@@ -125,10 +125,10 @@ export default function Hero({
 
         {/* Body */}
         <p
-          className="reveal-fade font-normal hero-body mb-8 sm:mb-5"
+          className="reveal-fade font-normal hero-body mb-5 sm:mb-5"
           style={{
-            fontSize: "clamp(15px, 1.8vw, 17px)",
-            lineHeight: "1.85",
+            fontSize: "clamp(14px, 1.8vw, 18px)",
+            lineHeight: "1.7",
             maxWidth: "390px",
           }}
         >
@@ -139,7 +139,7 @@ export default function Hero({
         </p>
 
         {/* CTAs */}
-        <div className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-8 mb-8 sm:mb-5 w-full sm:w-auto">
+        <div className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-8 mb-5 sm:mb-5 w-full sm:w-auto">
           <button
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
