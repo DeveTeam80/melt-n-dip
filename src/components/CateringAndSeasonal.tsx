@@ -48,7 +48,7 @@ const SEASONAL_CARDS = [
     text: "Artisan gelato and refreshing sorbets served from our mobile gelato carts, perfect for warm-weather block parties and weddings.",
   },
   {
-    img: "assets/images/delight-enterprises-4.png",
+    img: "assets/images/festive_dessert_station.png",
     season: "Holiday & Winter",
     name: "Festive Dessert Stations",
     text: "Custom sweet platters and premium chocolate fountains crafted for Thanksgiving, winter banquets, and corporate holiday parties.",
