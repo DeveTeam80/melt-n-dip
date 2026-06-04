@@ -107,7 +107,7 @@ export default function Products() {
     {
       img: "assets/melt-n-dip-crepe.jpg",
       tag: "Flagship Product",
-      name: "The Melt-n-Dip Crepe",
+      name: "The Melt N Dip Crepe",
       className: "lg:col-span-2 lg:row-span-2 min-h-[400px] lg:min-h-[640px]",
       nameClass: "text-[32px] sm:text-[44px]",
     },
