@@ -473,7 +473,7 @@ export default function CateringAndSeasonal() {
           <p
             className="text-center mb-5"
             style={{
-              fontSize: "11px",
+              fontSize: "13px",
               letterSpacing: "4.5px",
               textTransform: "uppercase",
               color: "var(--color-amber)",
@@ -487,7 +487,7 @@ export default function CateringAndSeasonal() {
           <h3
             className="font-serif font-light text-center"
             style={{
-              fontSize: "clamp(32px, 4vw, 50px)",
+              fontSize: "clamp(38px, 4.5vw, 58px)",
               letterSpacing: "-0.025em",
               lineHeight: 1.12,
               color: "var(--color-paper)",
@@ -499,9 +499,9 @@ export default function CateringAndSeasonal() {
           <p
             className="text-center mx-auto"
             style={{
-              fontSize: "15px",
+              fontSize: "18px",
               color: "white",
-              maxWidth: "340px",
+              maxWidth: "480px",
               lineHeight: 1.75,
               marginBottom: "56px",
             }}
