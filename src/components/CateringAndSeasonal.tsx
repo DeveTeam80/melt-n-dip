@@ -322,7 +322,7 @@ export default function CateringAndSeasonal() {
                 onMouseMove={onMagMove}
                 onMouseLeave={onMagLeave}
                 className="cta-primary inline-flex items-center text-[13px] justify-center hover-target w-full sm:w-auto"
-                style={{ height: "52px", padding: "0 44px" }}
+                style={{ height: "52px", padding: "0 24px", whiteSpace: "nowrap" }}
               >
                 View Catering Packages
               </Link>
