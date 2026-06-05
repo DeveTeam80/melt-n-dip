@@ -79,107 +79,109 @@ export default function Hero({
           </span>
         </div> */}
 
-        {/* Headline */}
-        <h1
-          className="font-serif font-light hero-title flex flex-col mb-3 sm:mb-4 mt-2"
-          style={{
-            fontSize: "clamp(30px, 5.5vw, 88px)",
-            lineHeight: "0.97",
-            letterSpacing: "-0.03em",
-            gap: "2px",
-          }}
-        >
-          <span
-            className="overflow-hidden block"
-            style={{ paddingBottom: "8px" }}
+        <div className="my-auto lg:my-0 flex flex-col items-start w-full">
+          {/* Headline */}
+          <h1
+            className="font-serif font-light hero-title flex flex-col mb-6 sm:mb-8 mt-2"
+            style={{
+              fontSize: "clamp(30px, 5.5vw, 88px)",
+              lineHeight: "0.97",
+              letterSpacing: "-0.03em",
+              gap: "2px",
+            }}
           >
-            <span className="reveal-line block">
-              Chicago’s Premier
+            <span
+              className="overflow-hidden block"
+              style={{ paddingBottom: "8px" }}
+            >
+              <span className="reveal-line block">
+                Chicago’s Premier
+              </span>
             </span>
-          </span>
-          <span
-            className="overflow-hidden block"
-            style={{ paddingBottom: "10px" }}
-          >
-            <span className="reveal-line block">
-              Dessert <em className="italic">Catering</em>
+            <span
+              className="overflow-hidden block"
+              style={{ paddingBottom: "10px" }}
+            >
+              <span className="reveal-line block">
+                Dessert <em className="italic">Catering</em>
+              </span>
             </span>
-          </span>
-        </h1>
+          </h1>
 
-        {/* Divider */}
-        <div className="reveal-fade flex items-center gap-4 mb-3 sm:mb-5">
-          <div className="h-px w-8 hero-divider" />
-          <span
-            className="hero-subtitle"
+          {/* Divider */}
+          <div className="reveal-fade flex items-center gap-4 mb-6 sm:mb-8">
+            <div className="h-px w-8 hero-divider" />
+            <span
+              className="hero-subtitle"
+              style={{
+                fontSize: "11px",
+                fontWeight: "500",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+              }}
+            >
+              Delight Enterprises | Serving Greater Chicago
+            </span>
+          </div>
+
+          {/* Body */}
+          <p
+            className="reveal-fade font-normal hero-body mb-8 sm:mb-10"
             style={{
-              fontSize: "11px",
-              fontWeight: "500",
-              letterSpacing: "3px",
-              textTransform: "uppercase",
+              fontSize: "clamp(14px, 1.8vw, 18px)",
+              lineHeight: "1.7",
+              maxWidth: "390px",
             }}
           >
-            Delight Enterprises | Serving Greater Chicago
-          </span>
-        </div>
+            Unforgettable dessert experiences for weddings and corporate events
+            across Chicagoland. From premium Belgian chocolate fountains and live
+            crepe stations to Halal custom sweet platters, we craft moments
+            that matter.
+          </p>
 
-        {/* Body */}
-        <p
-          className="reveal-fade font-normal hero-body mb-5 sm:mb-5"
-          style={{
-            fontSize: "clamp(14px, 1.8vw, 18px)",
-            lineHeight: "1.7",
-            maxWidth: "390px",
-          }}
-        >
-          Unforgettable dessert experiences for weddings and corporate events
-          across Chicagoland. From premium Belgian chocolate fountains and live
-          crepe stations to Halal custom sweet platters, we craft moments
-          that matter.
-        </p>
+          {/* CTAs */}
+          <div className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-5 sm:gap-8 w-full sm:w-auto">
+            <button
+              onMouseMove={onMagMove}
+              onMouseLeave={onMagLeave}
+              onClick={() => scrollTo("quote")}
+              className="cta-primary hover-target w-full sm:w-auto sm:min-w-[180px] shrink-0"
+              style={{
+                height: "52px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 10px 40px rgba(26,122,110,0.18)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Book Catering
+            </button>
 
-        {/* CTAs */}
-        <div className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-8 mb-5 sm:mb-5 w-full sm:w-auto">
-          <button
-            onMouseMove={onMagMove}
-            onMouseLeave={onMagLeave}
-            onClick={() => scrollTo("quote")}
-            className="cta-primary hover-target w-full sm:w-auto sm:min-w-[180px] shrink-0"
-            style={{
-              height: "52px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 10px 40px rgba(26,122,110,0.18)",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Book Catering
-          </button>
-
-          <button
-            onMouseMove={onMagMove}
-            onMouseLeave={onMagLeave}
-            onClick={() => scrollTo("products")}
-            className="group flex items-center justify-center sm:justify-start gap-1.5 hover-target shrink-0 hero-link w-full sm:w-auto py-3 sm:py-0"
-            style={{
-              fontSize: "13px",
-              letterSpacing: "2.5px",
-              textTransform: "uppercase",
-            }}
-          >
-            <span className="relative" style={{ paddingBottom: "2px" }}>
-              Explore Menu
-              <span
-                className="absolute bottom-0 left-0 w-full origin-right transition-transform duration-500 ease-out group-hover:scale-x-0 hero-link-underline"
-                style={{ height: "1px" }}
+            <button
+              onMouseMove={onMagMove}
+              onMouseLeave={onMagLeave}
+              onClick={() => scrollTo("products")}
+              className="group flex items-center justify-center sm:justify-start gap-1.5 hover-target shrink-0 hero-link w-full sm:w-auto py-3 sm:py-0"
+              style={{
+                fontSize: "13px",
+                letterSpacing: "2.5px",
+                textTransform: "uppercase",
+              }}
+            >
+              <span className="relative" style={{ paddingBottom: "2px" }}>
+                Explore Menu
+                <span
+                  className="absolute bottom-0 left-0 w-full origin-right transition-transform duration-500 ease-out group-hover:scale-x-0 hero-link-underline"
+                  style={{ height: "1px" }}
+                />
+              </span>
+              <ArrowUpRight
+                className="w-3.5 h-3.5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={1.5}
               />
-            </span>
-            <ArrowUpRight
-              className="w-3.5 h-3.5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              strokeWidth={1.5}
-            />
-          </button>
+            </button>
+          </div>
         </div>
       </div>
 
