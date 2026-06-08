@@ -154,7 +154,7 @@ export default function Navbar() {
             color: "var(--color-teal)",
           }}
         >
-          60 Old Creek Rd, Palos Park, IL 60464
+          13030 Lagrange Rd, Palos Park, IL 60464
         </p>
       </div>
 

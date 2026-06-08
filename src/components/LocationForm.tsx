@@ -104,13 +104,13 @@ export default function LocationForm() {
   const INFO = [
     {
       Icon: MapPin,
-      label: "Mailing Address",
+      label: "Store Address",
       content: (
         <p
           className="font-light transition-colors hover:text-teal-rich"
           style={{ fontSize: "18px", color: "var(--color-teal)" }}
         >
-          60 Old Creek Rd
+          13030 Lagrange Rd
           <br />
           Palos Park, IL 60464
         </p>

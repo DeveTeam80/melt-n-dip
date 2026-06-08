@@ -119,6 +119,12 @@
   object-fit: contain;
 }
 
+@media (max-width: 640px) {
+  .mnd-nav-logo {
+    height: 50px;
+  }
+}
+
 .mnd-nav-link-text {
   font-size: 13px;
   letter-spacing: 1.5px;
@@ -176,6 +182,13 @@
   max-height: 1080px;
 }
 
+@media (max-width: 640px) {
+  .mnd-hero-section {
+    min-height: 100svh;
+    max-height: 100svh;
+  }
+}
+
 .mnd-hero-img-inner {
   inset: -6%;
   transition: transform 10s ease-out;
@@ -188,6 +201,12 @@
   letter-spacing: -0.035em;
   font-weight: 300;
   max-width: 700px;
+}
+
+@media (max-width: 640px) {
+  .mnd-hero-h1 {
+    font-size: clamp(34px, 12vw, 52px);
+  }
 }
 
 .mnd-hero-rl-wrap {
@@ -254,6 +273,13 @@
   text-transform: uppercase;
 }
 
+@media (max-width: 640px) {
+  .mnd-hero-badge-text {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+}
+
 /* ── BELGIAN SECTION ── */
 .mnd-bel-section {
   min-height: 85vh;
@@ -301,6 +327,13 @@
 
 .mnd-bel-stat-divider {
   width: 1px;
+}
+
+@media (max-width: 640px) {
+  .mnd-bel-section .flex.justify-between {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 }
 
 .mnd-bel-btn-primary {
@@ -475,6 +508,16 @@
   height: 600px;
 }
 
+@media (max-width: 640px) {
+  .mnd-mosaic-grid {
+    height: auto;
+  }
+
+  .mnd-mosaic-card {
+    min-height: 180px;
+  }
+}
+
 .mnd-mosaic-card {
   transition:
     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -513,6 +556,14 @@
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
   margin-left: 4px;
+}
+
+@media (max-width: 640px) {
+  .mnd-yt-play-triangle {
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 3px;
+  }
 }
 
 .mnd-yt-wrap {
@@ -791,11 +842,149 @@
   height: 360px;
 }
 
+@media (max-width: 640px) {
+  .mnd-map-c {
+    height: 250px;
+    margin-top: 40px;
+  }
+}
+
 .mnd-map-iframe {
   border: 0;
   width: 100%;
   height: 100%;
   filter: brightness(0.85) contrast(1.1) saturate(0.8);
+}
+
+/* ── MOBILE GLOBAL TWEAKS ── */
+@media (max-width: 640px) {
+  .mnd-cat-card {
+    padding: 20px 16px;
+  }
+
+  .mnd-mobile-nav-item-text,
+  .mnd-mobile-nav-item-hover {
+    font-size: clamp(24px, 8vw, 36px);
+  }
+
+  .mnd-section-py {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  section#mnd-menu,
+  section#mnd-gallery,
+  section#mnd-catering,
+  section#mnd-reviews,
+  section#mnd-location {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .mnd-hero-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .mnd-bel-section {
+    min-height: auto;
+  }
+
+  .mnd-bel-left {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  .mnd-bel-stat-num {
+    font-size: 28px;
+  }
+
+  .mnd-cat-h2 {
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .mnd-rev-card {
+    padding: 24px !important;
+  }
+
+  .mnd-loc-card {
+    padding: 24px !important;
+  }
+
+  .mnd-loc-card-h3 {
+    font-size: 22px;
+  }
+
+  .mnd-menu-tab-btn {
+    font-size: 10px;
+    padding: 7px 12px;
+    letter-spacing: 1.5px;
+  }
+
+  .mnd-menu-tab-icon {
+    width: 9px;
+    height: 9px;
+  }
+
+  .mnd-menu-card {
+    padding: 14px 16px;
+  }
+
+  .mnd-menu-card-name {
+    font-size: 14px;
+  }
+
+  .mnd-menu-card-desc {
+    font-size: 11px;
+  }
+
+  .mnd-menu-card-img-wrap {
+    width: 52px;
+    height: 52px;
+  }
+
+  .mnd-menu-card-img-wrap img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .mnd-bel-btn-primary {
+    width: 100%;
+  }
+
+  .mnd-cat-btn-primary {
+    height: 46px;
+    padding: 0 24px;
+    font-size: 11px;
+  }
+
+  .mnd-nav-book-btn {
+    font-size: 11px;
+    padding: 8px 18px !important;
+  }
+
+  .mnd-ft-brand-desc {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .mnd-mosaic-desc {
+    max-width: 100%;
+  }
+
+  .mnd-bel-desc {
+    max-width: 100%;
+  }
+
+  .mnd-cat-desc {
+    max-width: 100%;
+  }
+
+  .mnd-cat-sub-desc {
+    margin-bottom: 24px;
+  }
 }
 
 /* ── FOOTER ── */
@@ -808,6 +997,12 @@
   width: auto;
   object-fit: contain;
   margin-bottom: 20px;
+}
+
+@media (max-width: 640px) {
+  .mnd-ft-logo {
+    height: 60px;
+  }
 }
 
 .mnd-ft-brand-label {

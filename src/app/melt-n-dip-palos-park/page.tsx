@@ -45,6 +45,7 @@ const MND = {
 };
 
 const MND_NAV = [
+  { label: "Home", href: "/" },
   { label: "Menu", href: "#mnd-menu" },
   { label: "Gallery", href: "#mnd-gallery" },
   { label: "Catering", href: "#mnd-catering" },
@@ -180,231 +181,9 @@ const REVIEWS = [
 ];
 
 /* =========================================================
-   MND PRELOADER
+   MND PRELOADER (disabled)
    ========================================================= */
-function MndPreloader({ onComplete }: { onComplete: () => void }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const panelLeftRef = useRef<HTMLDivElement>(null);
-  const panelRgtRef = useRef<HTMLDivElement>(null);
-  const dripLineRef = useRef<HTMLDivElement>(null);
-  const dripHeadRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const tagRef = useRef<HTMLDivElement>(null);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          document.body.style.overflow = "";
-          onComplete();
-        },
-      });
-      gsap.set(panelLeftRef.current, { x: "0%" });
-      gsap.set(panelRgtRef.current, { x: "0%" });
-      tl.fromTo(
-        dripLineRef.current,
-        { scaleY: 0, transformOrigin: "top center" },
-        { scaleY: 1, duration: 1.6, ease: "power2.in" },
-        0.5,
-      );
-      tl.fromTo(
-        dripHeadRef.current,
-        { y: "-100vh", opacity: 0 },
-        { y: "0vh", opacity: 1, duration: 1.6, ease: "power2.in" },
-        0.5,
-      );
-      tl.fromTo(
-        logoRef.current,
-        { scale: 0.7, opacity: 0, filter: "blur(6px)" },
-        {
-          scale: 1,
-          opacity: 1,
-          filter: "blur(0px)",
-          duration: 0.9,
-          ease: "elastic.out(1, 0.5)",
-        },
-        1.2,
-      );
-      tl.fromTo(
-        tagRef.current,
-        { opacity: 0, y: 6 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-        1.7,
-      );
-      const counter = { val: 0 };
-      tl.to(
-        counter,
-        {
-          val: 100,
-          duration: 1.9,
-          ease: "power1.inOut",
-          onUpdate() {
-            const v = Math.round(counter.val);
-            setCount(v);
-            if (progressRef.current)
-              progressRef.current.style.transform = `scaleX(${v / 100})`;
-          },
-        },
-        0.5,
-      );
-      tl.to({}, { duration: 0.5 });
-      tl.to([logoRef.current, tagRef.current], {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.4,
-        ease: "power2.in",
-      });
-      tl.to(
-        [counterRef.current, dripHeadRef.current],
-        { opacity: 0, duration: 0.3, ease: "power2.in" },
-        "<",
-      );
-      tl.to(
-        dripLineRef.current,
-        {
-          scaleY: 0,
-          transformOrigin: "top center",
-          duration: 0.5,
-          ease: "power3.in",
-        },
-        "-=0.1",
-      );
-      tl.to(
-        panelLeftRef.current,
-        { x: "-100%", duration: 1.0, ease: "power4.inOut" },
-        "-=0.15",
-      );
-      tl.to(
-        panelRgtRef.current,
-        { x: "100%", duration: 1.0, ease: "power4.inOut" },
-        "<",
-      );
-    }, rootRef);
-    return () => ctx.revert();
-  }, [onComplete]);
-
-  return (
-    <div
-      ref={rootRef}
-      className="fixed inset-0 z-[10000] pointer-events-auto overflow-hidden"
-      aria-hidden="true"
-    >
-      <div
-        ref={panelLeftRef}
-        className="absolute top-0 left-0 w-1/2 h-full"
-        style={{
-          background: MND.bg,
-          borderRight: `1px solid ${MND.border}`,
-          transform: "translateX(0%)",
-        }}
-      />
-      <div
-        ref={panelRgtRef}
-        className="absolute top-0 right-0 w-1/2 h-full"
-        style={{
-          background: MND.bg,
-          borderLeft: `1px solid ${MND.border}`,
-          transform: "translateX(0%)",
-        }}
-      />
-      <div
-        ref={dripLineRef}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] h-screen z-10 origin-top"
-        style={{
-          background: `linear-gradient(to bottom, ${MND.gold} 0%, ${MND.goldMuted} 50%, ${MND.bgWarm} 100%)`,
-          transform: "scaleY(0)",
-          transformOrigin: "top center",
-        }}
-      />
-      <div
-        ref={dripHeadRef}
-        className="absolute bottom-0 left-1/2 z-10"
-        style={{ transform: "translateX(-50%) translateY(-100vh)", opacity: 0 }}
-      >
-        <svg
-          width="22"
-          height="28"
-          viewBox="0 0 22 28"
-          style={{ filter: `drop-shadow(0 4px 8px ${MND.goldFaint})` }}
-        >
-          <path
-            d="M11 0 C11 0 22 12 22 18 C22 24.627 17.075 28 11 28 C4.925 28 0 24.627 0 18 C0 12 11 0 11 0Z"
-            fill={MND.gold}
-          />
-        </svg>
-      </div>
-      <div
-        ref={logoRef}
-        className="absolute inset-0 flex flex-col items-center justify-center z-20"
-        style={{ opacity: 0 }}
-      >
-        <div
-          className="mnd-preloader-logo-circle flex items-center justify-center rounded-full mb-5"
-          style={{
-            background: MND.bgCard,
-            border: `1px solid ${MND.border}`,
-            boxShadow: `0 0 0 8px ${MND.goldFaint}, 0 20px 50px rgba(0,0,0,0.4)`,
-          }}
-        >
-          <img
-            src="/assets/images/melt-n-dip-logo1.png"
-            alt="Melt N Dip"
-            className="mnd-preloader-logo-img"
-          />
-        </div>
-      </div>
-      <div
-        ref={tagRef}
-        className="absolute left-1/2 z-20 text-center mnd-preloader-tag-pos"
-      >
-        <p className="mnd-preloader-tag-text" style={{ color: MND.bgWarm }}>
-          Melt N Dip
-        </p>
-        <div className="flex items-center justify-center gap-3 mt-2">
-          <div className="h-px w-8" style={{ background: MND.gold }} />
-          <p className="mnd-preloader-tag-location" style={{ color: MND.gold }}>
-            Palos Park, IL
-          </p>
-          <div className="h-px w-8" style={{ background: MND.gold }} />
-        </div>
-      </div>
-      <div
-        ref={counterRef}
-        className="absolute bottom-12 right-12 z-20 flex items-baseline gap-1"
-      >
-        <span
-          className="mnd-preloader-counter-num"
-          style={{ color: MND.bgWarm }}
-        >
-          {String(count).padStart(2, "0")}
-        </span>
-        <span
-          className="mnd-preloader-counter-pct"
-          style={{ color: MND.goldMuted }}
-        >
-          %
-        </span>
-      </div>
-      <div
-        className="absolute bottom-0 left-0 right-0 z-20 mnd-preloader-progress-wrap"
-        style={{ background: MND.border }}
-      >
-        <div
-          ref={progressRef}
-          className="absolute inset-y-0 left-0 right-0 origin-left"
-          style={{
-            background: `linear-gradient(to right, ${MND.gold}, ${MND.bgWarm})`,
-            transform: "scaleX(0)",
-          }}
-        />
-      </div>
-    </div>
-  );
-}
+/* Preloader was here – commented out to skip loading animation */
 
 /* =========================================================
    MND NAVBAR COMPONENT
@@ -444,9 +223,13 @@ function MndNavbar() {
     };
   }, [menuOpen]);
 
-  const scrollTo = (id: string) => {
+  const scrollTo = (href: string) => {
     setMenuOpen(false);
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("#")) {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = href;
+    }
   };
   const navBg = scrolled ? `rgba(44,25,17,0.96)` : "transparent";
   const navBlur = scrolled ? "blur(16px)" : "none";
@@ -530,12 +313,9 @@ function MndNavbar() {
           boxShadow: "none",
         }}
       >
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
+        <Link
+          href="/"
+          onClick={() => setMenuOpen(false)}
           className="hover-target shrink-0"
         >
           <img
@@ -543,7 +323,7 @@ function MndNavbar() {
             alt="Melt N Dip"
             className="mnd-nav-logo"
           />
-        </a>
+        </Link>
         <ul className="hidden lg:flex items-center gap-1 list-none">
           {MND_NAV.map((item) => (
             <li key={item.label}>
@@ -878,7 +658,6 @@ function MndFooter() {
 export default function MeltNDipPalosPage() {
   const pageRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeCategory, setActiveCategory] = useState("waffles");
   const [reviewPage, setReviewPage] = useState(0);
@@ -1293,7 +1072,6 @@ export default function MeltNDipPalosPage() {
       className={styles.mndPage}
       style={{ background: MND.bg }}
     >
-      {isLoading && <MndPreloader onComplete={() => setIsLoading(false)} />}
       <MndNavbar />
 
       {/* 1. HERO */}
@@ -1953,13 +1731,13 @@ export default function MeltNDipPalosPage() {
                 id="mnd-yt-overlay"
                 className="absolute inset-0 flex flex-col items-center justify-center z-10"
               >
-                <div className="relative flex items-center justify-center mb-5 transition-transform duration-500 group-hover:scale-110">
+                <div className="relative flex items-center justify-center mb-3 sm:mb-5 transition-transform duration-500 group-hover:scale-110">
                   <div
-                    className="absolute w-24 h-24 rounded-full animate-ping opacity-20"
+                    className="absolute w-16 h-16 sm:w-24 sm:h-24 rounded-full animate-ping opacity-20"
                     style={{ background: MND.gold }}
                   />
                   <div
-                    className="relative w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(240,192,109,0.5)]"
+                    className="relative w-12 h-12 sm:w-20 sm:h-20 rounded-full flex items-center justify-center transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(240,192,109,0.5)]"
                     style={{
                       background: MND.gold,
                       boxShadow: `0 8px 32px rgba(240,192,109,0.35)`,
@@ -1967,7 +1745,7 @@ export default function MeltNDipPalosPage() {
                   >
                     <div
                       className="mnd-yt-play-triangle"
-                      style={{ borderLeft: `20px solid ${MND.ink}` }}
+                      style={{ borderLeft: `clamp(12px, 3vw, 20px) solid ${MND.ink}` }}
                     />
                   </div>
                 </div>
