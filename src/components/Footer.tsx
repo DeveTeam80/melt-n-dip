@@ -225,10 +225,10 @@ export default function Footer() {
                   />
                   <div>
                     <p className="text-[12px] uppercase tracking-[1.5px] text-amber mb-1 font-semibold">
-                      Mailing Address
+                      Store Address
                     </p>
                     <p className="font-light leading-[1.7] text-white">
-                      60 Old Creek Rd
+                      13030 Lagrange Rd
                       <br />
                       Palos Park, IL 60464
                     </p>

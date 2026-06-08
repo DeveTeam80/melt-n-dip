@@ -60,32 +60,33 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
     };
   }, [pathname]);
 
-  if (isMobile) {
+  // Desktop: smooth scrolling via Lenis
+  // Mobile: native scroll (no Lenis wrapper) for better performance
+  if (!isMobile) {
     return (
-      <>
+      <ReactLenis
+        root
+        options={{
+          lerp: 0.08,
+          smoothWheel: true,
+          prevent: () => isLoading,
+        }}
+      >
         <Cursor />
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
-      </>
+      </ReactLenis>
     );
   }
 
   return (
-    <ReactLenis
-      root
-      options={{
-        lerp: 0.08,
-        smoothWheel: true,
-        prevent: () => isLoading,
-      }}
-    >
-      {/* {isLoading && <Preloader setIsLoading={setIsLoading} />} */}
+    <>
       <Cursor />
       <Navbar />
       <main id="main-content">{children}</main>
       <Footer />
-    </ReactLenis>
+    </>
   );
 }
 

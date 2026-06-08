@@ -37,7 +37,7 @@ export default function Home() {
         ],
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "60 Old Creek Rd",
+          "streetAddress": "13030 Lagrange Rd",
           "addressLocality": "Palos Park",
           "addressRegion": "IL",
           "postalCode": "60464",
