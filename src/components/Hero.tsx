@@ -65,7 +65,7 @@ export default function Hero({
       style={{ height: "100svh", minHeight: "680px", maxHeight: "1000px" }}
     >
       {/* ── LEFT PANEL ──────────────────────────────────────── */}
-      <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-start h-full px-8 sm:px-12 xl:px-20 pt-24 pb-6 sm:pt-36 sm:pb-16 lg:pt-30 lg:pb-24">
+      <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-start h-full px-8 sm:px-12 xl:px-20 pt-24 pb-6 sm:pt-24 sm:pb-16 lg:pt-24 lg:pb-24">
         {/* Overline */}
         {/* <div className="reveal-fade flex items-center gap-3 mb-6" style={{ opacity: 0 }}>
           <span className="w-6 h-px shrink-0" style={{ background: "var(--color-teal-pale)" }} />
@@ -126,7 +126,7 @@ export default function Hero({
 
           {/* Body */}
           <p
-            className="reveal-fade font-normal hero-body mb-8 sm:mb-10"
+            className="reveal-fade font-normal hero-body mb-2 sm:mb-6"
             style={{
               fontSize: "clamp(14px, 1.8vw, 18px)",
               lineHeight: "1.7",
@@ -140,7 +140,7 @@ export default function Hero({
           </p>
 
           {/* CTAs */}
-          <div className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-5 sm:gap-8 w-full sm:w-auto">
+          <div className="reveal-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-8 w-full sm:w-auto">
             <button
               onMouseMove={onMagMove}
               onMouseLeave={onMagLeave}

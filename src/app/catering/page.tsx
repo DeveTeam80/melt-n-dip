@@ -146,7 +146,7 @@ function CateringPageInner() {
       {/* ── SECTIONS ──────────────────────────────────────── */}
       <CateringHero />
 
-      <BagBuilder
+      <section id="menu"><BagBuilder
         guests={guests}
         setGuests={setGuests}
         eventType={eventType}
@@ -161,7 +161,7 @@ function CateringPageInner() {
         onUpdateQty={updateQuantity} // Required Prop passed here
         onOpenBag={() => setBagOpen(true)}
         getQty={getQty}
-      />
+      /></section>
 
       <LiveStations />
       <EventTypes />
