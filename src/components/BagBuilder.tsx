@@ -684,12 +684,12 @@ export default function BagBuilder({
             const cats = getMenuCategories();
             const allTabs = ["All", ...cats];
             return (
-              <div className="flex flex-wrap gap-2 mb-12">
+              <div className="flex flex-nowrap gap-2 mb-12 overflow-x-auto no-scrollbar snap-x snap-mandatory">
                 {allTabs.map((label, i) => (
                   <button
                     key={label}
                     onClick={() => setActiveTab(i)}
-                    className={`px-6 py-2.5 rounded-full text-[14px] tracking-[1.5px] font-medium uppercase transition-all duration-300 ${
+                    className={`shrink-0 snap-start px-6 py-2.5 rounded-full text-[14px] tracking-[1.5px] font-medium uppercase transition-all duration-300 ${
                       activeTab === i
                         ? "bg-teal text-white shadow-lg shadow-teal/20"
                         : "bg-white text-teal border border-linen hover:border-teal/30"

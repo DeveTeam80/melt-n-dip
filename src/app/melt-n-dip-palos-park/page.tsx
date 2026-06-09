@@ -1560,7 +1560,7 @@ export default function MeltNDipPalosPage() {
               ))}
             </div>
           </div>
-          <div className="mnd-menu-f flex flex-wrap gap-2 mb-10 d-flex justify-evenly">
+          <div className="mnd-menu-f flex flex-nowrap gap-2 mb-10 overflow-x-auto no-scrollbar snap-x snap-mandatory">
             {(["All", ...getMenuCategories()] as const).map((cat) => {
               const display = cat === "All" ? { label: "All Items", id: "all" } : CATEGORY_DISPLAY[cat];
               if (!display) return null;
@@ -1571,7 +1571,7 @@ export default function MeltNDipPalosPage() {
                   onClick={() => setActiveCategory(cat)}
                   onMouseMove={onMag}
                   onMouseLeave={offMag}
-                  className="mnd-menu-tab-btn hover-target flex items-center gap-2"
+                  className="mnd-menu-tab-btn hover-target flex items-center gap-2 shrink-0 snap-start"
                   style={{
                     background:
                       activeCategory === cat ? MND.gold : `${MND.gold}10`,

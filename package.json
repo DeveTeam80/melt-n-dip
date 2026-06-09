@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "fetch-menu": "node scripts/fetch-menu.mjs"
   },
   "dependencies": {
     "gsap": "^3.14.2",
