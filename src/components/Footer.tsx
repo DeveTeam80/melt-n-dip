@@ -103,9 +103,7 @@ export default function Footer() {
                 {[
                   { label: "Our Story", href: "/about" },
                   { label: "Menu", href: "/catering#menu" },
-                  { label: "Food Truck", href: "/catering#estimator" },
                   { label: "Melt N Dip", href: "/melt-n-dip-palos-park" },
-                  { label: "Private Events", href: "/catering#estimator" },
                   { label: "Contact", href: "/#location" },
                 ].map((item) => (
                   <li key={item.label}>
