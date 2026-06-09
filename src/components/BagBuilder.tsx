@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { MENU, PACKAGES, EVENT_TYPES, SERVICE_STYLES, BagItem } from "./data";
+import { UNIFIED_MENU, getMenuCategories, getMenuByCategory, PACKAGES, EVENT_TYPES, SERVICE_STYLES, BagItem } from "./data";
 import CustomSelect from "./CustomSelect";
 
 const useIsomorphicLayoutEffect =
@@ -29,7 +29,7 @@ interface Props {
   bagTotal: number;
   bagCount: number;
   onAdd: (
-    item: { id: string; name: string; pricePerPerson: number },
+    item: { id: string; name: string; price: number },
     category: string,
     initialQty?: number,
   ) => void;
@@ -65,6 +65,7 @@ export default function BagBuilder({
   const [showToast, setShowToast] = useState(false);
   const [forceServiceOpen, setForceServiceOpen] = useState(false);
   const [showPathChoice, setShowPathChoice] = useState(false);
+  const [sizeSelections, setSizeSelections] = useState<Record<string, "regular" | "large">>({});
 
   const guestNum = parseInt(guests) || 0;
 
@@ -679,90 +680,155 @@ export default function BagBuilder({
             </h3>
             <div className="h-[1px] flex-1 bg-linen" />
           </div>
-          <div className="flex flex-wrap gap-2 mb-12">
-            {MENU.map((cat, i) => (
-              <button
-                key={cat.category}
-                onClick={() => setActiveTab(i)}
-                className={`px-6 py-2.5 rounded-full text-[14px] tracking-[1.5px] font-medium uppercase transition-all duration-300 ${
-                  activeTab === i
-                    ? "bg-teal text-white shadow-lg shadow-teal/20"
-                    : "bg-white text-teal border border-linen hover:border-teal/30"
-                }`}
+          {(() => {
+            const cats = getMenuCategories();
+            const allTabs = ["All", ...cats];
+            return (
+              <div className="flex flex-wrap gap-2 mb-12">
+                {allTabs.map((label, i) => (
+                  <button
+                    key={label}
+                    onClick={() => setActiveTab(i)}
+                    className={`px-6 py-2.5 rounded-full text-[14px] tracking-[1.5px] font-medium uppercase transition-all duration-300 ${
+                      activeTab === i
+                        ? "bg-teal text-white shadow-lg shadow-teal/20"
+                        : "bg-white text-teal border border-linen hover:border-teal/30"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            );
+          })()}
+          {(() => {
+            const cats = getMenuCategories();
+            const currentCategory = activeTab === 0 ? null : cats[activeTab - 1];
+            const items = currentCategory
+              ? getMenuByCategory(currentCategory).filter(i => i.price !== null)
+              : UNIFIED_MENU.filter(i => i.price !== null);
+            return (
+              <div
+                ref={gridRef}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 "
               >
-                {cat.category}
-              </button>
-            ))}
-          </div>
-          <div
-            ref={gridRef}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 "
-          >
-            {MENU[activeTab].items.map((item) => {
-              const qty = getQty(item.id);
-              const isSelected = qty > 0;
-              return (
-                <div
-                  key={item.id}
-                  className={`menu-item-card p-8 rounded-[3px] border transition-all duration-500 ${
-                    isSelected
-                      ? "bg-white border-teal shadow-xl"
-                      : "bg-white border-linen"
-                  }`}
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="font-serif font-medium text-lg text-ink leading-tight">
-                      {item.name}
-                    </h4>
-                    <span className="text-[15px] font-medium text-teal bg-teal-faint px-2 py-1 rounded">
-                      ${item.pricePerPerson} / pp
-                    </span>
-                  </div>
-                  <p className="text-[15px] font-light text-teal leading-relaxed mb-8">
-                    {item.desc}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    {isSelected ? (
-                      <div className="flex items-center gap-4 bg-parchment rounded-full p-1 border border-linen">
-                        <button
-                          onClick={() => onRemove(item.id)}
-                          className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white text-ink transition-colors"
-                        >
-                          <Minus className="w-3 h-3" />
-                        </button>
-                        <input
-                          type="number"
-                          value={qty}
-                          onChange={(e) =>
-                            onUpdateQty(item.id, parseInt(e.target.value) || 0)
-                          }
-                          className="w-14 text-center bg-transparent text-[13px] font-bold outline-none"
-                        />
-                        <button
-                          onClick={() => onAdd(item, MENU[activeTab].category)}
-                          className="w-8 h-8 rounded-full bg-teal text-white flex items-center justify-center shadow-md"
-                        >
-                          <Plus className="w-3 h-3" />
-                        </button>
+                {items.map((item) => {
+                  const hasSizes = !!item.priceLarge;
+                  const selSize = sizeSelections[item.id] || "regular";
+                  const bagId = hasSizes && selSize === "large" ? item.id + "-large" : item.id;
+                  const bagName = hasSizes && selSize === "large" ? item.name + " (Large)" : item.name;
+                  const addPrice = hasSizes && selSize === "large" ? item.priceLarge! : item.price!;
+                  const qty = getQty(bagId);
+                  const isSelected = qty > 0;
+                  const priceLabel = hasSizes ? "" : `$${item.price}`;
+                  return (
+                    <div
+                      key={item.id}
+                      className={`menu-item-card rounded-[3px] border transition-all duration-500 ${
+                        isSelected
+                          ? "bg-white border-teal shadow-xl"
+                          : "bg-white border-linen"
+                      }`}
+                    >
+                      <div className="flex gap-4 p-5 sm:p-7">
+                        {item.image ? (
+                          <div className="shrink-0 w-[80px] h-[80px] sm:w-[90px] sm:h-[90px] rounded-md overflow-hidden bg-teal-faint border border-linen">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                (e.currentTarget as HTMLImageElement).style.display = "none";
+                              }}
+                            />
+                          </div>
+                        ) : null}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex justify-between items-start gap-2 mb-2">
+                            <h4 className="font-serif font-medium text-base sm:text-lg text-ink leading-tight">
+                              {item.name}
+                            </h4>
+                            {priceLabel && (
+                              <span className="shrink-0 text-[13px] sm:text-[15px] font-medium text-teal bg-teal-faint px-2 py-1 rounded whitespace-nowrap">
+                                {priceLabel}
+                              </span>
+                            )}
+                          </div>
+                          {item.description && (
+                            <p className="text-[13px] sm:text-[15px] font-light text-teal leading-relaxed">
+                              {item.description}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                    ) : (
-                      <button
-                        onClick={() =>
-                          onAdd(item, MENU[activeTab].category, guestNum)
-                        }
-                        className="flex items-center gap-2 text-[14px] tracking-[1.5px] uppercase font-bold text-teal group"
-                      >
-                        <span className="w-8 h-8 rounded-full border border-teal flex items-center justify-center group-hover:bg-teal group-hover:text-white transition-all">
-                          <Plus className="w-3 h-3" />
-                        </span>
-                        Add to Cart
-                      </button>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                      {hasSizes && (
+                        <div className="flex gap-1 px-5 sm:px-7 pb-3">
+                          <button
+                            onClick={() => setSizeSelections(prev => ({ ...prev, [item.id]: "regular" }))}
+                            className={`text-[11px] tracking-[1px] uppercase font-bold px-3 py-1 rounded-full border transition-all ${
+                              selSize === "regular"
+                                ? "bg-teal text-white border-teal"
+                                : "bg-white text-teal border-teal/30 hover:border-teal"
+                            }`}
+                          >
+                            Regular ${item.priceRegular}
+                          </button>
+                          <button
+                            onClick={() => setSizeSelections(prev => ({ ...prev, [item.id]: "large" }))}
+                            className={`text-[11px] tracking-[1px] uppercase font-bold px-3 py-1 rounded-full border transition-all ${
+                              selSize === "large"
+                                ? "bg-teal text-white border-teal"
+                                : "bg-white text-teal border-teal/30 hover:border-teal"
+                            }`}
+                          >
+                            Large ${item.priceLarge}
+                          </button>
+                        </div>
+                      )}
+                      <div className="flex items-center justify-between px-5 sm:px-7 pb-5 sm:pb-7">
+                        {isSelected ? (
+                          <div className="flex items-center gap-4 bg-parchment rounded-full p-1 border border-linen">
+                            <button
+                              onClick={() => onRemove(bagId)}
+                              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white text-ink transition-colors"
+                            >
+                              <Minus className="w-3 h-3" />
+                            </button>
+                            <input
+                              type="number"
+                              value={qty}
+                              onChange={(e) =>
+                                onUpdateQty(bagId, parseInt(e.target.value) || 0)
+                              }
+                              className="w-14 text-center bg-transparent text-[13px] font-bold outline-none"
+                            />
+                            <button
+                          onClick={() => onAdd({ id: bagId, name: bagName, price: addPrice }, item.category)}
+                          className="w-8 h-8 rounded-full bg-teal text-white flex items-center justify-center shadow-md"
+                            >
+                              <Plus className="w-3 h-3" />
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() =>
+                              onAdd({ id: bagId, name: bagName, price: addPrice }, item.category, guestNum)
+                            }
+                            className="flex items-center gap-2 text-[14px] tracking-[1.5px] uppercase font-bold text-teal group"
+                          >
+                            <span className="w-8 h-8 rounded-full border border-teal flex items-center justify-center group-hover:bg-teal group-hover:text-white transition-all">
+                              <Plus className="w-3 h-3" />
+                            </span>
+                            Add to Cart
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })()}
         </div>
 
         {/* Floating bag */}

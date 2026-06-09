@@ -185,11 +185,7 @@ export default function CateringQuoteForm({
                     </span>
                     <span className="text-[14px] text-teal font-medium">
                       $
-                      {(
-                        i.pricePerPerson *
-                        i.quantity *
-                        guestNum
-                      ).toLocaleString()}
+                      {(i.price * i.quantity).toLocaleString()}
                     </span>
                   </div>
                 ))}

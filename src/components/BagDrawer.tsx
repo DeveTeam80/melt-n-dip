@@ -48,7 +48,7 @@ export default function BagDrawer({
                             <div className="flex-1">
                                 <p style={{ fontSize: "16px", color: "var(--color-ink)", fontWeight: 500 }}>{item.name}</p>
                                 <p style={{ fontSize: "12px", color: "var(--color-taupe)", marginTop: "2px" }}>
-                                    ${item.pricePerPerson}/pp · <span className="text-teal font-medium">${(item.pricePerPerson * item.quantity).toLocaleString()} total</span>
+                                    ${item.price} each · <span className="text-teal font-medium">${(item.price * item.quantity).toLocaleString()} total</span>
                                 </p>
                             </div>
 

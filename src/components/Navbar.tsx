@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 
 const NAV_LINKS = [
-  { label: "Our Story", href: "/#about" },
+  { label: "About", href: "/about" },
   { label: "Menu", href: "/#products" },
   { label: "Catering", href: "/catering" },
   { label: "Melt N Dip", href: "/melt-n-dip-palos-park" },
@@ -18,6 +18,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const isCatering = pathname === "/catering";
+  const isAbout = pathname === "/about";
+  const isDarkHero = isCatering || isAbout;
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -192,10 +194,11 @@ export default function Navbar() {
               alt="Delight Enterprises"
               width={250}
               height={100}
-              className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen ? "" : "nav-logo-responsive"} ${scrolled ? "w-[50px] lg:w-[70px]" : "w-[80px] lg:w-[100px]"}`}
+              className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen || !isDarkHero ? "" : "nav-logo-responsive"} ${scrolled ? "w-[50px] lg:w-[70px]" : "w-[80px] lg:w-[100px]"}`}
               style={{
                 height: "auto",
-                transition: "width 0.3s ease",
+                transition: "width 0.3s ease, filter 0.3s ease",
+                filter: isDarkHero && !scrolled && !menuOpen ? "brightness(0) invert(1)" : "none",
               }}
               priority
             />

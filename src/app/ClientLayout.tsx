@@ -60,6 +60,8 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
     };
   }, [pathname]);
 
+  const showNavbar = pathname !== "/melt-n-dip-palos-park";
+
   // Desktop: smooth scrolling via Lenis
   // Mobile: native scroll (no Lenis wrapper) for better performance
   if (!isMobile) {
@@ -73,7 +75,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
         }}
       >
         <Cursor />
-        <Navbar />
+        {showNavbar && <Navbar />}
         <main id="main-content">{children}</main>
         <Footer />
       </ReactLenis>
@@ -83,7 +85,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Cursor />
-      <Navbar />
+      {showNavbar && <Navbar />}
       <main id="main-content">{children}</main>
       <Footer />
     </>

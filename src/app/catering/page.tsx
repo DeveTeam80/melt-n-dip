@@ -39,9 +39,8 @@ function CateringPageInner() {
   }, []);
 
   // ── BAG CALCULATIONS ──────────────────────────────────
-  // Total is now just Price * Quantity for each item
   const bagTotal = bag.reduce(
-    (sum, i) => sum + i.pricePerPerson * i.quantity,
+    (sum, i) => sum + i.price * i.quantity,
     0,
   );
 
@@ -51,7 +50,7 @@ function CateringPageInner() {
   // ── BAG HELPERS ───────────────────────────────────────
 
   const addItem = (
-    item: { id: string; name: string; pricePerPerson: number },
+    item: { id: string; name: string; price: number },
     category: string,
     initialQty?: number,
   ) => {

@@ -92,7 +92,7 @@ export default function CateringHero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, rgba(9,24,22,0.96) 0%, rgba(9,24,22,0.82) 38%, rgba(9,24,22,0.4) 65%, transparent 100%)",
+              "linear-gradient(to right, rgba(13,42,39,0.96) 0%, rgba(13,42,39,0.82) 38%, rgba(13,42,39,0.4) 65%, transparent 100%)",
           }}
         />
 
@@ -101,7 +101,7 @@ export default function CateringHero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(9,24,22,0.97) 0%, rgba(9,24,22,0.4) 28%, transparent 50%)",
+              "linear-gradient(to top, rgba(13,42,39,0.97) 0%, rgba(13,42,39,0.4) 28%, transparent 50%)",
           }}
         />
 
@@ -110,29 +110,13 @@ export default function CateringHero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(9,24,22,0.5) 0%, transparent 20%)",
+              "linear-gradient(to bottom, rgba(13,42,39,0.5) 0%, transparent 20%)",
           }}
         />
       </div>
 
-      {/* ── CORNER BRACKETS ─────────────────────────── */}
-      {/* Top-left */}
-      <div className="ch-corner absolute top-8 left-8 z-10 pointer-events-none hidden lg:block">
-        <div className="relative w-10 h-10">
-          <div className="absolute top-0 left-0 w-10 h-px" style={{ background: "var(--color-teal-pale)", opacity: 0.35 }} />
-          <div className="absolute top-0 left-0 w-px h-10" style={{ background: "var(--color-teal-pale)", opacity: 0.35 }} />
-        </div>
-      </div>
-      {/* Top-right */}
-      <div className="ch-corner absolute top-8 right-8 z-10 pointer-events-none hidden lg:block">
-        <div className="relative w-10 h-10">
-          <div className="absolute top-0 right-0 w-10 h-px" style={{ background: "var(--color-teal-pale)", opacity: 0.35 }} />
-          <div className="absolute top-0 right-0 w-px h-10" style={{ background: "var(--color-teal-pale)", opacity: 0.35 }} />
-        </div>
-      </div>
-
       {/* ── CONTENT ─────────────────────────────────── */}
-      <div className="relative z-10 h-full flex flex-col justify-center pt-20 sm:pt-28 lg:pt-0 px-8 sm:px-12 lg:px-20">
+      <div className="relative z-10 h-full flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 px-8 sm:px-12 lg:px-20">
         <div className="flex flex-col max-w-2xl">
 
           {/* Headline */}
@@ -141,7 +125,7 @@ export default function CateringHero() {
             style={{
               fontSize: "clamp(40px, 5.5vw, 84px)",
               lineHeight: 1.02,
-              color: "#fbfdfc",
+              color: "var(--color-cream)",
               textShadow: "0 2px 40px rgba(0,0,0,0.5)",
             }}
           >
@@ -154,7 +138,7 @@ export default function CateringHero() {
             <span className="overflow-hidden block py-1">
               <span className="ch-reveal-line block">
                 Into a{" "}
-                <em className="italic" style={{ color: "var(--color-amber, #D4860A)" }}>
+                <em className="italic" style={{ color: "var(--color-amber)" }}>
                   Celebration.
                 </em>
               </span>
@@ -166,7 +150,7 @@ export default function CateringHero() {
             className="ch-fade-up font-light leading-[1.85] mb-8"
             style={{
               fontSize: "16px",
-              color: "rgba(251,253,252,0.72)",
+              color: "rgba(251,253,252,0.7)",
               maxWidth: "440px",
               textShadow: "0 1px 12px rgba(0,0,0,0.4)",
             }}
@@ -188,7 +172,7 @@ export default function CateringHero() {
                 padding: "0 34px",
                 fontSize: "12.5px",
                 letterSpacing: "0.06em",
-                boxShadow: "0 10px 40px rgba(26,122,110,0.35)",
+                boxShadow: "0 10px 40px rgba(8,99,107,0.35)",
               }}
             >
               Plan Your Menu
@@ -197,11 +181,11 @@ export default function CateringHero() {
 
             {/* Ghost secondary CTA */}
             <a
-              href="#how-it-works"
+              href="#estimator"
               className="inline-flex items-center gap-1.5 font-light transition-all group"
               style={{
                 fontSize: "13px",
-                color: "rgba(251,253,252,0.5)",
+                color: "rgba(251,253,252,0.6)",
                 letterSpacing: "0.04em",
               }}
             >
