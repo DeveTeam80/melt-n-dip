@@ -4,7 +4,7 @@ import styles from "../page.module.css";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { MENU_CATEGORIES } from "../../components/data";
+import { UNIFIED_MENU, getMenuCategories, getMenuByCategory, CATEGORY_DISPLAY } from "../../components/data";
 import "../../../public/assets/meltndip.css";
 import {
   ArrowUpRight,
@@ -19,6 +19,12 @@ import {
   Truck,
   Building2,
   Cake,
+  Cookie,
+  Cherry,
+  Candy,
+  Coffee,
+  IceCreamCone,
+  CakeSlice,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -442,7 +448,7 @@ function MndFooter() {
           >
             <div className="mnd-ft-col flex flex-col items-start pr-0 lg:pr-12">
               <img
-                src="assets/images/melt-n-dip-logo1.png"
+                src="/assets/images/melt-n-dip-logo1.png"
                 alt="Melt N Dip"
                 className="mnd-ft-logo"
               />
@@ -659,8 +665,9 @@ export default function MeltNDipPalosPage() {
   const pageRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [activeCategory, setActiveCategory] = useState("waffles");
+  const [activeCategory, setActiveCategory] = useState("All");
   const [reviewPage, setReviewPage] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
   const reviewsPerPage = 3;
 
   useEffect(() => {
@@ -1059,7 +1066,21 @@ export default function MeltNDipPalosPage() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   const slide = HERO_SLIDES[activeSlide];
-  const cat = MENU_CATEGORIES.find((c) => c.id === activeCategory)!;
+  const catItems = activeCategory === "All" ? UNIFIED_MENU : getMenuByCategory(activeCategory);
+  const catLabel = activeCategory === "All" ? "All Items" : CATEGORY_DISPLAY[activeCategory]?.label || activeCategory;
+  const catId = activeCategory === "All" ? "all" : CATEGORY_DISPLAY[activeCategory]?.id || activeCategory.toLowerCase();
+
+  const CATEGORY_ICONS: Record<string, any> = {
+    "All": Star,
+    "Crepe": CakeSlice,
+    "Waffle": Cookie,
+    "Cookies & Cake": Cherry,
+    "Dip Stick & Sharing": Candy,
+    "Fresh Fruit & Platters": IceCreamCone,
+    "Beverages": Coffee,
+    "Milkshakes & Cheesecake": Heart as any,
+  };
+  const ActiveIcon = CATEGORY_ICONS[activeCategory] || CakeSlice;
   const totalRevPages = Math.ceil(REVIEWS.length / reviewsPerPage);
   const visRevs = REVIEWS.slice(
     reviewPage * reviewsPerPage,
@@ -1540,32 +1561,37 @@ export default function MeltNDipPalosPage() {
             </div>
           </div>
           <div className="mnd-menu-f flex flex-wrap gap-2 mb-10 d-flex justify-evenly">
-            {MENU_CATEGORIES.map(({ id, label, Icon }) => (
-              <button
-                key={id}
-                onClick={() => setActiveCategory(id)}
-                onMouseMove={onMag}
-                onMouseLeave={offMag}
-                className="mnd-menu-tab-btn hover-target flex items-center gap-2"
-                style={{
-                  background:
-                    activeCategory === id ? MND.gold : `${MND.gold}10`,
-                  color: activeCategory === id ? MND.ink : MND.bgCard,
-                  outline:
-                    activeCategory === id ? "none" : `1px solid ${MND.gold}25`,
-                  boxShadow:
-                    activeCategory === id ? `0 4px 20px ${MND.gold}30` : "none",
-                }}
-              >
-                <Icon className="mnd-menu-tab-icon" strokeWidth={1.5} />
-                {label}
-              </button>
-            ))}
+            {(["All", ...getMenuCategories()] as const).map((cat) => {
+              const display = cat === "All" ? { label: "All Items", id: "all" } : CATEGORY_DISPLAY[cat];
+              if (!display) return null;
+              const Icon = CATEGORY_ICONS[cat] || CakeSlice;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  onMouseMove={onMag}
+                  onMouseLeave={offMag}
+                  className="mnd-menu-tab-btn hover-target flex items-center gap-2"
+                  style={{
+                    background:
+                      activeCategory === cat ? MND.gold : `${MND.gold}10`,
+                    color: activeCategory === cat ? MND.ink : MND.bgCard,
+                    outline:
+                      activeCategory === cat ? "none" : `1px solid ${MND.gold}25`,
+                    boxShadow:
+                      activeCategory === cat ? `0 4px 20px ${MND.gold}30` : "none",
+                  }}
+                >
+                  <Icon className="mnd-menu-tab-icon" strokeWidth={1.5} />
+                  {display.label}
+                </button>
+              );
+            })}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {cat.items.map((item) => (
+            {catItems.map((item) => (
               <div
-                key={item.name}
+                key={item.id}
                 className="mnd-menu-card group relative flex items-center gap-4 overflow-hidden hover-target cursor-default"
                 style={{
                   background: MND.bgCard,
@@ -1588,22 +1614,24 @@ export default function MeltNDipPalosPage() {
                     background: `linear-gradient(to right, ${MND.gold}, transparent)`,
                   }}
                 />
-                <div
-                  className="mnd-menu-card-img-wrap shrink-0 overflow-hidden"
-                  style={{ background: MND.bg }}
-                >
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    width={68}
-                    height={68}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display =
-                        "none";
-                    }}
-                  />
-                </div>
+                {item.image ? (
+                  <div
+                    className="mnd-menu-card-img-wrap shrink-0 overflow-hidden"
+                    style={{ background: MND.bg }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      width={68}
+                      height={68}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display =
+                          "none";
+                      }}
+                    />
+                  </div>
+                ) : null}
                 <div className="flex-1 min-w-0">
                   <p
                     className="mnd-menu-card-name truncate mb-1 transition-colors duration-300 group-hover:text-[#f0c06d]"
@@ -1611,12 +1639,14 @@ export default function MeltNDipPalosPage() {
                   >
                     {item.name}
                   </p>
-                  <p
-                    className="mnd-menu-card-desc line-clamp-2 transition-colors duration-300"
-                    style={{ color: MND.bgWarm }}
-                  >
-                    {item.desc}
-                  </p>
+                  {item.description && (
+                    <p
+                      className="mnd-menu-card-desc line-clamp-2 transition-colors duration-300"
+                      style={{ color: MND.bgWarm }}
+                    >
+                      {item.description}
+                    </p>
+                  )}
                   <div
                     className="mt-2 h-px w-0 group-hover:w-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     style={{ background: MND.gold }}
@@ -1703,18 +1733,7 @@ export default function MeltNDipPalosPage() {
             <div
               className="mnd-mosaic-f mnd-mosaic-yt-wrap relative overflow-hidden rounded-[3px] group cursor-pointer"
               style={{ background: MND.bgCard }}
-              onClick={() => {
-                const el = document.getElementById(
-                  "mnd-yt-frame",
-                ) as HTMLIFrameElement | null;
-                const wrap = document.getElementById("mnd-yt-wrap");
-                if (el)
-                  el.src =
-                    "https://www.youtube.com/embed/uGZx4GfAF7g?autoplay=1";
-                if (wrap) wrap.style.opacity = "1";
-                const overlay = document.getElementById("mnd-yt-overlay");
-                if (overlay) overlay.style.display = "none";
-              }}
+              onClick={() => setShowVideo(true)}
             >
               <img
                 src="https://img.youtube.com/vi/uGZx4GfAF7g/maxresdefault.jpg"
@@ -1727,6 +1746,7 @@ export default function MeltNDipPalosPage() {
                   background: `linear-gradient(135deg, ${MND.bg}CC 0%, ${MND.bg}66 50%, transparent 100%)`,
                 }}
               />
+              {!showVideo && (
               <div
                 id="mnd-yt-overlay"
                 className="absolute inset-0 flex flex-col items-center justify-center z-10"
@@ -1757,20 +1777,23 @@ export default function MeltNDipPalosPage() {
                   style={{
                     background: `linear-gradient(to right, ${MND.gold}, transparent)`,
                   }}
-                />
-              </div>
+                  />
+                </div>
+              )}
               <div
                 id="mnd-yt-wrap"
                 className="mnd-yt-wrap absolute inset-0 z-20"
               >
-                <iframe
-                  id="mnd-yt-frame"
-                  src=""
-                  title="Melt N Dip - Belgian Chocolate"
-                  className="mnd-yt-iframe w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                {showVideo && (
+                  <iframe
+                    id="mnd-yt-frame"
+                    src="https://www.youtube.com/embed/uGZx4GfAF7g?autoplay=1"
+                    title="Melt N Dip - Belgian Chocolate"
+                    className="mnd-yt-iframe w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )}
               </div>
             </div>
           </div>
