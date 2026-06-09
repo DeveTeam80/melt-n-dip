@@ -101,12 +101,12 @@ export default function Footer() {
               </p>
               <ul className="list-none flex flex-col gap-4">
                 {[
-                  { label: "Our Story", href: "#" },
-                  { label: "Catering Packages", href: "/catering#estimator" },
-                  { label: "Food Truck", href: "#" },
-                  { label: "Melt-N-Dip-Palos", href: "/melt-n-dip-palos-park" },
-                  { label: "Private Events", href: "#" },
-                  { label: "Contact", href: "#" },
+                  { label: "Our Story", href: "/about" },
+                  { label: "Menu", href: "/catering#menu" },
+                  { label: "Food Truck", href: "/catering#estimator" },
+                  { label: "Melt N Dip", href: "/melt-n-dip-palos-park" },
+                  { label: "Private Events", href: "/catering#estimator" },
+                  { label: "Contact", href: "/#location" },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link
@@ -138,19 +138,19 @@ export default function Footer() {
               </p>
               <ul className="list-none flex flex-col gap-4">
                 {[
-                  "Artisan Gelato",
-                  "Melt-n-Dip Crepes",
-                  "Dubai Chocolate Crepe",
-                  "Belgian Waffles",
-                  "Seasonal Specials",
-                ].map((link) => (
-                  <li key={link}>
+                  { label: "Artisan Gelato", href: "/melt-n-dip-palos-park#mnd-menu" },
+                  { label: "Melt N Dip Crepes", href: "/melt-n-dip-palos-park#mnd-menu" },
+                  { label: "Dubai Chocolate Crepe", href: "/melt-n-dip-palos-park#mnd-menu" },
+                  { label: "Belgian Waffles", href: "/melt-n-dip-palos-park#mnd-menu" },
+                  { label: "Seasonal Specials", href: "/melt-n-dip-palos-park#mnd-menu" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
                     <Link
-                      href="#"
+                      href={href}
                       className="group inline-flex items-center gap-2 text-[17px] font-light text-white hover:text-cream transition-colors duration-300 hover-target"
                     >
                       <span className="relative overflow-hidden pb-1">
-                        {link}
+                        {label}
                         <span className="absolute bottom-0 left-0 w-full h-[1px] bg-teal-pale origin-right transform scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-0" />
                       </span>
                       <ArrowUpRight
