@@ -55,7 +55,7 @@ export default function AboutJourney() {
         {/* 3-column card grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
           {STEPS.map(({ number, Icon, title, description }, i) => (
-            <div key={i} className="journ-card" style={{ background: "#ffffff", border: "1px solid #d8edea", borderRadius: "2px", padding: "28px 24px sm:36px sm:32px" }}>
+            <div key={i} className="journ-card py-7 px-6 sm:py-9 sm:px-8" style={{ background: "#ffffff", border: "1px solid #d8edea", borderRadius: "2px" }}>
               <div className="flex items-center gap-4 mb-4">
                 <span style={{ fontSize: "26px", fontWeight: 600, color: "#b98e3b", fontFamily: "var(--font-serif)", lineHeight: 1 }}>{number}</span>
                 <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full shrink-0" style={{ background: "#e6f0f1" }}>
