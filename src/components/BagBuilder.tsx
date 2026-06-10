@@ -119,6 +119,14 @@ export default function BagBuilder({
     );
   }, [activeTab]);
 
+  // ── Force ScrollTrigger to recalc after DOM settles ────────────
+  useEffect(() => {
+    const t = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+    return () => clearTimeout(t);
+  }, []);
+
   // ── Nudge sequence ──────────────────────────────────────────────
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

@@ -85,12 +85,12 @@ export default function StoreRental() {
 
           <div className="sr-fade-up opacity-0 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 w-full">
             {[
-              { label: "Capacity", val: "60 guests maximum" },
-              { label: "Hours", val: "12:00 noon – Midnight" },
-              { label: "Peak (6:30–9:30pm)", val: "$2,000 food min (3hr)" },
-              { label: "Off-Peak", val: "$1,500 food min (2hr)" },
+              { label: "Hours", val: "8 AM – 11 PM" },
+              { label: "Full Store", val: "Before 3 PM · up to 60 guests" },
+              { label: "Partial Store", val: "3 – 11 PM · up to 20 guests" },
               { label: "Gratuity", val: "20% added to all events" },
-              { label: "Rental Line", val: "(630) 800-9292" },
+              { label: "Capacity", val: "60 max (full) / 20 max (partial)" },
+              { label: "Rental Line", val: "(630) 800-9392" },
             ].map(({ label, val }) => (
               <div key={label} className="border-l-2 border-teal-pale/20 pl-4">
                 <p className="text-[14px] font-medium tracking-[2px] uppercase text-amber/90 mb-1.5">

@@ -60,19 +60,19 @@ export const UNIFIED_MENU: UnifiedMenuItem[] = [
   { id: "ds-my-passion-4", name: "My Passion (4 people)", category: "Dip Stick & Sharing", subcategory: "My Passion", price: 50.49, description: "A full plate of fruits, brownies, éclair, and marshmallow with Belgian Milk Chocolate. For four people.", image: "/assets/menu/ds-my-passion-4.jpg" },
 
   // ── FRESH FRUIT & FRUIT PLATTERS ─────────────────────────
-  { id: "ff-tahiti", name: "Tahiti", category: "Fresh Fruit & Platters", subcategory: "Fresh Fruit", priceRegular: 11.49, priceLarge: 13.49, price: 11.49, description: "Strawberry juice with seasonal fresh fruits topped with strawberry gelato", image: "/assets/menu/ff-tahiti.png" },
-  { id: "ff-avocado", name: "Avocado", category: "Fresh Fruit & Platters", subcategory: "Fresh Fruit", priceRegular: 13.49, priceLarge: 14.49, price: 13.49, description: "Fresh Avocado blended with honey, topped with keshta, almonds, and cashews.", image: "/assets/menu/ff-avocado.png" },
-  { id: "ff-banana-milkshake", name: "Banana Milkshake", category: "Fresh Fruit & Platters", subcategory: "Fresh Fruit", priceRegular: 11.49, priceLarge: 12.49, price: 11.49, description: "Banana shake blended with keshta, honey, almonds, and cashews.", image: "/assets/menu/ff-banana-milkshake.png" },
-  { id: "ff-panama", name: "Panama", category: "Fresh Fruit & Platters", subcategory: "Fresh Fruit", priceRegular: 11.49, priceLarge: 13.49, price: 11.49, description: "Mango juice with seasonal fresh fruits topped with mango gelato", image: "/assets/menu/ff-panama.png" },
-  { id: "ff-avocado-nutella", name: "Avocado with Nutella", category: "Fresh Fruit & Platters", subcategory: "Fresh Fruit", priceRegular: 12.99, priceLarge: 13.99, price: 12.99, description: "Avocado and Nutella layers topped with whipped cream and strawberries.", image: "/assets/menu/ff-avocado-nutella.png" },
-  { id: "ff-meltndip-cocktail", name: "Meltndip Cocktail", category: "Fresh Fruit & Platters", subcategory: "Fresh Fruit", priceRegular: 12.99, priceLarge: 13.99, price: 12.99, description: "Avocado and cocktail juice layers topped with whipped cream, decorated with seasonal fruits and honey.", image: "/assets/menu/ff-meltndip-cocktail.png" },
-  { id: "ff-cocktail-fruit", name: "Cocktail Fruit", category: "Fresh Fruit & Platters", subcategory: "Fresh Fruit", priceRegular: 11.99, priceLarge: 13.49, price: 11.99, description: "Seasonal fresh fruits topped with three kinds of juices (strawberry, mango, and guava), decorated with Keshta, almonds, cashews and honey.", image: undefined },
-  { id: "fp-nutella-fruit-salad", name: "Nutella Fruit Salad", category: "Fresh Fruit & Platters", subcategory: "Fruit Platters", price: 17.99, description: "Nutella Chocolate, Strawberry, Banana, Melt n Dip special cream, and whipped cream", image: "/assets/menu/fp-nutella-fruit-salad.jpg" },
-  { id: "fp-royal-fruit-salad", name: "Royal Fruit Salad", category: "Fresh Fruit & Platters", subcategory: "Fruit Platters", price: 17.99, description: "Seasonal fresh fruits topped with Raspberry and Mango Gelato.", image: "/assets/menu/fp-royal-fruit-salad.jpg" },
-  { id: "fp-crunchy-fruit-salad", name: "Crunchy Fruit Salad", category: "Fresh Fruit & Platters", subcategory: "Fruit Platters", price: 17.99, description: "Rice Krispies, condensed milk, strawberry, banana, Melt n Dip special cream and topped with whipped cream", image: "/assets/menu/fp-crunchy-fruit-salad.jpg" },
-  { id: "fp-lotus-fruit-salad", name: "Lotus Fruit Salad", category: "Fresh Fruit & Platters", subcategory: "Fruit Platters", price: 17.99, description: "Lotus cookie butter, strawberry, banana, Melt n Dip special cream topped with whipped cream and Lotus crumbs.", image: "/assets/menu/fp-lotus-fruit-salad.jpg" },
-  { id: "fp-fruit-salad", name: "Fruit Salad", category: "Fresh Fruit & Platters", subcategory: "Fruit Platters", price: 17.99, description: "Seasonal fresh fruits topped with Keshta, cashews, almonds, and honey.", image: "/assets/menu/fp-fruit-salad.jpg" },
-  { id: "fp-banana-split", name: "Banana Split", category: "Fresh Fruit & Platters", subcategory: "Fruit Platters", price: 13.49, description: "A trio of vanilla, strawberry, and chocolate gelato. Topped with Belgian Milk Chocolate. All finished with fresh banana and whipped cream.", image: "/assets/menu/fp-banana-split.jpg" },
+  { id: "ff-tahiti", name: "Tahiti", category: "Fresh Fruits & Fruit Platters", subcategory: "Fresh Fruit", priceRegular: 11.49, priceLarge: 13.49, price: 11.49, description: "Strawberry juice with seasonal fresh fruits topped with strawberry gelato", image: "/assets/menu/ff-tahiti.png" },
+  { id: "ff-avocado", name: "Avocado", category: "Fresh Fruits & Fruit Platters", subcategory: "Fresh Fruit", priceRegular: 13.49, priceLarge: 14.49, price: 13.49, description: "Fresh Avocado blended with honey, topped with keshta, almonds, and cashews.", image: "/assets/menu/ff-avocado.png" },
+  { id: "ff-banana-milkshake", name: "Banana Milkshake", category: "Fresh Fruits & Fruit Platters", subcategory: "Fresh Fruit", priceRegular: 11.49, priceLarge: 12.49, price: 11.49, description: "Banana shake blended with keshta, honey, almonds, and cashews.", image: "/assets/menu/ff-banana-milkshake.png" },
+  { id: "ff-panama", name: "Panama", category: "Fresh Fruits & Fruit Platters", subcategory: "Fresh Fruit", priceRegular: 11.49, priceLarge: 13.49, price: 11.49, description: "Mango juice with seasonal fresh fruits topped with mango gelato", image: "/assets/menu/ff-panama.png" },
+  { id: "ff-avocado-nutella", name: "Avocado with Nutella", category: "Fresh Fruits & Fruit Platters", subcategory: "Fresh Fruit", priceRegular: 12.99, priceLarge: 13.99, price: 12.99, description: "Avocado and Nutella layers topped with whipped cream and strawberries.", image: "/assets/menu/ff-avocado-nutella.png" },
+  { id: "ff-meltndip-cocktail", name: "Meltndip Cocktail", category: "Fresh Fruits & Fruit Platters", subcategory: "Fresh Fruit", priceRegular: 12.99, priceLarge: 13.99, price: 12.99, description: "Avocado and cocktail juice layers topped with whipped cream, decorated with seasonal fruits and honey.", image: "/assets/menu/ff-meltndip-cocktail.png" },
+  { id: "ff-cocktail-fruit", name: "Cocktail Fruit", category: "Fresh Fruits & Fruit Platters", subcategory: "Fresh Fruit", priceRegular: 11.99, priceLarge: 13.49, price: 11.99, description: "Seasonal fresh fruits topped with three kinds of juices (strawberry, mango, and guava), decorated with Keshta, almonds, cashews and honey.", image: undefined },
+  { id: "fp-nutella-fruit-salad", name: "Nutella Fruit Salad", category: "Fresh Fruits & Fruit Platters", subcategory: "Fruit Platters", price: 17.99, description: "Nutella Chocolate, Strawberry, Banana, Melt n Dip special cream, and whipped cream", image: "/assets/menu/fp-nutella-fruit-salad.jpg" },
+  { id: "fp-royal-fruit-salad", name: "Royal Fruit Salad", category: "Fresh Fruits & Fruit Platters", subcategory: "Fruit Platters", price: 17.99, description: "Seasonal fresh fruits topped with Raspberry and Mango Gelato.", image: "/assets/menu/fp-royal-fruit-salad.jpg" },
+  { id: "fp-crunchy-fruit-salad", name: "Crunchy Fruit Salad", category: "Fresh Fruits & Fruit Platters", subcategory: "Fruit Platters", price: 17.99, description: "Rice Krispies, condensed milk, strawberry, banana, Melt n Dip special cream and topped with whipped cream", image: "/assets/menu/fp-crunchy-fruit-salad.jpg" },
+  { id: "fp-lotus-fruit-salad", name: "Lotus Fruit Salad", category: "Fresh Fruits & Fruit Platters", subcategory: "Fruit Platters", price: 17.99, description: "Lotus cookie butter, strawberry, banana, Melt n Dip special cream topped with whipped cream and Lotus crumbs.", image: "/assets/menu/fp-lotus-fruit-salad.jpg" },
+  { id: "fp-fruit-salad", name: "Fruit Salad", category: "Fresh Fruits & Fruit Platters", subcategory: "Fruit Platters", price: 17.99, description: "Seasonal fresh fruits topped with Keshta, cashews, almonds, and honey.", image: "/assets/menu/fp-fruit-salad.jpg" },
+  { id: "fp-banana-split", name: "Banana Split", category: "Fresh Fruits & Fruit Platters", subcategory: "Fruit Platters", price: 13.49, description: "A trio of vanilla, strawberry, and chocolate gelato. Topped with Belgian Milk Chocolate. All finished with fresh banana and whipped cream.", image: "/assets/menu/fp-banana-split.jpg" },
 
   // ── MILKSHAKES & CHEESECAKE ──────────────────────────────
   { id: "ms-chocolate", name: "Chocolate Milkshake", category: "Milkshakes & Cheesecake", subcategory: "Milkshake", price: 6.99, image: "/assets/menu/ms-chocolate.png" },
@@ -141,7 +141,7 @@ export const CATEGORY_DISPLAY: Record<string, { label: string; id: string }> = {
   Waffle: { label: "Waffles", id: "waffles" },
   "Cookies & Cake": { label: "Cookies & Cake", id: "cake" },
   "Dip Stick & Sharing": { label: "Dip Stick", id: "dipstick" },
-  "Fresh Fruit & Platters": { label: "Fruits & Platters", id: "gelato" },
+  "Fresh Fruits & Fruit Platters": { label: "Fruits & Platters", id: "gelato" },
   "Milkshakes & Cheesecake": { label: "Milkshakes & Cheesecake", id: "milkshakes" },
   Beverages: { label: "Beverages", id: "drinks" },
 };
@@ -236,31 +236,31 @@ export const SERVICE_STYLES = [
 export const FAQS = [
   {
     q: "What is the minimum spend?",
-    a: "In-house / external catering: $750 minimum food spend. Food truck: $1,500 minimum food spend. Both exclude labor, delivery, and tax.",
+    a: "In-house / external catering: $750 minimum food spend. Food truck: $1,500 minimum food spend. Store rental: no food minimum — pay per item ordered. All exclude labor, delivery, and tax.",
   },
   {
     q: "What do you serve?",
-    a: "Belgian chocolate fountains, artisan gelato, fresh crepes, waffles, fruit displays, brownie bites, éclairs, Dubai Chocolate Strawberry Cups, and signature chai and coffee beverages. All Halal.",
+    a: "Belgian chocolate fountains, artisan gelato, fresh crepes, waffles, fruit displays, brownie bites, éclairs, Dubai Chocolate Strawberry Cups, and tea and coffee beverages. All Halal.",
   },
   {
     q: "What hours are you available?",
-    a: "External events: 12:00 noon to 10:00pm. Store rentals: 12:00 noon to 12:00 midnight. Special requests considered based on availability.",
+    a: "Catering events: 12:00 noon – 10:00 PM. Full store rental (up to 60 guests): before 3 PM. Partial store rental (up to 20 guests): 3 PM – 11 PM during business hours. Store available from 8 AM onwards. Special requests considered based on availability.",
   },
   {
     q: "Is outside food allowed?",
-    a: "No outside food or beverages permitted. All food must be provided by Delight Enterprises / Melt N Dip.",
+    a: "For in-store dining, store rental events, external catering, and food truck bookings — no outside food or beverages are permitted. All food and beverages must be provided by Melt N Dip / Delight Enterprises.",
   },
   {
     q: "Do you have a sound system?",
-    a: "Yes - our store has a sound system with TV connectivity. Karaoke available for an additional charge.",
+    a: "Yes — our store has a sound system with TV connectivity. Karaoke available for an additional charge.",
   },
   {
     q: "How far in advance must I book?",
-    a: "Minimum 30 days advance booking for food truck and in-house catering.",
+    a: "Minimum 30 days advance booking for food truck and in-house catering. Store rental bookings subject to availability.",
   },
   {
     q: "What is your cancellation policy?",
-    a: "30% non-refundable deposit required. Cancellations 15+ days before: 25% deposit refunded. Within 15 days: full deposit forfeited.",
+    a: "30% non-refundable deposit required to secure your booking. Cancellations 15+ days before: 25% of deposit refunded. Within 15 days: full deposit forfeited.",
   },
   {
     q: "What power do you need?",

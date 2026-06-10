@@ -110,7 +110,7 @@ export default function BagDrawer({
                                     Request Catering Quote
                                 </button>
 
-                                <a href="tel:+17086088982"
+                                <a href="tel:+16308009392"
                                     className="hover-target w-full flex items-center justify-center border border-teal text-teal font-medium hover:bg-teal-faint transition-colors duration-300"
                                     style={{ height: "48px", fontSize: "11px", letterSpacing: "1.5px", textTransform: "uppercase", borderRadius: "1px" }}>
                                     Call to Customize
