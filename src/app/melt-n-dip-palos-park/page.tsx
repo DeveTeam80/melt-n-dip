@@ -591,7 +591,7 @@ function MndFooter() {
                     owner@delightenterprisesllc.com
                   </a>
                   <a
-                    href="tel:+17086088982"
+                    href="tel:+16308009392"
                     className="mnd-ft-contact-link group flex items-center gap-3 hover-target transition-colors duration-300"
                     style={{ color: MND.bgWarm }}
                   >
@@ -600,19 +600,7 @@ function MndFooter() {
                       style={{ color: MND.gold }}
                       strokeWidth={1.5}
                     />
-                    (708) 608-8982
-                  </a>
-                  <a
-                    href="tel:+16308009292"
-                    className="mnd-ft-contact-link group flex items-center gap-3 hover-target transition-colors duration-300"
-                    style={{ color: MND.bgWarm }}
-                  >
-                    <Phone
-                      className="w-4 h-4 shrink-0"
-                      style={{ color: MND.gold }}
-                      strokeWidth={1.5}
-                    />
-                    (630) 800-9292 - Store Rental
+                    (630) 800-9392
                   </a>
                 </div>
               </div>
@@ -1076,7 +1064,7 @@ export default function MeltNDipPalosPage() {
     "Waffle": Cookie,
     "Cookies & Cake": Cherry,
     "Dip Stick & Sharing": Candy,
-    "Fresh Fruit & Platters": IceCreamCone,
+    "Fresh Fruits & Fruit Platters": IceCreamCone,
     "Beverages": Coffee,
     "Milkshakes & Cheesecake": Heart as any,
   };

@@ -62,6 +62,7 @@ export default function CateringFAQ() {
 
   return (
     <section
+      id="faq"
       ref={containerRef}
       className="py-12 sm:py-16 lg:py-20 px-4 sm:px-12 lg:px-20 bg-paper border-t border-linen"
     >
@@ -94,12 +95,12 @@ export default function CateringFAQ() {
             Can &apos;t find what you &apos;re looking for? Call us directly.
           </p>
           <a
-            href="tel:+17086088982"
+            href="tel:+16308009392"
             onMouseMove={onMagMove}
             onMouseLeave={onMagLeave}
             className="hover-target inline-flex items-center gap-2 mt-8 text-[15px] text-teal hover:text-teal-rich transition-colors font-medium"
           >
-            (708) 608-8982
+            (630) 800-9392
           </a>
 
           <div className="mt-20 font-serif font-light select-none pointer-events-none hidden lg:block text-[140px] text-amber/20 leading-none tracking-[-0.05em]">

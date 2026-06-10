@@ -75,7 +75,7 @@ export default function CateringQuoteForm({
       });
       setSubmitted(true);
     } catch {
-      alert("Something went wrong. Please call us at (708) 608-8982.");
+      alert("Something went wrong. Please call us at (630) 800-9392.");
     } finally {
       setSending(false);
     }
@@ -125,10 +125,10 @@ export default function CateringQuoteForm({
           <div className="quote-fade opacity-0 flex flex-col gap-6 w-full">
             {[
               {
-                href: "tel:+16308009292",
+                href: "tel:+16308009392",
                 Icon: Phone,
                 label: "Store Rental",
-                val: "(630) 800-9292",
+                val: "(630) 800-9392",
               },
               {
                 href: "tel:+13124973697",
@@ -217,10 +217,10 @@ export default function CateringQuoteForm({
               <p className="text-[16px] text-teal leading-[1.8] max-w-[320px] font-light">
                 We &apos;ll be in touch within 48 hours. Need us sooner?{" "}
                 <a
-                  href="tel:+17086088982"
+                  href="tel:+16308009392"
                   className="text-teal font-medium hover:text-teal-rich"
                 >
-                  (708) 608-8982
+                  (630) 800-9392
                 </a>
                 .
               </p>
