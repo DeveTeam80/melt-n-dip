@@ -5,14 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
-
-const NAV_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Menu", href: "/catering#menu" },
-  { label: "Catering", href: "/catering" },
-  { label: "Melt N Dip", href: "/melt-n-dip-palos-park" },
-  { label: "Find Us", href: "/#location" },
-];
+import { NAV_LINKS } from "@/components/navLinks";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -165,7 +158,8 @@ export default function Navbar() {
         ref={navRef}
         className="fixed top-0 left-0 right-0 z-[100]"
         style={{
-          transition: "background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+          transition:
+            "background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
           background: scrolled ? "rgba(248, 250, 249, 0.92)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
@@ -177,9 +171,10 @@ export default function Navbar() {
       >
         <div
           className={`max-w-[1400px] mx-auto w-full flex items-center justify-between transition-all duration-300
-            ${scrolled
-              ? "py-1 px-6 md:px-12 lg:py-1.5 lg:px-16"
-              : "py-2.5 px-6 md:px-12 lg:py-6 lg:px-16"
+            ${
+              scrolled
+                ? "py-1 px-6 md:px-12 lg:py-1.5 lg:px-16"
+                : "py-2.5 px-6 md:px-12 lg:py-6 lg:px-16"
             }`}
         >
           {/* ── LOGO ─────────────────────────────────── */}
@@ -198,7 +193,10 @@ export default function Navbar() {
               style={{
                 height: "auto",
                 transition: "width 0.3s ease, filter 0.3s ease",
-                filter: isDarkHero && !scrolled && !menuOpen ? "brightness(0) invert(1)" : "none",
+                filter:
+                  isDarkHero && !scrolled && !menuOpen
+                    ? "brightness(0) invert(1)"
+                    : "none",
               }}
               priority
             />
@@ -208,15 +206,26 @@ export default function Navbar() {
           <ul
             className="hidden xl:flex items-center gap-2 list-none duration-300"
             style={{
-              transitionProperty: "background-color, border-color, box-shadow, padding, backdrop-filter, WebkitBackdropFilter",
-              backgroundColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.6)" : "transparent",
-              backdropFilter: (!scrolled && !isCatering) ? "blur(12px)" : "none",
-              WebkitBackdropFilter: (!scrolled && !isCatering) ? "blur(12px)" : "none",
+              transitionProperty:
+                "background-color, border-color, box-shadow, padding, backdrop-filter, WebkitBackdropFilter",
+              backgroundColor:
+                !scrolled && !isCatering
+                  ? "rgba(255, 255, 255, 0.6)"
+                  : "transparent",
+              backdropFilter: !scrolled && !isCatering ? "blur(12px)" : "none",
+              WebkitBackdropFilter:
+                !scrolled && !isCatering ? "blur(12px)" : "none",
               borderRadius: "9999px",
-              padding: (!scrolled && !isCatering) ? "6px 16px" : "0px",
+              padding: !scrolled && !isCatering ? "6px 16px" : "0px",
               border: "1px solid",
-              borderColor: (!scrolled && !isCatering) ? "rgba(255, 255, 255, 0.5)" : "transparent",
-              boxShadow: (!scrolled && !isCatering) ? "0 4px 24px rgba(0,0,0,0.04)" : "none",
+              borderColor:
+                !scrolled && !isCatering
+                  ? "rgba(255, 255, 255, 0.5)"
+                  : "transparent",
+              boxShadow:
+                !scrolled && !isCatering
+                  ? "0 4px 24px rgba(0,0,0,0.04)"
+                  : "none",
             }}
           >
             {NAV_LINKS.map((item) => {
@@ -238,7 +247,7 @@ export default function Navbar() {
                     />
                     <span
                       className={`relative z-10 font-sans font-medium uppercase
-                        transition-colors duration-300 ${(isCatering && !scrolled) ? "text-white group-hover:text-teal" : "text-umber group-hover:text-teal"}`}
+                        transition-colors duration-300 ${isCatering && !scrolled ? "text-white group-hover:text-teal" : "text-umber group-hover:text-teal"}`}
                       style={{ fontSize: "14px", letterSpacing: "1.5px" }}
                     >
                       {label}
@@ -280,12 +289,11 @@ export default function Navbar() {
                   transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
                     height: "1.5px",
-                    background:
-                      menuOpen
+                    background: menuOpen
+                      ? "var(--color-bark)"
+                      : scrolled
                         ? "var(--color-bark)"
-                        : scrolled
-                          ? "var(--color-bark)"
-                          : "var(--color-paper)",
+                        : "var(--color-paper)",
                     width: i === 1 && !menuOpen ? "14px" : "22px",
                     transform:
                       i === 0 && menuOpen

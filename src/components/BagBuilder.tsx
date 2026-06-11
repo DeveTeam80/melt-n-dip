@@ -12,7 +12,15 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { UNIFIED_MENU, getMenuCategories, getMenuByCategory, PACKAGES, EVENT_TYPES, SERVICE_STYLES, BagItem } from "./data";
+import {
+  UNIFIED_MENU,
+  getMenuCategories,
+  getMenuByCategory,
+  PACKAGES,
+  EVENT_TYPES,
+  SERVICE_STYLES,
+  BagItem,
+} from "./data";
 import CustomSelect from "./CustomSelect";
 
 const useIsomorphicLayoutEffect =
@@ -65,7 +73,11 @@ export default function BagBuilder({
   const [showToast, setShowToast] = useState(false);
   const [forceServiceOpen, setForceServiceOpen] = useState(false);
   const [showPathChoice, setShowPathChoice] = useState(false);
-  const [sizeSelections, setSizeSelections] = useState<Record<string, "regular" | "large">>({});
+  const [sizeSelections, setSizeSelections] = useState<
+    Record<string, "regular" | "large">
+  >({});
+
+  const [visibleCount, setVisibleCount] = useState(12);
 
   const guestNum = parseInt(guests) || 0;
 
@@ -681,6 +693,7 @@ export default function BagBuilder({
         </div>
 
         {/* ── Option B ─────────────────────────────────────────────── */}
+
         <div id="option-b" className="mb-8 lg:mb-12">
           <div className="flex items-center gap-4 mb-10">
             <h3 className="uppercase text-[14px] tracking-[3px] font-bold text-ink">
@@ -688,6 +701,8 @@ export default function BagBuilder({
             </h3>
             <div className="h-[1px] flex-1 bg-linen" />
           </div>
+
+          {/* ── Category tabs ── */}
           {(() => {
             const cats = getMenuCategories();
             const allTabs = ["All", ...cats];
@@ -696,7 +711,10 @@ export default function BagBuilder({
                 {allTabs.map((label, i) => (
                   <button
                     key={label}
-                    onClick={() => setActiveTab(i)}
+                    onClick={() => {
+                      setActiveTab(i);
+                      setVisibleCount(12);
+                    }}
                     className={`shrink-0 snap-start px-6 py-2.5 rounded-full text-[14px] tracking-[1.5px] font-medium uppercase transition-all duration-300 ${
                       activeTab === i
                         ? "bg-teal text-white shadow-lg shadow-teal/20"
@@ -709,158 +727,381 @@ export default function BagBuilder({
               </div>
             );
           })()}
+
+          {/* ── Cards + view-more ── */}
           {(() => {
             const cats = getMenuCategories();
-            const currentCategory = activeTab === 0 ? null : cats[activeTab - 1];
-            const items = currentCategory
-              ? getMenuByCategory(currentCategory).filter(i => i.price !== null)
-              : UNIFIED_MENU.filter(i => i.price !== null);
+            const currentCategory =
+              activeTab === 0 ? null : cats[activeTab - 1];
+            const allItems = currentCategory
+              ? getMenuByCategory(currentCategory).filter(
+                  (i) => i.price !== null,
+                )
+              : UNIFIED_MENU.filter((i) => i.price !== null);
+
+            const hasMore = allItems.length > visibleCount;
+            const visibleItems = hasMore
+              ? allItems.slice(0, visibleCount)
+              : allItems;
+            // peek = last 3 of the visible slice when there are more items
+            const peekCount =
+              typeof window !== "undefined" && window.innerWidth < 640 ? 2 : 3;
+            const peekStart = hasMore ? visibleCount - peekCount : -1;
             return (
-              <div
-                ref={gridRef}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 "
-              >
-                {items.map((item) => {
-                  const hasSizes = !!item.priceLarge;
-                  const selSize = sizeSelections[item.id] || "regular";
-                  const bagId = hasSizes && selSize === "large" ? item.id + "-large" : item.id;
-                  const bagName = hasSizes && selSize === "large" ? item.name + " (Large)" : item.name;
-                  const addPrice = hasSizes && selSize === "large" ? item.priceLarge! : item.price!;
-                  const qty = getQty(bagId);
-                  const isSelected = qty > 0;
-                  const priceLabel = hasSizes ? "" : `$${item.price}`;
-                  return (
-                    <div
-                      key={item.id}
-                      className={`menu-item-card rounded-[3px] border transition-all duration-500 ${
-                        isSelected
-                          ? "bg-white border-teal shadow-xl"
-                          : "bg-white border-linen"
-                      }`}
-                    >
-                      <div className="flex gap-4 p-5 sm:p-7">
-                        {item.image ? (
-                          <div className="shrink-0 w-[80px] h-[80px] sm:w-[90px] sm:h-[90px] rounded-md overflow-hidden bg-teal-faint border border-linen">
-                            <img
-                              src={item.image}
-                              alt={item.name}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                (e.currentTarget as HTMLImageElement).style.display = "none";
-                              }}
-                            />
+              <>
+                <div
+                  ref={gridRef}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
+                  {visibleItems.map((item, cardIndex) => {
+                    const isPeek = hasMore && cardIndex >= peekStart;
+                    const peekDepth = isPeek ? cardIndex - peekStart : 0;
+
+                    // ── Peek visual params ──────────────────────────────────────
+                    // All 3 cards identical — hinge at center, top half in front,
+                    // bottom half folds back behind the screen plane
+                    const rotateX = isPeek ? 20 : 0;
+                    const blurPx = isPeek ? 2.5 : 0;
+                    const opacity = isPeek ? 0.55 : 1;
+                    const scale = isPeek ? 0.96 : 1;
+                    const translateY = isPeek ? 10 : 0;
+
+                    // ── Card data ───────────────────────────────────────────────
+                    const hasSizes = !!item.priceLarge;
+                    const selSize = sizeSelections[item.id] || "regular";
+                    const bagId =
+                      hasSizes && selSize === "large"
+                        ? item.id + "-large"
+                        : item.id;
+                    const bagName =
+                      hasSizes && selSize === "large"
+                        ? item.name + " (Large)"
+                        : item.name;
+                    const addPrice =
+                      hasSizes && selSize === "large"
+                        ? item.priceLarge!
+                        : item.price!;
+                    const qty = getQty(bagId);
+                    const isSelected = qty > 0;
+                    const priceLabel = hasSizes ? "" : `$${item.price}`;
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="menu-item-card"
+                        style={{
+                          // Hinge at card's own midline — top tips forward, bottom folds back
+                          transformOrigin: "center 50%",
+                          transform: `perspective(900px) rotateX(${rotateX}deg) scale(${scale}) translateY(${translateY}px)`,
+                          filter: blurPx > 0 ? `blur(${blurPx}px)` : "none",
+                          opacity,
+                          transition:
+                            "transform 0.5s ease, filter 0.4s ease, opacity 0.4s ease",
+                          zIndex: isPeek ? 2 : 4,
+                          pointerEvents: isPeek ? "none" : "auto",
+                          position: "relative",
+                          // Top half fully visible, bottom half fades to nothing
+                          WebkitMaskImage: isPeek
+                            ? "linear-gradient(to bottom, black 0%, black 50%, transparent 100%)"
+                            : "none",
+                          maskImage: isPeek
+                            ? "linear-gradient(to bottom, black 0%, black 50%, transparent 100%)"
+                            : "none",
+                        }}
+                      >
+                        <div
+                          className={`rounded-[3px] border transition-all duration-500 h-full ${
+                            isSelected
+                              ? "bg-white border-teal shadow-xl"
+                              : "bg-white border-linen"
+                          }`}
+                        >
+                          <div className="flex gap-4 p-5 sm:p-7">
+                            {item.image ? (
+                              <div className="shrink-0 w-[80px] h-[80px] sm:w-[90px] sm:h-[90px] rounded-md overflow-hidden bg-teal-faint border border-linen">
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => {
+                                    (
+                                      e.currentTarget as HTMLImageElement
+                                    ).style.display = "none";
+                                  }}
+                                />
+                              </div>
+                            ) : null}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex justify-between items-start gap-2 mb-2">
+                                <h4 className="font-serif font-medium text-base sm:text-lg text-ink leading-tight">
+                                  {item.name}
+                                </h4>
+                                {priceLabel && (
+                                  <span className="shrink-0 text-[13px] sm:text-[15px] font-medium text-teal bg-teal-faint px-2 py-1 rounded whitespace-nowrap">
+                                    {priceLabel}
+                                  </span>
+                                )}
+                              </div>
+                              {item.description && (
+                                <p className="text-[13px] sm:text-[15px] font-light text-teal leading-relaxed">
+                                  {item.description}
+                                </p>
+                              )}
+                            </div>
                           </div>
-                        ) : null}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex justify-between items-start gap-2 mb-2">
-                            <h4 className="font-serif font-medium text-base sm:text-lg text-ink leading-tight">
-                              {item.name}
-                            </h4>
-                            {priceLabel && (
-                              <span className="shrink-0 text-[13px] sm:text-[15px] font-medium text-teal bg-teal-faint px-2 py-1 rounded whitespace-nowrap">
-                                {priceLabel}
-                              </span>
+
+                          {hasSizes && (
+                            <div className="flex gap-1 px-5 sm:px-7 pb-3">
+                              <button
+                                onClick={() =>
+                                  setSizeSelections((prev) => ({
+                                    ...prev,
+                                    [item.id]: "regular",
+                                  }))
+                                }
+                                className={`text-[11px] tracking-[1px] uppercase font-bold px-3 py-1 rounded-full border transition-all ${
+                                  selSize === "regular"
+                                    ? "bg-teal text-white border-teal"
+                                    : "bg-white text-teal border-teal/30 hover:border-teal"
+                                }`}
+                              >
+                                Regular ${item.priceRegular}
+                              </button>
+                              <button
+                                onClick={() =>
+                                  setSizeSelections((prev) => ({
+                                    ...prev,
+                                    [item.id]: "large",
+                                  }))
+                                }
+                                className={`text-[11px] tracking-[1px] uppercase font-bold px-3 py-1 rounded-full border transition-all ${
+                                  selSize === "large"
+                                    ? "bg-teal text-white border-teal"
+                                    : "bg-white text-teal border-teal/30 hover:border-teal"
+                                }`}
+                              >
+                                Large ${item.priceLarge}
+                              </button>
+                            </div>
+                          )}
+
+                          <div className="flex items-center justify-between px-5 sm:px-7 pb-5 sm:pb-7">
+                            {isSelected ? (
+                              <div className="flex items-center gap-4 bg-parchment rounded-full p-1 border border-linen">
+                                <button
+                                  onClick={() => onRemove(bagId)}
+                                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white text-ink transition-colors"
+                                >
+                                  <Minus className="w-3 h-3" />
+                                </button>
+                                <input
+                                  type="number"
+                                  value={qty}
+                                  onChange={(e) =>
+                                    onUpdateQty(
+                                      bagId,
+                                      parseInt(e.target.value) || 0,
+                                    )
+                                  }
+                                  className="w-14 text-center bg-transparent text-[13px] font-bold outline-none"
+                                />
+                                <button
+                                  onClick={() =>
+                                    onAdd(
+                                      {
+                                        id: bagId,
+                                        name: bagName,
+                                        price: addPrice,
+                                      },
+                                      item.category,
+                                    )
+                                  }
+                                  className="w-8 h-8 rounded-full bg-teal text-white flex items-center justify-center shadow-md"
+                                >
+                                  <Plus className="w-3 h-3" />
+                                </button>
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() =>
+                                  onAdd(
+                                    {
+                                      id: bagId,
+                                      name: bagName,
+                                      price: addPrice,
+                                    },
+                                    item.category,
+                                    guestNum,
+                                  )
+                                }
+                                className="flex items-center gap-2 text-[14px] tracking-[1.5px] uppercase font-bold text-teal group"
+                              >
+                                <span className="w-8 h-8 rounded-full border border-teal flex items-center justify-center group-hover:bg-teal group-hover:text-white transition-all">
+                                  <Plus className="w-3 h-3" />
+                                </span>
+                                Add to Cart
+                              </button>
                             )}
                           </div>
-                          {item.description && (
-                            <p className="text-[13px] sm:text-[15px] font-light text-teal leading-relaxed">
-                              {item.description}
-                            </p>
-                          )}
                         </div>
                       </div>
-                      {hasSizes && (
-                        <div className="flex gap-1 px-5 sm:px-7 pb-3">
-                          <button
-                            onClick={() => setSizeSelections(prev => ({ ...prev, [item.id]: "regular" }))}
-                            className={`text-[11px] tracking-[1px] uppercase font-bold px-3 py-1 rounded-full border transition-all ${
-                              selSize === "regular"
-                                ? "bg-teal text-white border-teal"
-                                : "bg-white text-teal border-teal/30 hover:border-teal"
-                            }`}
-                          >
-                            Regular ${item.priceRegular}
-                          </button>
-                          <button
-                            onClick={() => setSizeSelections(prev => ({ ...prev, [item.id]: "large" }))}
-                            className={`text-[11px] tracking-[1px] uppercase font-bold px-3 py-1 rounded-full border transition-all ${
-                              selSize === "large"
-                                ? "bg-teal text-white border-teal"
-                                : "bg-white text-teal border-teal/30 hover:border-teal"
-                            }`}
-                          >
-                            Large ${item.priceLarge}
-                          </button>
-                        </div>
-                      )}
-                      <div className="flex items-center justify-between px-5 sm:px-7 pb-5 sm:pb-7">
-                        {isSelected ? (
-                          <div className="flex items-center gap-4 bg-parchment rounded-full p-1 border border-linen">
-                            <button
-                              onClick={() => onRemove(bagId)}
-                              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white text-ink transition-colors"
-                            >
-                              <Minus className="w-3 h-3" />
-                            </button>
-                            <input
-                              type="number"
-                              value={qty}
-                              onChange={(e) =>
-                                onUpdateQty(bagId, parseInt(e.target.value) || 0)
-                              }
-                              className="w-14 text-center bg-transparent text-[13px] font-bold outline-none"
-                            />
-                            <button
-                          onClick={() => onAdd({ id: bagId, name: bagName, price: addPrice }, item.category)}
-                          className="w-8 h-8 rounded-full bg-teal text-white flex items-center justify-center shadow-md"
-                            >
-                              <Plus className="w-3 h-3" />
-                            </button>
-                          </div>
-                        ) : (
-                          <button
-                            onClick={() =>
-                              onAdd({ id: bagId, name: bagName, price: addPrice }, item.category, guestNum)
-                            }
-                            className="flex items-center gap-2 text-[14px] tracking-[1.5px] uppercase font-bold text-teal group"
-                          >
-                            <span className="w-8 h-8 rounded-full border border-teal flex items-center justify-center group-hover:bg-teal group-hover:text-white transition-all">
-                              <Plus className="w-3 h-3" />
-                            </span>
-                            Add to Cart
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+
+                {/* ── View More CTA — sits flush at the bottom edge of the masked cards ── */}
+                {hasMore && (
+                  <div
+                    className="relative flex flex-col items-center pt-10 pb-2"
+                    // Negative margin pulls CTA up into the bottom fade zone of the masked cards
+                    style={{ marginTop: "-20vh", zIndex: 10 }}
+                  >
+                    <h4
+                      className="font-serif font-normal text-center mb-2"
+                      style={{
+                        fontSize: "clamp(20px, 2.8vw, 30px)",
+                        color: "var(--color-ink)",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      There&apos;s more on the{" "}
+                      <em
+                        className="italic"
+                        style={{ color: "var(--color-teal)" }}
+                      >
+                        menu
+                      </em>
+                    </h4>
+                    <p
+                      className="font-light text-center mb-8"
+                      style={{
+                        fontSize: "14px",
+                        color: "var(--color-umber, #7a6a58)",
+                        maxWidth: "340px",
+                        lineHeight: 1.65,
+                      }}
+                    >
+                      Expand to browse
+                    </p>
+                    {/* CTA button — dark ink, amber accent, matches floating bag bar */}
+                    <button
+                      onClick={() => {
+                        setVisibleCount((v) => v + 12);
+                        setTimeout(() => {
+                          const cards =
+                            gridRef.current?.querySelectorAll(
+                              ".menu-item-card",
+                            );
+                          if (cards && cards[visibleCount - 3]) {
+                            cards[visibleCount - 3].scrollIntoView({
+                              behavior: "smooth",
+                              block: "center",
+                            });
+                          }
+                        }, 80);
+                      }}
+                      className="group cta-primary relative flex items-center gap-3 overflow-hidden"
+                      style={{
+                        padding: "15px 36px",
+                        background: "var(--color-teal-rich)",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "2px",
+                        fontSize: "12px",
+                        letterSpacing: "2.5px",
+                        textTransform: "uppercase",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        transition:
+                          "transform 0.25s ease, box-shadow 0.25s ease",
+                        boxShadow: "0 8px 32px rgba(13,42,39,0.18)",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                        e.currentTarget.style.boxShadow =
+                          "0 14px 40px rgba(13,42,39,0.28)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.boxShadow =
+                          "0 8px 32px rgba(13,42,39,0.18)";
+                      }}
+                    >
+                      {/* Amber shimmer on hover */}
+                      <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                      <Plus
+                        className="w-4 h-4 transition-transform duration-300 group-hover:rotate-90"
+                        style={{ color: "var(--color-amber)" }}
+                      />
+                      <span>Show more items</span>
+                    </button>
+                    {/* Count footnote */}
+                    <p
+                      className="mt-4 font-light"
+                      style={{
+                        fontSize: "12px",
+                        letterSpacing: "0.5px",
+                        color: "var(--color-teal)",
+                        opacity: 0.65,
+                      }}
+                    >
+                      Showing {visibleCount} of {allItems.length} items
+                    </p>
+                  </div>
+                )}
+              </>
             );
           })()}
         </div>
-
-        {/* Floating bag */}
         {bag.length > 0 && (
-          <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-40px)] max-w-[800px] bg-ink p-6 lg:p-8 flex items-center justify-between shadow-2xl border border-white/10 rounded-[4px]">
-            <div className="hidden md:block">
-              <p className="text-[14px] uppercase tracking-[2px] text-amber mb-1">
-                {bagCount} Items Selected
-              </p>
-              <p className="font-serif text-paper text-2xl">
-                ${bagTotal.toLocaleString()}
-              </p>
+          <div className="fixed bottom-0 left-0 right-0 z-[100] sm:bottom-10 sm:left-1/2 sm:-translate-x-1/2 sm:w-[calc(100%-40px)] sm:max-w-[800px] sm:rounded-[4px] bg-ink shadow-2xl border-t border-white/10 sm:border">
+            {/* Mobile layout */}
+            <div className="flex flex-col md:hidden px-4 pt-3 pb-[calc(env(safe-area-inset-bottom)+10%)] gap-3">
+              <div className="flex items-center justify-between">
+                <p className="text-[11px] uppercase tracking-[2px] text-amber">
+                  {bagCount} Items Selected
+                </p>
+                <p className="font-serif text-paper text-lg">
+                  ${bagTotal.toLocaleString()}
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={onOpenBag}
+                  className="h-11 bg-teal text-white text-[12px] uppercase tracking-[2px] flex items-center justify-center gap-2"
+                >
+                  <ShoppingBag className="w-4 h-4" /> View Cart
+                </button>
+                <button
+                  onClick={onOpenBag}
+                  className="h-11 border border-white/20 text-white text-[12px] uppercase tracking-[2px] flex items-center justify-center gap-2"
+                >
+                  Checkout
+                </button>
+              </div>
             </div>
-            <div className="flex gap-4 w-full md:w-auto">
-              <button
-                onClick={onOpenBag}
-                className="flex-1 md:flex-initial h-12 px-8 bg-teal text-white text-[14px] uppercase tracking-[2px] flex items-center justify-center gap-2"
-              >
-                <ShoppingBag className="w-4 h-4" /> View Cart
-              </button>
+
+            {/* Desktop layout — original unchanged */}
+            <div className="hidden md:flex items-center justify-between p-6 lg:p-8">
+              <div>
+                <p className="text-[14px] uppercase tracking-[2px] text-amber mb-1">
+                  {bagCount} Items Selected
+                </p>
+                <p className="font-serif text-paper text-2xl">
+                  ${bagTotal.toLocaleString()}
+                </p>
+              </div>
+              <div className="flex gap-4">
+                <button
+                  onClick={onOpenBag}
+                  className="h-12 px-8 bg-teal text-white text-[14px] uppercase tracking-[2px] flex items-center justify-center gap-2"
+                >
+                  <ShoppingBag className="w-4 h-4" /> View Cart
+                </button>
+              </div>
             </div>
           </div>
         )}
-
         {/* ════════════════════════════════════════════════════════════
             PATH CHOICE MODAL
             ════════════════════════════════════════════════════════════ */}

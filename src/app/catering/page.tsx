@@ -39,10 +39,7 @@ function CateringPageInner() {
   }, []);
 
   // ── BAG CALCULATIONS ──────────────────────────────────
-  const bagTotal = bag.reduce(
-    (sum, i) => sum + i.price * i.quantity,
-    0,
-  );
+  const bagTotal = bag.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
   const bagCount = bag.length; // Number of unique items
   const totalServings = bag.reduce((sum, i) => sum + i.quantity, 0);
@@ -103,7 +100,7 @@ function CateringPageInner() {
       {bag.length > 0 && (
         <button
           onClick={() => setBagOpen(true)}
-          className="fixed bottom-8 right-8 z-[80] flex items-center gap-3 hover-target"
+          className="fixed bottom-8 right-8 z-[80] flex items-center gap-3 hidden md:flex hover-target "
           style={{
             background: "var(--color-teal)",
             color: "#fff",
@@ -146,22 +143,24 @@ function CateringPageInner() {
       {/* ── SECTIONS ──────────────────────────────────────── */}
       <CateringHero />
 
-      <section id="menu"><BagBuilder
-        guests={guests}
-        setGuests={setGuests}
-        eventType={eventType}
-        setEventType={setEventType}
-        serviceStyle={serviceStyle}
-        setServiceStyle={setServiceStyle}
-        bag={bag}
-        bagTotal={bagTotal}
-        bagCount={bagCount}
-        onAdd={addItem}
-        onRemove={removeItem}
-        onUpdateQty={updateQuantity} // Required Prop passed here
-        onOpenBag={() => setBagOpen(true)}
-        getQty={getQty}
-      /></section>
+      <section id="menu">
+        <BagBuilder
+          guests={guests}
+          setGuests={setGuests}
+          eventType={eventType}
+          setEventType={setEventType}
+          serviceStyle={serviceStyle}
+          setServiceStyle={setServiceStyle}
+          bag={bag}
+          bagTotal={bagTotal}
+          bagCount={bagCount}
+          onAdd={addItem}
+          onRemove={removeItem}
+          onUpdateQty={updateQuantity} // Required Prop passed here
+          onOpenBag={() => setBagOpen(true)}
+          getQty={getQty}
+        />
+      </section>
 
       <LiveStations />
       <EventTypes />

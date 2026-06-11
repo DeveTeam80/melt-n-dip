@@ -322,7 +322,11 @@ export default function CateringAndSeasonal() {
                 onMouseMove={onMagMove}
                 onMouseLeave={onMagLeave}
                 className="cta-primary inline-flex items-center text-[13px] justify-center hover-target w-full sm:w-auto"
-                style={{ height: "52px", padding: "0 24px", whiteSpace: "nowrap" }}
+                style={{
+                  height: "52px",
+                  padding: "0 24px",
+                  whiteSpace: "nowrap",
+                }}
               >
                 View Catering Packages
               </Link>
@@ -369,9 +373,7 @@ export default function CateringAndSeasonal() {
                   style={{ backgroundImage: `url('${img}')` }}
                 />
                 {/* Dark Gradient Overlay on Hover */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-[var(--color-teal)]/95 via-[var(--color-teal)]/85 to-[var(--color-teal)]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-teal)]/95 via-[var(--color-teal)]/85 to-[var(--color-teal)]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Icon Container */}
                 <div
@@ -707,7 +709,8 @@ export default function CateringAndSeasonal() {
                       marginBottom: "20px",
                     }}
                   >
-                    Based on $12 – $15 per person · Final price varies by menu, staffing & location
+                    Based on $12 – $15 per person · Final price varies by menu,
+                    staffing & location
                   </p>
                   <button
                     onClick={handleEstimate}
@@ -838,8 +841,6 @@ export default function CateringAndSeasonal() {
           )}
         </div>
       </div>
-
-
     </div>
   );
 }

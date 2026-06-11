@@ -64,7 +64,7 @@ export default function CateringFAQ() {
     <section
       id="faq"
       ref={containerRef}
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-12 lg:px-20 bg-paper border-t border-linen"
+      className="py-24 lg:pt-20 lg:pb-32 px-8 sm:px-12 lg:px-20 bg-papers"
     >
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start">
         {/* ── LEFT - STICKY HEADER ── */}
@@ -85,8 +85,17 @@ export default function CateringFAQ() {
               FAQ
             </span>
           </div>
+          {/* Mobile — single line */}
           <h2
-            className="font-serif font-light text-ink tracking-tight flex flex-col gap-1 mb-6"
+            className="font-serif font-light text-ink tracking-tight mb-6 block sm:hidden"
+            style={{ fontSize: "clamp(32px, 8vw, 38px)", lineHeight: "1.05" }}
+          >
+            Common <em className="italic text-teal pr-2">Questions</em>
+          </h2>
+
+          {/* Desktop — original flex-col layout */}
+          <h2
+            className="font-serif font-light text-ink tracking-tight flex-col gap-1 mb-6 hidden sm:flex"
             style={{ fontSize: "clamp(38px, 4.5vw, 64px)", lineHeight: "1.05" }}
           >
             Common <em className="italic text-teal pr-2">Questions</em>
