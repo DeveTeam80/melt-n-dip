@@ -118,7 +118,6 @@ export default function CateringHero() {
       {/* ── CONTENT ─────────────────────────────────── */}
       <div className="relative z-10 h-full flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 px-8 sm:px-12 lg:px-20">
         <div className="flex flex-col max-w-2xl">
-
           {/* Headline */}
           <h1
             className="font-serif font-light flex flex-col gap-1 mb-7 tracking-[-0.02em]"
@@ -130,7 +129,9 @@ export default function CateringHero() {
             }}
           >
             <span className="overflow-hidden block py-1">
-              <span className="ch-reveal-line block">Dessert Catering That</span>
+              <span className="ch-reveal-line block">
+                Dessert Catering That
+              </span>
             </span>
             <span className="overflow-hidden block py-1">
               <span className="ch-reveal-line block">Turns Every Event</span>
@@ -155,7 +156,7 @@ export default function CateringHero() {
               textShadow: "0 1px 12px rgba(0,0,0,0.4)",
             }}
           >
-            Bring Melt N Dip's signature Belgian chocolate creations, live
+            Bring Melt N Dip&apos;s signature Belgian chocolate creations, live
             stations, and artisan gelato to your next gathering. Customize your
             menu, select your guest count, and receive an instant estimate.
           </p>
@@ -180,7 +181,7 @@ export default function CateringHero() {
             </a>
 
             {/* Ghost secondary CTA */}
-            <a
+            {/* <a
               href="#estimator"
               className="inline-flex items-center gap-1.5 font-light transition-all group"
               style={{
@@ -196,7 +197,7 @@ export default function CateringHero() {
                 className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
                 strokeWidth={1.5}
               />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

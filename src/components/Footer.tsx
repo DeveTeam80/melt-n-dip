@@ -54,8 +54,6 @@ export default function Footer() {
     return () => ctx.revert();
   }, []);
 
-
-
   return (
     <footer
       ref={containerRef}
@@ -136,11 +134,26 @@ export default function Footer() {
               </p>
               <ul className="list-none flex flex-col gap-4">
                 {[
-                  { label: "Artisan Gelato", href: "/melt-n-dip-palos-park#mnd-menu" },
-                  { label: "Melt N Dip Crepes", href: "/melt-n-dip-palos-park#mnd-menu" },
-                  { label: "Dubai Chocolate Crepe", href: "/melt-n-dip-palos-park#mnd-menu" },
-                  { label: "Belgian Waffles", href: "/melt-n-dip-palos-park#mnd-menu" },
-                  { label: "Seasonal Specials", href: "/melt-n-dip-palos-park#mnd-menu" },
+                  {
+                    label: "Artisan Gelato",
+                    href: "/melt-n-dip-palos-park#mnd-menu",
+                  },
+                  {
+                    label: "Melt N Dip Crepes",
+                    href: "/melt-n-dip-palos-park#mnd-menu",
+                  },
+                  {
+                    label: "Dubai Chocolate Crepe",
+                    href: "/melt-n-dip-palos-park#mnd-menu",
+                  },
+                  {
+                    label: "Belgian Waffles",
+                    href: "/melt-n-dip-palos-park#mnd-menu",
+                  },
+                  {
+                    label: "Seasonal Specials",
+                    href: "/melt-n-dip-palos-park#mnd-menu",
+                  },
                 ].map(({ label, href }) => (
                   <li key={label}>
                     <Link

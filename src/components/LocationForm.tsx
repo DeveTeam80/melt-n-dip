@@ -311,8 +311,8 @@ export default function LocationForm() {
                         (e.target.style.borderBottomColor = "var(--color-teal)")
                       }
                       onBlur={(e) =>
-                      (e.target.style.borderBottomColor =
-                        "var(--color-linen)")
+                        (e.target.style.borderBottomColor =
+                          "var(--color-linen)")
                       }
                     />
                   </div>
@@ -342,8 +342,8 @@ export default function LocationForm() {
                         (e.target.style.borderBottomColor = "var(--color-teal)")
                       }
                       onBlur={(e) =>
-                      (e.target.style.borderBottomColor =
-                        "var(--color-linen)")
+                        (e.target.style.borderBottomColor =
+                          "var(--color-linen)")
                       }
                     />
                   </div>
@@ -377,8 +377,8 @@ export default function LocationForm() {
                         (e.target.style.borderBottomColor = "var(--color-teal)")
                       }
                       onBlur={(e) =>
-                      (e.target.style.borderBottomColor =
-                        "var(--color-linen)")
+                        (e.target.style.borderBottomColor =
+                          "var(--color-linen)")
                       }
                     />
                   </div>

@@ -133,8 +133,7 @@ export default function VsSection() {
         GELATO
       </div>
 
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_100px_1fr] gap-16 lg:gap-0 items-start relative z-10">
-
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_100px_1fr] gap-8 lg:gap-0 items-start relative z-10">
         {/* ── COL A (Traditional - Muted) ──────────────── */}
         <div className="vs-col-a relative z-10 pr-0 lg:pl-12">
           <p className="vs-fade-up text-[15px] font-medium tracking-[3.5px] uppercase text-teal mb-8">
