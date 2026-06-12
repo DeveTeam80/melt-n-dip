@@ -12,8 +12,7 @@ const EVENTS = [
   {
     id: "wedding",
     title: "Weddings & Nikah",
-    subtitle:
-      "Elegant chocolate display and seasonal fruits served in a cup.",
+    subtitle: "Elegant chocolate display and seasonal fruits served in a cup.",
     img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1600&auto=format&fit=crop",
   },
   {
@@ -21,14 +20,14 @@ const EVENTS = [
     title: "Corporate Events",
     subtitle:
       "Impress clients and reward teams with a branded, high-end dessert experience.",
-    img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=1600&auto=format&fit=crop",
+    img: "assets/images/delight-enterprises-4.png",
   },
   {
     id: "social",
     title: "Social Gatherings",
     subtitle:
       "Birthdays, baby showers, and holiday parties elevated with authentic gelato and desserts.",
-    img: "https://images.unsplash.com/photo-1530103862676-de8892bf309c?q=80&w=1600&auto=format&fit=crop",
+    img: "assets/catering-event-guests.png",
   },
 ];
 
@@ -80,7 +79,10 @@ export default function EventTypes() {
         <div className="ls-fade-up flex items-center gap-3 mb-6">
           {" "}
           <div className="w-8 h-px bg-amber" />
-          <span className="text-[14px] font-medium tracking-[3.5px] uppercase" style={{ color: "var(--color-amber)" }}>
+          <span
+            className="text-[14px] font-medium tracking-[3.5px] uppercase"
+            style={{ color: "var(--color-amber)" }}
+          >
             Tailored For You
           </span>
         </div>

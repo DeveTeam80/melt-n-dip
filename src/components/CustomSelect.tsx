@@ -25,13 +25,13 @@ export default function CustomSelect({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  // Sync internal open state with forceOpen from parent
   useEffect(() => {
     if (forceOpen && !open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setOpen(true);
       onOpenChange?.(true);
     }
-  }, [forceOpen]);
+  }, [forceOpen, open, onOpenChange]);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {

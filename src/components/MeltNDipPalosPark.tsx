@@ -232,7 +232,7 @@ function MndNavbar() {
     if (href.startsWith("#")) {
       document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = href;
+      window.location.assign(href);
     }
   };
   const navBg = scrolled ? `rgba(44,25,17,0.96)` : "transparent";
@@ -673,6 +673,7 @@ export default function MeltNDipPalosPage() {
   const [visibleCount, setVisibleCount] = useState(getInitialCount);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisibleCount(getInitialCount());
   }, [activeCategory]);
 
@@ -686,6 +687,7 @@ export default function MeltNDipPalosPage() {
     typeof window !== "undefined" && window.innerWidth < 640 ? 1 : 3;
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setReviewPage(0);
   }, [reviewsPerPage]);
 
@@ -1096,7 +1098,7 @@ export default function MeltNDipPalosPage() {
       ? "all"
       : CATEGORY_DISPLAY[activeCategory]?.id || activeCategory.toLowerCase();
 
-  const CATEGORY_ICONS: Record<string, any> = {
+  const CATEGORY_ICONS: Record<string, React.ElementType> = {
     All: Star,
     Crepe: CakeSlice,
     Waffle: Cookie,
@@ -1104,7 +1106,7 @@ export default function MeltNDipPalosPage() {
     "Dip Stick & Sharing": Candy,
     "Fresh Fruits & Fruit Platters": IceCreamCone,
     Beverages: Coffee,
-    "Milkshakes & Cheesecake": Heart as any,
+    "Milkshakes & Cheesecake": Heart,
   };
   const ActiveIcon = CATEGORY_ICONS[activeCategory] || CakeSlice;
   const totalRevPages = Math.ceil(REVIEWS.length / reviewsPerPage);
@@ -1941,7 +1943,7 @@ export default function MeltNDipPalosPage() {
 
                 {/* ── Footer bar ── */}
                 <div
-                  className="mnd-menu-f flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 mt-10 lg:mt-14 pt-6 lg:pt-8"
+                  className="mnd-menu-f flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 mt-10 lg:mt-14 "
                   style={{ borderTop: `1px solid ${MND.border}` }}
                 >
                   <div className="flex items-center gap-3">

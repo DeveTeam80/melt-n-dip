@@ -45,6 +45,9 @@ interface Props {
   onUpdateQty: (id: string, quantity: number) => void;
   onOpenBag: () => void;
   getQty: (id: string) => number;
+  bagDismissed: boolean;
+  setBagDismissed: (v: boolean) => void;
+  onInquirePackage: (pkgName: string) => void;
 }
 
 export default function BagBuilder({
@@ -62,6 +65,8 @@ export default function BagBuilder({
   onUpdateQty,
   onOpenBag,
   getQty,
+  bagDismissed, // ← ADD
+  setBagDismissed, // ← ADD
 }: Props) {
   const containerRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -80,10 +85,9 @@ export default function BagBuilder({
   const getInitialCount = () => {
     if (typeof window === "undefined") return 12;
     if (window.innerWidth < 640) return 12; // mobile
-    if (window.innerWidth < 1024) return 20; // tablet
-    return 30; // laptop+
+    if (window.innerWidth < 1280) return 20; // tablet (now covers iPad Pro)
+    return 30; // desktop xl+
   };
-
   const [visibleCount, setVisibleCount] = useState(getInitialCount);
 
   useEffect(() => {
@@ -553,7 +557,8 @@ export default function BagBuilder({
           </div>
         </div>
 
-        <div id="option-a" className="mb-8 lg:mb-12">
+        {/* ── Option A ── */}
+        <div id="option-a" className="mb-8 xl:mb-12">
           <div className="flex items-center gap-4 mb-8">
             <h3 className="uppercase text-[14px] tracking-[3px] font-bold text-ink">
               Option A: Special Packages
@@ -561,7 +566,8 @@ export default function BagBuilder({
             <div className="h-[1px] flex-1 bg-linen" />
           </div>
 
-          <div className="builder-fade-up opacity-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+          {/* mobile: 1col, tablet: 2col, desktop(xl+): 3col */}
+          <div className="builder-fade-up opacity-0 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 xl:gap-6">
             {PACKAGES.map((pkg, idx) => {
               const bgImages = [
                 "assets/images/chocalate_drizzle.jpg",
@@ -569,19 +575,22 @@ export default function BagBuilder({
                 "assets/images/kunafa_crepe.jpeg",
               ];
 
+              // ── Last card centering on 2-col tablet grid ──
+              const isLastOdd =
+                idx === PACKAGES.length - 1 && PACKAGES.length % 2 !== 0;
+
               return (
                 <div
                   key={pkg.name}
-                  className="group relative rounded-[3px] overflow-hidden transition-all duration-500 hover:-translate-y-2"
+                  className={`group relative rounded-[3px] overflow-hidden transition-all duration-500 hover:-translate-y-2
+          ${isLastOdd ? "sm:col-start-1 sm:col-end-3 sm:w-1/2 sm:mx-auto xl:col-start-auto xl:col-end-auto xl:w-auto xl:mx-0" : ""}
+        `}
                   style={{ minHeight: "clamp(300px, 45vw, 380px)" }}
                 >
-                  {/* Background Image */}
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                     style={{ backgroundImage: `url('${bgImages[idx]}')` }}
                   />
-
-                  {/* Dark Overlay */}
                   <div
                     className="absolute inset-0 transition-all duration-500"
                     style={{
@@ -589,50 +598,37 @@ export default function BagBuilder({
                         "linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.82) 45%, rgba(0,0,0,0.55) 100%)",
                     }}
                   />
-
-                  {/* Hover Overlay */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ background: "rgba(0,0,0,0.18)" }}
                   />
-
-                  {/* Decorative Icon */}
                   <div className="absolute top-0 right-0 p-3 sm:p-4 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
                     <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-amber" />
                   </div>
-
-                  {/* Content */}
                   <div
-                    className="relative z-10 flex flex-col h-full p-5 sm:p-6 lg:p-8"
+                    className="relative z-10 flex flex-col h-full p-5 sm:p-6 xl:p-8"
                     style={{
                       minHeight: "clamp(300px, 45vw, 380px)",
                       backdropFilter: "blur(1px)",
                       WebkitBackdropFilter: "blur(1px)",
                     }}
                   >
-                    {/* Package Name */}
                     <p
-                      className="font-serif text-[20px] sm:text-[22px] lg:text-[24px] text-white mb-2 sm:mb-3 leading-snug"
+                      className="font-serif text-[20px] sm:text-[22px] xl:text-[24px] text-white mb-2 sm:mb-3 leading-snug"
                       style={{ textShadow: "0 3px 14px rgba(0,0,0,0.85)" }}
                     >
                       {pkg.name}
                     </p>
-
-                    {/* Description */}
                     <p
-                      className="text-[13px] sm:text-[14px] lg:text-[15px] leading-relaxed mb-4 sm:mb-6"
+                      className="text-[13px] sm:text-[14px] xl:text-[15px] leading-relaxed mb-4 sm:mb-6"
                       style={{
                         color: "rgba(255,255,255,0.92)",
                         textShadow: "0 2px 10px rgba(0,0,0,0.9)",
-                        // removed fixed h-12 + line-clamp so text never crops
                       }}
                     >
                       {pkg.desc}
                     </p>
-
                     <div className="flex-1" />
-
-                    {/* Price */}
                     <div className="flex items-baseline gap-2 mb-4 sm:mb-5">
                       <span
                         className="font-serif font-light"
@@ -656,8 +652,6 @@ export default function BagBuilder({
                         starting per head
                       </span>
                     </div>
-
-                    {/* Button */}
                     <button
                       className="w-full py-3 sm:py-3.5 text-[11px] sm:text-[12px] uppercase tracking-[2px] sm:tracking-[2.5px] font-semibold transition-all duration-300"
                       style={{
@@ -681,6 +675,21 @@ export default function BagBuilder({
                           "rgba(255,255,255,0.25)";
                         e.currentTarget.style.color = "#fff";
                       }}
+                      // In BagBuilder button onClick:
+                      onClick={() => {
+                        setBagDismissed(true);
+                        // Fire custom event that CateringQuoteForm listens to
+                        window.dispatchEvent(
+                          new CustomEvent("inquire-package", {
+                            detail: { name: pkg.name },
+                          }),
+                        );
+                        setTimeout(() => {
+                          document
+                            .getElementById("quote")
+                            ?.scrollIntoView({ behavior: "smooth" });
+                        }, 200);
+                      }}
                     >
                       Inquire for this Set
                     </button>
@@ -691,17 +700,16 @@ export default function BagBuilder({
           </div>
         </div>
 
-        {/* ── Divider ──────────────────────────────────────────────── */}
-        <div className="relative py-12 lg:py-20 flex justify-center items-center">
+        {/* ── Divider ── */}
+        <div className="relative py-12 xl:py-20 flex justify-center items-center">
           <div className="absolute w-full h-[1px] bg-linen" />
           <div className="relative z-10 bg-paper px-6 py-2 border border-linen rounded-full font-serif font-bold text-teal text-lg shadow-sm">
             or build your own
           </div>
         </div>
 
-        {/* ── Option B ─────────────────────────────────────────────── */}
-
-        <div id="option-b" className="mb-8 lg:mb-12">
+        {/* ── Option B ── */}
+        <div id="option-b" className="mb-8 xl:mb-12">
           <div className="flex items-center gap-4 mb-10">
             <h3 className="uppercase text-[14px] tracking-[3px] font-bold text-ink">
               Option B: Choose from the Menu!
@@ -714,7 +722,7 @@ export default function BagBuilder({
             const cats = getMenuCategories();
             const allTabs = ["All", ...cats];
             return (
-              <div className="flex flex-nowrap gap-2 mb-8 sm:mb-10 lg:mb-12 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-1">
+              <div className="flex flex-nowrap gap-2 mb-8 sm:mb-10 xl:mb-12 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-1">
                 {allTabs.map((label, i) => (
                   <button
                     key={label}
@@ -754,18 +762,19 @@ export default function BagBuilder({
             const peekCount =
               typeof window !== "undefined"
                 ? window.innerWidth < 640
-                  ? 1 // mobile: 1 peek card
-                  : window.innerWidth < 1024
-                    ? 2 // tablet: 2 peek cards
-                    : 3 // laptop: 3 peek cards
+                  ? 1 // mobile
+                  : window.innerWidth < 1280
+                    ? 2 // tablet (now includes iPad Pro 1024px)
+                    : 3 // desktop xl+
                 : 3;
             const peekStart = hasMore ? visibleCount - peekCount : -1;
 
             return (
               <>
+                {/* mobile: 1col, tablet sm–xl: 2col, desktop xl+: 3col */}
                 <div
                   ref={gridRef}
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6"
+                  className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 xl:gap-6"
                 >
                   {visibleItems.map((item, cardIndex) => {
                     const isPeek = hasMore && cardIndex >= peekStart;
@@ -818,16 +827,12 @@ export default function BagBuilder({
                         }}
                       >
                         <div
-                          className={`rounded-[3px] border transition-all duration-500 h-full ${
-                            isSelected
-                              ? "bg-white border-teal shadow-xl"
-                              : "bg-white border-linen"
-                          }`}
+                          className={`rounded-[3px] border transition-all duration-500 h-full ${isSelected ? "bg-white border-teal shadow-xl" : "bg-white border-linen"}`}
                         >
                           {/* Card body */}
-                          <div className="flex gap-3 sm:gap-4 p-4 sm:p-5 lg:p-7">
+                          <div className="flex gap-3 sm:gap-4 p-4 sm:p-5 xl:p-7">
                             {item.image ? (
-                              <div className="shrink-0 w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] lg:w-[90px] lg:h-[90px] rounded-md overflow-hidden bg-teal-faint border border-linen">
+                              <div className="shrink-0 w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] xl:w-[90px] xl:h-[90px] rounded-md overflow-hidden bg-teal-faint border border-linen">
                                 <img
                                   src={item.image}
                                   alt={item.name}
@@ -842,17 +847,17 @@ export default function BagBuilder({
                             ) : null}
                             <div className="flex-1 min-w-0">
                               <div className="flex justify-between items-start gap-2 mb-1 sm:mb-2">
-                                <h4 className="font-serif font-medium text-[15px] sm:text-base lg:text-lg text-ink leading-tight">
+                                <h4 className="font-serif font-medium text-[15px] sm:text-base xl:text-lg text-ink leading-tight">
                                   {item.name}
                                 </h4>
                                 {priceLabel && (
-                                  <span className="shrink-0 text-[12px] sm:text-[13px] lg:text-[15px] font-medium text-teal bg-teal-faint px-2 py-1 rounded whitespace-nowrap">
+                                  <span className="shrink-0 text-[12px] sm:text-[13px] xl:text-[15px] font-medium text-teal bg-teal-faint px-2 py-1 rounded whitespace-nowrap">
                                     {priceLabel}
                                   </span>
                                 )}
                               </div>
                               {item.description && (
-                                <p className="text-[12px] sm:text-[13px] lg:text-[15px] font-light text-teal leading-relaxed ">
+                                <p className="text-[12px] sm:text-[13px] xl:text-[15px] font-light text-teal leading-relaxed">
                                   {item.description}
                                 </p>
                               )}
@@ -861,7 +866,7 @@ export default function BagBuilder({
 
                           {/* Size selector */}
                           {hasSizes && (
-                            <div className="flex gap-1 px-4 sm:px-5 lg:px-7 pb-3">
+                            <div className="flex gap-1 px-4 sm:px-5 xl:px-7 pb-3">
                               <button
                                 onClick={() =>
                                   setSizeSelections((prev) => ({
@@ -869,11 +874,7 @@ export default function BagBuilder({
                                     [item.id]: "regular",
                                   }))
                                 }
-                                className={`text-[10px] sm:text-[11px] tracking-[1px] uppercase font-bold px-2 sm:px-3 py-1 rounded-full border transition-all ${
-                                  selSize === "regular"
-                                    ? "bg-teal text-white border-teal"
-                                    : "bg-white text-teal border-teal/30 hover:border-teal"
-                                }`}
+                                className={`text-[10px] sm:text-[11px] tracking-[1px] uppercase font-bold px-2 sm:px-3 py-1 rounded-full border transition-all ${selSize === "regular" ? "bg-teal text-white border-teal" : "bg-white text-teal border-teal/30 hover:border-teal"}`}
                               >
                                 Regular ${item.priceRegular}
                               </button>
@@ -884,11 +885,7 @@ export default function BagBuilder({
                                     [item.id]: "large",
                                   }))
                                 }
-                                className={`text-[10px] sm:text-[11px] tracking-[1px] uppercase font-bold px-2 sm:px-3 py-1 rounded-full border transition-all ${
-                                  selSize === "large"
-                                    ? "bg-teal text-white border-teal"
-                                    : "bg-white text-teal border-teal/30 hover:border-teal"
-                                }`}
+                                className={`text-[10px] sm:text-[11px] tracking-[1px] uppercase font-bold px-2 sm:px-3 py-1 rounded-full border transition-all ${selSize === "large" ? "bg-teal text-white border-teal" : "bg-white text-teal border-teal/30 hover:border-teal"}`}
                               >
                                 Large ${item.priceLarge}
                               </button>
@@ -896,7 +893,7 @@ export default function BagBuilder({
                           )}
 
                           {/* Add to cart / qty controls */}
-                          <div className="flex items-center justify-between px-4 sm:px-5 lg:px-7 pb-4 sm:pb-5 lg:pb-7">
+                          <div className="flex items-center justify-between px-4 sm:px-5 xl:px-7 pb-4 sm:pb-5 xl:pb-7">
                             {isSelected ? (
                               <div className="flex items-center gap-3 sm:gap-4 bg-parchment rounded-full p-1 border border-linen">
                                 <button
@@ -965,10 +962,9 @@ export default function BagBuilder({
                   <div
                     className="relative flex flex-col items-center pt-10 pb-2"
                     style={{
-                      // Responsive negative margin — less aggressive on tablet/mobile
                       marginTop:
                         typeof window !== "undefined" &&
-                        window.innerWidth < 1024
+                        window.innerWidth < 1280
                           ? "-80px"
                           : "-20vh",
                       zIndex: 10,
@@ -1068,35 +1064,49 @@ export default function BagBuilder({
             );
           })()}
         </div>
-        {bag.length > 0 && (
-          <div className="fixed bottom-0 left-0 right-0 z-[100] sm:bottom-10 sm:left-1/2 sm:-translate-x-1/2 sm:w-[calc(100%-40px)] sm:max-w-[800px] sm:rounded-[4px] bg-ink shadow-2xl border-t border-white/10 sm:border">
+        {bag.length > 0 && !bagDismissed && (
+          <div className="fixed bottom-0 left-0 right-0 z-[500] sm:bottom-10 sm:left-1/2 sm:-translate-x-1/2 sm:w-[calc(100%-40px)] sm:max-w-[800px] sm:rounded-[4px] bg-ink shadow-2xl border-t border-white/10 sm:border">
             {/* Mobile layout */}
             <div className="flex flex-col md:hidden px-4 pt-3 pb-[calc(env(safe-area-inset-bottom)+10%)] gap-3">
               <div className="flex items-center justify-between">
                 <p className="text-[11px] uppercase tracking-[2px] text-amber">
                   {bagCount} Items Selected
                 </p>
-                <p className="font-serif text-paper text-lg">
-                  ${bagTotal.toLocaleString()}
-                </p>
+                <div className="flex items-center gap-3">
+                  <p className="font-serif text-paper text-lg">
+                    ${bagTotal.toLocaleString()}
+                  </p>
+                  <button
+                    onClick={() => setBagDismissed(true)}
+                    className="flex items-center justify-center  w-6 h-6 rounded-full hover:bg-white/10 transition-colors"
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <X
+                      style={{
+                        width: "15px",
+                        height: "15px",
+                        color: "white",
+                      }}
+                      strokeWidth={3}
+                    />
+                  </button>
+                </div>
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={onOpenBag}
-                  className="h-11 bg-teal text-white text-[12px] uppercase tracking-[2px] flex items-center justify-center gap-2"
-                >
-                  <ShoppingBag className="w-4 h-4" /> View Cart
-                </button>
-                <button
+              <button
+                onClick={onOpenBag}
+                className="h-11 bg-teal text-white text-[12px] uppercase tracking-[2px] flex items-center justify-center gap-2"
+              >
+                <ShoppingBag className="w-4 h-4" /> View Cart
+              </button>
+              {/* <button
                   onClick={onOpenBag}
                   className="h-11 border border-white/20 text-white text-[12px] uppercase tracking-[2px] flex items-center justify-center gap-2"
                 >
                   Checkout
-                </button>
-              </div>
+                </button> */}
             </div>
 
-            {/* Desktop layout — original unchanged */}
+            {/* Desktop layout */}
             <div className="hidden md:flex items-center justify-between p-6 lg:p-8">
               <div>
                 <p className="text-[14px] uppercase tracking-[2px] text-amber mb-1">
@@ -1106,12 +1116,29 @@ export default function BagBuilder({
                   ${bagTotal.toLocaleString()}
                 </p>
               </div>
-              <div className="flex gap-4">
+              <div className="flex items-center gap-3">
                 <button
                   onClick={onOpenBag}
                   className="h-12 px-8 bg-teal text-white text-[14px] uppercase tracking-[2px] flex items-center justify-center gap-2"
                 >
                   <ShoppingBag className="w-4 h-4" /> View Cart
+                </button>
+                <button
+                  onClick={() => setBagDismissed(true)}
+                  className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-white/10 transition-colors shrink-0"
+                  style={{
+                    background: "none",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                  }}
+                >
+                  <X
+                    style={{
+                      width: "14px",
+                      height: "14px",
+                      color: "rgba(255,255,255,0.45)",
+                    }}
+                    strokeWidth={2}
+                  />
                 </button>
               </div>
             </div>

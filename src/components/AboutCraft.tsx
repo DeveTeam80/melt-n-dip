@@ -70,11 +70,11 @@ export default function AboutCraft() {
     <section
       ref={containerRef}
       id="craft"
-      className="py-16 sm:py-20 lg:py-28 px-8 sm:px-12 lg:px-20"
+      className="py-16 sm:py-20 lg:py-28 px-4 sm:px-12 lg:px-20"
       style={{ background: "#f8faf9" }}
     >
       <div className="max-w-[1200px] mx-auto">
-        {/* Header — unchanged */}
+        {/* Header */}
         <div className="craft-title text-center mb-12 sm:mb-16">
           <span
             style={{
@@ -104,15 +104,16 @@ export default function AboutCraft() {
         </div>
 
         {/* ── Card grid ──
-            mobile (< sm):   1 col, flex-row (image left, text right) — unchanged
-            tablet (sm–lg):  2 col, flex-col (image top, text below) — fixes iPad Pro portrait
-            desktop (lg+):   2 col, flex-row (image left, text right) — unchanged
+            mobile  (< sm):    1 col, flex-row  — image left 180px, text right
+            tablet  (sm–xl):   2 col, flex-col  — image top banner, text below
+                                                   covers iPad Mini, Air, Pro 1024px portrait
+            desktop (xl+):     2 col, flex-row  — image left 260px, text right
         */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 xl:gap-8">
           {OFFERINGS.map(({ title, description, Icon, image }, i) => (
             <div
               key={i}
-              className="craft-card flex flex-row sm:flex-col lg:flex-row"
+              className="craft-card flex flex-row sm:flex-col xl:flex-row"
               style={{
                 background: "#ffffff",
                 border: "1px solid #d8edea",
@@ -121,22 +122,20 @@ export default function AboutCraft() {
               }}
             >
               {/* Image
-                  mobile:  w-[180px] fixed, h-auto  (original)
-                  tablet:  w-full, h-[200px]         (top banner)
-                  desktop: w-[260px], h-auto          (original)
+                  mobile:  w-[180px] h-auto   — side strip
+                  tablet:  w-full  h-[220px]  — full-width top banner (more height for Pro)
+                  desktop: w-[260px] h-auto   — side strip
               */}
+              {/* Image — only mobile value changes */}
               <div
-                className="
-                  shrink-0 bg-cover bg-center
-                  w-[180px] h-auto
-                  sm:w-full sm:h-[200px]
-                  lg:w-[260px] lg:h-auto
-                "
+                className="shrink-0 bg-cover bg-center w-[120px] h-auto sm:w-full sm:h-[220px] xl:w-[260px] xl:h-auto"
                 style={{ backgroundImage: `url('${image}')` }}
               />
 
-              {/* Content — padding is fine on all breakpoints now since text has full width on tablet */}
-              <div className="flex flex-col justify-center p-5 sm:p-6 lg:p-8 flex-1">
+              {/* Content */}
+              {/* Content — add min-w-0 to prevent text overflow */}
+              <div className="flex flex-col justify-center p-4 sm:p-6 xl:p-8 flex-1 min-w-0">
+                {/* p-5 → p-4 on mobile, min-w-0 added */}{" "}
                 <div className="flex items-center gap-3 mb-3">
                   <div
                     className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full shrink-0"
@@ -150,7 +149,7 @@ export default function AboutCraft() {
                   </div>
                   <h3
                     style={{
-                      fontSize: "18px",
+                      fontSize: "clamp(15px, 1.8vw, 18px)",
                       color: "#0d2a27",
                       fontWeight: 500,
                       fontFamily: "var(--font-serif)",
@@ -161,7 +160,7 @@ export default function AboutCraft() {
                 </div>
                 <p
                   style={{
-                    fontSize: "16px",
+                    fontSize: "clamp(13px, 1.5vw, 16px)",
                     color: "#1c4a45",
                     lineHeight: "1.8",
                     fontWeight: 400,
@@ -174,7 +173,7 @@ export default function AboutCraft() {
           ))}
         </div>
 
-        {/* Bottom tag — unchanged */}
+        {/* Bottom tag */}
         <div className="craft-title text-center mt-8 sm:mt-10">
           <span
             style={{

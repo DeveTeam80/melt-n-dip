@@ -20,23 +20,52 @@ function CateringPageInner() {
   const searchParams = useSearchParams();
 
   // Shared state
-  const [guests, setGuests] = useState(searchParams.get("guests") || "");
-  const [eventType, setEventType] = useState(searchParams.get("event") || "");
+  const [guests, setGuests] = useState("");
+  const [eventType, setEventType] = useState("");
   const [serviceStyle, setServiceStyle] = useState("");
   const [bag, setBag] = useState<BagItem[]>([]);
   const [bagOpen, setBagOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState("");
+  const [bagDismissed, setBagDismissed] = useState(false);
+  const [floatingDismissed, setFloatingDismissed] = useState(false);
+
+  // Only prefill URL params on first visit, not on reload
+  useEffect(() => {
+    const loaded = sessionStorage.getItem("_catering_loaded");
+    if (!loaded) {
+      const g = searchParams.get("guests");
+      const e = searchParams.get("event");
+      /* eslint-disable react-hooks/set-state-in-effect */
+      if (g) setGuests(g);
+      if (e) setEventType(e);
+      /* eslint-enable react-hooks/set-state-in-effect */
+      sessionStorage.setItem("_catering_loaded", "true");
+    }
+  }, [searchParams]);
 
   // Load saved bag on mount
   useEffect(() => {
     const saved = localStorage.getItem("saved_catering_bag");
     if (saved) {
       try {
+        /* eslint-disable react-hooks/set-state-in-effect */
         setBag(JSON.parse(saved));
+        setBagDismissed(true);
+        /* eslint-enable react-hooks/set-state-in-effect */
       } catch (e) {
         console.error("Error loading saved bag", e);
       }
     }
   }, []);
+
+  // Auto-save bag to localStorage on every change
+  useEffect(() => {
+    if (bag.length > 0) {
+      localStorage.setItem("saved_catering_bag", JSON.stringify(bag));
+    } else {
+      localStorage.removeItem("saved_catering_bag");
+    }
+  }, [bag]);
 
   // ── BAG CALCULATIONS ──────────────────────────────────
   const bagTotal = bag.reduce((sum, i) => sum + i.price * i.quantity, 0);
@@ -62,6 +91,8 @@ function CateringPageInner() {
       const startQty = initialQty && initialQty > 0 ? initialQty : 1;
       return [...prev, { ...item, category, quantity: startQty }];
     });
+    setBagDismissed(false);
+    setFloatingDismissed(false);
   };
 
   const removeItem = (id: string) => {
@@ -73,6 +104,8 @@ function CateringPageInner() {
         );
       return prev.filter((b) => b.id !== id);
     });
+    setBagDismissed(false);
+    setFloatingDismissed(false);
   };
 
   // NEW: Update quantity specifically via input
@@ -84,6 +117,8 @@ function CateringPageInner() {
         )
         .filter((item) => item.quantity > 0),
     );
+    setBagDismissed(false);
+    setFloatingDismissed(false);
   };
 
   const getQty = (id: string) => bag.find((b) => b.id === id)?.quantity || 0;
@@ -94,10 +129,31 @@ function CateringPageInner() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleBagDismissed: React.Dispatch<React.SetStateAction<boolean>> = () => {
+    setBagDismissed(true);
+    setFloatingDismissed(true);
+  };
+
+  const handleInquirePackage = (pkgName: string) => {
+    setSelectedPackage(pkgName);
+    setBagDismissed(true);
+    setTimeout(() => {
+      document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  };
+  // Already exists — just confirm setBagDismissed is here
+  const handleRequestQuote = () => {
+    setBagOpen(false);
+    setBagDismissed(true);
+    setTimeout(() => {
+      document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  };
   return (
     <div style={{ background: "var(--color-paper)" }}>
       {/* ── FLOATING BAG BUTTON ───────────────────────────── */}
-      {bag.length > 0 && (
+
+      {bag.length > 0 && !floatingDismissed && (
         <button
           onClick={() => setBagOpen(true)}
           className="fixed bottom-8 right-8 z-[80] flex items-center gap-3 hidden lg:flex hover-target "
@@ -136,7 +192,7 @@ function CateringPageInner() {
             setBagOpen(false);
           }}
           onClose={() => setBagOpen(false)}
-          onRequestQuote={scrollToQuote}
+          onRequestQuote={handleRequestQuote}
         />
       )}
 
@@ -159,6 +215,9 @@ function CateringPageInner() {
           onUpdateQty={updateQuantity} // Required Prop passed here
           onOpenBag={() => setBagOpen(true)}
           getQty={getQty}
+          bagDismissed={bagDismissed}
+          setBagDismissed={handleBagDismissed}
+          onInquirePackage={handleInquirePackage}
         />
       </section>
 
