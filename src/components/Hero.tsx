@@ -65,7 +65,7 @@ export default function Hero({
       style={{ height: "100svh", minHeight: "680px", maxHeight: "1000px" }}
     >
       {/* ── LEFT PANEL ──────────────────────────────────────── */}
-      <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-start h-full px-8 sm:px-12 xl:px-20 pt-24 pb-6 sm:pt-24 sm:pb-16 lg:pt-24 lg:pb-24">
+      <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-start h-full px-8 sm:px-12 xl:px-20 pt-24 pb-6 sm:pt-24 sm:pb-16 lg:pt-28 lg:pb-24">
         {/* Overline */}
         {/* <div className="reveal-fade flex items-center gap-3 mb-6" style={{ opacity: 0 }}>
           <span className="w-6 h-px shrink-0" style={{ background: "var(--color-teal-pale)" }} />
@@ -92,7 +92,7 @@ export default function Hero({
           >
             <span
               className="overflow-hidden block"
-              style={{ paddingBottom: "8px" }}
+              style={{ paddingBottom: "10px" }}
             >
               <span className="reveal-line block">Chicago’s Premier</span>
             </span>
