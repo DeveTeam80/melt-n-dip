@@ -31,7 +31,7 @@ export default function AboutDelight() {
   }, []);
 
   return (
-    <section ref={containerRef} id="delight" className="py-16 sm:py-20 lg:py-28 px-8 sm:px-12 lg:px-20" style={{ background: "#0d2a27" }}>
+    <section ref={containerRef} id="delight" className="py-16 px-8 sm:px-12 lg:px-20" style={{ background: "#0d2a27" }}>
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <div className="delight-title text-center mb-12 sm:mb-16">

@@ -87,7 +87,7 @@ export default function StoryScroll() {
   return (
     <section
       ref={containerRef}
-      className="relative bg-ink min-h-screen lg:h-screen flex items-center justify-center py-20 lg:py-0 overflow-hidden"
+      className="relative bg-ink min-h-screen lg:h-screen flex items-center justify-center py-16 overflow-hidden"
     >
       {/* FULLSCREEN IMAGE */}
       <div className="absolute inset-0 overflow-hidden">

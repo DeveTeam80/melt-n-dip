@@ -70,7 +70,7 @@ export default function AboutCraft() {
     <section
       ref={containerRef}
       id="craft"
-      className="py-16 sm:py-20 lg:py-28 px-4 sm:px-12 lg:px-20"
+      className="py-16 px-4 sm:px-12 lg:px-20"
       style={{ background: "#f8faf9" }}
     >
       <div className="max-w-[1200px] mx-auto">

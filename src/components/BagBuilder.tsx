@@ -431,7 +431,7 @@ export default function BagBuilder({
       <section
         ref={containerRef}
         id="estimator"
-        className="relative z-40 py-12 lg:pt-16 lg:pb-24 px-4 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
+        className="relative z-40 py-16 px-4 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
       >
         {/* Header */}
         <div className="mb-8 lg:mb-12">
@@ -558,7 +558,7 @@ export default function BagBuilder({
         </div>
 
         {/* ── Option A ── */}
-        <div id="option-a" className="mb-8 xl:mb-12">
+        <div id="option-a" className="">
           <div className="flex items-center gap-4 mb-8">
             <h3 className="uppercase text-[14px] tracking-[3px] font-bold text-ink">
               Option A: Special Packages
@@ -686,7 +686,7 @@ export default function BagBuilder({
                         );
                         setTimeout(() => {
                           document
-                            .getElementById("quote")
+                            .getElementById("quote-form")
                             ?.scrollIntoView({ behavior: "smooth" });
                         }, 200);
                       }}

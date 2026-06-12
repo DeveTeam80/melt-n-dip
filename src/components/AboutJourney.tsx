@@ -63,7 +63,7 @@ export default function AboutJourney() {
     <section
       ref={containerRef}
       id="journey"
-      className="py-16 sm:py-20 lg:py-28 px-8 sm:px-12 lg:px-20"
+      className="py-16 px-8 sm:px-12 lg:px-20"
       style={{ background: "#f8faf9" }}
     >
       <div className="max-w-[1200px] mx-auto">

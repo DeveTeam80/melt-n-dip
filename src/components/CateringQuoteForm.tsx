@@ -139,7 +139,7 @@ export default function CateringQuoteForm({
     <section
       ref={containerRef}
       id="quote"
-      className="relative z-40 py-12 sm:py-16 lg:pt-20 lg:pb-36 px-4 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
+      className="relative z-40 py-16 px-4 sm:px-12 lg:px-20 max-w-[1400px] mx-auto"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
         {/* ── LEFT - CONTACT INFO ── */}
@@ -239,7 +239,10 @@ export default function CateringQuoteForm({
         </div>
 
         {/* ── RIGHT - FORM ── */}
-        <div className="quote-fade opacity-0 relative bg-white rounded-[3px] p-6 sm:p-10 lg:p-14 border border-linen shadow-[0_20px_80px_rgba(26,122,110,0.05)]">
+        <div
+          id="quote-form"
+          className="quote-fade opacity-0 relative bg-white rounded-[3px] p-6 sm:p-10 lg:p-14 border border-linen shadow-[0_20px_80px_rgba(26,122,110,0.05)]"
+        >
           {submitted ? (
             <div className="relative z-10 flex flex-col items-center text-center py-12">
               <div className="flex items-center justify-center rounded-full mb-6 w-16 h-16 bg-teal-faint border border-teal-pale">

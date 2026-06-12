@@ -57,7 +57,7 @@ export default function EventTypes() {
   return (
     <section
       ref={containerRef}
-      className="relative py-12 sm:py-16 lg:pt-24 lg:pb-32 overflow-hidden bg-ink min-h-[600px] lg:min-h-[800px] flex items-center"
+      className="relative py-16 overflow-hidden bg-ink min-h-[600px] lg:min-h-[800px] flex items-center"
     >
       {/* Dynamic Backgrounds */}
       {EVENTS.map((ev) => (

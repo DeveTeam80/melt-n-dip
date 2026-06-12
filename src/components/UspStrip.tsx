@@ -101,7 +101,7 @@ export default function UspStrip() {
     <section
       ref={containerRef}
       // The outer container matches the light theme above and below it
-      className="w-full bg-paper pt-0 pb-12 md:pb-16 overflow-hidden"
+      className="w-full bg-paper py-16 overflow-hidden"
     >
       {/* ── INSET DARK PANEL ──────────────────────────── */}
       <div
