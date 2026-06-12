@@ -116,27 +116,27 @@ export default function CateringHero() {
       </div>
 
       {/* ── CONTENT ─────────────────────────────────── */}
-      <div className="relative z-10 h-full flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 px-8 sm:px-12 lg:px-20">
+      <div className="relative z-10 h-full flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-12 lg:px-20">
         <div className="flex flex-col max-w-2xl">
           {/* Headline */}
           <h1
             className="font-serif font-light flex flex-col gap-1 mb-7 tracking-[-0.02em]"
             style={{
-              fontSize: "clamp(40px, 5.5vw, 84px)",
-              lineHeight: 1.02,
+              fontSize: "clamp(35px, 5.5vw, 84px)",
+              lineHeight: 1,
               color: "var(--color-cream)",
               textShadow: "0 2px 40px rgba(0,0,0,0.5)",
             }}
           >
-            <span className="overflow-hidden block py-1">
+            <span className="overflow-hidden block py-2">
               <span className="ch-reveal-line block">
                 Dessert Catering That
               </span>
             </span>
-            <span className="overflow-hidden block py-1">
+            <span className="overflow-hidden block py-2">
               <span className="ch-reveal-line block">Turns Every Event</span>
             </span>
-            <span className="overflow-hidden block py-1">
+            <span className="overflow-hidden block py-2">
               <span className="ch-reveal-line block">
                 Into a{" "}
                 <em className="italic" style={{ color: "var(--color-amber)" }}>
@@ -150,7 +150,7 @@ export default function CateringHero() {
           <p
             className="ch-fade-up font-light leading-[1.85] mb-8"
             style={{
-              fontSize: "16px",
+              fontSize: "clamp(13px, 4vw, 16px)",
               color: "rgba(251,253,252,0.7)",
               maxWidth: "440px",
               textShadow: "0 1px 12px rgba(0,0,0,0.4)",

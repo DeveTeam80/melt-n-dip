@@ -77,7 +77,20 @@ export default function BagBuilder({
     Record<string, "regular" | "large">
   >({});
 
-  const [visibleCount, setVisibleCount] = useState(12);
+  const getInitialCount = () => {
+    if (typeof window === "undefined") return 12;
+    if (window.innerWidth < 640) return 12; // mobile
+    if (window.innerWidth < 1024) return 20; // tablet
+    return 30; // laptop+
+  };
+
+  const [visibleCount, setVisibleCount] = useState(getInitialCount);
+
+  useEffect(() => {
+    const onResize = () => setVisibleCount(getInitialCount());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const guestNum = parseInt(guests) || 0;
 
@@ -548,7 +561,7 @@ export default function BagBuilder({
             <div className="h-[1px] flex-1 bg-linen" />
           </div>
 
-          <div className="builder-fade-up opacity-0 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="builder-fade-up opacity-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
             {PACKAGES.map((pkg, idx) => {
               const bgImages = [
                 "assets/images/chocalate_drizzle.jpg",
@@ -560,14 +573,12 @@ export default function BagBuilder({
                 <div
                   key={pkg.name}
                   className="group relative rounded-[3px] overflow-hidden transition-all duration-500 hover:-translate-y-2"
-                  style={{ minHeight: "380px" }}
+                  style={{ minHeight: "clamp(300px, 45vw, 380px)" }}
                 >
                   {/* Background Image */}
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    style={{
-                      backgroundImage: `url('${bgImages[idx]}')`,
-                    }}
+                    style={{ backgroundImage: `url('${bgImages[idx]}')` }}
                   />
 
                   {/* Dark Overlay */}
@@ -582,41 +593,38 @@ export default function BagBuilder({
                   {/* Hover Overlay */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      background: "rgba(0,0,0,0.18)",
-                    }}
+                    style={{ background: "rgba(0,0,0,0.18)" }}
                   />
 
                   {/* Decorative Icon */}
-                  <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
-                    <Sparkles className="w-10 h-10 text-amber" />
+                  <div className="absolute top-0 right-0 p-3 sm:p-4 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
+                    <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-amber" />
                   </div>
 
                   {/* Content */}
                   <div
-                    className="relative z-10 flex flex-col h-full p-8"
+                    className="relative z-10 flex flex-col h-full p-5 sm:p-6 lg:p-8"
                     style={{
-                      minHeight: "380px",
+                      minHeight: "clamp(300px, 45vw, 380px)",
                       backdropFilter: "blur(1px)",
                       WebkitBackdropFilter: "blur(1px)",
                     }}
                   >
                     {/* Package Name */}
                     <p
-                      className="font-serif text-[24px] text-white mb-3 leading-snug "
-                      style={{
-                        textShadow: "0 3px 14px rgba(0,0,0,0.85)",
-                      }}
+                      className="font-serif text-[20px] sm:text-[22px] lg:text-[24px] text-white mb-2 sm:mb-3 leading-snug"
+                      style={{ textShadow: "0 3px 14px rgba(0,0,0,0.85)" }}
                     >
                       {pkg.name}
                     </p>
 
                     {/* Description */}
                     <p
-                      className="text-[15px] leading-relaxed mb-6 h-12 line-clamp-2"
+                      className="text-[13px] sm:text-[14px] lg:text-[15px] leading-relaxed mb-4 sm:mb-6"
                       style={{
                         color: "rgba(255,255,255,0.92)",
                         textShadow: "0 2px 10px rgba(0,0,0,0.9)",
+                        // removed fixed h-12 + line-clamp so text never crops
                       }}
                     >
                       {pkg.desc}
@@ -625,11 +633,11 @@ export default function BagBuilder({
                     <div className="flex-1" />
 
                     {/* Price */}
-                    <div className="flex items-baseline gap-2 mb-5">
+                    <div className="flex items-baseline gap-2 mb-4 sm:mb-5">
                       <span
                         className="font-serif font-light"
                         style={{
-                          fontSize: "38px",
+                          fontSize: "clamp(28px, 5vw, 38px)",
                           color: "#F4B942",
                           letterSpacing: "-0.03em",
                           textShadow: "0 2px 10px rgba(0,0,0,0.7)",
@@ -637,11 +645,10 @@ export default function BagBuilder({
                       >
                         ${pkg.min}
                       </span>
-
                       <span
                         className="uppercase font-medium tracking-wider"
                         style={{
-                          fontSize: "11px",
+                          fontSize: "10px",
                           color: "white",
                           textShadow: "0 1px 6px rgba(0,0,0,0.7)",
                         }}
@@ -652,7 +659,7 @@ export default function BagBuilder({
 
                     {/* Button */}
                     <button
-                      className="w-full py-3.5 text-[12px] uppercase tracking-[2.5px] font-semibold transition-all duration-300"
+                      className="w-full py-3 sm:py-3.5 text-[11px] sm:text-[12px] uppercase tracking-[2px] sm:tracking-[2.5px] font-semibold transition-all duration-300"
                       style={{
                         border: "1px solid rgba(255,255,255,0.25)",
                         color: "#fff",
@@ -707,15 +714,15 @@ export default function BagBuilder({
             const cats = getMenuCategories();
             const allTabs = ["All", ...cats];
             return (
-              <div className="flex flex-nowrap gap-2 mb-12 overflow-x-auto no-scrollbar snap-x snap-mandatory">
+              <div className="flex flex-nowrap gap-2 mb-8 sm:mb-10 lg:mb-12 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-1">
                 {allTabs.map((label, i) => (
                   <button
                     key={label}
                     onClick={() => {
                       setActiveTab(i);
-                      setVisibleCount(12);
+                      setVisibleCount(getInitialCount());
                     }}
-                    className={`shrink-0 snap-start px-6 py-2.5 rounded-full text-[14px] tracking-[1.5px] font-medium uppercase transition-all duration-300 ${
+                    className={`shrink-0 snap-start px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[12px] sm:text-[14px] tracking-[1.5px] font-medium uppercase transition-all duration-300 whitespace-nowrap ${
                       activeTab === i
                         ? "bg-teal text-white shadow-lg shadow-teal/20"
                         : "bg-white text-teal border border-linen hover:border-teal/30"
@@ -743,30 +750,33 @@ export default function BagBuilder({
             const visibleItems = hasMore
               ? allItems.slice(0, visibleCount)
               : allItems;
-            // peek = last 3 of the visible slice when there are more items
+
             const peekCount =
-              typeof window !== "undefined" && window.innerWidth < 640 ? 2 : 3;
+              typeof window !== "undefined"
+                ? window.innerWidth < 640
+                  ? 1 // mobile: 1 peek card
+                  : window.innerWidth < 1024
+                    ? 2 // tablet: 2 peek cards
+                    : 3 // laptop: 3 peek cards
+                : 3;
             const peekStart = hasMore ? visibleCount - peekCount : -1;
+
             return (
               <>
                 <div
                   ref={gridRef}
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6"
                 >
                   {visibleItems.map((item, cardIndex) => {
                     const isPeek = hasMore && cardIndex >= peekStart;
                     const peekDepth = isPeek ? cardIndex - peekStart : 0;
 
-                    // ── Peek visual params ──────────────────────────────────────
-                    // All 3 cards identical — hinge at center, top half in front,
-                    // bottom half folds back behind the screen plane
                     const rotateX = isPeek ? 20 : 0;
                     const blurPx = isPeek ? 2.5 : 0;
                     const opacity = isPeek ? 0.55 : 1;
                     const scale = isPeek ? 0.96 : 1;
                     const translateY = isPeek ? 10 : 0;
 
-                    // ── Card data ───────────────────────────────────────────────
                     const hasSizes = !!item.priceLarge;
                     const selSize = sizeSelections[item.id] || "regular";
                     const bagId =
@@ -790,7 +800,6 @@ export default function BagBuilder({
                         key={item.id}
                         className="menu-item-card"
                         style={{
-                          // Hinge at card's own midline — top tips forward, bottom folds back
                           transformOrigin: "center 50%",
                           transform: `perspective(900px) rotateX(${rotateX}deg) scale(${scale}) translateY(${translateY}px)`,
                           filter: blurPx > 0 ? `blur(${blurPx}px)` : "none",
@@ -800,7 +809,6 @@ export default function BagBuilder({
                           zIndex: isPeek ? 2 : 4,
                           pointerEvents: isPeek ? "none" : "auto",
                           position: "relative",
-                          // Top half fully visible, bottom half fades to nothing
                           WebkitMaskImage: isPeek
                             ? "linear-gradient(to bottom, black 0%, black 50%, transparent 100%)"
                             : "none",
@@ -816,9 +824,10 @@ export default function BagBuilder({
                               : "bg-white border-linen"
                           }`}
                         >
-                          <div className="flex gap-4 p-5 sm:p-7">
+                          {/* Card body */}
+                          <div className="flex gap-3 sm:gap-4 p-4 sm:p-5 lg:p-7">
                             {item.image ? (
-                              <div className="shrink-0 w-[80px] h-[80px] sm:w-[90px] sm:h-[90px] rounded-md overflow-hidden bg-teal-faint border border-linen">
+                              <div className="shrink-0 w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] lg:w-[90px] lg:h-[90px] rounded-md overflow-hidden bg-teal-faint border border-linen">
                                 <img
                                   src={item.image}
                                   alt={item.name}
@@ -832,26 +841,27 @@ export default function BagBuilder({
                               </div>
                             ) : null}
                             <div className="flex-1 min-w-0">
-                              <div className="flex justify-between items-start gap-2 mb-2">
-                                <h4 className="font-serif font-medium text-base sm:text-lg text-ink leading-tight">
+                              <div className="flex justify-between items-start gap-2 mb-1 sm:mb-2">
+                                <h4 className="font-serif font-medium text-[15px] sm:text-base lg:text-lg text-ink leading-tight">
                                   {item.name}
                                 </h4>
                                 {priceLabel && (
-                                  <span className="shrink-0 text-[13px] sm:text-[15px] font-medium text-teal bg-teal-faint px-2 py-1 rounded whitespace-nowrap">
+                                  <span className="shrink-0 text-[12px] sm:text-[13px] lg:text-[15px] font-medium text-teal bg-teal-faint px-2 py-1 rounded whitespace-nowrap">
                                     {priceLabel}
                                   </span>
                                 )}
                               </div>
                               {item.description && (
-                                <p className="text-[13px] sm:text-[15px] font-light text-teal leading-relaxed">
+                                <p className="text-[12px] sm:text-[13px] lg:text-[15px] font-light text-teal leading-relaxed ">
                                   {item.description}
                                 </p>
                               )}
                             </div>
                           </div>
 
+                          {/* Size selector */}
                           {hasSizes && (
-                            <div className="flex gap-1 px-5 sm:px-7 pb-3">
+                            <div className="flex gap-1 px-4 sm:px-5 lg:px-7 pb-3">
                               <button
                                 onClick={() =>
                                   setSizeSelections((prev) => ({
@@ -859,7 +869,7 @@ export default function BagBuilder({
                                     [item.id]: "regular",
                                   }))
                                 }
-                                className={`text-[11px] tracking-[1px] uppercase font-bold px-3 py-1 rounded-full border transition-all ${
+                                className={`text-[10px] sm:text-[11px] tracking-[1px] uppercase font-bold px-2 sm:px-3 py-1 rounded-full border transition-all ${
                                   selSize === "regular"
                                     ? "bg-teal text-white border-teal"
                                     : "bg-white text-teal border-teal/30 hover:border-teal"
@@ -874,7 +884,7 @@ export default function BagBuilder({
                                     [item.id]: "large",
                                   }))
                                 }
-                                className={`text-[11px] tracking-[1px] uppercase font-bold px-3 py-1 rounded-full border transition-all ${
+                                className={`text-[10px] sm:text-[11px] tracking-[1px] uppercase font-bold px-2 sm:px-3 py-1 rounded-full border transition-all ${
                                   selSize === "large"
                                     ? "bg-teal text-white border-teal"
                                     : "bg-white text-teal border-teal/30 hover:border-teal"
@@ -885,12 +895,13 @@ export default function BagBuilder({
                             </div>
                           )}
 
-                          <div className="flex items-center justify-between px-5 sm:px-7 pb-5 sm:pb-7">
+                          {/* Add to cart / qty controls */}
+                          <div className="flex items-center justify-between px-4 sm:px-5 lg:px-7 pb-4 sm:pb-5 lg:pb-7">
                             {isSelected ? (
-                              <div className="flex items-center gap-4 bg-parchment rounded-full p-1 border border-linen">
+                              <div className="flex items-center gap-3 sm:gap-4 bg-parchment rounded-full p-1 border border-linen">
                                 <button
                                   onClick={() => onRemove(bagId)}
-                                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white text-ink transition-colors"
+                                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-white text-ink transition-colors"
                                 >
                                   <Minus className="w-3 h-3" />
                                 </button>
@@ -903,7 +914,7 @@ export default function BagBuilder({
                                       parseInt(e.target.value) || 0,
                                     )
                                   }
-                                  className="w-14 text-center bg-transparent text-[13px] font-bold outline-none"
+                                  className="w-10 sm:w-14 text-center bg-transparent text-[12px] sm:text-[13px] font-bold outline-none"
                                 />
                                 <button
                                   onClick={() =>
@@ -916,7 +927,7 @@ export default function BagBuilder({
                                       item.category,
                                     )
                                   }
-                                  className="w-8 h-8 rounded-full bg-teal text-white flex items-center justify-center shadow-md"
+                                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-teal text-white flex items-center justify-center shadow-md"
                                 >
                                   <Plus className="w-3 h-3" />
                                 </button>
@@ -934,9 +945,9 @@ export default function BagBuilder({
                                     guestNum,
                                   )
                                 }
-                                className="flex items-center gap-2 text-[14px] tracking-[1.5px] uppercase font-bold text-teal group"
+                                className="flex items-center gap-2 text-[12px] sm:text-[14px] tracking-[1.5px] uppercase font-bold text-teal group"
                               >
-                                <span className="w-8 h-8 rounded-full border border-teal flex items-center justify-center group-hover:bg-teal group-hover:text-white transition-all">
+                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-teal flex items-center justify-center group-hover:bg-teal group-hover:text-white transition-all">
                                   <Plus className="w-3 h-3" />
                                 </span>
                                 Add to Cart
@@ -949,17 +960,24 @@ export default function BagBuilder({
                   })}
                 </div>
 
-                {/* ── View More CTA — sits flush at the bottom edge of the masked cards ── */}
+                {/* ── View More CTA ── */}
                 {hasMore && (
                   <div
                     className="relative flex flex-col items-center pt-10 pb-2"
-                    // Negative margin pulls CTA up into the bottom fade zone of the masked cards
-                    style={{ marginTop: "-20vh", zIndex: 10 }}
+                    style={{
+                      // Responsive negative margin — less aggressive on tablet/mobile
+                      marginTop:
+                        typeof window !== "undefined" &&
+                        window.innerWidth < 1024
+                          ? "-80px"
+                          : "-20vh",
+                      zIndex: 10,
+                    }}
                   >
                     <h4
-                      className="font-serif font-normal text-center mb-2"
+                      className="font-serif font-normal text-center mb-2 px-4"
                       style={{
-                        fontSize: "clamp(20px, 2.8vw, 30px)",
+                        fontSize: "clamp(18px, 2.8vw, 30px)",
                         color: "var(--color-ink)",
                         lineHeight: 1.2,
                       }}
@@ -973,17 +991,16 @@ export default function BagBuilder({
                       </em>
                     </h4>
                     <p
-                      className="font-light text-center mb-8"
+                      className="font-light text-center mb-6 sm:mb-8 px-6"
                       style={{
-                        fontSize: "14px",
+                        fontSize: "13px",
                         color: "var(--color-umber, #7a6a58)",
-                        maxWidth: "340px",
+                        maxWidth: "320px",
                         lineHeight: 1.65,
                       }}
                     >
                       Expand to browse
                     </p>
-                    {/* CTA button — dark ink, amber accent, matches floating bag bar */}
                     <button
                       onClick={() => {
                         setVisibleCount((v) => v + 12);
@@ -1002,13 +1019,13 @@ export default function BagBuilder({
                       }}
                       className="group cta-primary relative flex items-center gap-3 overflow-hidden"
                       style={{
-                        padding: "15px 36px",
+                        padding: "13px 28px",
                         background: "var(--color-teal-rich)",
                         color: "#fff",
                         border: "none",
                         borderRadius: "2px",
-                        fontSize: "12px",
-                        letterSpacing: "2.5px",
+                        fontSize: "11px",
+                        letterSpacing: "2px",
                         textTransform: "uppercase",
                         fontWeight: 700,
                         cursor: "pointer",
@@ -1027,7 +1044,6 @@ export default function BagBuilder({
                           "0 8px 32px rgba(13,42,39,0.18)";
                       }}
                     >
-                      {/* Amber shimmer on hover */}
                       <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                       <Plus
                         className="w-4 h-4 transition-transform duration-300 group-hover:rotate-90"
@@ -1035,7 +1051,6 @@ export default function BagBuilder({
                       />
                       <span>Show more items</span>
                     </button>
-                    {/* Count footnote */}
                     <p
                       className="mt-4 font-light"
                       style={{

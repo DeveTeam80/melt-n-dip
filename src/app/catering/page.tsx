@@ -100,7 +100,7 @@ function CateringPageInner() {
       {bag.length > 0 && (
         <button
           onClick={() => setBagOpen(true)}
-          className="fixed bottom-8 right-8 z-[80] flex items-center gap-3 hidden md:flex hover-target "
+          className="fixed bottom-8 right-8 z-[80] flex items-center gap-3 hidden lg:flex hover-target "
           style={{
             background: "var(--color-teal)",
             color: "#fff",
