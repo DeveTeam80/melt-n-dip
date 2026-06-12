@@ -135,8 +135,8 @@ export default function LocationForm() {
         <div className="flex flex-col gap-1.5">
           <a
             href="mailto:owner@delightenterprisesllc.com"
-            className="font-light transition-colors hover:text-teal-rich"
-            style={{ fontSize: "18px", color: "var(--color-teal)" }}
+            className="text-[14px] md:text-[18px]  font-light transition-colors hover:text-teal-rich"
+            style={{ color: "var(--color-teal)" }}
           >
             owner@delightenterprisesllc.com
           </a>
@@ -156,19 +156,19 @@ export default function LocationForm() {
     <section
       ref={containerRef}
       id="location"
-      className="py-20 lg:pt-16 lg:pb-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
+      className="py-12 lg:pt-16 lg:pb-32 px-4 sm:px-8 lg:px-20 overflow-hidden"
       style={{ background: "var(--color-paper)" }}
     >
       <div className="max-w-[1400px] mx-auto w-full">
-        {/* ── TOP GRID - info + form ─────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-start">
+        {/* ── TOP GRID ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 sm:gap-16 lg:gap-24 items-start">
           {/* LEFT: LOCATION INFO */}
-          <div className="loc-left-container flex flex-col items-start pt-4">
+          <div className="loc-left-container flex flex-col items-start pt-2 sm:pt-4">
             <div className="loc-fade-up section-eyebrow">
               <span
                 style={{
-                  fontSize: "15px",
-                  letterSpacing: "3.5px",
+                  fontSize: "13px",
+                  letterSpacing: "3px",
                   textTransform: "uppercase",
                   color: "var(--color-teal)",
                 }}
@@ -178,9 +178,9 @@ export default function LocationForm() {
             </div>
 
             <h2
-              className="font-serif font-light text-ink flex flex-col gap-1 mb-6"
+              className="font-serif font-light text-ink flex flex-col gap-1 mb-4 sm:mb-6"
               style={{
-                fontSize: "clamp(38px, 5vw, 76px)",
+                fontSize: "clamp(32px, 8vw, 76px)",
                 lineHeight: "1.05",
                 letterSpacing: "-0.025em",
               }}
@@ -200,40 +200,44 @@ export default function LocationForm() {
             </h2>
 
             <p
-              className="loc-fade-up font-normal text-teal mb-12"
-              style={{ fontSize: "20px", lineHeight: 1.85, maxWidth: "500px" }}
+              className="loc-fade-up font-normal text-teal mb-8 sm:mb-12"
+              style={{
+                fontSize: "clamp(15px, 4vw, 20px)",
+                lineHeight: 1.75,
+                maxWidth: "500px",
+              }}
             >
               Have questions about our catering packages, live dessert stations,
               or food truck? Reach out to plan your perfect event.
             </p>
 
             {/* Info rows */}
-            <div className="loc-fade-up flex flex-col gap-8 w-full">
+            <div className="loc-fade-up flex flex-col gap-6 sm:gap-8 w-full">
               {INFO.map(({ Icon, label, content }) => (
-                <div key={label} className="flex items-start gap-5">
+                <div key={label} className="flex items-start gap-4 sm:gap-5">
                   <div
                     className="flex items-center justify-center rounded-full shrink-0"
                     style={{
-                      width: "40px",
-                      height: "40px",
+                      width: "36px",
+                      height: "36px",
                       background: "var(--color-teal-faint)",
                       border: "1px solid var(--color-teal-pale)",
                     }}
                   >
                     <Icon
                       style={{
-                        width: "17px",
-                        height: "17px",
+                        width: "15px",
+                        height: "15px",
                         color: "var(--color-teal)",
                       }}
                       strokeWidth={1.5}
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p
                       className="font-medium uppercase mb-1"
                       style={{
-                        fontSize: "13px",
+                        fontSize: "11px",
                         letterSpacing: "2px",
                         color: "var(--color-umber)",
                       }}
@@ -250,15 +254,15 @@ export default function LocationForm() {
           {/* RIGHT: FORM */}
           <div
             id="quote"
-            className="form-container relative bg-white rounded-[3px] p-6 sm:p-10 lg:p-14"
+            className="form-container relative bg-white rounded-[3px] p-5 sm:p-8 lg:p-14"
             style={{
               border: "1px solid var(--color-linen)",
               boxShadow: "0 20px 80px rgba(26,122,110,0.05)",
             }}
           >
-            {/* Decorative quote mark */}
+            {/* Decorative quote mark — hidden on tiny screens */}
             <div
-              className="absolute -bottom-12 -right-6 font-serif italic select-none pointer-events-none leading-none"
+              className="absolute -bottom-12 -right-6 font-serif italic select-none pointer-events-none leading-none hidden sm:block"
               style={{ fontSize: "240px", color: "rgba(168,216,212,0.08)" }}
             >
               "
@@ -267,31 +271,34 @@ export default function LocationForm() {
             <div className="relative z-10">
               <h3
                 className="font-serif font-normal text-ink mb-2"
-                style={{ fontSize: "30px", letterSpacing: "-0.02em" }}
+                style={{
+                  fontSize: "clamp(22px, 5vw, 30px)",
+                  letterSpacing: "-0.02em",
+                }}
               >
                 Request a Quote
               </h3>
               <p
-                className="font-normal text-teal mb-10"
-                style={{ fontSize: "15px" }}
+                className="font-normal text-teal mb-6 sm:mb-10"
+                style={{ fontSize: "clamp(13px, 3.5vw, 15px)" }}
               >
                 Weddings, birthdays, corporate events &amp; more, tell us your
                 vision.
               </p>
 
               <form
-                className="flex flex-col gap-6"
+                className="flex flex-col gap-5 sm:gap-6"
                 onSubmit={(e) => e.preventDefault()}
               >
                 {/* Name row */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-5 sm:gap-6">
                   <div className="f-field flex flex-col gap-2">
                     <label
                       htmlFor="firstName"
                       className="uppercase font-medium"
                       style={{
-                        fontSize: "11px",
-                        letterSpacing: "2.5px",
+                        fontSize: "10px",
+                        letterSpacing: "2px",
                         color: "var(--color-teal)",
                       }}
                     >
@@ -301,11 +308,11 @@ export default function LocationForm() {
                       id="firstName"
                       type="text"
                       placeholder="Sara"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink"
+                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
                       style={{
                         borderBottom: "1px solid var(--color-linen)",
-                        padding: "10px 4px",
-                        fontSize: "15px",
+                        padding: "8px 4px",
+                        fontSize: "clamp(13px, 3.5vw, 15px)",
                       }}
                       onFocus={(e) =>
                         (e.target.style.borderBottomColor = "var(--color-teal)")
@@ -321,8 +328,8 @@ export default function LocationForm() {
                       htmlFor="lastName"
                       className="uppercase font-medium"
                       style={{
-                        fontSize: "11px",
-                        letterSpacing: "2.5px",
+                        fontSize: "10px",
+                        letterSpacing: "2px",
                         color: "var(--color-teal)",
                       }}
                     >
@@ -332,11 +339,11 @@ export default function LocationForm() {
                       id="lastName"
                       type="text"
                       placeholder="Ahmed"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink"
+                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
                       style={{
                         borderBottom: "1px solid var(--color-linen)",
-                        padding: "10px 4px",
-                        fontSize: "15px",
+                        padding: "8px 4px",
+                        fontSize: "clamp(13px, 3.5vw, 15px)",
                       }}
                       onFocus={(e) =>
                         (e.target.style.borderBottomColor = "var(--color-teal)")
@@ -350,14 +357,14 @@ export default function LocationForm() {
                 </div>
 
                 {/* Email + Event Type */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                   <div className="f-field flex flex-col gap-2">
                     <label
                       htmlFor="email"
                       className="uppercase font-medium"
                       style={{
-                        fontSize: "11px",
-                        letterSpacing: "2.5px",
+                        fontSize: "10px",
+                        letterSpacing: "2px",
                         color: "var(--color-teal)",
                       }}
                     >
@@ -367,11 +374,11 @@ export default function LocationForm() {
                       id="email"
                       type="email"
                       placeholder="sara@email.com"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink"
+                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
                       style={{
                         borderBottom: "1px solid var(--color-linen)",
-                        padding: "10px 4px",
-                        fontSize: "15px",
+                        padding: "8px 4px",
+                        fontSize: "clamp(13px, 3.5vw, 15px)",
                       }}
                       onFocus={(e) =>
                         (e.target.style.borderBottomColor = "var(--color-teal)")
@@ -387,8 +394,8 @@ export default function LocationForm() {
                       htmlFor="eventType"
                       className="uppercase font-medium"
                       style={{
-                        fontSize: "11px",
-                        letterSpacing: "2.5px",
+                        fontSize: "10px",
+                        letterSpacing: "2px",
                         color: "var(--color-teal)",
                       }}
                     >
@@ -413,13 +420,13 @@ export default function LocationForm() {
                 </div>
 
                 {/* Vision textarea */}
-                <div className="f-field flex flex-col gap-2 mt-2">
+                <div className="f-field flex flex-col gap-2 mt-1 sm:mt-2">
                   <label
                     htmlFor="vision"
                     className="uppercase font-medium"
                     style={{
-                      fontSize: "11px",
-                      letterSpacing: "2.5px",
+                      fontSize: "10px",
+                      letterSpacing: "2px",
                       color: "var(--color-teal)",
                     }}
                   >
@@ -431,9 +438,9 @@ export default function LocationForm() {
                     className="bg-transparent outline-none font-light text-ink resize-none placeholder:text-teal/70 transition-colors"
                     style={{
                       borderBottom: "1px solid var(--color-linen)",
-                      padding: "10px 4px",
-                      fontSize: "15px",
-                      height: "96px",
+                      padding: "8px 4px",
+                      fontSize: "clamp(13px, 3.5vw, 15px)",
+                      height: "88px",
                     }}
                     onFocus={(e) =>
                       (e.target.style.borderBottomColor = "var(--color-teal)")
@@ -445,13 +452,16 @@ export default function LocationForm() {
                 </div>
 
                 {/* Submit */}
-                <div className="f-field mt-4">
+                <div className="f-field mt-2 sm:mt-4">
                   <button
                     type="submit"
                     onMouseMove={onMagMove}
                     onMouseLeave={onMagLeave}
                     className="cta-primary hover-target w-full flex items-center justify-center"
-                    style={{ height: "56px", fontSize: "13px" }}
+                    style={{
+                      height: "clamp(46px, 10vw, 56px)",
+                      fontSize: "clamp(11px, 2.5vw, 13px)",
+                    }}
                   >
                     Submit Inquiry
                   </button>
@@ -461,17 +471,16 @@ export default function LocationForm() {
           </div>
         </div>
 
-        {/* ── MAP - full width below ─────────────────────────── */}
+        {/* ── MAP ── */}
         <div
-          className="map-container relative mt-16 w-full rounded-[3px] overflow-hidden"
+          className="map-container relative mt-10 sm:mt-16 w-full rounded-[3px] overflow-hidden"
           style={{
-            height: "400px",
+            height: "clamp(240px, 50vw, 400px)",
             border: "1px solid rgba(191,155,48,0.12)",
             boxShadow:
               "0 8px 48px rgba(0,0,0,0.12), 0 2px 12px rgba(26,122,110,0.04)",
           }}
         >
-          {/* Top gold edge */}
           <div
             className="absolute top-0 left-1/2 -translate-x-1/2 z-10"
             style={{
@@ -481,7 +490,6 @@ export default function LocationForm() {
                 "linear-gradient(90deg, transparent, rgba(191,155,48,0.3), transparent)",
             }}
           />
-
           <iframe
             title="Melt N Dip Palos Park"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2697.730592409325!2d-87.85768472445187!3d41.653811579427945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e41e908329ed5%3A0x16b328b69c9db322!2sMelt%20N%20Dip!5e1!3m2!1sen!2sin!4v1775709946997!5m2!1sen!2sin"
@@ -496,8 +504,6 @@ export default function LocationForm() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
-
-          {/* Vignette edges */}
           <div
             className="absolute inset-0 pointer-events-none z-10"
             style={{

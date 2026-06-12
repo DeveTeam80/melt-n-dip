@@ -18,13 +18,8 @@ export default function StoryScroll() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // ✅ Initial states BEFORE first paint
       gsap.set(".gelato-bg", { scale: 1.15, opacity: 0.4 });
-      gsap.set(".ingredient-card", {
-        opacity: 0,
-        y: 60,
-        scale: 0.85,
-      });
+      gsap.set(".ingredient-card", { opacity: 0, y: 60, scale: 0.85 });
       gsap.set(".gelato-overlay", { opacity: 0.85 });
       gsap.set(".story-line", { opacity: 0, y: 70 });
       gsap.set(".story-sub", { opacity: 0, y: 30 });
@@ -38,11 +33,16 @@ export default function StoryScroll() {
         },
       });
 
-      // Background gelato reveal
-      tl.to(".gelato-bg", { scale: 1.0, opacity: 1, duration: 0.8, ease: "power2.out" }, 0);
-      tl.to(".gelato-overlay", { opacity: 0.45, duration: 0.8, ease: "power2.out" }, 0);
-
-      // ✅ Ingredient cards entrance (reveal and remain in place)
+      tl.to(
+        ".gelato-bg",
+        { scale: 1.0, opacity: 1, duration: 0.8, ease: "power2.out" },
+        0,
+      );
+      tl.to(
+        ".gelato-overlay",
+        { opacity: 0.45, duration: 0.8, ease: "power2.out" },
+        0,
+      );
       tl.fromTo(
         ".ingredient-card",
         {
@@ -62,20 +62,21 @@ export default function StoryScroll() {
         },
         0.2,
       );
-
-      // ✅ Text reveals
       tl.to(
         ".story-line",
         { opacity: 1, y: 0, stagger: 0.05, duration: 0.8, ease: "power3.out" },
         0.3,
       );
-
       tl.to(
         ".story-divider",
         { scaleX: 1, opacity: 1, duration: 0.6, ease: "power2.out" },
         0.6,
       );
-      tl.to(".story-sub", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.7);
+      tl.to(
+        ".story-sub",
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        0.7,
+      );
 
       ScrollTrigger.refresh();
     }, containerRef);
@@ -90,44 +91,26 @@ export default function StoryScroll() {
     >
       {/* FULLSCREEN IMAGE */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* IMAGE */}
         <div
           className="gelato-bg absolute inset-0 bg-no-repeat bg-ink"
-          style={{
-            transform: "scale(1.08)",
-          }}
+          style={{ transform: "scale(1.08)" }}
         />
-
-        {/* STATIC BASE OVERLAY */}
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(
-              to bottom,
-              rgba(13,42,39,0.60) 0%,
-              rgba(13,42,39,0.85) 35%,
-              rgba(13,42,39,0.85) 65%,
-              rgba(13,42,39,0.88) 100%
-            )`,
+            background: `linear-gradient(to bottom, rgba(13,42,39,0.60) 0%, rgba(13,42,39,0.85) 35%, rgba(13,42,39,0.85) 65%, rgba(13,42,39,0.88) 100%)`,
           }}
         />
-
-        {/* ANIMATED OVERLAY */}
         <div
           className="gelato-overlay absolute inset-0"
           style={{
             opacity: 0.8,
-            background: `linear-gradient(
-              to bottom,
-              rgba(13,42,39,0.55) 0%,
-              rgba(13,42,39,0.40) 50%,
-              rgba(13,42,39,0.65) 100%
-            )`,
+            background: `linear-gradient(to bottom, rgba(13,42,39,0.55) 0%, rgba(13,42,39,0.40) 50%, rgba(13,42,39,0.65) 100%)`,
           }}
         />
       </div>
 
-      {/* INGREDIENT IMAGES */}
+      {/* INGREDIENT IMAGES — desktop only, unchanged */}
       <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
         <div className="relative h-full w-full max-w-[1600px]">
           {INGREDIENTS.map((src, i) => (
@@ -144,13 +127,10 @@ export default function StoryScroll() {
               }}
             >
               <div className="relative h-full w-full">
-                {/* IMAGE */}
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${src})` }}
                 />
-
-                {/* CARD OVERLAY */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -165,33 +145,37 @@ export default function StoryScroll() {
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
-        {/* EYEBROW */}
-        <div className="story-line mb-10 flex items-center gap-4 opacity-0">
+      <div className="relative z-20 flex h-full flex-col items-center justify-center px-4 sm:px-6 text-center">
+        {/* EYEBROW — shrink lines on tiny screens */}
+        <div className="story-line mb-8 sm:mb-10 flex items-center gap-2 sm:gap-4 opacity-0">
           <div
-            className="h-px w-10"
+            className="h-px w-6 sm:w-10"
             style={{ background: "rgba(212,134,10,0.9)" }}
           />
           <span
             style={{
-              fontSize: "15px",
-              letterSpacing: "3px",
+              fontSize: "clamp(11px, 3vw, 15px)", // ← was fixed 15px
+              letterSpacing: "2.5px",
               textTransform: "uppercase",
               color: "#D4860A",
+              whiteSpace: "nowrap",
             }}
           >
             Our Philosophy
           </span>
           <div
-            className="h-px w-10"
+            className="h-px w-6 sm:w-10"
             style={{ background: "rgba(212,134,10,0.9)" }}
           />
         </div>
 
-        {/* HEADLINE */}
+        {/* HEADLINE — lower the clamp floor for 320px */}
         <h2
           className="font-serif font-light leading-[1.05] tracking-[-0.04em] text-white"
-          style={{ fontSize: "clamp(42px, 4.8vw, 84px)", maxWidth: "850px" }}
+          style={{
+            fontSize: "clamp(30px, 7.5vw, 84px)", // ← was clamp(42px,...)
+            maxWidth: "850px",
+          }}
         >
           <div className="overflow-hidden py-1">
             <div className="story-line">Every bite tells</div>
@@ -209,37 +193,51 @@ export default function StoryScroll() {
 
         {/* DIVIDER */}
         <div
-          className="story-divider mt-10 mb-8 h-px w-[70px] origin-center opacity-0"
+          className="story-divider mt-8 sm:mt-10 mb-6 sm:mb-8 h-px w-[70px] origin-center opacity-0"
           style={{
             background:
               "linear-gradient(to right, transparent, #D4860A, transparent)",
           }}
         />
 
-        {/* SUBTEXT */}
+        {/* SUBTEXT — was fixed 20px, too large on 320px */}
         <p
-          className="story-sub max-w-[560px] font-light leading-[1.9] text-white opacity-0"
-          style={{ fontSize: "20px" }}
+          className="story-sub font-light leading-[1.8] text-white opacity-0"
+          style={{
+            fontSize: "clamp(14px, 4vw, 20px)", // ← was fixed 20px
+            maxWidth: "560px",
+          }}
         >
           A melody of rich Belgian chocolate and artisan gelato.
-          <br />An atmosphere crafted to elevate your celebrations.
+          <br />
+          An atmosphere crafted to elevate your celebrations.
         </p>
 
-        {/* Mobile Horizontal scrollable images */}
-        <div className="lg:hidden w-screen overflow-x-auto mt-12 flex gap-4 pb-4 select-none pointer-events-auto -mx-6 px-6 no-scrollbar">
+        {/* MOBILE HORIZONTAL SCROLL — tighter cards on small screens */}
+        <div className="lg:hidden w-screen overflow-x-auto mt-10 sm:mt-12 flex gap-3 sm:gap-4 pb-4 select-none pointer-events-auto -mx-4 sm:-mx-6 px-4 sm:px-6 no-scrollbar">
           {INGREDIENTS.map((src, i) => {
-            const names = ["Kunafa Waffle Cup", "Oreo Cheesecake", "Pistachio Eclair", "Lovely Cookies"];
+            const names = [
+              "Kunafa Waffle Cup",
+              "Oreo Cheesecake",
+              "Pistachio Eclair",
+              "Lovely Cookies",
+            ];
             return (
               <div
                 key={i}
-                className="flex-shrink-0 w-[160px] h-[200px] relative rounded-[3px] overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+                className="flex-shrink-0 relative rounded-[3px] overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+                style={{
+                  // ← was fixed 160×200, now scales with viewport
+                  width: "clamp(130px, 38vw, 160px)",
+                  height: "clamp(165px, 48vw, 200px)",
+                }}
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${src})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-3 text-[12px] text-white font-sans font-light tracking-wide text-left">
+                <span className="absolute bottom-3 left-3 text-[11px] text-white font-sans font-light tracking-wide text-left">
                   {names[i]}
                 </span>
               </div>

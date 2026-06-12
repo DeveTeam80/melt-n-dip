@@ -78,9 +78,9 @@ export default function StoreRental() {
           </h2>
 
           <p className="sr-fade-up opacity-0 font-light text-paper leading-[1.85] text-[17px] mb-12 max-w-[440px]">
-            The Palos Park Melt N Dip store, exclusively yours. Up to 60
-            guests, full menu service, karaoke, sound system, and bespoke
-            decoration packages available.
+            The Palos Park Melt N Dip store, exclusively yours. Up to 60 guests,
+            full menu service, karaoke, sound system, and bespoke decoration
+            packages available.
           </p>
 
           <div className="sr-fade-up opacity-0 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 w-full">
@@ -129,11 +129,34 @@ export default function StoreRental() {
             </ul>
           </div>
 
-          <div className="sr-fade-up opacity-0 p-8 rounded-[3px] bg-white/5 border border-white/10 w-full">
-            <p className="text-[15px] font-medium tracking-[2.5px] uppercase text-amber mb-5">
+          <div className="sr-fade-up opacity-0 p-6 sm:p-8 rounded-[3px] bg-white/5 border border-white/10 w-full">
+            <p className="text-[15px] font-medium tracking-[2.5px] uppercase text-amber mb-4 sm:mb-5">
               Perfect For
             </p>
-            <div className="flex flex-wrap gap-2.5">
+
+            {/* Mobile: 2-column grid — Tablet+: flex wrap (original) */}
+            <div className="grid grid-cols-2 gap-2 sm:hidden">
+              {[
+                "Birthdays",
+                "Graduations",
+                "Book Clubs",
+                "Anniversaries",
+                "Engagement Parties",
+                "Corporate Events",
+                "Art Clubs",
+              ].map((e, i, arr) => (
+                <span
+                  key={e}
+                  className={`text-[13px] text-amber bg-teal-pale/10 border border-teal-pale/20 px-3 py-2 rounded-full text-center leading-tight
+        ${i === arr.length - 1 && arr.length % 2 !== 0 ? "col-span-2 mx-auto w-fit" : ""}`}
+                >
+                  {e}
+                </span>
+              ))}
+            </div>
+
+            {/* sm+: original flex wrap layout */}
+            <div className="hidden sm:flex flex-wrap gap-2.5">
               {[
                 "Birthdays",
                 "Graduations",

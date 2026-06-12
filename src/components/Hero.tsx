@@ -84,7 +84,7 @@ export default function Hero({
           <h1
             className="font-serif font-light hero-title flex flex-col mb-6 sm:mb-8 mt-2"
             style={{
-              fontSize: "clamp(30px, 5.5vw, 88px)",
+              fontSize: "clamp(35px, 5.5vw, 88px)",
               lineHeight: "0.97",
               letterSpacing: "-0.03em",
               gap: "2px",
@@ -94,9 +94,7 @@ export default function Hero({
               className="overflow-hidden block"
               style={{ paddingBottom: "8px" }}
             >
-              <span className="reveal-line block">
-                Chicago’s Premier
-              </span>
+              <span className="reveal-line block">Chicago’s Premier</span>
             </span>
             <span
               className="overflow-hidden block"
@@ -134,8 +132,8 @@ export default function Hero({
             }}
           >
             Unforgettable dessert experiences for weddings and corporate events
-            across Chicagoland. From premium Belgian chocolate fountains and live
-            crepe stations to Halal custom sweet platters, we craft moments
+            across Chicagoland. From premium Belgian chocolate fountains and
+            live crepe stations to Halal custom sweet platters, we craft moments
             that matter.
           </p>
 

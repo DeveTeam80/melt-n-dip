@@ -615,15 +615,15 @@ function MndFooter() {
               &copy; {new Date().getFullYear()} Delight Enterprises LLC. All
               rights reserved.
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center md:justify-start">
               {[
                 {
                   label: "Instagram",
-                  url: "https://www.instagram.com/meltndip.us/",
+                  url: "https://www.instagram.com/meltndip.palos/",
                 },
                 {
                   label: "Facebook",
-                  url: "https://www.facebook.com/meltndip.us",
+                  url: "https://www.facebook.com/people/Melt-N-Dip-Palos-Park/61555548458474/#",
                 },
                 { label: "YouTube", url: "https://www.youtube.com/@meltndip" },
               ].map(({ label, url }) => (
@@ -633,7 +633,10 @@ function MndFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mnd-ft-social-link hover-target transition-colors duration-300"
-                  style={{ color: MND.bgWarm }}
+                  style={{
+                    color: MND.bgWarm,
+                    fontSize: "clamp(13px, 3.5vw, 15px)",
+                  }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = MND.gold)}
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.color = MND.creamFaint)
@@ -660,12 +663,31 @@ export default function MeltNDipPalosPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [reviewPage, setReviewPage] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(30);
+  const getInitialCount = () => {
+    if (typeof window === "undefined") return 30;
+    if (window.innerWidth < 640) return 12; // mobile
+    if (window.innerWidth < 1024) return 20; // tablet
+    return 30; // laptop+
+  };
+
+  const [visibleCount, setVisibleCount] = useState(getInitialCount);
 
   useEffect(() => {
-    setVisibleCount(30);
+    setVisibleCount(getInitialCount());
   }, [activeCategory]);
-  const reviewsPerPage = 3;
+
+  useEffect(() => {
+    const onResize = () => setVisibleCount(getInitialCount());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const reviewsPerPage =
+    typeof window !== "undefined" && window.innerWidth < 640 ? 1 : 3;
+
+  useEffect(() => {
+    setReviewPage(0);
+  }, [reviewsPerPage]);
 
   useEffect(() => {
     document.body.setAttribute("data-page", "mnd");
@@ -1163,7 +1185,7 @@ export default function MeltNDipPalosPage() {
             >
               <span className="w-8 h-px" style={{ background: MND.gold }} />
               <span className="mnd-eyebrow-text-sm" style={{ color: MND.gold }}>
-                Melt N Dip - Palos Park
+                Melt N Dip - Palos Park Illinois
               </span>
             </div>
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between lg:gap-16 mb-5">
@@ -1653,7 +1675,13 @@ export default function MeltNDipPalosPage() {
               ? catItems.slice(0, visibleCount)
               : catItems;
             const peekCount =
-              typeof window !== "undefined" && window.innerWidth < 640 ? 1 : 3;
+              typeof window !== "undefined"
+                ? window.innerWidth < 640
+                  ? 1 // mobile: 1 peek card
+                  : window.innerWidth < 1024
+                    ? 2 // tablet: 2 peek cards
+                    : 3 // laptop: 3 peek cards
+                : 3;
             const peekStart = hasMore ? visibleCount - peekCount : -1;
 
             return (
@@ -2229,12 +2257,15 @@ export default function MeltNDipPalosPage() {
       </section>
 
       {/* 7. REVIEWS */}
+
+      {/* ── Full section replacement ── */}
       <section
         id="mnd-reviews"
-        className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20"
+        className="py-16 sm:py-24 lg:py-36 px-5 sm:px-12 lg:px-20"
         style={{ background: MND.bgWarm }}
       >
-        <div className="mnd-rev-hdr text-center max-w-[580px] mx-auto mb-16">
+        {/* Header */}
+        <div className="mnd-rev-hdr text-center max-w-[580px] mx-auto mb-10 sm:mb-16">
           <div className="flex items-center justify-center gap-3 mb-2">
             <span className="mnd-rev-eyebrow" style={{ color: MND.goldMuted }}>
               Some of Our Reviews on Google
@@ -2260,19 +2291,21 @@ export default function MeltNDipPalosPage() {
             </span>
           </h2>
         </div>
-        <div className="mnd-rev-grid grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1100px] mx-auto">
+
+        {/* Cards grid — 1 col mobile, 3 col md+ */}
+        <div className="mnd-rev-grid grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-[1100px] mx-auto">
           {visRevs.map(({ name, text }) => (
             <div
               key={name}
-              className="mnd-rev-card relative rounded-[3px] p-8 lg:p-10 hover-target transition-shadow duration-500 hover:shadow-[0_20px_60px_rgba(26,10,0,0.10)]"
+              className="mnd-rev-card relative rounded-[3px] p-6 sm:p-8 lg:p-10 hover-target transition-shadow duration-500 hover:shadow-[0_20px_60px_rgba(26,10,0,0.10)]"
             >
               <div
-                className="mnd-rev-quote-mark absolute -top-3 left-8 select-none pointer-events-none"
+                className="mnd-rev-quote-mark absolute -top-3 left-6 sm:left-8 select-none pointer-events-none"
                 style={{ color: `${MND.gold}22` }}
               >
                 &ldquo;
               </div>
-              <div className="flex items-center gap-0.5 mb-5 relative z-10">
+              <div className="flex items-center gap-0.5 mb-4 sm:mb-5 relative z-10">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -2282,12 +2315,12 @@ export default function MeltNDipPalosPage() {
                 ))}
               </div>
               <p
-                className="mnd-rev-text relative z-10 mb-6"
+                className="mnd-rev-text relative z-10 mb-5 sm:mb-6"
                 style={{ color: MND.muted }}
               >
                 {text}
               </p>
-              <div className="mnd-rev-divider relative z-10 flex items-center gap-3 pt-5">
+              <div className="mnd-rev-divider relative z-10 flex items-center gap-3 pt-4 sm:pt-5">
                 <div
                   className="mnd-rev-avatar flex items-center justify-center rounded-full shrink-0"
                   style={{
@@ -2314,8 +2347,11 @@ export default function MeltNDipPalosPage() {
             </div>
           ))}
         </div>
+
+        {/* Pagination */}
         {totalRevPages > 1 && (
-          <div className="flex items-center justify-center gap-4 mt-12">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-12">
+            {/* Prev */}
             <button
               onClick={() => setReviewPage((p) => Math.max(0, p - 1))}
               disabled={reviewPage === 0}
@@ -2334,12 +2370,18 @@ export default function MeltNDipPalosPage() {
                 strokeWidth={1.5}
               />
             </button>
+
+            {/* Prev button stays same */}
+
             <span
               className="mnd-rev-pagination-count"
               style={{ color: MND.muted }}
             >
               {reviewPage + 1} / {totalRevPages}
             </span>
+
+            {/* Next button stays same */}
+            {/* Next */}
             <button
               onClick={() =>
                 setReviewPage((p) => Math.min(totalRevPages - 1, p + 1))
@@ -2484,11 +2526,11 @@ export default function MeltNDipPalosPage() {
               {[
                 {
                   label: "Instagram",
-                  url: "https://www.instagram.com/meltndip.us/",
+                  url: "https://www.instagram.com/meltndip.palos/",
                 },
                 {
                   label: "Facebook",
-                  url: "https://www.facebook.com/meltndip.us",
+                  url: "https://www.facebook.com/people/Melt-N-Dip-Palos-Park/61555548458474/#",
                 },
                 { label: "YouTube", url: "https://www.youtube.com/@meltndip" },
               ].map(({ label, url }) => (
