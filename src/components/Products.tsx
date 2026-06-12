@@ -68,12 +68,13 @@ export default function Products() {
       );
 
       // 4. Subtle Image Parallax on Scroll
-      gsap.utils.toArray(".prod-bg").forEach((bg: any) => {
-        gsap.to(bg, {
+      gsap.utils.toArray(".prod-bg").forEach((bg) => {
+        const el = bg as Element;
+        gsap.to(el, {
           yPercent: 15,
           ease: "none",
           scrollTrigger: {
-            trigger: bg.parentElement,
+            trigger: el.parentElement,
             start: "top bottom",
             end: "bottom top",
             scrub: true,

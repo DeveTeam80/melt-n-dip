@@ -265,7 +265,7 @@ export default function LocationForm() {
               className="absolute -bottom-12 -right-6 font-serif italic select-none pointer-events-none leading-none hidden sm:block"
               style={{ fontSize: "240px", color: "rgba(168,216,212,0.08)" }}
             >
-              "
+              &ldquo;
             </div>
 
             <div className="relative z-10">

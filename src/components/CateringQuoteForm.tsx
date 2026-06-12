@@ -3,7 +3,7 @@
 import { useState, useLayoutEffect, useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Phone, Mail, MapPin, Check, ShoppingBag } from "lucide-react";
+import { Phone, Mail, Check } from "lucide-react";
 import { BagItem } from "./data";
 
 const useIsomorphicLayoutEffect =
@@ -30,12 +30,47 @@ export default function CateringQuoteForm({
     lastName: "",
     phone: "",
     email: "",
+    guests: "",
+    eventType: "",
+    serviceStyle: "",
     details: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
-  const guestNum = parseInt(guests) || 0;
-  const bagCount = bag.reduce((s, i) => s + i.quantity, 0);
+
+  // ── ONE single sync effect for prop values ──────────────────────
+  useEffect(() => {
+    setForm((prev) => ({
+      ...prev,
+      guests: guests ? guests : prev.guests,
+      eventType: eventType ? eventType : prev.eventType,
+      serviceStyle: serviceStyle ? serviceStyle : prev.serviceStyle,
+    }));
+  }, [guests, eventType, serviceStyle]);
+
+  // ── Custom event for "Inquire for this Set" package button ──────
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const pkg = (
+        e as CustomEvent<{
+          name: string;
+          guests: string;
+          eventType: string;
+          serviceStyle: string;
+        }>
+      ).detail;
+      if (!pkg) return;
+      setForm((prev) => ({
+        ...prev,
+        guests: pkg.guests || prev.guests,
+        eventType: pkg.eventType || prev.eventType,
+        serviceStyle: pkg.serviceStyle || prev.serviceStyle,
+        details: `Interested in the ${pkg.name} package.\n\n`,
+      }));
+    };
+    window.addEventListener("inquire-package", handler);
+    return () => window.removeEventListener("inquire-package", handler);
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -65,9 +100,6 @@ export default function CateringQuoteForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          eventType,
-          service: serviceStyle,
-          guests,
           items: bag,
           estimatedTotal:
             bagTotal > 0 ? `$${bagTotal.toLocaleString()}` : undefined,
@@ -98,6 +130,11 @@ export default function CateringQuoteForm({
       ease: "elastic.out(1, 0.3)",
     });
 
+  const inputClass =
+    "bg-transparent border-b border-linen py-3 px-1 text-[15px] font-light text-ink outline-none focus:border-teal transition-colors w-full";
+  const labelClass =
+    "text-[12px] font-medium tracking-[2.5px] uppercase text-teal pl-1";
+
   return (
     <section
       ref={containerRef}
@@ -114,11 +151,11 @@ export default function CateringQuoteForm({
             className="quote-fade opacity-0 font-serif font-light text-ink tracking-tight flex flex-col gap-1 mb-6"
             style={{ fontSize: "clamp(38px, 4.5vw, 64px)", lineHeight: "1.05" }}
           >
-            Let &apos; s Plan Your{" "}
+            Let&apos;s Plan Your{" "}
             <em className="italic text-teal pr-2">Event</em>
           </h2>
           <p className="quote-fade opacity-0 font-light text-teal leading-[1.85] text-[17px] mb-12 max-w-[420px]">
-            Tell us about your event or send us your built bag and we &apos; ll
+            Tell us about your event or send us your built bag and we&apos;ll
             come back within 48 hours.
           </p>
 
@@ -168,11 +205,11 @@ export default function CateringQuoteForm({
             ))}
           </div>
 
-          {/* Bag summary */}
-          {bag.length > 0 && guestNum > 0 && (
+          {/* Cart summary */}
+          {bag.length > 0 && (
             <div className="quote-fade opacity-0 mt-10 p-6 rounded-[3px] bg-teal-faint border border-teal-pale w-full">
               <p className="text-[13px] tracking-[2px] uppercase text-teal font-medium mb-4">
-                your Cart - included with inquiry
+                Your Cart — included with inquiry
               </p>
               <div className="flex flex-col gap-3">
                 {bag.map((i) => (
@@ -184,8 +221,7 @@ export default function CateringQuoteForm({
                       {i.name} × {i.quantity}
                     </span>
                     <span className="text-[14px] text-teal font-medium">
-                      $
-                      {(i.price * i.quantity).toLocaleString()}
+                      ${(i.price * i.quantity).toLocaleString()}
                     </span>
                   </div>
                 ))}
@@ -203,9 +239,7 @@ export default function CateringQuoteForm({
         </div>
 
         {/* ── RIGHT - FORM ── */}
-        <div className="quote-fade opacity-0 relative bg-white rounded-[3px] p-10 lg:p-14 border border-linen shadow-[0_20px_80px_rgba(26,122,110,0.05)]">
-          <div className="absolute -bottom-12 -right-6 font-serif italic text-[240px] text-amber/10 select-none pointer-events-none leading-none"></div>
-
+        <div className="quote-fade opacity-0 relative bg-white rounded-[3px] p-6 sm:p-10 lg:p-14 border border-linen shadow-[0_20px_80px_rgba(26,122,110,0.05)]">
           {submitted ? (
             <div className="relative z-10 flex flex-col items-center text-center py-12">
               <div className="flex items-center justify-center rounded-full mb-6 w-16 h-16 bg-teal-faint border border-teal-pale">
@@ -215,7 +249,7 @@ export default function CateringQuoteForm({
                 Inquiry Sent!
               </h3>
               <p className="text-[16px] text-teal leading-[1.8] max-w-[320px] font-light">
-                We &apos;ll be in touch within 48 hours. Need us sooner?{" "}
+                We&apos;ll be in touch within 48 hours. Need us sooner?{" "}
                 <a
                   href="tel:+16308009392"
                   className="text-teal font-medium hover:text-teal-rich"
@@ -227,73 +261,145 @@ export default function CateringQuoteForm({
             </div>
           ) : (
             <div className="relative z-10 flex flex-col h-full">
-              <h3 className="font-serif font-light text-[32px] text-ink tracking-[-0.02em] mb-2">
+              <h3 className="font-serif font-light text-[28px] sm:text-[32px] text-ink tracking-[-0.02em] mb-2">
                 Request a Quote
               </h3>
-              <p className="font-normal text-[16px] text-teal mb-10">
+              <p className="font-normal text-[15px] text-teal mb-8 sm:mb-10">
                 We respond within 48 hours.
               </p>
 
-              <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-20">
+              <form
+                className="flex flex-col gap-5 sm:gap-6"
+                onSubmit={handleSubmit}
+              >
+                {/* Name */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                   {(["firstName", "lastName"] as const).map((field) => (
                     <div key={field} className="flex flex-col gap-2">
-                      <label className="text-[14px] font-medium tracking-[2.5px] uppercase text-teal pl-1">
+                      <label className={labelClass}>
                         {field === "firstName" ? "First Name" : "Last Name"}
                       </label>
                       <input
                         type="text"
                         required
+                        placeholder={field === "firstName" ? "Sara" : "Ahmed"}
                         value={form[field]}
                         onChange={(e) =>
                           setForm((p) => ({ ...p, [field]: e.target.value }))
                         }
-                        className="bg-transparent border-b border-linen py-3 px-1 text-[15px] font-light text-ink outline-none focus:border-teal transition-colors"
+                        className={inputClass}
                       />
                     </div>
                   ))}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                {/* Phone + Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                   {(["phone", "email"] as const).map((field) => (
                     <div key={field} className="flex flex-col gap-2">
-                      <label className="text-[14px] font-medium tracking-[2.5px] uppercase text-teal pl-1">
+                      <label className={labelClass}>
                         {field.charAt(0).toUpperCase() + field.slice(1)}
                       </label>
                       <input
                         type={field === "email" ? "email" : "tel"}
                         required={field === "email"}
+                        placeholder={
+                          field === "email"
+                            ? "sara@email.com"
+                            : "(630) 000-0000"
+                        }
                         value={form[field]}
                         onChange={(e) =>
                           setForm((p) => ({ ...p, [field]: e.target.value }))
                         }
-                        className="bg-transparent border-b border-linen py-3 px-1 text-[15px] font-light text-ink outline-none focus:border-teal transition-colors"
+                        className={inputClass}
                       />
                     </div>
                   ))}
                 </div>
 
-                <div className="flex flex-col gap-2 mt-2 relative z-0">
-                  <label className="text-[15px] font-medium tracking-[2.5px] uppercase text-teal pl-1">
-                    Additional Details
-                  </label>
+                {/* Guest Count + Event Type — prefilled */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                  <div className="flex flex-col gap-2">
+                    <label className={labelClass}>Guest Count</label>
+                    <input
+                      type="number"
+                      min="1"
+                      placeholder="e.g. 75"
+                      value={form.guests}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, guests: e.target.value }))
+                      }
+                      className={inputClass}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className={labelClass}>Event Type</label>
+                    <input
+                      type="text"
+                      placeholder="Wedding, Birthday…"
+                      value={form.eventType}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, eventType: e.target.value }))
+                      }
+                      className={inputClass}
+                    />
+                  </div>
+                </div>
+
+                {/* Service Style — prefilled, always shown */}
+                <div className="flex flex-col gap-2">
+                  <label className={labelClass}>Service Style</label>
+                  <input
+                    type="text"
+                    placeholder="In-house, Food Truck…"
+                    value={form.serviceStyle}
+                    onChange={(e) =>
+                      setForm((p) => ({ ...p, serviceStyle: e.target.value }))
+                    }
+                    className={inputClass}
+                  />
+                </div>
+
+                {/* Cart summary read-only */}
+                {bag.length > 0 && (
+                  <div className="flex flex-col gap-2">
+                    <label className={labelClass}>
+                      Selected Items ({bag.length})
+                    </label>
+                    <div
+                      className="py-3 px-1 text-[13px] font-light text-teal leading-relaxed"
+                      style={{ borderBottom: "1px solid var(--color-linen)" }}
+                    >
+                      {bag.map((i) => `${i.name} ×${i.quantity}`).join(" · ")}
+                      <span className="ml-2 font-medium text-ink">
+                        — Est. ${bagTotal.toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Additional Details — prefilled by package inquiry */}
+                <div className="flex flex-col gap-2 mt-1 sm:mt-2">
+                  <label className={labelClass}>Additional Details</label>
                   <textarea
                     value={form.details}
                     onChange={(e) =>
                       setForm((p) => ({ ...p, details: e.target.value }))
                     }
-                    placeholder="Date, venue, any special requests…"
-                    className="bg-transparent border-b border-linen py-3 px-1 text-[15px] font-light text-ink outline-none focus:border-teal transition-colors resize-none h-24 placeholder:text-teal/80/80"
+                    placeholder="Date, venue, theme, dietary needs, any special requests…"
+                    className="bg-transparent border-b border-linen py-3 px-1 text-[15px] font-light text-ink outline-none focus:border-teal transition-colors resize-none h-24 placeholder:text-teal/60"
                   />
                 </div>
 
-                <div className="mt-4 relative z-0">
+                {/* Submit */}
+                <div className="mt-2 sm:mt-4">
                   <button
                     type="submit"
                     disabled={sending}
                     onMouseMove={onMagMove}
                     onMouseLeave={onMagLeave}
-                    className="cta-primary hover-target w-full flex items-center justify-center h-[56px] text-[13px]"
+                    className="cta-primary hover-target w-full flex items-center justify-center h-[52px] sm:h-[56px] text-[13px]"
                     style={{ opacity: sending ? 0.7 : 1 }}
                   >
                     {sending ? "Sending…" : "Submit Inquiry"}

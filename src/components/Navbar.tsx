@@ -189,7 +189,7 @@ export default function Navbar() {
               alt="Delight Enterprises"
               width={250}
               height={100}
-              className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen || !isDarkHero ? "" : "nav-logo-responsive"} ${scrolled ? "w-[50px] lg:w-[70px]" : "w-[80px] lg:w-[100px]"}`}
+              className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-90 ${scrolled || menuOpen || !isDarkHero ? "" : "nav-logo-responsive"} ${scrolled ? "w-[70px] lg:w-[70px]" : "w-[80px] lg:w-[100px]"}`}
               style={{
                 height: "auto",
                 transition: "width 0.3s ease, filter 0.3s ease",
