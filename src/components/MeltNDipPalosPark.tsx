@@ -1820,7 +1820,7 @@ export default function MeltNDipPalosPage() {
                     </p>
                     <button
                       onMouseMove={onMag}
-                      onMouseLeave={offMag}
+                      // onMouseLeave={offMag}
                       onClick={() => setVisibleCount((v) => v + 12)}
                       className="hover-target group relative flex items-center gap-3 overflow-hidden"
                       style={{
@@ -1838,11 +1838,8 @@ export default function MeltNDipPalosPage() {
                           "transform 0.25s ease, box-shadow 0.25s ease",
                         boxShadow: `0 8px 32px ${MND.gold}30`,
                       }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateY(-2px)";
-                        e.currentTarget.style.boxShadow = `0 14px 40px ${MND.gold}45`;
-                      }}
                       onMouseLeave={(e) => {
+                        offMag(e);
                         e.currentTarget.style.transform = "translateY(0)";
                         e.currentTarget.style.boxShadow = `0 8px 32px ${MND.gold}30`;
                       }}
