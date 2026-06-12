@@ -231,7 +231,7 @@ export default function CateringAndSeasonal() {
       {/* ── CATERING ──────────────────────────────────────── */}
       <section
         id="catering"
-        className="py-20 lg:pt-16 lg:pb-32 px-8 sm:px-12 lg:px-20 overflow-hidden"
+        className="py-16 px-8 sm:px-12 lg:px-20 overflow-hidden"
         style={{ background: "var(--color-paper)" }}
       >
         <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -424,7 +424,7 @@ export default function CateringAndSeasonal() {
 
       {/* ── ESTIMATOR NUDGE STRIP ─────────────────────────── */}
       <div
-        className="estimator-strip relative overflow-hidden px-6 sm:px-12 lg:px-16 py-28 sm:py-28"
+        className="estimator-strip relative overflow-hidden px-6 sm:px-12 lg:px-16 py-16"
         style={{ background: "var(--color-ink)" }}
       >
         {/* ── Ambient glow ── */}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Plus, Minus, X, ShoppingBag } from "lucide-react";
 import { BagItem } from "./data";
 
@@ -28,6 +29,15 @@ export default function BagDrawer({
   // Calculate total servings across all items
   const totalServings = bag.reduce((s, i) => s + i.quantity, 0);
 
+  // Lock body scroll while drawer is open
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, []);
+
   return (
     <div className="fixed inset-0 z-[200] flex justify-end">
       {/* Backdrop */}
@@ -35,7 +45,7 @@ export default function BagDrawer({
 
       {/* Drawer */}
       <div
-        className="relative w-full max-w-[420px] h-full flex flex-col overflow-hidden"
+        className="relative w-full max-w-[420px] h-full flex flex-col"
         style={{
           background: "var(--color-paper)",
           boxShadow: "-20px 0 60px rgba(13,42,39,0.2)",
@@ -43,7 +53,7 @@ export default function BagDrawer({
       >
         {/* Header */}
         <div
-          className="flex items-center justify-between px-8 py-6"
+          className="shrink-0 flex items-center justify-between px-8 py-6"
           style={{ borderBottom: "1px solid var(--color-linen)" }}
         >
           <h3
@@ -65,7 +75,7 @@ export default function BagDrawer({
         </div>
 
         {/* Items */}
-        <div className="flex-1 overflow-y-auto px-8 py-6 flex flex-col gap-6">
+        <div className="flex-1 px-8 py-6 min-h-0" style={{ overflowY: "auto", overscrollBehavior: "contain" }}>
           {bag.map((item) => (
             <div
               key={item.id}
@@ -139,7 +149,7 @@ export default function BagDrawer({
 
         {/* Footer */}
         <div
-          className="px-8 py-6 bg-parchment"
+          className="shrink-0 px-8 py-6 bg-parchment"
           style={{ borderTop: "1px solid var(--color-linen)" }}
         >
           {bag.length > 0 && (

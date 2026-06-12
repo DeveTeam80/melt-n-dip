@@ -57,7 +57,7 @@ export default function AboutStore() {
     <section
       ref={containerRef}
       id="store"
-      className="relative overflow-hidden min-h-[450px] sm:min-h-[500px] flex items-center py-16 sm:py-20 px-8 sm:px-12 lg:px-20"
+      className="relative overflow-hidden min-h-[450px] sm:min-h-[500px] flex items-center py-16 px-8 sm:px-12 lg:px-20"
     >
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">

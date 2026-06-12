@@ -1335,10 +1335,10 @@ export default function MeltNDipPalosPage() {
 
       {/* 2. BELGIAN CHOCOLATE */}
       <section
-        className="mnd-bel-section grid grid-cols-1 lg:grid-cols-2 overflow-hidden"
+        className="mnd-bel-section grid grid-cols-1 lg:grid-cols-2 overflow-hidden py-16"
         style={{ background: MND.bgAlt }}
       >
-        <div className="mnd-bel-left flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-20 lg:py-28">
+        <div className="mnd-bel-left flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20">
           <div className="mnd-bel-f flex items-center gap-3 mb-5">
             <span
               className="w-6 h-px mnd-eyebrow-line"
@@ -1569,7 +1569,7 @@ export default function MeltNDipPalosPage() {
       {/* 4. MENU */}
       <section
         id="mnd-menu"
-        className="mnd-menu-section-bg relative py-12 lg:py-32 overflow-hidden"
+        className="mnd-menu-section-bg relative py-16 overflow-hidden"
       >
         <div className="mnd-menu-texture-overlay absolute inset-0 pointer-events-none z-0" />
         <div
@@ -1989,7 +1989,7 @@ export default function MeltNDipPalosPage() {
       {/* 5. GALLERY + VIDEO */}
       <section
         id="mnd-gallery"
-        className="mnd-mosaic-sec py-20 lg:py-28 px-8 sm:px-12 lg:px-20"
+        className="mnd-mosaic-sec py-16 px-8 sm:px-12 lg:px-20"
         style={{ background: MND.bg }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-[1200px] mx-auto">
@@ -2164,7 +2164,7 @@ export default function MeltNDipPalosPage() {
       {/* 6. CATERING */}
       <section
         id="mnd-catering"
-        className="py-24 lg:py-36 px-8 sm:px-12 lg:px-20"
+        className="py-16 px-8 sm:px-12 lg:px-20"
         style={{ background: MND.bgAlt }}
       >
         <div className="mnd-cat-sec grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -2316,7 +2316,7 @@ export default function MeltNDipPalosPage() {
       {/* ── Full section replacement ── */}
       <section
         id="mnd-reviews"
-        className="py-16 sm:py-24 lg:py-36 px-5 sm:px-12 lg:px-20"
+        className="py-16 px-5 sm:px-12 lg:px-20"
         style={{ background: MND.bgWarm }}
       >
         {/* Header */}
@@ -2465,7 +2465,7 @@ export default function MeltNDipPalosPage() {
       {/* 8. LOCATION */}
       <section
         id="mnd-location"
-        className="py-20 lg:py-24 px-8 sm:px-12 lg:px-20 overflow-hidden"
+        className="py-16 px-8 sm:px-12 lg:px-20 overflow-hidden"
         style={{ background: MND.bgAlt }}
       >
         <div className="mnd-loc-left grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">

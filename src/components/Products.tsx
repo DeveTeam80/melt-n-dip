@@ -146,7 +146,7 @@ export default function Products() {
     <section
       ref={containerRef}
       id="products"
-      className="pt-10 pb-20 px-8 sm:px-12 lg:pt-12 lg:pb-32 lg:px-20 bg-paper"
+      className="py-16 px-8 sm:px-12 lg:px-20 bg-paper"
     >
       <div className="max-w-[1400px] mx-auto w-full">
         {/* ── HEADER ──────────────────────────────────────── */}

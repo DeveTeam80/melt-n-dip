@@ -64,7 +64,7 @@ export default function CateringFAQ() {
     <section
       id="faq"
       ref={containerRef}
-      className="py-24 lg:pt-20 lg:pb-32 px-8 sm:px-12 lg:px-20 bg-papers"
+      className="py-16 px-8 sm:px-12 lg:px-20 bg-papers"
     >
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start">
         {/* ── LEFT - STICKY HEADER ── */}

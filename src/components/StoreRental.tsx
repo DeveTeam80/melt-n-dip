@@ -46,7 +46,7 @@ export default function StoreRental() {
   return (
     <section
       ref={containerRef}
-      className="py-12 sm:py-16 lg:pt-20 lg:pb-36 px-4 sm:px-12 lg:px-20 bg-ink text-cream"
+      className="py-16 px-4 sm:px-12 lg:px-20 bg-ink text-cream"
     >
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
         {/* ── LEFT COLUMN ── */}

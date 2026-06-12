@@ -126,7 +126,7 @@ export default function VsSection() {
   return (
     <section
       ref={containerRef}
-      className="bg-parchment py-20 lg:pt-16 lg:pb-32 px-8 sm:px-12 lg:px-20 relative overflow-hidden z-10"
+      className="bg-parchment py-16 px-8 sm:px-12 lg:px-20 relative overflow-hidden z-10"
     >
       {/* ── BACKGROUND PARALLAX TEXT ──────────────── */}
       <div className="vs-bg-text hidden lg:block absolute top-[40%] right-[-10%] font-serif text-[180px] lg:text-[280px] font-light text-teal/5 tracking-[-0.04em] whitespace-nowrap pointer-events-none select-none z-0">

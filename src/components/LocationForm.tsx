@@ -156,7 +156,7 @@ export default function LocationForm() {
     <section
       ref={containerRef}
       id="location"
-      className="py-12 lg:pt-16 lg:pb-32 px-4 sm:px-8 lg:px-20 overflow-hidden"
+      className="py-16 px-4 sm:px-8 lg:px-20 overflow-hidden"
       style={{ background: "var(--color-paper)" }}
     >
       <div className="max-w-[1400px] mx-auto w-full">
