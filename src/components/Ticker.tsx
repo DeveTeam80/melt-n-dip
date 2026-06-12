@@ -18,35 +18,44 @@ const ITEMS = [
 export default function Ticker() {
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // Pause on hover - premium detail
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
-    // GSAP ticker animation
-    const anim = gsap.to(track, {
-      xPercent: -50,
-      duration: 36,
-      ease: "none",
-      repeat: -1,
+    // Wait one frame so the DOM has rendered and we can measure
+    const raf = requestAnimationFrame(() => {
+      // Total track width = both sets. Single set = half of that.
+      const totalWidth = track.scrollWidth;
+      const singleSetWidth = totalWidth / 2;
+
+      const anim = gsap.fromTo(
+        track,
+        { x: 0 },
+        {
+          x: -singleSetWidth,
+          duration: 50,
+          ease: "none",
+          repeat: -1,
+        },
+      );
+
+      const pause = () =>
+        gsap.to(anim, { timeScale: 0, duration: 0.6, ease: "power2.out" });
+      const resume = () =>
+        gsap.to(anim, { timeScale: 1, duration: 0.6, ease: "power2.inOut" });
+
+      track.addEventListener("mouseenter", pause);
+      track.addEventListener("mouseleave", resume);
+
+      return () => {
+        anim.kill();
+        track.removeEventListener("mouseenter", pause);
+        track.removeEventListener("mouseleave", resume);
+      };
     });
 
-    // timeScale must be set on the animation instance, not via gsap.to()
-    const pause = () =>
-      gsap.to(anim, { timeScale: 0, duration: 0.6, ease: "power2.out" });
-    const resume = () =>
-      gsap.to(anim, { timeScale: 1, duration: 0.6, ease: "power2.inOut" });
-
-    track.addEventListener("mouseenter", pause);
-    track.addEventListener("mouseleave", resume);
-
-    return () => {
-      anim.kill();
-      track.removeEventListener("mouseenter", pause);
-      track.removeEventListener("mouseleave", resume);
-    };
+    return () => cancelAnimationFrame(raf);
   }, []);
-
   // Doubled items for seamless loop
   const doubled = [...ITEMS, ...ITEMS];
 
@@ -100,7 +109,9 @@ export default function Ticker() {
                 rx="0.5"
                 transform="rotate(45 2.5 2.5)"
                 fill={
-                  item.accent ? "var(--color-amber-vibrant)" : "rgba(168,216,212,0.2)"
+                  item.accent
+                    ? "var(--color-amber-vibrant)"
+                    : "rgba(168,216,212,0.2)"
                 }
               />
             </svg>

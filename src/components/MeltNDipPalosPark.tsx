@@ -1491,7 +1491,64 @@ export default function MeltNDipPalosPage() {
           borderBottom: `1px solid ${MND.border}`,
         }}
       >
-        <div className="px-6 sm:px-12 lg:px-20 py-6 sm:py-10 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-x-12 gap-y-4 sm:gap-y-5">
+        {/* ── Mobile: marquee ── */}
+        <div
+          className="sm:hidden overflow-hidden py-5"
+          style={{ position: "relative" }}
+        >
+          {/* Fade edges */}
+          <div
+            className="absolute inset-y-0 left-0 z-10 w-10 pointer-events-none"
+            style={{
+              background: `linear-gradient(to right, ${MND.bg}, transparent)`,
+            }}
+          />
+          <div
+            className="absolute inset-y-0 right-0 z-10 w-10 pointer-events-none"
+            style={{
+              background: `linear-gradient(to left, ${MND.bg}, transparent)`,
+            }}
+          />
+
+          {/* Scrolling track — doubled for seamless loop */}
+          <div
+            className="flex items-center gap-8 whitespace-nowrap"
+            style={{
+              animation: "usp-marquee 24s linear infinite",
+              width: "max-content",
+            }}
+          >
+            {[...USP_ITEMS, ...USP_ITEMS].map((text, i) => (
+              <div
+                key={i}
+                className="mnd-usp-i flex items-center gap-2.5 shrink-0"
+              >
+                <span
+                  className="mnd-usp-dot shrink-0"
+                  style={{ color: MND.gold }}
+                >
+                  *
+                </span>
+                <span
+                  className="mnd-usp-text"
+                  style={{ color: MND.creamMuted }}
+                >
+                  {text}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <style>{`
+      @keyframes usp-marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+    `}</style>
+        </div>
+
+        {/* ── Tablet + Desktop: original grid — unchanged ── */}
+        <div className="hidden sm:grid px-6 sm:px-12 lg:px-20 py-6 sm:py-10 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-x-12 gap-y-4 sm:gap-y-5">
           {USP_ITEMS.map((text) => (
             <div key={text} className="mnd-usp-i flex items-center gap-3">
               <span
@@ -1507,7 +1564,6 @@ export default function MeltNDipPalosPage() {
           ))}
         </div>
       </div>
-
       {/* 4. MENU */}
       <section
         id="mnd-menu"

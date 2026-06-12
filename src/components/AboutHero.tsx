@@ -94,7 +94,7 @@ export default function AboutHero() {
           </h1>
 
           {/* Divider row — matches Hero's reveal-fade divider style */}
-          <div className="about-h-fade flex items-center gap-4 mb-6 sm:mb-8">
+          <div className="about-h-fade flex items-center gap-4 mb-4 sm:mb-8">
             <div className="h-px w-8" style={{ background: "#b98e3b" }} />
             <span
               style={{
