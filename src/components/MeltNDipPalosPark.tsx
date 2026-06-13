@@ -96,10 +96,10 @@ const USP_ITEMS = [
 const CDN = "https://meltndip.com/wp-content/uploads";
 
 const MOSAIC_IMGS = [
-  { img: "/assets/melt-n-dip-crepe.jpg", label: "Melt N Dip Crepe", alt: "Belgian chocolate crepes near me" },
-  { img: "/assets/brownie-waffle.jpg", label: "Belgian Waffle", alt: "belgian waffles near me" },
-  { img: "/assets/dubai-chocolate-crepe.jpg", label: "Dubai Chocolate", alt: "Authentic sweet kunafa and knafeh near me" },
-  { img: "/assets/gelato.jpg", label: "Italian Gelato", alt: "Premium gelato near me in Palos Park" },
+  { img: "/assets/melt-n-dip-crepe.jpg", label: "Melt N Dip Crepe" },
+  { img: "/assets/brownie-waffle.jpg", label: "Belgian Waffle" },
+  { img: "/assets/dubai-chocolate-crepe.jpg", label: "Dubai Chocolate" },
+  { img: "/assets/gelato.jpg", label: "Italian Gelato" },
 ];
 
 const CATERING_SERVICES = [
@@ -1447,10 +1447,12 @@ export default function MeltNDipPalosPage() {
           style={{ background: MND.bgCard }}
         >
           <div className="mnd-bel-img-w relative overflow-hidden flex-[1]">
-            <img
-              src="https://meltndip.com/wp-content/uploads/2020/06/eclair.jpg"
-              alt="dessert lounge near Orland Park and Palos Hills"
-              className="mnd-bel-img-i w-full h-full object-cover object-center"
+            <div
+              className="mnd-bel-img-i"
+              style={{
+                backgroundImage:
+                  "url('https://meltndip.com/wp-content/uploads/2020/06/eclair.jpg')",
+              }}
             />
             <div
               className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
@@ -1460,10 +1462,11 @@ export default function MeltNDipPalosPage() {
             />
           </div>
           <div className="mnd-bel-img-w relative overflow-hidden flex-[1]">
-            <img
-              src="/assets/store-exterior-night.jpg"
-              alt="Dessert shop in Palos Park"
-              className="mnd-bel-img-i w-full h-full object-cover object-center"
+            <div
+              className="mnd-bel-img-i"
+              style={{
+                backgroundImage: "url('/assets/store-exterior-night.jpg')",
+              }}
             />
             <div
               className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
@@ -2030,7 +2033,7 @@ export default function MeltNDipPalosPage() {
               {!showVideo && (
                 <img
                   src="https://img.youtube.com/vi/uGZx4GfAF7g/maxresdefault.jpg"
-                  alt="Melt n Dip Palos Park - one of the best dessert places near me"
+                  alt="Melt N Dip video"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               )}
@@ -2103,7 +2106,7 @@ export default function MeltNDipPalosPage() {
 
           {/* ── Mosaic grid — unchanged ── */}
           <div className="mnd-mosaic-grid grid grid-cols-2 gap-3">
-            {MOSAIC_IMGS.map(({ img, label, alt }, i) => (
+            {MOSAIC_IMGS.map(({ img, label }, i) => (
               <div
                 key={label}
                 className="mnd-mosaic-card group relative overflow-hidden rounded-[6px] cursor-pointer"
@@ -2123,10 +2126,9 @@ export default function MeltNDipPalosPage() {
                   e.currentTarget.style.zIndex = "auto";
                 }}
               >
-                <img
-                  src={img}
-                  alt={alt}
-                  className="mnd-mosaic-bg absolute object-cover object-center w-full h-full transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.1]"
+                <div
+                  className="mnd-mosaic-bg absolute bg-cover bg-center transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.1]"
+                  style={{ backgroundImage: `url('${img}')` }}
                 />
                 <div className="mnd-mosaic-dark-grad absolute inset-0" />
                 <div
