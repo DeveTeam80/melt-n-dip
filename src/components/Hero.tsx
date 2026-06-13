@@ -128,13 +128,12 @@ export default function Hero({
             style={{
               fontSize: "clamp(14px, 1.8vw, 18px)",
               lineHeight: "1.7",
-              maxWidth: "390px",
+              maxWidth: "410px",
             }}
           >
-            Unforgettable dessert experiences for weddings and corporate events
-            across Chicagoland. From premium Belgian chocolate fountains and
-            live crepe stations to Halal custom sweet platters, we craft moments
-            that matter.
+            Unforgettable dessert experiences for weddings & corporate events
+            across Chicagoland, featuring Belgian chocolate fountains, live
+            crepe stations, and Halal custom sweet platters.
           </p>
 
           {/* CTAs */}

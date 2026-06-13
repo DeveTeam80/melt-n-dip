@@ -670,12 +670,15 @@ export default function MeltNDipPalosPage() {
     return 30; // laptop+
   };
 
-  const [visibleCount, setVisibleCount] = useState(getInitialCount);
+  const [visibleCount, setVisibleCount] = useState(30);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisibleCount(getInitialCount());
   }, [activeCategory]);
+
+  const [reviewsPerPage, setReviewsPerPage] = useState(3);
+  const [peekCount, setPeekCount] = useState(3);
 
   useEffect(() => {
     const onResize = () => setVisibleCount(getInitialCount());
@@ -683,11 +686,19 @@ export default function MeltNDipPalosPage() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const reviewsPerPage =
-    typeof window !== "undefined" && window.innerWidth < 640 ? 1 : 3;
+  useEffect(() => {
+    const update = () => {
+      setReviewsPerPage(window.innerWidth < 640 ? 1 : 3);
+      setPeekCount(
+        window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3,
+      );
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setReviewPage(0);
   }, [reviewsPerPage]);
 
@@ -1732,14 +1743,6 @@ export default function MeltNDipPalosPage() {
             const visibleItems = hasMore
               ? catItems.slice(0, visibleCount)
               : catItems;
-            const peekCount =
-              typeof window !== "undefined"
-                ? window.innerWidth < 640
-                  ? 1 // mobile: 1 peek card
-                  : window.innerWidth < 1024
-                    ? 2 // tablet: 2 peek cards
-                    : 3 // laptop: 3 peek cards
-                : 3;
             const peekStart = hasMore ? visibleCount - peekCount : -1;
 
             return (

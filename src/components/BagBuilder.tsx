@@ -88,12 +88,27 @@ export default function BagBuilder({
     if (window.innerWidth < 1280) return 20; // tablet (now covers iPad Pro)
     return 30; // desktop xl+
   };
-  const [visibleCount, setVisibleCount] = useState(getInitialCount);
+  const [visibleCount, setVisibleCount] = useState(12);
 
   useEffect(() => {
     const onResize = () => setVisibleCount(getInitialCount());
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const [peekCount, setPeekCount] = useState(3);
+  const [viewMoreMargin, setViewMoreMargin] = useState("-20vh");
+
+  useEffect(() => {
+    const update = () => {
+      setPeekCount(
+        window.innerWidth < 640 ? 1 : window.innerWidth < 1280 ? 2 : 3,
+      );
+      setViewMoreMargin(window.innerWidth < 1280 ? "-80px" : "-20vh");
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   const guestNum = parseInt(guests) || 0;
@@ -759,14 +774,6 @@ export default function BagBuilder({
               ? allItems.slice(0, visibleCount)
               : allItems;
 
-            const peekCount =
-              typeof window !== "undefined"
-                ? window.innerWidth < 640
-                  ? 1 // mobile
-                  : window.innerWidth < 1280
-                    ? 2 // tablet (now includes iPad Pro 1024px)
-                    : 3 // desktop xl+
-                : 3;
             const peekStart = hasMore ? visibleCount - peekCount : -1;
 
             return (
@@ -962,11 +969,7 @@ export default function BagBuilder({
                   <div
                     className="relative flex flex-col items-center pt-10 pb-2"
                     style={{
-                      marginTop:
-                        typeof window !== "undefined" &&
-                        window.innerWidth < 1280
-                          ? "-80px"
-                          : "-20vh",
+                      marginTop: viewMoreMargin,
                       zIndex: 10,
                     }}
                   >

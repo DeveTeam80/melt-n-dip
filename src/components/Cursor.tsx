@@ -7,9 +7,11 @@ export default function Cursor() {
   const ringRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isMnd, setIsMnd] = useState(false);
-  const [hasMouse, setHasMouse] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches,
-  );
+  const [hasMouse, setHasMouse] = useState(false);
+
+  useEffect(() => {
+    setHasMouse(window.matchMedia("(pointer: fine)").matches);
+  }, []);
 
   // 2. Setup mouse tracking when pointer: fine is true and elements are rendered
   useEffect(() => {

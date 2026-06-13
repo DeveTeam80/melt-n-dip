@@ -3,12 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Clock, Phone, Mail, Check } from "lucide-react";
 import CustomSelect from "./CustomSelect";
 
 export default function LocationForm() {
   const containerRef = useRef<HTMLElement>(null);
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    vision: "",
+  });
   const [eventType, setEventType] = useState("");
+  const [sending, setSending] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -82,6 +90,23 @@ export default function LocationForm() {
 
     return () => ctx.revert();
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, eventType }),
+      });
+      setSubmitted(true);
+    } catch {
+      alert("Something went wrong. Please call us at (630) 800-9392.");
+    } finally {
+      setSending(false);
+    }
+  };
 
   const onMagMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -286,15 +311,178 @@ export default function LocationForm() {
                 vision.
               </p>
 
-              <form
+              {submitted ? (
+                <div className="relative z-10 flex flex-col items-center text-center py-12">
+                  <div className="flex items-center justify-center rounded-full mb-6 w-16 h-16 bg-teal-faint border border-teal-pale">
+                    <Check className="w-7 h-7 text-teal" strokeWidth={2} />
+                  </div>
+                  <h3 className="font-serif font-light mb-3 text-[32px] text-ink tracking-[-0.02em]">
+                    Inquiry Sent!
+                  </h3>
+                  <p className="text-[16px] text-teal leading-[1.8] max-w-[320px] font-light">
+                    We&apos;ll be in touch within 48 hours. Need us sooner?{" "}
+                    <a
+                      href="tel:+16308009392"
+                      className="text-teal font-medium hover:text-teal-rich"
+                    >
+                      (630) 800-9392
+                    </a>
+                    .
+                  </p>
+                </div>
+              ) : (
+                <form
                 className="flex flex-col gap-5 sm:gap-6"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                {/* Name row */}
-                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-5 sm:gap-6">
-                  <div className="f-field flex flex-col gap-2">
+                onSubmit={handleSubmit}
+                >
+                  {/* Name row */}
+                  <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-5 sm:gap-6">
+                    <div className="f-field flex flex-col gap-2">
+                      <label
+                        htmlFor="firstName"
+                        className="uppercase font-medium"
+                        style={{
+                          fontSize: "10px",
+                          letterSpacing: "2px",
+                          color: "var(--color-teal)",
+                        }}
+                      >
+                        First Name
+                      </label>
+                      <input
+                        id="firstName"
+                        type="text"
+                        required
+                        placeholder="Sara"
+                        value={form.firstName}
+                        onChange={(e) =>
+                          setForm((p) => ({ ...p, firstName: e.target.value }))
+                        }
+                        className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
+                        style={{
+                          borderBottom: "1px solid var(--color-linen)",
+                          padding: "8px 4px",
+                          fontSize: "clamp(13px, 3.5vw, 15px)",
+                        }}
+                        onFocus={(e) =>
+                          (e.target.style.borderBottomColor = "var(--color-teal)")
+                        }
+                        onBlur={(e) =>
+                          (e.target.style.borderBottomColor =
+                            "var(--color-linen)")
+                        }
+                      />
+                    </div>
+                    <div className="f-field flex flex-col gap-2">
+                      <label
+                        htmlFor="lastName"
+                        className="uppercase font-medium"
+                        style={{
+                          fontSize: "10px",
+                          letterSpacing: "2px",
+                          color: "var(--color-teal)",
+                        }}
+                      >
+                        Last Name
+                      </label>
+                      <input
+                        id="lastName"
+                        type="text"
+                        required
+                        placeholder="Ahmed"
+                        value={form.lastName}
+                        onChange={(e) =>
+                          setForm((p) => ({ ...p, lastName: e.target.value }))
+                        }
+                        className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
+                        style={{
+                          borderBottom: "1px solid var(--color-linen)",
+                          padding: "8px 4px",
+                          fontSize: "clamp(13px, 3.5vw, 15px)",
+                        }}
+                        onFocus={(e) =>
+                          (e.target.style.borderBottomColor = "var(--color-teal)")
+                        }
+                        onBlur={(e) =>
+                          (e.target.style.borderBottomColor =
+                            "var(--color-linen)")
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email + Event Type */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                    <div className="f-field flex flex-col gap-2">
+                      <label
+                        htmlFor="email"
+                        className="uppercase font-medium"
+                        style={{
+                          fontSize: "10px",
+                          letterSpacing: "2px",
+                          color: "var(--color-teal)",
+                        }}
+                      >
+                        Email
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        required
+                        placeholder="sara@email.com"
+                        value={form.email}
+                        onChange={(e) =>
+                          setForm((p) => ({ ...p, email: e.target.value }))
+                        }
+                        className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
+                        style={{
+                          borderBottom: "1px solid var(--color-linen)",
+                          padding: "8px 4px",
+                          fontSize: "clamp(13px, 3.5vw, 15px)",
+                        }}
+                        onFocus={(e) =>
+                          (e.target.style.borderBottomColor = "var(--color-teal)")
+                        }
+                        onBlur={(e) =>
+                          (e.target.style.borderBottomColor =
+                            "var(--color-linen)")
+                        }
+                      />
+                    </div>
+                    <div className="f-field flex flex-col gap-2">
+                      <label
+                        htmlFor="eventType"
+                        className="uppercase font-medium"
+                        style={{
+                          fontSize: "10px",
+                          letterSpacing: "2px",
+                          color: "var(--color-teal)",
+                        }}
+                      >
+                        Event Type
+                      </label>
+                      <CustomSelect
+                        value={eventType}
+                        onChange={setEventType}
+                        options={[
+                          "Wedding / Nikah",
+                          "Birthday",
+                          "Anniversary",
+                          "Iftar / Eid",
+                          "Corporate Event",
+                          "Baby / Bridal Shower",
+                          "Store Rental",
+                          "Other",
+                        ]}
+                        placeholder="Select an occasion…"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Vision textarea */}
+                  <div className="f-field flex flex-col gap-2 mt-1 sm:mt-2">
                     <label
-                      htmlFor="firstName"
+                      htmlFor="vision"
                       className="uppercase font-medium"
                       style={{
                         fontSize: "10px",
@@ -302,17 +490,21 @@ export default function LocationForm() {
                         color: "var(--color-teal)",
                       }}
                     >
-                      First Name
+                      Your Vision
                     </label>
-                    <input
-                      id="firstName"
-                      type="text"
-                      placeholder="Sara"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
+                    <textarea
+                      id="vision"
+                      placeholder="Date, venue, theme, guest count, dietary needs…"
+                      value={form.vision}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, vision: e.target.value }))
+                      }
+                      className="bg-transparent outline-none font-light text-ink resize-none placeholder:text-teal/70 transition-colors"
                       style={{
                         borderBottom: "1px solid var(--color-linen)",
                         padding: "8px 4px",
                         fontSize: "clamp(13px, 3.5vw, 15px)",
+                        height: "88px",
                       }}
                       onFocus={(e) =>
                         (e.target.style.borderBottomColor = "var(--color-teal)")
@@ -323,150 +515,26 @@ export default function LocationForm() {
                       }
                     />
                   </div>
-                  <div className="f-field flex flex-col gap-2">
-                    <label
-                      htmlFor="lastName"
-                      className="uppercase font-medium"
+
+                  {/* Submit */}
+                  <div className="f-field mt-2 sm:mt-4">
+                    <button
+                      type="submit"
+                      disabled={sending}
+                      onMouseMove={onMagMove}
+                      onMouseLeave={onMagLeave}
+                      className="cta-primary hover-target w-full flex items-center justify-center"
                       style={{
-                        fontSize: "10px",
-                        letterSpacing: "2px",
-                        color: "var(--color-teal)",
+                        height: "clamp(46px, 10vw, 56px)",
+                        fontSize: "clamp(11px, 2.5vw, 13px)",
+                        opacity: sending ? 0.7 : 1,
                       }}
                     >
-                      Last Name
-                    </label>
-                    <input
-                      id="lastName"
-                      type="text"
-                      placeholder="Ahmed"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
-                      style={{
-                        borderBottom: "1px solid var(--color-linen)",
-                        padding: "8px 4px",
-                        fontSize: "clamp(13px, 3.5vw, 15px)",
-                      }}
-                      onFocus={(e) =>
-                        (e.target.style.borderBottomColor = "var(--color-teal)")
-                      }
-                      onBlur={(e) =>
-                        (e.target.style.borderBottomColor =
-                          "var(--color-linen)")
-                      }
-                    />
+                      {sending ? "Sending…" : "Submit Inquiry"}
+                    </button>
                   </div>
-                </div>
-
-                {/* Email + Event Type */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-                  <div className="f-field flex flex-col gap-2">
-                    <label
-                      htmlFor="email"
-                      className="uppercase font-medium"
-                      style={{
-                        fontSize: "10px",
-                        letterSpacing: "2px",
-                        color: "var(--color-teal)",
-                      }}
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      placeholder="sara@email.com"
-                      className="bg-transparent outline-none transition-colors placeholder:text-teal/70 font-light text-ink w-full"
-                      style={{
-                        borderBottom: "1px solid var(--color-linen)",
-                        padding: "8px 4px",
-                        fontSize: "clamp(13px, 3.5vw, 15px)",
-                      }}
-                      onFocus={(e) =>
-                        (e.target.style.borderBottomColor = "var(--color-teal)")
-                      }
-                      onBlur={(e) =>
-                        (e.target.style.borderBottomColor =
-                          "var(--color-linen)")
-                      }
-                    />
-                  </div>
-                  <div className="f-field flex flex-col gap-2">
-                    <label
-                      htmlFor="eventType"
-                      className="uppercase font-medium"
-                      style={{
-                        fontSize: "10px",
-                        letterSpacing: "2px",
-                        color: "var(--color-teal)",
-                      }}
-                    >
-                      Event Type
-                    </label>
-                    <CustomSelect
-                      value={eventType}
-                      onChange={setEventType}
-                      options={[
-                        "Wedding / Nikah",
-                        "Birthday",
-                        "Anniversary",
-                        "Iftar / Eid",
-                        "Corporate Event",
-                        "Baby / Bridal Shower",
-                        "Store Rental",
-                        "Other",
-                      ]}
-                      placeholder="Select an occasion…"
-                    />
-                  </div>
-                </div>
-
-                {/* Vision textarea */}
-                <div className="f-field flex flex-col gap-2 mt-1 sm:mt-2">
-                  <label
-                    htmlFor="vision"
-                    className="uppercase font-medium"
-                    style={{
-                      fontSize: "10px",
-                      letterSpacing: "2px",
-                      color: "var(--color-teal)",
-                    }}
-                  >
-                    Your Vision
-                  </label>
-                  <textarea
-                    id="vision"
-                    placeholder="Date, venue, theme, guest count, dietary needs…"
-                    className="bg-transparent outline-none font-light text-ink resize-none placeholder:text-teal/70 transition-colors"
-                    style={{
-                      borderBottom: "1px solid var(--color-linen)",
-                      padding: "8px 4px",
-                      fontSize: "clamp(13px, 3.5vw, 15px)",
-                      height: "88px",
-                    }}
-                    onFocus={(e) =>
-                      (e.target.style.borderBottomColor = "var(--color-teal)")
-                    }
-                    onBlur={(e) =>
-                      (e.target.style.borderBottomColor = "var(--color-linen)")
-                    }
-                  />
-                </div>
-
-                {/* Submit */}
-                <div className="f-field mt-2 sm:mt-4">
-                  <button
-                    type="submit"
-                    onMouseMove={onMagMove}
-                    onMouseLeave={onMagLeave}
-                    className="cta-primary hover-target w-full flex items-center justify-center"
-                    style={{
-                      height: "clamp(46px, 10vw, 56px)",
-                      fontSize: "clamp(11px, 2.5vw, 13px)",
-                    }}
-                  >
-                    Submit Inquiry
-                  </button>
-                </div>
-              </form>
+                </form>
+              )}
             </div>
           </div>
         </div>
