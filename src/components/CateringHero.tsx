@@ -117,87 +117,78 @@ export default function CateringHero() {
 
       {/* ── CONTENT ─────────────────────────────────── */}
       <div className="relative z-10 h-full flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-12 lg:px-20">
-        <div className="flex flex-col max-w-2xl">
-          {/* Headline */}
-          <h1
-            className="font-serif font-light flex flex-col gap-1 mb-7 tracking-[-0.02em]"
-            style={{
-              fontSize: "clamp(35px, 5.5vw, 84px)",
-              lineHeight: 1,
-              color: "var(--color-cream)",
-              textShadow: "0 2px 40px rgba(0,0,0,0.5)",
-            }}
-          >
-            <span className="overflow-hidden block py-2">
-              <span className="ch-reveal-line block">
-                Dessert Catering That
-              </span>
-            </span>
-            <span className="overflow-hidden block py-2">
-              <span className="ch-reveal-line block">Turns Every Event</span>
-            </span>
-            <span className="overflow-hidden block py-2">
-              <span className="ch-reveal-line block">
-                Into a{" "}
-                <em className="italic" style={{ color: "var(--color-amber)" }}>
-                  Celebration.
-                </em>
-              </span>
-            </span>
-          </h1>
-
-          {/* Body */}
-          <p
-            className="ch-fade-up font-light leading-[1.85] mb-8"
-            style={{
-              fontSize: "clamp(13px, 4vw, 16px)",
-              color: "rgba(251,253,252,0.7)",
-              maxWidth: "440px",
-              textShadow: "0 1px 12px rgba(0,0,0,0.4)",
-            }}
-          >
-            Bring Melt N Dip&apos;s signature Belgian chocolate creations, live
-            stations, and artisan gelato to your next gathering. Customize your
-            menu, select your guest count, and receive an instant estimate.
-          </p>
-
-          {/* CTAs */}
-          <div className="ch-fade-up flex items-center gap-5 flex-wrap">
-            <a
-              href="#estimator"
-              onMouseMove={onMagMove}
-              onMouseLeave={onMagLeave}
-              className="cta-primary hover-target inline-flex items-center justify-center gap-3 w-fit"
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 w-full items-center">
+          {/* Left: Headline */}
+          <div>
+            <h1
+              className="font-serif font-light flex flex-col gap-1 mb-4 tracking-[-0.02em]"
               style={{
-                height: "54px",
-                padding: "0 34px",
-                fontSize: "12.5px",
-                letterSpacing: "0.06em",
-                boxShadow: "0 10px 40px rgba(8,99,107,0.35)",
+                fontSize: "clamp(35px, 5.5vw, 80px)",
+                lineHeight: 1,
+                color: "var(--color-cream)",
+                textShadow: "0 2px 40px rgba(0,0,0,0.5)",
               }}
             >
-              Plan Your Menu
-              <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
-            </a>
+              <span className="overflow-hidden block ">
+                <span className="ch-reveal-line block pb-2">
+                  Dessert Catering
+                </span>
+              </span>
+              <span className="overflow-hidden block pb-3">
+                <span className="ch-reveal-line block">That Turns Every</span>
+              </span>
+              <span className="overflow-hidden block pb-3">
+                <span className="ch-reveal-line block">Event Into a</span>
+              </span>
+              <span className="overflow-hidden block pb-3">
+                <span className="ch-reveal-line block">
+                  <em
+                    className="italic"
+                    style={{ color: "var(--color-amber)" }}
+                  >
+                    Celebration.
+                  </em>
+                </span>
+              </span>
+            </h1>
+          </div>
 
-            {/* Ghost secondary CTA */}
-            {/* <a
-              href="#estimator"
-              className="inline-flex items-center gap-1.5 font-light transition-all group"
+          {/* Right: Description + CTA */}
+          <div className="flex flex-col items-start lg:items-end">
+            <p
+              className="ch-fade-up font-light leading-[1.85] mb-8 text-left lg:text-left"
               style={{
-                fontSize: "13px",
-                color: "rgba(251,253,252,0.6)",
-                letterSpacing: "0.04em",
+                fontSize: "clamp(13px, 4vw, 18px)",
+                color: "white",
+                maxWidth: "440px",
+                textShadow: "0 1px 12px rgba(0,0,0,0.4)",
               }}
             >
-              <span className="group-hover:text-white transition-colors duration-300">
-                See how it works
-              </span>
-              <ChevronRight
-                className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
-                strokeWidth={1.5}
-              />
-            </a> */}
+              Bring Melt N Dip&apos;s signature Belgian chocolate creations,
+              live stations, and artisan gelato to your next gathering.
+              Customize your menu, select your guest count, and receive an
+              instant estimate.
+            </p>
+
+            {/* CTAs */}
+            <div className="ch-fade-up flex items-center flex-wrap w-full justify-center lg:justify-center gap-4 sm:gap-5">
+              <a
+                href="#estimator"
+                onMouseMove={onMagMove}
+                onMouseLeave={onMagLeave}
+                className="cta-primary hover-target inline-flex items-center justify-center gap-3 w-full sm:w-fit"
+                style={{
+                  height: "54px",
+                  padding: "0 34px",
+                  fontSize: "12.5px",
+                  letterSpacing: "0.06em",
+                  boxShadow: "0 10px 40px rgba(8,99,107,0.35)",
+                }}
+              >
+                Plan Your Menu
+                <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
