@@ -117,78 +117,53 @@ export default function CateringHero() {
 
       {/* ── CONTENT ─────────────────────────────────── */}
       <div className="relative z-10 h-full flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-12 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 w-full items-center">
-          {/* Left: Headline */}
-          <div>
-            <h1
-              className="font-serif font-light flex flex-col gap-1 mb-4 tracking-[-0.02em]"
+        <div>
+          <h1
+            className="font-serif font-light flex flex-col gap-1 mb-4 tracking-[-0.02em]"
+            style={{
+              fontSize: "clamp(35px, 5.5vw, 80px)",
+              lineHeight: 1,
+              color: "var(--color-cream)",
+              textShadow: "0 2px 40px rgba(0,0,0,0.5)",
+            }}
+          >
+            <span className="overflow-hidden block ">
+              <span className="ch-reveal-line block pb-2">
+                Dessert Catering that
+              </span>
+            </span>
+            <span className="overflow-hidden block pb-2">
+              <span className="ch-reveal-line block"> Turns Every Event</span>
+            </span>
+
+            <span className="overflow-hidden block pb-2">
+              <span className="ch-reveal-line block">
+                Into a {""}
+                <em className="italic" style={{ color: "var(--color-amber)" }}>
+                  Celebration.
+                </em>
+              </span>
+            </span>
+          </h1>
+
+          {/* CTAs */}
+          <div className="ch-fade-up flex items-center flex-wrap justify-start gap-4 sm:gap-5 pt-4">
+            <a
+              href="#estimator"
+              onMouseMove={onMagMove}
+              onMouseLeave={onMagLeave}
+              className="cta-primary hover-target inline-flex items-center justify-start gap-3 w-full sm:w-fit"
               style={{
-                fontSize: "clamp(35px, 5.5vw, 80px)",
-                lineHeight: 1,
-                color: "var(--color-cream)",
-                textShadow: "0 2px 40px rgba(0,0,0,0.5)",
+                height: "54px",
+                padding: "0 34px",
+                fontSize: "12.5px",
+                letterSpacing: "0.06em",
+                boxShadow: "0 10px 40px rgba(8,99,107,0.35)",
               }}
             >
-              <span className="overflow-hidden block ">
-                <span className="ch-reveal-line block pb-2">
-                  Dessert Catering
-                </span>
-              </span>
-              <span className="overflow-hidden block pb-3">
-                <span className="ch-reveal-line block">That Turns Every</span>
-              </span>
-              <span className="overflow-hidden block pb-3">
-                <span className="ch-reveal-line block">Event Into a</span>
-              </span>
-              <span className="overflow-hidden block pb-3">
-                <span className="ch-reveal-line block">
-                  <em
-                    className="italic"
-                    style={{ color: "var(--color-amber)" }}
-                  >
-                    Celebration.
-                  </em>
-                </span>
-              </span>
-            </h1>
-          </div>
-
-          {/* Right: Description + CTA */}
-          <div className="flex flex-col items-start lg:items-end">
-            <p
-              className="ch-fade-up font-light leading-[1.85] mb-8 text-left lg:text-left"
-              style={{
-                fontSize: "clamp(13px, 4vw, 18px)",
-                color: "white",
-                maxWidth: "440px",
-                textShadow: "0 1px 12px rgba(0,0,0,0.4)",
-              }}
-            >
-              Bring Melt N Dip&apos;s signature Belgian chocolate creations,
-              live stations, and artisan gelato to your next gathering.
-              Customize your menu, select your guest count, and receive an
-              instant estimate.
-            </p>
-
-            {/* CTAs */}
-            <div className="ch-fade-up flex items-center flex-wrap w-full justify-center lg:justify-center gap-4 sm:gap-5">
-              <a
-                href="#estimator"
-                onMouseMove={onMagMove}
-                onMouseLeave={onMagLeave}
-                className="cta-primary hover-target inline-flex items-center justify-center gap-3 w-full sm:w-fit"
-                style={{
-                  height: "54px",
-                  padding: "0 34px",
-                  fontSize: "12.5px",
-                  letterSpacing: "0.06em",
-                  boxShadow: "0 10px 40px rgba(8,99,107,0.35)",
-                }}
-              >
-                Plan Your Menu
-                <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
-              </a>
-            </div>
+              Plan Your Menu
+              <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
+            </a>
           </div>
         </div>
       </div>
